@@ -6,25 +6,27 @@ function Import-BPSAssetItem {
             Update and create assets in Easit BPS. Returns ID for asset in Easit BPS.
             Specify 'ID' to update an existing asset.
 
-            Copyright 2018 Easit AB
+            Copyright 2019 Easit AB
       .NOTES
-            Version 1.0
+            Version 2.0
       .EXAMPLE
-            Import-BPSAssetItem -url http://localhost/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375 -ImportHandlerIdentifier CreateAssetGeneral_v1 -AssetName "Test" -SerialNumber "SN-467952" -Description "One general asset." -Status "Active" -Verbose -ShowDetails
+            Import-BPSAssetItem2 -url http://localhost:8080/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateAssetGeneral -AssetName "Test" -SerialNumber "SN-467952" -Description "One general asset." -Status "Active" -Verbose -ShowDetails
       .EXAMPLE
-            Import-BPSAssetItem -url http://localhost/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375 -ihi CreateAssetServer_v1 -AssetStartDate "2018-06-26" -InternalMemory "32" -HardriveSize "500" -Status "Active"
+            Import-BPSAssetItem -url http://localhost:8080/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ihi CreateAssetServer -AssetStartDate "2018-06-26" -InternalMemory "32" -HardriveSize "500" -Status "Active"
       .EXAMPLE
-            Import-BPSAssetItem -url http://localhost/webservice/ -api 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375 -ImportHandlerIdentifier CreateAssetPC_v1 -ID "45" -OperatingSystem "Windows 10" -Status "Inactive"
+            Import-BPSAssetItem -url http://localhost:8080/webservice/ -api a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateAssetPC -ID "45" -OperatingSystem "Windows 10" -Status "Inactive"
       .EXAMPLE
             Import-BPSAssetItem -url $url -apikey $api -ihi $identifier -ID "156" -Status "Inactive"
       .PARAMETER url
-            Address to BPS webservice. Default = http://localhost/webservice/
+            Address to BPS webservice. Default = http://localhost:8080/webservice/
       .PARAMETER apikey
             API-key for BPS.
       .PARAMETER ImportHandlerIdentifier
-            ImportHandler to import data with. Default = CreateAssetGeneral_v1
+            ImportHandler to import data with. Default = CreateAssetGeneral
       .PARAMETER ID
             ID for asset in BPS.
+      .PARAMETER UID
+            Unique ID for object during import. Default = 1.
       .PARAMETER AssetType
             Type of asset.
       .PARAMETER AssetInvoicingPeriod
@@ -147,17 +149,22 @@ function Import-BPSAssetItem {
             Server DNS name.
       .PARAMETER ServiceBlackout
             Notes about when service is undergoing maintenance.
+      .PARAMETER Attachment
+            Full path to file to be included in payload.
       .PARAMETER ShowDetails
             If specified, the response, including ID, will be displayed to host.
+      .PARAMETER dryRun
+            If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to BPS.
+            This parameter does not append, rewrite or remove any files from your desktop.
       #>
       [CmdletBinding()]
       param (
             [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
             [ValidateNotNullOrEmpty()]
             [Alias("uri")]
-            [string] $url = "http://localhost/webservice/",
+            [string] $url = "http://localhost:8080/webservice/",
 
-            [parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true,HelpMessage="Enter API key for web service")]
+            [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
             [ValidateNotNullOrEmpty()]
             [Alias("api")]
             [string] $apikey,
@@ -165,7 +172,7 @@ function Import-BPSAssetItem {
             [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
             [ValidateNotNullOrEmpty()]
             [Alias("ihi")]
-            [string] $ImportHandlerIdentifier = "CreateAssetGeneral_v1",
+            [string] $ImportHandlerIdentifier = 'CreateAssetGeneral',
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
             [int] $ID,
@@ -369,43 +376,109 @@ function Import-BPSAssetItem {
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
             [string] $ServiceBlackout,
 
+            [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
+            [int] $uid = "1",
+
+            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [Alias("File")]
+            [string] $Attachment,
+
+            [parameter(Mandatory=$false)]
+            [switch] $dryRun,
+
             [parameter(Mandatory=$false)]
             [switch] $ShowDetails
       )
-      [xml]$payload=@'
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://www.easit.com/bps/schemas">
-      <soapenv:Header/>
-      <soapenv:Body>
-            <sch:ImportItemsRequest>
-                  <sch:ItemToImport id="1"></sch:ItemToImport>
-            </sch:ImportItemsRequest>
-      </soapenv:Body>
-</soapenv:Envelope>
-'@
 
-      Write-Verbose "Creating xml element for importhandler"
+      Write-Verbose "Defining xmlns:soapenv and xmlns:sch"
+      $xmlnsSoapEnv = "http://schemas.xmlsoap.org/soap/envelope/"
+      $xmlnsSch = "http://www.easit.com/bps/schemas"
+
       try {
-            $envelopeImportHandlerIdentifier = $payload.CreateElement('sch:ImportHandlerIdentifier',"http://www.easit.com/bps/schemas")
-            $envelopeImportHandlerIdentifier.InnerText = $ImportHandlerIdentifier
-            $payload.Envelope.Body.ImportItemsRequest.AppendChild($envelopeImportHandlerIdentifier)
+            Write-Verbose "Creating xml object for payload"
+            $payload = New-Object xml
+            [System.Xml.XmlDeclaration] $xmlDeclaration = $payload.CreateXmlDeclaration("1.0", "UTF-8", $null)
+            $payload.AppendChild($xmlDeclaration)
       } catch {
-            Write-Error "Failed to create xml element for importhandler"
+            Write-Error "Failed to create xml object for payload"
             Write-Error "$_"
             break
       }
-      Write-Verbose "Successfully created xml element for importhandler"
 
-      Write-Verbose "Collecting list of used parameters"
       try {
+            Write-Verbose "Creating xml element for Envelope"
+            $soapEnvEnvelope = $payload.CreateElement("soapenv:Envelope","$xmlnsSoapEnv")
+            $soapEnvEnvelope.SetAttribute("xmlns:sch","$xmlnsSch")
+            $payload.AppendChild($soapEnvEnvelope)
+      } catch {
+            Write-Error "Failed to create xml element for Envelope"
+            Write-Error "$_"
+            break
+      }
+
+      try {
+            Write-Verbose "Creating xml element for Header"
+            $soapEnvHeader = $payload.CreateElement('soapenv:Header',"$xmlnsSoapEnv")
+            $soapEnvEnvelope.AppendChild($soapEnvHeader)
+      } catch {
+            Write-Error "Failed to create xml element for Header"
+            Write-Error "$_"
+            break
+      }
+
+      try {
+            Write-Verbose "Creating xml element for Body"
+            $soapEnvBody = $payload.CreateElement("soapenv:Body","$xmlnsSoapEnv")
+            $soapEnvEnvelope.AppendChild($soapEnvBody)
+      } catch {
+            Write-Error "Failed to create xml element for Body"
+            Write-Error "$_"
+            break
+      }
+
+      try {
+            Write-Verbose "Creating xml element for ImportItemsRequest"
+            $schImportItemsRequest = $payload.CreateElement("sch:ImportItemsRequest","$xmlnsSch")
+            $soapEnvBody.AppendChild($schImportItemsRequest)
+      } catch {
+            Write-Error "Failed to create xml element for ImportItemsRequest"
+            Write-Error "$_"
+            break
+      }
+
+      try {
+            Write-Verbose "Creating xml element for Importhandler"
+            $envelopeImportHandlerIdentifier = $payload.CreateElement('sch:ImportHandlerIdentifier',"$xmlnsSch")
+            $envelopeImportHandlerIdentifier.InnerText  = "$ImportHandlerIdentifier"
+            $schImportItemsRequest.AppendChild($envelopeImportHandlerIdentifier)
+      } catch {
+            Write-Error "Failed to create xml element for Importhandler"
+            Write-Error "$_"
+            break
+      }
+
+      try {
+            Write-Verbose "Creating xml element for ItemToImport"
+            $schItemToImport = $payload.CreateElement("sch:ItemToImport","$xmlnsSch")
+            $schItemToImport.SetAttribute("id","$uid")
+            $schItemToImport.SetAttribute("uid","$uid")
+            $schImportItemsRequest.AppendChild($schItemToImport)
+      } catch {
+            Write-Error "Failed to create xml element for ItemToImport"
+            Write-Error "$_"
+            break
+      }
+
+      try {
+            Write-Verbose "Collecting list of used parameters"
             $CommandName = $PSCmdlet.MyInvocation.InvocationName
             $ParameterList = (Get-Command -Name $commandName).Parameters.Values
+            Write-Verbose "Successfully collected list of used parameters"
       } catch {
             Write-Error 'Failed to get list of used parameters!'
             Write-Error "$_"
-            Write-Verbose ""
             break
       }
-      Write-Verbose 'Successfully collected list of used parameters'
 
       Write-Verbose "Starting loop for creating xml element for each parameter"
       foreach ($parameter in $parameterList) {
@@ -418,17 +491,37 @@ function Import-BPSAssetItem {
                   if ($parDetails.Value) {
                         Write-Verbose "$($parameter.Name) have a value"
                         Write-Verbose "Creating xml element for $($parameter.Name) and will try to append it to payload!"
-                        try {
-                              $parName = $parDetails.Name
-                              $parValue = $parDetails.Value
-                              $envelopeItemProperty = $payload.CreateElement('sch:Property',"http://www.easit.com/bps/schemas")
-                              $envelopeItemProperty.SetAttribute('name', $parName)
-                              $envelopeItemProperty.InnerText = $parValue
-                              $payload.Envelope.Body.ImportItemsRequest.ItemToImport.AppendChild($envelopeItemProperty)
-                              Write-Verbose "Added property $parName to payload!"
-                        } catch {
-                              Write-Error "Failed to add property $parName in SOAP envelope!"
-                              Write-Error "$_"
+                        if ($parDetails.Name -ne "FileAttachement") {
+                              try {
+                                    $parName = $parDetails.Name
+                                    $parValue = $parDetails.Value
+                                    $envelopeItemProperty = $payload.CreateElement("sch:Property","$xmlnsSch")
+                                    $envelopeItemProperty.SetAttribute('name',"$parName")
+                                    $envelopeItemProperty.InnerText = $parValue
+                                    $schItemToImport.AppendChild($envelopeItemProperty)
+                                    Write-Verbose "Added property $parName to payload!"
+                              } catch {
+                                    Write-Error "Failed to add property $parName in SOAP envelope!"
+                                    Write-Error "$_"
+                              }
+                        }
+                        if ($parDetails.Name -eq "Attachment") {
+                              try {
+                                    $parName = $parDetails.Name
+                                    $fileHeader = ""
+                                    $separator = "\"
+                                    $fileNametoHeader = $Attachment.Split($separator)
+                                    $fileHeader = $fileNametoHeader[-1]
+                                    $base64string = [Convert]::ToBase64String([IO.File]::ReadAllBytes($FileAttachement))
+                                    $envelopeItemAttachment = $payload.CreateElement("sch:Attachment","$xmlnsSch")
+                                    $envelopeItemAttachment.SetAttribute('name',"$fileHeader")
+                                    $envelopeItemAttachment.InnerText = $base64string
+                                    $schItemToImport.AppendChild($envelopeItemAttachment)
+                                    Write-Verbose "Added property $parName to payload!"
+                              } catch {
+                                    Write-Error "Failed to add property $parName in SOAP envelope!"
+                                    Write-Error "$_"
+                              }
                         }
                   } else {
                         Write-Verbose "$($parameter.Name) does not have a value!"
@@ -437,7 +530,33 @@ function Import-BPSAssetItem {
                   Write-Verbose "$($parameter.Name) is not part of BPS parameter set!"
             } Write-Verbose "Loop for $($parameter.Name) reached end!"
       }
-      Write-Verbose 'Successfully updated property values in SOAP envelope for all parameters with input provided!'
+      Write-Verbose "Successfully updated property values in SOAP envelope for all parameters with input provided!"
+
+      if ($dryRun) {
+            Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it to BPS"
+            $i = 1
+            $currentUserProfile = [Environment]::GetEnvironmentVariable("USERPROFILE")
+            $userProfileDesktop = "$currentUserProfile\Desktop"
+            do {
+                  $outputFileName = "payload_$i.xml"
+                  if (Test-Path $userProfileDesktop\$outputFileName) {
+                        $i++
+                        Write-Host "$i"
+                  }
+            } until (!(Test-Path $userProfileDesktop\$outputFileName))
+            if (!(Test-Path $userProfileDesktop\$outputFileName)) {
+                  try {
+                        $outputFileName = "payload_$i.xml"
+                        $payload.Save("$userProfileDesktop\$outputFileName")
+                        Write-Verbose "Saved payload to file, will now end!"
+                        break
+                  } catch {
+                        Write-Error "Unable to save payload to file!"
+                        Write-Error "$_"
+                        break
+                  }
+            }
+      }
 
       Write-Verbose "Creating header for web request!"
       try {
@@ -451,7 +570,6 @@ function Import-BPSAssetItem {
             Write-Error "$_"
             break
       }
-
       Write-Verbose "Calling web service and using payload as input for Body parameter"
       try {
             $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $payload -Headers $headers

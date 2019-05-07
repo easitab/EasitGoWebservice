@@ -1,8 +1,8 @@
-function Get-BPSItems {
-      <#
-      .SYNOPSIS
+function Get-BPSItems { 
+      <# 
+      .SYNOPSIS 
             Get data from BPS with web services.
-      .DESCRIPTION
+      .DESCRIPTION 
             Connects to BPS Web service with url, apikey and view and returns response as xml.
             If used with variable as in examples below, the following properties can be found as follows:
 
@@ -12,42 +12,38 @@ function Get-BPSItems {
             Items: $bpsdata.Envelope.Body.GetItemsResponse.Items
             Details about fields used in view: $bpsdata.Envelope.Body.GetItemsResponse.Columns.Column
 
-            Copyright 2018 Easit AB
+            Copyright 2019 Easit AB
       .NOTES
-            Version 1.0
+            Version 2.0
+      .EXAMPLE 
+            $bpsdata = Get-BPSItems -url http://localhost:8180/test/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375 -view Incidents
       .EXAMPLE
-            $bpsdata = Get-BPSItems -url http://localhost/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375 -view Incidents_v1
-      .EXAMPLE
-            $bpsdata = Get-BPSItems -url $url -apikey $api -view Incidents_v1 -page 1
+            $bpsdata = Get-BPSItems -url $url -apikey $api -view Incidents -page 1
       .PARAMETER url
-            Address to BPS webservice. Default = http://localhost/webservice/
+            Address to BPS webservice. Default = http://localhost:8080/webservice/
       .PARAMETER apikey
             API-key for BPS.
       .PARAMETER importViewIdentifier
-            View to get data from. Default = Incidents_v1
+            View to get data from.
       .PARAMETER sortOrder
             Order in which to sort data, DESCENDING or ASCENDING. Default = DESCENDING
       .PARAMETER sortField
             Field to sort data with. Default = Id
       .PARAMETER viewPageNumber
-            Used to get data from specific page in view. Each page contains 100 items. Default = 1.
+            Used to get data from specific page in view. Each page contains 25 items. Default = 1.
       #>
       [CmdletBinding()]
-      param (
-            [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
-            [ValidateNotNullOrEmpty()]
-            [Alias("uri")]
-            [string] $url = "http://localhost/webservice/",
+      param ( 
+            [parameter(Mandatory=$false)]
+            [string] $url = "http://localhost:8080/webservice/",
 
-            [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
-            [ValidateNotNullOrEmpty()]
+            [parameter(Mandatory=$true)]
             [Alias("api")]
             [string] $apikey,
 
-            [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
-            [ValidateNotNullOrEmpty()]
+            [parameter(Mandatory=$true)]
             [Alias("view")]
-            [string] $importViewIdentifier = "Incidents_v1",
+            [string] $importViewIdentifier,
 
             [parameter(Mandatory=$false)]
             [Alias("so")]
@@ -108,9 +104,11 @@ $payload=@'
       [xml]$SOAP = $payload
 
       Write-Verbose 'Setting headers'
+      # HTTP headers
       $headers = @{SOAPAction = ""; Authorization = $basicAuthValue}
       Write-Verbose 'Headers set'
 
+      # Calling web service 
       Write-Verbose 'Calling web service and using $SOAP as input for Body parameter'
       try {
             $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $SOAP -Headers $headers
