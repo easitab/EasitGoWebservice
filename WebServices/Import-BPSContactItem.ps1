@@ -7,6 +7,8 @@ function Import-BPSContactItem {
             Specify 'ID' to update an existing contact.
 
             Copyright 2018 Easit AB
+      .NOTES
+            Version 1.0
       .EXAMPLE
             Import-BPSContactItem -url http://localhost/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375 -ImportHandlerIdentifier CreateContact_v1 -OrganizationID "12" -Position "Manager" -Deparment "Support" -FirstName "Test" -Surname "Testsson" -Username "te12te" -SecId "97584621" -Verbose -ShowDetails
       .EXAMPLE

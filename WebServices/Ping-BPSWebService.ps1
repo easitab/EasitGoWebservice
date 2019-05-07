@@ -6,6 +6,8 @@ function Ping-BPSWebService {
             Can be used to check if service is available and correct credentials have been provided.
 
             Copyright 2018 Easit AB
+      .NOTES
+            Version 1.0
       .EXAMPLE
             Ping-BPSWebService -url http://localhost/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375
       .PARAMETER url

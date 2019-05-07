@@ -7,6 +7,8 @@ function Import-BPSAssetItem {
             Specify 'ID' to update an existing asset.
 
             Copyright 2018 Easit AB
+      .NOTES
+            Version 1.0
       .EXAMPLE
             Import-BPSAssetItem -url http://localhost/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375 -ImportHandlerIdentifier CreateAssetGeneral_v1 -AssetName "Test" -SerialNumber "SN-467952" -Description "One general asset." -Status "Active" -Verbose -ShowDetails
       .EXAMPLE

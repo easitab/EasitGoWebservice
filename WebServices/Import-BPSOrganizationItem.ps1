@@ -7,6 +7,8 @@ function Import-BPSOrganizationItem {
             Specify 'ID' to update an existing organization.
 
             Copyright 2018 Easit AB
+      .NOTES
+            Version 1.0
       .EXAMPLE
             Import-BPSOrganizationItem -url http://localhost/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375 -ImportHandlerIdentifier CreateOrganization_Internal_v1 -Name "IT and things" -ParentItemID "124" -CustomerNumber "1648752" -BusinessDebit "4687" -Country "Sverige" -Status "Active" -Verbose -ShowDetails
       .EXAMPLE

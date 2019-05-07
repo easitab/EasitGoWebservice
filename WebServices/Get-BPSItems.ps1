@@ -13,7 +13,8 @@ function Get-BPSItems {
             Details about fields used in view: $bpsdata.Envelope.Body.GetItemsResponse.Columns.Column
 
             Copyright 2018 Easit AB
-
+      .NOTES
+            Version 1.0
       .EXAMPLE
             $bpsdata = Get-BPSItems -url http://localhost/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375 -view Incidents_v1
       .EXAMPLE

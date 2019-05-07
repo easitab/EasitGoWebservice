@@ -7,6 +7,8 @@ function Import-BPSRequestItem {
             Specify 'ID' to update an existing item.
 
             Copyright 2018 Easit AB
+      .NOTES
+            Version 1.0
       .EXAMPLE
             Import-BPSRequestItem -url http://localhost/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375 -ImportHandlerIdentifier CreateRequest_v1 -Subject Testing1 -Description Testing1 -ContactID 5 -Status Registrerad -Verbose -ShowDetails
       .EXAMPLE
