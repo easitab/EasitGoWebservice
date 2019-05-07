@@ -10,15 +10,15 @@ function Import-BPSAssetItem {
       .NOTES
             Version 2.0
       .EXAMPLE
-            Import-BPSAssetItem2 -url http://localhost:8080/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateAssetGeneral -AssetName "Test" -SerialNumber "SN-467952" -Description "One general asset." -Status "Active" -Verbose -ShowDetails
+            Import-BPSAssetItem2 -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateAssetGeneral -AssetName "Test" -SerialNumber "SN-467952" -Description "One general asset." -Status "Active" -Verbose -ShowDetails
       .EXAMPLE
-            Import-BPSAssetItem -url http://localhost:8080/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ihi CreateAssetServer -AssetStartDate "2018-06-26" -InternalMemory "32" -HardriveSize "500" -Status "Active"
+            Import-BPSAssetItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ihi CreateAssetServer -AssetStartDate "2018-06-26" -InternalMemory "32" -HardriveSize "500" -Status "Active"
       .EXAMPLE
-            Import-BPSAssetItem -url http://localhost:8080/webservice/ -api a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateAssetPC -ID "45" -OperatingSystem "Windows 10" -Status "Inactive"
+            Import-BPSAssetItem -url http://localhost/webservice/ -api a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateAssetPC -ID "45" -OperatingSystem "Windows 10" -Status "Inactive"
       .EXAMPLE
             Import-BPSAssetItem -url $url -apikey $api -ihi $identifier -ID "156" -Status "Inactive"
       .PARAMETER url
-            Address to BPS webservice. Default = http://localhost:8080/webservice/
+            Address to BPS webservice. Default = http://localhost/webservice/
       .PARAMETER apikey
             API-key for BPS.
       .PARAMETER ImportHandlerIdentifier
@@ -162,7 +162,7 @@ function Import-BPSAssetItem {
             [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
             [ValidateNotNullOrEmpty()]
             [Alias("uri")]
-            [string] $url = "http://localhost:8080/webservice/",
+            [string] $url = "http://localhost/webservice/",
 
             [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
             [ValidateNotNullOrEmpty()]

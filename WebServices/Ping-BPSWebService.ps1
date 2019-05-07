@@ -9,16 +9,16 @@ function Ping-BPSWebService {
       .NOTES
             Version 2.0
       .EXAMPLE
-            Ping-BPSWebService -url http://localhost:8180/test/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375
+            Ping-BPSWebService -url http://localhost/test/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375
       .PARAMETER url
-            Address to BPS webservice. Default = http://localhost:8080/webservice/
+            Address to BPS webservice. Default = http://localhost/webservice/
       .PARAMETER apikey
             API-key for BPS.
       #>
       [CmdletBinding()]
       param (
             [parameter(Mandatory=$false)]
-            [string] $url = "http://localhost:8080/webservice/",
+            [string] $url = "http://localhost/webservice/",
 
             [parameter(Mandatory=$true)]
             [Alias("api")]

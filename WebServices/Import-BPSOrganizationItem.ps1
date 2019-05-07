@@ -10,15 +10,15 @@ function Import-BPSOrganizationItem {
       .NOTES
             Version 2.0
       .EXAMPLE
-            Import-BPSOrganizationItem -url http://localhost:8080/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateOrganization_Internal -Name "IT and things" -ParentItemID "124" -CustomerNumber "1648752" -BusinessDebit "4687" -Country "Sverige" -Status "Active" -Verbose -ShowDetails
+            Import-BPSOrganizationItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateOrganization_Internal -Name "IT and things" -ParentItemID "124" -CustomerNumber "1648752" -BusinessDebit "4687" -Country "Sverige" -Status "Active" -Verbose -ShowDetails
       .EXAMPLE
-            Import-BPSOrganizationItem -url http://localhost:8080/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ihi CreateOrganization_External -Name "Stuff and IT" -CustomerNumber "4678524" -BusinessDebit "1684" -AccountManager "account.manager@company.com" -MainContractID "85" -ServiceManager "username123"
+            Import-BPSOrganizationItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ihi CreateOrganization_External -Name "Stuff and IT" -CustomerNumber "4678524" -BusinessDebit "1684" -AccountManager "account.manager@company.com" -MainContractID "85" -ServiceManager "username123"
       .EXAMPLE
-            Import-BPSOrganizationItem -url http://localhost:8080/webservice/ -api a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateOrganization_Supplier -ID "467" -Category "Food" -Status "Active"
+            Import-BPSOrganizationItem -url http://localhost/webservice/ -api a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateOrganization_Supplier -ID "467" -Category "Food" -Status "Active"
       .EXAMPLE
             Import-BPSOrganizationItem -url $url -apikey $api -ihi $identifier -ID "156" -Status "Inactive"
       .PARAMETER url
-            Address to BPS webservice. Default = http://localhost:8080/webservice/
+            Address to BPS webservice. Default = http://localhost/webservice/
       .PARAMETER apikey
             API-key for BPS.
       .PARAMETER ImportHandlerIdentifier
@@ -95,7 +95,7 @@ function Import-BPSOrganizationItem {
             [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
             [ValidateNotNullOrEmpty()]
             [Alias("uri")]
-            [string] $url = "http://localhost:8080/webservice/",
+            [string] $url = "http://localhost/webservice/",
 
             [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
             [ValidateNotNullOrEmpty()]

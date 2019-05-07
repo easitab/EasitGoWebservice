@@ -10,15 +10,15 @@ function Import-BPSRequestItem {
       .NOTES
             Version 2.0
       .EXAMPLE
-            Import-BPSRequestItem -url http://localhost:8080/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateRequest -Subject Testing1 -Description Testing1 -ContactID 5 -Status Registrerad -Verbose -ShowDetails
+            Import-BPSRequestItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateRequest -Subject Testing1 -Description Testing1 -ContactID 5 -Status Registrerad -Verbose -ShowDetails
       .EXAMPLE
-            Import-BPSRequestItem -url http://localhost:8080/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateRequest -Subject Testing1 -Description Testing1 -ContactID 5 -Status Registrerad
+            Import-BPSRequestItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateRequest -Subject Testing1 -Description Testing1 -ContactID 5 -Status Registrerad
       .EXAMPLE
-            Import-BPSRequestItem -url http://localhost:8080/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateRequest -ID "156" -Description "Testing2. Nytt test!"
+            Import-BPSRequestItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateRequest -ID "156" -Description "Testing2. Nytt test!"
       .EXAMPLE
             Import-BPSRequestItem -url $url -apikey $api -ihi $identifier -ID "156" -Description "Updating description for request 156"
       .PARAMETER url
-            Address to BPS webservice. Default = http://localhost:8080/webservice/
+            Address to BPS webservice. Default = http://localhost/webservice/
       .PARAMETER apikey
             API-key for BPS.
       .PARAMETER ImportHandlerIdentifier
@@ -85,7 +85,7 @@ function Import-BPSRequestItem {
             [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
             [ValidateNotNullOrEmpty()]
             [Alias("uri")]
-            [string] $url = "http://localhost:8080/webservice/",
+            [string] $url = "http://localhost/webservice/",
 
             [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
             [ValidateNotNullOrEmpty()]
