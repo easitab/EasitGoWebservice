@@ -249,7 +249,7 @@ function Import-BPSOrganizationItem {
             Write-Verbose "Creating xml object for payload"
             $payload = New-Object xml
             [System.Xml.XmlDeclaration] $xmlDeclaration = $payload.CreateXmlDeclaration("1.0", "UTF-8", $null)
-            $payload.AppendChild($xmlDeclaration)
+            $payload.AppendChild($xmlDeclaration) | Out-Null
       } catch {
             Write-Error "Failed to create xml object for payload"
             Write-Error "$_"
@@ -260,7 +260,7 @@ function Import-BPSOrganizationItem {
             Write-Verbose "Creating xml element for Envelope"
             $soapEnvEnvelope = $payload.CreateElement("soapenv:Envelope","$xmlnsSoapEnv")
             $soapEnvEnvelope.SetAttribute("xmlns:sch","$xmlnsSch")
-            $payload.AppendChild($soapEnvEnvelope)
+            $payload.AppendChild($soapEnvEnvelope) | Out-Null
       } catch {
             Write-Error "Failed to create xml element for Envelope"
             Write-Error "$_"
@@ -270,7 +270,7 @@ function Import-BPSOrganizationItem {
       try {
             Write-Verbose "Creating xml element for Header"
             $soapEnvHeader = $payload.CreateElement('soapenv:Header',"$xmlnsSoapEnv")
-            $soapEnvEnvelope.AppendChild($soapEnvHeader)
+            $soapEnvEnvelope.AppendChild($soapEnvHeader) | Out-Null
       } catch {
             Write-Error "Failed to create xml element for Header"
             Write-Error "$_"
@@ -280,7 +280,7 @@ function Import-BPSOrganizationItem {
       try {
             Write-Verbose "Creating xml element for Body"
             $soapEnvBody = $payload.CreateElement("soapenv:Body","$xmlnsSoapEnv")
-            $soapEnvEnvelope.AppendChild($soapEnvBody)
+            $soapEnvEnvelope.AppendChild($soapEnvBody) | Out-Null
       } catch {
             Write-Error "Failed to create xml element for Body"
             Write-Error "$_"
@@ -290,7 +290,7 @@ function Import-BPSOrganizationItem {
       try {
             Write-Verbose "Creating xml element for ImportItemsRequest"
             $schImportItemsRequest = $payload.CreateElement("sch:ImportItemsRequest","$xmlnsSch")
-            $soapEnvBody.AppendChild($schImportItemsRequest)
+            $soapEnvBody.AppendChild($schImportItemsRequest) | Out-Null
       } catch {
             Write-Error "Failed to create xml element for ImportItemsRequest"
             Write-Error "$_"
@@ -301,7 +301,7 @@ function Import-BPSOrganizationItem {
             Write-Verbose "Creating xml element for Importhandler"
             $envelopeImportHandlerIdentifier = $payload.CreateElement('sch:ImportHandlerIdentifier',"$xmlnsSch")
             $envelopeImportHandlerIdentifier.InnerText  = "$ImportHandlerIdentifier"
-            $schImportItemsRequest.AppendChild($envelopeImportHandlerIdentifier)
+            $schImportItemsRequest.AppendChild($envelopeImportHandlerIdentifier) | Out-Null
       } catch {
             Write-Error "Failed to create xml element for Importhandler"
             Write-Error "$_"
@@ -313,7 +313,7 @@ function Import-BPSOrganizationItem {
             $schItemToImport = $payload.CreateElement("sch:ItemToImport","$xmlnsSch")
             $schItemToImport.SetAttribute("id","$uid")
             $schItemToImport.SetAttribute("uid","$uid")
-            $schImportItemsRequest.AppendChild($schItemToImport)
+            $schImportItemsRequest.AppendChild($schItemToImport) | Out-Null
       } catch {
             Write-Error "Failed to create xml element for ItemToImport"
             Write-Error "$_"
@@ -349,7 +349,7 @@ function Import-BPSOrganizationItem {
                                     $envelopeItemProperty = $payload.CreateElement("sch:Property","$xmlnsSch")
                                     $envelopeItemProperty.SetAttribute('name',"$parName")
                                     $envelopeItemProperty.InnerText = $parValue
-                                    $schItemToImport.AppendChild($envelopeItemProperty)
+                                    $schItemToImport.AppendChild($envelopeItemProperty) | Out-Null
                                     Write-Verbose "Added property $parName to payload!"
                               } catch {
                                     Write-Error "Failed to add property $parName in SOAP envelope!"
@@ -367,7 +367,7 @@ function Import-BPSOrganizationItem {
                                     $envelopeItemAttachment = $payload.CreateElement("sch:Attachment","$xmlnsSch")
                                     $envelopeItemAttachment.SetAttribute('name',"$fileHeader")
                                     $envelopeItemAttachment.InnerText = $base64string
-                                    $schItemToImport.AppendChild($envelopeItemAttachment)
+                                    $schItemToImport.AppendChild($envelopeItemAttachment) | Out-Null
                                     Write-Verbose "Added property $parName to payload!"
                               } catch {
                                     Write-Error "Failed to add property $parName in SOAP envelope!"
@@ -385,16 +385,27 @@ function Import-BPSOrganizationItem {
 
       if ($dryRun) {
             Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it to BPS"
-            try {
-                  $currentUserProfile = [Environment]::GetEnvironmentVariable("USERPROFILE")
-                  $userProfileDesktop = "$currentUserProfile\Desktop"
-                  $payload.Save("$userProfileDesktop\payload.xml")
-                  Write-Verbose "Saved payload to file, will now end!"
-                  break
-            } catch {
-                  Write-Error "Unable to save payload to file!"
-                  Write-Error "$_"
-                  break
+            $i = 1
+            $currentUserProfile = [Environment]::GetEnvironmentVariable("USERPROFILE")
+            $userProfileDesktop = "$currentUserProfile\Desktop"
+            do {
+                  $outputFileName = "payload_$i.xml"
+                  if (Test-Path $userProfileDesktop\$outputFileName) {
+                        $i++
+                        Write-Host "$i"
+                  }
+            } until (!(Test-Path $userProfileDesktop\$outputFileName))
+            if (!(Test-Path $userProfileDesktop\$outputFileName)) {
+                  try {
+                        $outputFileName = "payload_$i.xml"
+                        $payload.Save("$userProfileDesktop\$outputFileName")
+                        Write-Verbose "Saved payload to file, will now end!"
+                        break
+                  } catch {
+                        Write-Error "Unable to save payload to file!"
+                        Write-Error "$_"
+                        break
+                  }
             }
       }
 
