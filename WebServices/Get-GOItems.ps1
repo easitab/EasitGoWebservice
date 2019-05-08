@@ -1,4 +1,4 @@
-function Get-BPSItems { 
+function Get-GOItems { 
       <# 
       .SYNOPSIS 
             Get data from BPS/GO with web services.
@@ -28,12 +28,12 @@ function Get-BPSItems {
             limitations under the License.
 
       .LINK
-            https://github.com/easitab/powershell/blob/master/WebServices/Get-BPSItems.ps1
+            https://github.com/easitab/powershell/blob/master/WebServices/Get-GOItems.ps1
       
       .EXAMPLE 
-            $bpsdata = Get-BPSItems -url http://localhost/test/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375 -view Incidents
+            $bpsdata = Get-GOItems -url http://localhost/test/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375 -view Incidents
       .EXAMPLE
-            $bpsdata = Get-BPSItems -url $url -apikey $api -view Incidents -page 1
+            $bpsdata = Get-GOItems -url $url -apikey $api -view Incidents -page 1
       .PARAMETER url
             Address to BPS/GO webservice. Default = http://localhost/webservice/
       .PARAMETER apikey

@@ -1,4 +1,4 @@
-function Import-BPSRequestItem {
+function Import-GORequestItem {
       <#
       .SYNOPSIS
             Send data to BPS/GO with web services.
@@ -22,16 +22,16 @@ function Import-BPSRequestItem {
             limitations under the License.
 
       .LINK
-            https://github.com/easitab/powershell/blob/master/WebServices/Import-BPSRequestItem.ps1
+            https://github.com/easitab/powershell/blob/master/WebServices/Import-GORequestItem.ps1
 
       .EXAMPLE
-            Import-BPSRequestItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateRequest -Subject Testing1 -Description Testing1 -ContactID 5 -Status Registrerad -Verbose -ShowDetails
+            Import-GORequestItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateRequest -Subject Testing1 -Description Testing1 -ContactID 5 -Status Registrerad -Verbose -ShowDetails
       .EXAMPLE
-            Import-BPSRequestItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateRequest -Subject Testing1 -Description Testing1 -ContactID 5 -Status Registrerad
+            Import-GORequestItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateRequest -Subject Testing1 -Description Testing1 -ContactID 5 -Status Registrerad
       .EXAMPLE
-            Import-BPSRequestItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateRequest -ID "156" -Description "Testing2. Nytt test!"
+            Import-GORequestItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateRequest -ID "156" -Description "Testing2. Nytt test!"
       .EXAMPLE
-            Import-BPSRequestItem -url $url -apikey $api -ihi $identifier -ID "156" -Description "Updating description for request 156"
+            Import-GORequestItem -url $url -apikey $api -ihi $identifier -ID "156" -Description "Updating description for request 156"
       .PARAMETER url
             Address to BPS/GO webservice. Default = http://localhost/webservice/
       .PARAMETER apikey

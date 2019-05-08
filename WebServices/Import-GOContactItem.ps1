@@ -1,4 +1,4 @@
-function Import-BPSContactItem {
+function Import-GOContactItem {
       <#
       .SYNOPSIS
             Send data to BPS/GO with web services.
@@ -22,16 +22,16 @@ function Import-BPSContactItem {
             limitations under the License.
 
       .LINK
-            https://github.com/easitab/powershell/blob/master/WebServices/Import-BPSContactItem.ps1
+            https://github.com/easitab/powershell/blob/master/WebServices/Import-GOContactItem.ps1
 
       .EXAMPLE
-            Import-BPSContactItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateContact -OrganizationID "12" -Position "Manager" -Deparment "Support" -FirstName "Test" -Surname "Testsson" -Username "te12te" -SecId "97584621" -Verbose -ShowDetails
+            Import-GOContactItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateContact -OrganizationID "12" -Position "Manager" -Deparment "Support" -FirstName "Test" -Surname "Testsson" -Username "te12te" -SecId "97584621" -Verbose -ShowDetails
       .EXAMPLE
-            Import-BPSContactItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ihi CreateContact -ID "649" -Inactive "true"
+            Import-GOContactItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ihi CreateContact -ID "649" -Inactive "true"
       .EXAMPLE
-            Import-BPSContactItem -url http://localhost/webservice/ -api a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateContact -ID "649" -Surname "Andersson" -Email "test.anders@company.com" -FQDN "$FQDN"
+            Import-GOContactItem -url http://localhost/webservice/ -api a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateContact -ID "649" -Surname "Andersson" -Email "test.anders@company.com" -FQDN "$FQDN"
       .EXAMPLE
-            Import-BPSContactItem -url $url -apikey $api -ihi $identifier -ID "156" -Inactive "false" -Responsible_Manager "true"
+            Import-GOContactItem -url $url -apikey $api -ihi $identifier -ID "156" -Inactive "false" -Responsible_Manager "true"
       .PARAMETER url
             Address to BPS/GO webservice. Default = http://localhost/webservice/
       .PARAMETER apikey

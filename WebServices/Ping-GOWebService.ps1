@@ -1,4 +1,4 @@
-function Ping-BPSWebService {
+function Ping-GOWebService {
       <#
       .SYNOPSIS
             Ping BPS/GO web services.
@@ -21,10 +21,10 @@ function Ping-BPSWebService {
             limitations under the License.
 
       .LINK
-            https://github.com/easitab/powershell/blob/master/WebServices/Ping-BPSWebService.ps1
+            https://github.com/easitab/powershell/blob/master/WebServices/Ping-GOWebService.ps1
 
       .EXAMPLE
-            Ping-BPSWebService -url http://localhost/test/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375
+            Ping-GOWebService -url http://localhost/test/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375
       .PARAMETER url
             Address to BPS/GO webservice. Default = http://localhost/webservice/
       .PARAMETER apikey
