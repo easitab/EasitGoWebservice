@@ -5,9 +5,21 @@ function Ping-BPSWebService {
       .DESCRIPTION
             Can be used to check if service is available and correct credentials have been provided.
 
-            Copyright 2019 Easit AB
       .NOTES
-            Version 2.0
+            Copyright 2019 Easit AB
+
+            Licensed under the Apache License, Version 2.0 (the "License");
+            you may not use this file except in compliance with the License.
+            You may obtain a copy of the License at
+
+                http://www.apache.org/licenses/LICENSE-2.0
+
+            Unless required by applicable law or agreed to in writing, software
+            distributed under the License is distributed on an "AS IS" BASIS,
+            WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+            See the License for the specific language governing permissions and
+            limitations under the License.
+
       .EXAMPLE
             Ping-BPSWebService -url http://localhost/test/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375
       .PARAMETER url
