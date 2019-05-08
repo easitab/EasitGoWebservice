@@ -1,7 +1,7 @@
 function Ping-BPSWebService {
       <#
       .SYNOPSIS
-            Ping BPS web services.
+            Ping BPS/GO web services.
       .DESCRIPTION
             Can be used to check if service is available and correct credentials have been provided.
 
@@ -20,12 +20,15 @@ function Ping-BPSWebService {
             See the License for the specific language governing permissions and
             limitations under the License.
 
+      .LINK
+            https://github.com/easitab/powershell/blob/master/WebServices/Ping-BPSWebService.ps1
+
       .EXAMPLE
             Ping-BPSWebService -url http://localhost/test/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375
       .PARAMETER url
-            Address to BPS webservice. Default = http://localhost/webservice/
+            Address to BPS/GO webservice. Default = http://localhost/webservice/
       .PARAMETER apikey
-            API-key for BPS.
+            API-key for BPS/GO.
       #>
       [CmdletBinding()]
       param (

@@ -1,9 +1,9 @@
 function Get-BPSItems { 
       <# 
       .SYNOPSIS 
-            Get data from BPS with web services.
+            Get data from BPS/GO with web services.
       .DESCRIPTION 
-            Connects to BPS Web service with url, apikey and view and returns response as xml.
+            Connects to BPS/GO Web service with url, apikey and view and returns response as xml.
             If used with variable as in examples below, the following properties can be found as follows:
 
             Current page: $bpsdata.Envelope.Body.GetItemsResponse.page
@@ -27,14 +27,17 @@ function Get-BPSItems {
             See the License for the specific language governing permissions and
             limitations under the License.
 
+      .LINK
+            https://github.com/easitab/powershell/blob/master/WebServices/Get-BPSItems.ps1
+      
       .EXAMPLE 
             $bpsdata = Get-BPSItems -url http://localhost/test/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375 -view Incidents
       .EXAMPLE
             $bpsdata = Get-BPSItems -url $url -apikey $api -view Incidents -page 1
       .PARAMETER url
-            Address to BPS webservice. Default = http://localhost/webservice/
+            Address to BPS/GO webservice. Default = http://localhost/webservice/
       .PARAMETER apikey
-            API-key for BPS.
+            API-key for BPS/GO.
       .PARAMETER importViewIdentifier
             View to get data from.
       .PARAMETER sortOrder

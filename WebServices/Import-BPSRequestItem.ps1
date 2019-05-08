@@ -1,9 +1,9 @@
 function Import-BPSRequestItem {
       <#
       .SYNOPSIS
-            Send data to BPS with web services.
+            Send data to BPS/GO with web services.
       .DESCRIPTION
-            Update and create requests in Easit BPS. Returns ID for item in Easit BPS.
+            Update and create requests in Easit BPS/GO. Returns ID for item in Easit BPS/GO.
             Specify 'ID' to update an existing item.
 
       .NOTES
@@ -20,7 +20,10 @@ function Import-BPSRequestItem {
             WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
             See the License for the specific language governing permissions and
             limitations under the License.
-            
+
+      .LINK
+            https://github.com/easitab/powershell/blob/master/WebServices/Import-BPSRequestItem.ps1
+
       .EXAMPLE
             Import-BPSRequestItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateRequest -Subject Testing1 -Description Testing1 -ContactID 5 -Status Registrerad -Verbose -ShowDetails
       .EXAMPLE
@@ -30,17 +33,17 @@ function Import-BPSRequestItem {
       .EXAMPLE
             Import-BPSRequestItem -url $url -apikey $api -ihi $identifier -ID "156" -Description "Updating description for request 156"
       .PARAMETER url
-            Address to BPS webservice. Default = http://localhost/webservice/
+            Address to BPS/GO webservice. Default = http://localhost/webservice/
       .PARAMETER apikey
-            API-key for BPS.
+            API-key for BPS/GO.
       .PARAMETER ImportHandlerIdentifier
             ImportHandler to import data with. Default = CreateRequest
       .PARAMETER ID
-            ID for request in BPS. Existing item will be updated if provided.
+            ID for request in BPS/GO. Existing item will be updated if provided.
       .PARAMETER ContactID
-            ID of contact in BPS. Can be found on the contact in BPS.
+            ID of contact in BPS/GO. Can be found on the contact in BPS/GO.
       .PARAMETER OrganizationID
-            ID for organization to which the contact belongs to. Can be found on the organization in BPS.
+            ID for organization to which the contact belongs to. Can be found on the organization in BPS/GO.
       .PARAMETER Category
             Contacts category.
       .PARAMETER ManagerGroup
@@ -72,25 +75,25 @@ function Import-BPSRequestItem {
       .PARAMETER Owner
             Owner of request.
       .PARAMETER ReferenceContactID
-            ID of reference contact. Can be found on the contact in BPS.
+            ID of reference contact. Can be found on the contact in BPS/GO.
       .PARAMETER ReferenceOrganizationID
-            ID of reference organization. Can be found on the organization in BPS.
+            ID of reference organization. Can be found on the organization in BPS/GO.
       .PARAMETER ServiceID
-            ID of article to connect with request. Can be found on the article in BPS.
+            ID of article to connect with request. Can be found on the article in BPS/GO.
       .PARAMETER SLAID
-            ID of contract to connect with request. Can be found on the contract in BPS.
+            ID of contract to connect with request. Can be found on the contract in BPS/GO.
       .PARAMETER Urgency
             Urgency of request.
       .PARAMETER ClassificationID
-            ID of classification to connect with request. Can be found on the classification in BPS.
+            ID of classification to connect with request. Can be found on the classification in BPS/GO.
       .PARAMETER KnowledgebaseArticleID
-            ID of knowledgebase article to connect with request. Can be found on the knowledgebase article in BPS.
+            ID of knowledgebase article to connect with request. Can be found on the knowledgebase article in BPS/GO.
       .PARAMETER Attachment
             Full path to file to be included in payload.
       .PARAMETER ShowDetails
             If specified, the response, including ID, will be displayed to host.
       .PARAMETER dryRun
-            If specified, payload will be save as payload.xml to your desktop instead of sent to BPS.
+            If specified, payload will be save as payload.xml to your desktop instead of sent to BPS/GO.
       #>
       [CmdletBinding()]
       param (

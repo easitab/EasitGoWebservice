@@ -1,12 +1,10 @@
 function Import-BPSOrganizationItem {
       <#
       .SYNOPSIS
-            Send data to BPS with web services.
+            Send data to BPS/GO with web services.
       .DESCRIPTION
-            Update and create organization in Easit BPS. Returns ID for item in Easit BPS.
+            Update and create organization in Easit BPS/GO. Returns ID for item in Easit BPS/GO.
             Specify 'ID' to update an existing organization.
-
-            Copyright 2019 Easit AB
 
       .NOTES
             Copyright 2019 Easit AB
@@ -22,7 +20,10 @@ function Import-BPSOrganizationItem {
             WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
             See the License for the specific language governing permissions and
             limitations under the License.
-            
+
+      .LINK
+            https://github.com/easitab/powershell/blob/master/WebServices/Import-BPSContactItem.ps1
+
       .EXAMPLE
             Import-BPSOrganizationItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateOrganization_Internal -Name "IT and things" -ParentItemID "124" -CustomerNumber "1648752" -BusinessDebit "4687" -Country "Sverige" -Status "Active" -Verbose -ShowDetails
       .EXAMPLE
@@ -32,9 +33,9 @@ function Import-BPSOrganizationItem {
       .EXAMPLE
             Import-BPSOrganizationItem -url $url -apikey $api -ihi $identifier -ID "156" -Status "Inactive"
       .PARAMETER url
-            Address to BPS webservice. Default = http://localhost/webservice/
+            Address to BPS/GO webservice. Default = http://localhost/webservice/
       .PARAMETER apikey
-            API-key for BPS.
+            API-key for BPS/GO.
       .PARAMETER ImportHandlerIdentifier
             ImportHandler to import data with. Default = CreateOrganization_Internal
       .PARAMETER Country
@@ -48,7 +49,7 @@ function Import-BPSOrganizationItem {
       .PARAMETER MainContractID
             ID of main contract that organization is connected to.
       .PARAMETER ID
-            ID of organization in BPS.
+            ID of organization in BPS/GO.
       .PARAMETER AnvNamn
             Username at organization.
       .PARAMETER BusinessDebit
@@ -102,7 +103,7 @@ function Import-BPSOrganizationItem {
       .PARAMETER ShowDetails
             If specified, the response, including ID, will be displayed to host.
       .PARAMETER dryRun
-            If specified, payload will be save as payload.xml to your desktop instead of sent to BPS.
+            If specified, payload will be save as payload.xml to your desktop instead of sent to BPS/GO.
       #>
       [CmdletBinding()]
       param (

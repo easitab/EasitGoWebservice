@@ -1,9 +1,9 @@
 function Import-BPSAssetItem {
       <#
       .SYNOPSIS
-            Send data to BPS with web services.
+            Send data to BPS/GO with web services.
       .DESCRIPTION
-            Update and create assets in Easit BPS. Returns ID for asset in Easit BPS.
+            Update and create assets in Easit BPS/GO. Returns ID for asset in Easit BPS/GO.
             Specify 'ID' to update an existing asset.
 
       .NOTES
@@ -21,6 +21,9 @@ function Import-BPSAssetItem {
             See the License for the specific language governing permissions and
             limitations under the License.
 
+      .LINK
+            https://github.com/easitab/powershell/blob/master/WebServices/Import-BPSAssetItem.ps1
+
       .EXAMPLE
             Import-BPSAssetItem2 -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateAssetGeneral -AssetName "Test" -SerialNumber "SN-467952" -Description "One general asset." -Status "Active" -Verbose -ShowDetails
       .EXAMPLE
@@ -30,13 +33,13 @@ function Import-BPSAssetItem {
       .EXAMPLE
             Import-BPSAssetItem -url $url -apikey $api -ihi $identifier -ID "156" -Status "Inactive"
       .PARAMETER url
-            Address to BPS webservice. Default = http://localhost/webservice/
+            Address to BPS/GO webservice. Default = http://localhost/webservice/
       .PARAMETER apikey
-            API-key for BPS.
+            API-key for BPS/GO.
       .PARAMETER ImportHandlerIdentifier
             ImportHandler to import data with. Default = CreateAssetGeneral
       .PARAMETER ID
-            ID for asset in BPS.
+            ID for asset in BPS/GO.
       .PARAMETER UID
             Unique ID for object during import. Default = 1.
       .PARAMETER AssetType
@@ -166,7 +169,7 @@ function Import-BPSAssetItem {
       .PARAMETER ShowDetails
             If specified, the response, including ID, will be displayed to host.
       .PARAMETER dryRun
-            If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to BPS.
+            If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to BPS/GO.
             This parameter does not append, rewrite or remove any files from your desktop.
       #>
       [CmdletBinding()]

@@ -1,9 +1,9 @@
 function Import-BPSContactItem {
       <#
       .SYNOPSIS
-            Send data to BPS with web services.
+            Send data to BPS/GO with web services.
       .DESCRIPTION
-            Update and create contacts in Easit BPS. Returns ID for item in Easit BPS.
+            Update and create contacts in Easit BPS/GO. Returns ID for item in Easit BPS/GO.
             Specify 'ID' to update an existing contact.
 
       .NOTES
@@ -21,6 +21,9 @@ function Import-BPSContactItem {
             See the License for the specific language governing permissions and
             limitations under the License.
 
+      .LINK
+            https://github.com/easitab/powershell/blob/master/WebServices/Import-BPSContactItem.ps1
+
       .EXAMPLE
             Import-BPSContactItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateContact -OrganizationID "12" -Position "Manager" -Deparment "Support" -FirstName "Test" -Surname "Testsson" -Username "te12te" -SecId "97584621" -Verbose -ShowDetails
       .EXAMPLE
@@ -30,19 +33,19 @@ function Import-BPSContactItem {
       .EXAMPLE
             Import-BPSContactItem -url $url -apikey $api -ihi $identifier -ID "156" -Inactive "false" -Responsible_Manager "true"
       .PARAMETER url
-            Address to BPS webservice. Default = http://localhost/webservice/
+            Address to BPS/GO webservice. Default = http://localhost/webservice/
       .PARAMETER apikey
-            API-key for BPS.
+            API-key for BPS/GO.
       .PARAMETER ImportHandlerIdentifier
             ImportHandler to import data with. Default = CreateContact
       .PARAMETER ID
-            ID for contact in BPS.
+            ID for contact in BPS/GO.
       .PARAMETER FirstName
-            First name of contact in BPS.
+            First name of contact in BPS/GO.
       .PARAMETER Surname
-            Last name of contact in BPS.
+            Last name of contact in BPS/GO.
       .PARAMETER OrganizationID
-            ID for organization to which the contact belongs to. Can be found on the organization in BPS.
+            ID for organization to which the contact belongs to. Can be found on the organization in BPS/GO.
       .PARAMETER Category
             Contacts category.
       .PARAMETER Position
