@@ -506,7 +506,7 @@ function Import-GOAssetItem {
                   if ($parDetails.Value) {
                         Write-Verbose "$($parameter.Name) have a value"
                         Write-Verbose "Creating xml element for $($parameter.Name) and will try to append it to payload!"
-                        if ($parDetails.Name -ne "FileAttachement") {
+                        if ($parDetails.Name -ne "Attachment") {
                               try {
                                     $parName = $parDetails.Name
                                     $parValue = $parDetails.Value
@@ -527,7 +527,7 @@ function Import-GOAssetItem {
                                     $separator = "\"
                                     $fileNametoHeader = $Attachment.Split($separator)
                                     $fileHeader = $fileNametoHeader[-1]
-                                    $base64string = [Convert]::ToBase64String([IO.File]::ReadAllBytes($FileAttachement))
+                                    $base64string = [Convert]::ToBase64String([System.IO.File]::ReadAllBytes("$Attachment"))
                                     $envelopeItemAttachment = $payload.CreateElement("sch:Attachment","$xmlnsSch")
                                     $envelopeItemAttachment.SetAttribute('name',"$fileHeader")
                                     $envelopeItemAttachment.InnerText = $base64string

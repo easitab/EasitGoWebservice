@@ -315,7 +315,7 @@ function Import-GORequestItem {
                   if ($parDetails.Value) {
                         Write-Verbose "$($parameter.Name) have a value"
                         Write-Verbose "Creating xml element for $($parameter.Name) and will try to append it to payload!"
-                        if ($parDetails.Name -ne "Attachement") {
+                        if ($parDetails.Name -ne "Attachment") {
                               try {
                                     $parName = $parDetails.Name
                                     $parValue = $parDetails.Value
