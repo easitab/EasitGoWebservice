@@ -34,6 +34,8 @@ function Get-GOItems {
             $bpsdata = Get-GOItems -url http://localhost/test/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375 -view Incidents
       .EXAMPLE
             $bpsdata = Get-GOItems -url $url -apikey $api -view Incidents -page 1
+      .EXAMPLE
+            $bpsdata = Get-GOItems -url $url -apikey $api -view Incidents -page 1 -ColumnFilter 'Name,EQUALS,Extern organisation'
       .PARAMETER url
             Address to BPS/GO webservice. Default = http://localhost/webservice/
       .PARAMETER apikey
@@ -41,11 +43,13 @@ function Get-GOItems {
       .PARAMETER importViewIdentifier
             View to get data from.
       .PARAMETER sortOrder
-            Order in which to sort data, DESCENDING or ASCENDING. Default = DESCENDING
+            Order in which to sort data, Descending or Ascending. Default = Descending
       .PARAMETER sortField
             Field to sort data with. Default = Id
       .PARAMETER viewPageNumber
             Used to get data from specific page in view. Each page contains 25 items. Default = 1.
+      .PARAMETER ColumnFilter
+            Used to filter data. Example: ColumnName,comparator,value
       .PARAMETER SSO
             Used if system is using SSO with IWA (Active Directory). Not need when using SAML2
       #>
@@ -64,7 +68,7 @@ function Get-GOItems {
 
             [parameter(Mandatory=$false)]
             [Alias("so")]
-            [string] $sortOrder = "DESCENDING",
+            [string] $sortOrder = "Descending",
 
             [parameter(Mandatory=$false)]
             [Alias("sf")]
@@ -73,6 +77,9 @@ function Get-GOItems {
             [parameter(Mandatory=$false)]
             [Alias("page")]
             [int] $viewPageNumber = 1,
+
+            [parameter(Mandatory=$false)]
+            [string[]] $ColumnFilter,
 
             [parameter(Mandatory=$false)]
             [switch] $SSO
@@ -101,6 +108,7 @@ $payload=@'
                 <sch:ItemViewIdentifier>$ivi</sch:ItemViewIdentifier>
                 <sch:Page>$pc</sch:Page>
                 <sch:SortColumn order="$so">$sf</sch:SortColumn>
+                <!--<sch:ColumnFilter columnName="$cn" comparator="$comp">$cValue</sch:ColumnFilter>-->
             </sch:GetItemsRequest>
         </soapenv:Body>
 </soapenv:Envelope>
@@ -113,6 +121,16 @@ $payload=@'
             $payload = $payload.Replace('$pc', $pc)
             $payload = $payload.Replace('$so', $so)
             $payload = $payload.Replace('$sf', $sf)
+            if ($ColumnFilter) {
+                  $ColumnFilterArray = $ColumnFilter.Split(',')
+                  $ColumnFilterArray = $ColumnFilterArray.TrimStart()
+                  $payload = $payload.Replace('<!--', '')
+                  $payload = $payload.Replace('-->', '')
+                  $payload = $payload.Replace('$cn', $ColumnFilterArray[0])
+                  $payload = $payload.Replace('$comp', $ColumnFilterArray[1])
+                  $payload = $payload.Replace('$cValue', $ColumnFilterArray[2])
+                  Write-Verbose $payload
+            }
       } catch {
             Write-Error 'Failed to update payload'
             Write-Error "$_"
@@ -134,7 +152,7 @@ $payload=@'
             try {
                   Write-Verbose 'Using switch SSO. De facto UseDefaultCredentials for Invoke-WebRequest'
                   $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $payload -Headers $headers -UseDefaultCredentials
-                  Write-Verbose "Successfully connected to and imported data to BPS"
+                  Write-Verbose "Successfully connected to and got data from BPS"
             } catch {
                   Write-Error "Failed to connect to BPS!"
                   Write-Error "$_"
@@ -143,7 +161,7 @@ $payload=@'
       } else {
             try {
                   $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $payload -Headers $headers
-                  Write-Verbose "Successfully connected to and imported data to BPS"
+                  Write-Verbose "Successfully connected to and got data from BPS"
             } catch {
                   Write-Error "Failed to connect to BPS!"
                   Write-Error "$_"
