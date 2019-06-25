@@ -100,6 +100,8 @@ function Import-GOOrganizationItem {
             Email or username of user that should be used as ServiceManager.
       .PARAMETER Attachment
             Full path to file to be included in payload.
+      .PARAMETER SSO
+            Used if system is using SSO with IWA (Active Directory). Not need when using SAML2
       .PARAMETER ShowDetails
             If specified, the response, including ID, will be displayed to host.
       .PARAMETER dryRun
@@ -248,6 +250,9 @@ function Import-GOOrganizationItem {
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
             [Alias("File")]
             [string] $Attachment,
+
+            [parameter(Mandatory=$false)]
+            [switch] $SSO,
 
             [parameter(Mandatory=$false)]
             [switch] $dryRun,
@@ -437,14 +442,28 @@ function Import-GOOrganizationItem {
             break
       }
       Write-Verbose "Calling web service and using payload as input for Body parameter"
-      try {
-            $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $payload -Headers $headers
-            Write-Verbose "Successfully connected to and imported data to BPS"
-      } catch {
-            Write-Error "Failed to connect to BPS!"
-            Write-Error "$_"
-            return $payload
+      if ($SSO) {
+            try {
+                  Write-Verbose 'Using switch SSO. De facto UseDefaultCredentials for Invoke-WebRequest'
+                  $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $payload -Headers $headers -UseDefaultCredentials
+                  Write-Verbose "Successfully connected to and imported data to BPS"
+            } catch {
+                  Write-Error "Failed to connect to BPS!"
+                  Write-Error "$_"
+                  return $payload
+            }
+      } else {
+            try {
+                  $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $payload -Headers $headers
+                  Write-Verbose "Successfully connected to and imported data to BPS"
+            } catch {
+                  Write-Error "Failed to connect to BPS!"
+                  Write-Error "$_"
+                  return $payload
+            }
       }
+      
+      New-Variable -Name functionout
       [xml]$functionout = $r.Content
       Write-Verbose 'Casted content of reponse as [xml]$functionout'
 

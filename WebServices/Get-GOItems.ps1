@@ -46,6 +46,8 @@ function Get-GOItems {
             Field to sort data with. Default = Id
       .PARAMETER viewPageNumber
             Used to get data from specific page in view. Each page contains 25 items. Default = 1.
+      .PARAMETER SSO
+            Used if system is using SSO with IWA (Active Directory). Not need when using SAML2
       #>
       [CmdletBinding()]
       param ( 
@@ -70,7 +72,10 @@ function Get-GOItems {
 
             [parameter(Mandatory=$false)]
             [Alias("page")]
-            [int] $viewPageNumber = 1
+            [int] $viewPageNumber = 1,
+
+            [parameter(Mandatory=$false)]
+            [switch] $SSO
       )
 
       $ivi = $importViewIdentifier
@@ -125,14 +130,28 @@ $payload=@'
 
       # Calling web service 
       Write-Verbose 'Calling web service and using $SOAP as input for Body parameter'
-      try {
-            $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $SOAP -Headers $headers
-      } catch {
-            Write-Error "Failed to connect to BPS!"
-            Write-Error "$_"
-            return
+      if ($SSO) {
+            try {
+                  Write-Verbose 'Using switch SSO. De facto UseDefaultCredentials for Invoke-WebRequest'
+                  $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $payload -Headers $headers -UseDefaultCredentials
+                  Write-Verbose "Successfully connected to and imported data to BPS"
+            } catch {
+                  Write-Error "Failed to connect to BPS!"
+                  Write-Error "$_"
+                  return $payload
+            }
+      } else {
+            try {
+                  $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $payload -Headers $headers
+                  Write-Verbose "Successfully connected to and imported data to BPS"
+            } catch {
+                  Write-Error "Failed to connect to BPS!"
+                  Write-Error "$_"
+                  return $payload
+            }
       }
-      Write-Verbose 'Successfully connected to and recieved data from web service'
+      
+      New-Variable -Name functionout
       [xml]$functionout = $r.Content
       Write-Verbose 'Casted content of reponse as [xml]$functionout'
 
