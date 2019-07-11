@@ -138,8 +138,8 @@ $payload=@'
       }
       Write-Verbose 'Done replacing content in $payload with parameter input'
 
-      Write-Verbose 'Casting $payload as [xml]$SOAP'
-      [xml]$SOAP = $payload
+      #Write-Verbose 'Casting $payload as [xml]$SOAP'
+      #[xml]$SOAP = $payload
 
       Write-Verbose 'Setting headers'
       # HTTP headers
