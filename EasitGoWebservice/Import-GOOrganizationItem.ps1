@@ -22,7 +22,7 @@ function Import-GOOrganizationItem {
             limitations under the License.
 
       .LINK
-            https://github.com/easitab/powershell/blob/master/WebServices/Import-BPSContactItem.ps1
+            https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-BPSContactItem.ps1
 
       .EXAMPLE
             Import-GOOrganizationItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateOrganization_Internal -Name "IT and things" -ParentItemID "124" -CustomerNumber "1648752" -BusinessDebit "4687" -Country "Sverige" -Status "Active" -Verbose -ShowDetails

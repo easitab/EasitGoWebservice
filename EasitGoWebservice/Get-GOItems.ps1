@@ -28,7 +28,7 @@ function Get-GOItems {
             limitations under the License.
 
       .LINK
-            https://github.com/easitab/powershell/blob/master/WebServices/Get-GOItems.ps1
+            https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Get-GOItems.ps1
       
       .EXAMPLE 
             $bpsdata = Get-GOItems -url http://localhost/test/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375 -view Incidents

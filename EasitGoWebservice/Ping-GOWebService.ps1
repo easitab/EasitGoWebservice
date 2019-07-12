@@ -21,7 +21,7 @@ function Ping-GOWebService {
             limitations under the License.
 
       .LINK
-            https://github.com/easitab/powershell/blob/master/WebServices/Ping-GOWebService.ps1
+            https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Ping-GOWebService.ps1
 
       .EXAMPLE
             Ping-GOWebService -url http://localhost/test/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375

@@ -22,7 +22,7 @@ function Import-GOAssetItem {
             limitations under the License.
 
       .LINK
-            https://github.com/easitab/powershell/blob/master/WebServices/Import-GOAssetItem.ps1
+            https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-GOAssetItem.ps1
 
       .EXAMPLE
             Import-GOAssetItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateAssetGeneral -AssetName "Test" -SerialNumber "SN-467952" -Description "One general asset." -Status "Active" -Verbose -ShowDetails

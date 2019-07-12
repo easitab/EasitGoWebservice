@@ -22,7 +22,7 @@ function Import-GORequestItem {
             limitations under the License.
 
       .LINK
-            https://github.com/easitab/powershell/blob/master/WebServices/Import-GORequestItem.ps1
+            https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-GORequestItem.ps1
 
       .EXAMPLE
             Import-GORequestItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateRequest -Subject Testing1 -Description Testing1 -ContactID 5 -Status Registrerad -Verbose -ShowDetails

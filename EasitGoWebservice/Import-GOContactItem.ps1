@@ -22,7 +22,7 @@ function Import-GOContactItem {
             limitations under the License.
 
       .LINK
-            https://github.com/easitab/powershell/blob/master/WebServices/Import-GOContactItem.ps1
+            https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-GOContactItem.ps1
 
       .EXAMPLE
             Import-GOContactItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateContact -OrganizationID "12" -Position "Manager" -Deparment "Support" -FirstName "Test" -Surname "Testsson" -Username "te12te" -SecId "97584621" -Verbose -ShowDetails
