@@ -8,8 +8,8 @@
 
 1. Open Windows PowerShell as Administrator
 2. Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
-3. Install-Module EasitGoWebservice
-4. Import-Module EasitGoWebservice
+3. Install-Module -Name EasitGoWebservice [More information](https://docs.microsoft.com/en-us/powershell/module/powershellget/install-module)
+4. Import-Module -Name EasitGoWebservice [More information](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/import-module)
 
 ## Functions with "Complete/Done/Ready for use" status
 
