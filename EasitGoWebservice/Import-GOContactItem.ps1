@@ -113,99 +113,75 @@ function Import-GOContactItem {
             [string] $ImportHandlerIdentifier = "CreateContact",
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("FirstName")]
             [string] $FirstName,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Surname")]
             [string] $Surname,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Email")]
             [string] $Email,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("ID")]
             [int] $ID,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("SecId")]
             [string] $SecId,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("OrganizationID")]
             [string] $OrganizationID,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Category")]
             [string] $Category,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Position")]
             [string] $Position,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("ManagerID")]
             [string] $ManagerID,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Impact")]
             [string] $Impact,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("PreferredMethodForNotification")]
             [string] $PreferredMethodForNotification,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Building")]
             [string] $Building,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Checkbox_Authorized_Purchaser")]
             [string] $Checkbox_Authorized_Purchaser,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Checkbox_Responsible_Manager")]
             [string] $Checkbox_Responsible_Manager,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Deparment")]
             [string] $Deparment,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("ExternalId")]
             [string] $ExternalId,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("FQDN")]
             [string] $FQDN,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Inactive")]
             [string] $Inactive,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("MobilePhone")]
             [string] $MobilePhone,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Note")]
             [string] $Note,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Phone")]
             [string] $Phone,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Room")]
             [string] $Room,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Title")]
             [string] $Title,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Username")]
             [string] $Username,
 
             [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
