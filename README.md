@@ -28,4 +28,4 @@ Read more about [Install-Module](https://docs.microsoft.com/en-us/powershell/mod
 
 ## Support & Questions
 
-Questions and issue can be sent to [github@easit](mailto:github@easit.com)
+Questions and issue can be sent to [githubATeasit](mailto:github@easit.com)
