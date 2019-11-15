@@ -125,123 +125,110 @@ function Import-GOOrganizationItem {
             [string] $ImportHandlerIdentifier = "CreateOrganization_Internal",
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Country")]
             [string] $Country,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Category")]
             [string] $Category,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Status")]
             [string] $Status,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Parent","ParentItemID")]
+            [Alias("Parent")]
             [int] $ParentItemID,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("MainContractID","Contract")]
+            [Alias("Contract")]
             [string] $MainContractID,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("OrganizationID","ID")]
+            [Alias("OrganizationID")]
             [string] $ID,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("AnvNamn","UserName")]
+            [Alias("UserName")]
             [string] $AnvNamn,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("BusinessDebit","Verksamhetdebet")]
+            [Alias("Verksamhetdebet")]
             [string] $BusinessDebit,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Counterpart")]
             [string] $Counterpart,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("CustomerNumber")]
             [string] $CustomerNumber,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("DeliveryAddress")]
             [string] $DeliveryAddress,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("DeliveryCity")]
             [string] $DeliveryCity,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("DeliveryZipCode")]
             [string] $DeliveryZipCode,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("ExternalId")]
             [string] $ExternalId,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Fax")]
             [string] $Fax,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Losen","Password")]
+            [Alias("Password")]
             [string] $Losen,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Name","Namn")]
+            [Alias("Namn")]
             [string] $Name,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Notes","Anteckningar")]
+            [Alias("Anteckningar")]
             [string] $Notes,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Ort","City")]
+            [Alias("City")]
             [string] $Ort,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Phone","Telefon")]
+            [Alias("Telefon")]
             [string] $Phone,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Postnummer")]
             [string] $PostNummer,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("ResponsibilityDebit","Ansvardebet")]
+            [Alias("Ansvardebet")]
             [string] $ResponsibilityDebit,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("UtdelningsAdress")]
             [string] $UtdelningsAdress,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("VisitingAddress","Besoksadress")]
+            [Alias("Besoksadress")]
             [string] $VisitingAddress,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("VisitingCity","Besoksort")]
+            [Alias("Besoksort")]
             [string] $VisitingCity,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("VisitingZipCode","Besokspostnummer")]
+            [Alias("Besokspostnummer")]
             [string] $VisitingZipCode,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Webshop")]
             [string] $Webshop,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("Website","Webb","homepage")]
+            [Alias("Webb","homepage")]
             [string] $Website,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("AccountManager","Kundansvarig")]
+            [Alias("Kundansvarig")]
             [string] $AccountManager,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("ServiceManager","Serviceansvarig")]
+            [Alias("Serviceansvarig")]
             [string] $ServiceManager,
 
             [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
