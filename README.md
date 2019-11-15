@@ -25,3 +25,7 @@ Read more about [Install-Module](https://docs.microsoft.com/en-us/powershell/mod
 ## Functions with "work in progress" status
 
 * None at the moment
+
+## Support & Questions
+
+Questions and issue can be sent to [githubATeasit](mailto:github@easit.com)
