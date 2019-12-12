@@ -40,62 +40,7 @@ function Ping-GOWebService {
             [string] $apikey
       )
 
-      Write-Verbose "Defining xmlns:soapenv and xmlns:sch"
-      $xmlnsSoapEnv = "http://schemas.xmlsoap.org/soap/envelope/"
-      $xmlnsSch = "http://www.easit.com/bps/schemas"
-
-      try {
-            Write-Verbose "Creating xml object for payload"
-            $payload = New-Object xml
-            [System.Xml.XmlDeclaration] $xmlDeclaration = $payload.CreateXmlDeclaration("1.0", "UTF-8", $null)
-            $payload.AppendChild($xmlDeclaration) | Out-Null
-      } catch {
-            Write-Error "Failed to create xml object for payload"
-            Write-Error "$_"
-            break
-      }
-
-      try {
-            Write-Verbose "Creating xml element for Envelope"
-            $soapEnvEnvelope = $payload.CreateElement("soapenv:Envelope","$xmlnsSoapEnv")
-            $soapEnvEnvelope.SetAttribute("xmlns:sch","$xmlnsSch")
-            $payload.AppendChild($soapEnvEnvelope) | Out-Null
-      } catch {
-            Write-Error "Failed to create xml element for Envelope"
-            Write-Error "$_"
-            break
-      }
-
-      try {
-            Write-Verbose "Creating xml element for Header"
-            $soapEnvHeader = $payload.CreateElement('soapenv:Header',"$xmlnsSoapEnv")
-            $soapEnvEnvelope.AppendChild($soapEnvHeader) | Out-Null
-      } catch {
-            Write-Error "Failed to create xml element for Header"
-            Write-Error "$_"
-            break
-      }
-
-      try {
-            Write-Verbose "Creating xml element for Body"
-            $soapEnvBody = $payload.CreateElement("soapenv:Body","$xmlnsSoapEnv")
-            $soapEnvEnvelope.AppendChild($soapEnvBody) | Out-Null
-      } catch {
-            Write-Error "Failed to create xml element for Body"
-            Write-Error "$_"
-            break
-      }
-
-      try {
-            Write-Verbose "Creating xml element for PingRequest"
-            $envelopePingRequest = $payload.CreateElement('sch:PingRequest',"$xmlnsSch")
-            $envelopePingRequest.InnerText  = '?'
-            $soapEnvBody.AppendChild($envelopePingRequest) | Out-Null
-      } catch {
-            Write-Error "Failed to create xml element for PingRequest"
-            Write-Error "$_"
-            break
-      }
+      $payload = New-XMLforEasit -Ping
 
       Write-Verbose "Creating header for web request!"
       try {

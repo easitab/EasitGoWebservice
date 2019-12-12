@@ -50,6 +50,7 @@ function Get-GOItems {
             Used to get data from specific page in view. Each page contains 25 items. Default = 1.
       .PARAMETER ColumnFilter
             Used to filter data. Example: ColumnName,comparator,value
+            Valid comparator: EQUALS, NOT_EQUALS, IN, NOT_IN, GREATER_THAN, GREATER_THAN_OR_EQUALS, LESS_THAN, LESS_THAN_OR_EQUALS, LIKE, NOT_LIKE
       .PARAMETER SSO
             Used if system is using SSO with IWA (Active Directory). Not need when using SAML2
       #>

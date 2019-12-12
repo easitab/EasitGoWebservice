@@ -102,7 +102,7 @@ function Import-GOContactItem {
             [Alias("uri")]
             [string] $url = "http://localhost/webservice/",
 
-            [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
+            [parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true)]
             [ValidateNotNullOrEmpty()]
             [Alias("api")]
             [string] $apikey,
@@ -201,85 +201,6 @@ function Import-GOContactItem {
             [switch] $ShowDetails
       )
 
-      Write-Verbose "Defining xmlns:soapenv and xmlns:sch"
-      $xmlnsSoapEnv = "http://schemas.xmlsoap.org/soap/envelope/"
-      $xmlnsSch = "http://www.easit.com/bps/schemas"
-
-      try {
-            Write-Verbose "Creating xml object for payload"
-            $payload = New-Object xml
-            [System.Xml.XmlDeclaration] $xmlDeclaration = $payload.CreateXmlDeclaration("1.0", "UTF-8", $null)
-            $payload.AppendChild($xmlDeclaration) | Out-Null
-      } catch {
-            Write-Error "Failed to create xml object for payload"
-            Write-Error "$_"
-            break
-      }
-
-      try {
-            Write-Verbose "Creating xml element for Envelope"
-            $soapEnvEnvelope = $payload.CreateElement("soapenv:Envelope","$xmlnsSoapEnv")
-            $soapEnvEnvelope.SetAttribute("xmlns:sch","$xmlnsSch")
-            $payload.AppendChild($soapEnvEnvelope) | Out-Null
-      } catch {
-            Write-Error "Failed to create xml element for Envelope"
-            Write-Error "$_"
-            break
-      }
-
-      try {
-            Write-Verbose "Creating xml element for Header"
-            $soapEnvHeader = $payload.CreateElement('soapenv:Header',"$xmlnsSoapEnv")
-            $soapEnvEnvelope.AppendChild($soapEnvHeader) | Out-Null
-      } catch {
-            Write-Error "Failed to create xml element for Header"
-            Write-Error "$_"
-            break
-      }
-
-      try {
-            Write-Verbose "Creating xml element for Body"
-            $soapEnvBody = $payload.CreateElement("soapenv:Body","$xmlnsSoapEnv")
-            $soapEnvEnvelope.AppendChild($soapEnvBody) | Out-Null
-      } catch {
-            Write-Error "Failed to create xml element for Body"
-            Write-Error "$_"
-            break
-      }
-
-      try {
-            Write-Verbose "Creating xml element for ImportItemsRequest"
-            $schImportItemsRequest = $payload.CreateElement("sch:ImportItemsRequest","$xmlnsSch")
-            $soapEnvBody.AppendChild($schImportItemsRequest) | Out-Null
-      } catch {
-            Write-Error "Failed to create xml element for ImportItemsRequest"
-            Write-Error "$_"
-            break
-      }
-
-      try {
-            Write-Verbose "Creating xml element for Importhandler"
-            $envelopeImportHandlerIdentifier = $payload.CreateElement('sch:ImportHandlerIdentifier',"$xmlnsSch")
-            $envelopeImportHandlerIdentifier.InnerText  = "$ImportHandlerIdentifier"
-            $schImportItemsRequest.AppendChild($envelopeImportHandlerIdentifier) | Out-Null
-      } catch {
-            Write-Error "Failed to create xml element for Importhandler"
-            Write-Error "$_"
-            break
-      }
-
-      try {
-            Write-Verbose "Creating xml element for ItemToImport"
-            $schItemToImport = $payload.CreateElement("sch:ItemToImport","$xmlnsSch")
-            $schItemToImport.SetAttribute("id","$uid") | Out-Null
-            $schItemToImport.SetAttribute("uid","$uid") | Out-Null
-            $schImportItemsRequest.AppendChild($schItemToImport) | Out-Null
-      } catch {
-            Write-Error "Failed to create xml element for ItemToImport"
-            Write-Error "$_"
-            break
-      }
-
       try {
             Write-Verbose "Collecting list of used parameters"
             $CommandName = $PSCmdlet.MyInvocation.InvocationName
@@ -291,7 +212,8 @@ function Import-GOContactItem {
             break
       }
 
-      Write-Verbose "Starting loop for creating xml element for each parameter"
+      Write-Verbose "Starting loop for creating hashtable of parameter..."
+      $params = [ordered]@{}
       foreach ($parameter in $parameterList) {
             Write-Verbose "Starting loop for $($parameter.Name)"
             $ParameterSetToMatch = 'BPSAttribute'
@@ -301,39 +223,9 @@ function Import-GOContactItem {
                   $parDetails = Get-Variable -Name $parameter.Name
                   if ($parDetails.Value) {
                         Write-Verbose "$($parameter.Name) have a value"
-                        Write-Verbose "Creating xml element for $($parameter.Name) and will try to append it to payload!"
-                        if ($parDetails.Name -ne "Attachment") {
-                              try {
-                                    $parName = $parDetails.Name
-                                    $parValue = $parDetails.Value
-                                    $envelopeItemProperty = $payload.CreateElement("sch:Property","$xmlnsSch")
-                                    $envelopeItemProperty.SetAttribute('name',"$parName")
-                                    $envelopeItemProperty.InnerText = $parValue
-                                    $schItemToImport.AppendChild($envelopeItemProperty) | Out-Null
-                                    Write-Verbose "Added property $parName to payload!"
-                              } catch {
-                                    Write-Error "Failed to add property $parName in SOAP envelope!"
-                                    Write-Error "$_"
-                              }
-                        }
-                        if ($parDetails.Name -eq "Attachment") {
-                              try {
-                                    $parName = $parDetails.Name
-                                    $fileHeader = ""
-                                    $separator = "\"
-                                    $fileNametoHeader = $Attachment.Split($separator)
-                                    $fileHeader = $fileNametoHeader[-1]
-                                    $base64string = [Convert]::ToBase64String([System.IO.File]::ReadAllBytes("$Attachment"))
-                                    $envelopeItemAttachment = $payload.CreateElement("sch:Attachment","$xmlnsSch")
-                                    $envelopeItemAttachment.SetAttribute('name',"$fileHeader")
-                                    $envelopeItemAttachment.InnerText = $base64string
-                                    $schItemToImport.AppendChild($envelopeItemAttachment) | Out-Null
-                                    Write-Verbose "Added property $parName to payload!"
-                              } catch {
-                                    Write-Error "Failed to add property $parName in SOAP envelope!"
-                                    Write-Error "$_"
-                              }
-                        }
+                        $parName = $parDetails.Name
+                        $parValue = $parDetails.Value
+                        $params.Add("$parName", "$parValue")
                   } else {
                         Write-Verbose "$($parameter.Name) does not have a value!"
                   }
@@ -341,7 +233,8 @@ function Import-GOContactItem {
                   Write-Verbose "$($parameter.Name) is not part of BPS parameter set!"
             } Write-Verbose "Loop for $($parameter.Name) reached end!"
       }
-      Write-Verbose "Successfully updated property values in SOAP envelope for all parameters with input provided!"
+      Write-Verbose "Successfully created hashtable of parameter!"
+      $payload = New-XMLforEasit -Import -ImportHandlerIdentifier "$ImportHandlerIdentifier" -Params $Params
 
       if ($dryRun) {
             Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it to BPS"
