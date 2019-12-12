@@ -1,10 +1,10 @@
-﻿Describe "New-XMLforEasit" {
-    $here = Split-Path -Parent $MyInvocation.MyCommand.Path
-    $scriptFolder = Split-Path -Parent $here
-    $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path) -replace '\.Tests\.', '.'
-    . "$scriptFolder\$sut"
-    
-    $scriptContent = Get-Content -Path "$scriptFolder\$sut" -Raw
+﻿$here = Split-Path -Parent $MyInvocation.MyCommand.Path
+$scriptFolder = Split-Path -Parent $here
+$sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path) -replace '\.Tests\.', '.'
+. "$scriptFolder\$sut"
+$scriptContent = Get-Content -Path "$scriptFolder\$sut" -Raw
+
+Describe "New-XMLforEasit" {
     
     Context 'Building XML' {
         It 'Should define schemas' {
