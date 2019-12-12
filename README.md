@@ -25,8 +25,7 @@ Read more about [Install-Module](https://docs.microsoft.com/en-us/powershell/mod
 ## Current test and build status
 
 EasitGoWebService [![Build status](https://ci.appveyor.com/api/projects/status/na4pw8pmbdjk8oud?svg=true)](https://ci.appveyor.com/project/easitab/powershell) 
-[![Test status](http://teststatusbadge.azurewebsites.net/api/status/easitab/powershell)]
-(https://ci.appveyor.com/project/easitab/powershell)
+
 
 ## Functions with "work in progress" status
 
