@@ -1,0 +1,12 @@
+version: 1.0.{build}
+image:
+  - Visual Studio 2015
+  - Visual Studio 2017
+  - Visual Studio 2019
+  - Ubuntu
+  - Ubuntu1604
+install:
+  - ps: Install-Module Pester -Force -Scope CurrentUser
+build: off
+test_script:
+  - ps: Invoke-Pester -EnableExit
