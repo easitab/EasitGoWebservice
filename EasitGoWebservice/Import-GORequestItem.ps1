@@ -3,7 +3,7 @@ function Import-GORequestItem {
       .SYNOPSIS
             Send data to BPS/GO with web services.
       .DESCRIPTION
-            Update and create requests in Easit BPS/GO. Returns ID for item in Easit BPS/GO.
+            Update and create requests in Easit BPS/GO. Returns ID for item in Easit BPS/GO..
             Specify 'ID' to update an existing item.
 
       .NOTES
