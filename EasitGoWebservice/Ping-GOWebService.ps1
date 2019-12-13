@@ -28,7 +28,7 @@ function Ping-GOWebService {
       .PARAMETER url
             Address to BPS/GO webservice. Default = http://localhost/webservice/
       .PARAMETER apikey
-            API-key for BPS/GO.
+            API key for BPS/GO.
       #>
       [CmdletBinding()]
       param (
