@@ -3,7 +3,7 @@ function Import-GOAssetItem {
       .SYNOPSIS
             Send data to BPS/GO with web services.
       .DESCRIPTION
-            Update and create assets in Easit BPS/GO. Returns ID for asset in Easit BPS/GO.
+            Update and create assets in Easit BPS/GO. Returns ID for asset in Easit BPS/GO..
             Specify 'ID' to update an existing asset.
 
       .NOTES
