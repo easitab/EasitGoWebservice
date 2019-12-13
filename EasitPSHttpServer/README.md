@@ -14,7 +14,7 @@ Current parameters that the server accepts:
     URL that the server will listen for incomming requests on.
     Default value is 'http://+'
     Adminstrative permissions are required for a binding to network names or addresses.
-    + takes all requests to the port regardless of name or ip, * only requests that no other listener answers
+    [+] takes all requests to the port regardless of name or ip, * only requests that no other listener answers
 
 - Port
     Set listening port for http server.
