@@ -26,6 +26,9 @@ function New-XMLforEasit {
         [switch] $Import,
 
         [Parameter(Mandatory=$true, ParameterSetName="import")]
+        [string] $ImportHandlerIdentifier,
+
+        [Parameter(Mandatory=$true, ParameterSetName="import")]
         [hashtable] $Params
     )
 

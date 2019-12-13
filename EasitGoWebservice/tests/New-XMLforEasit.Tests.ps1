@@ -11,25 +11,29 @@ Describe "New-XMLforEasit" {
     Context 'Mandatory parameters' {
         foreach ($set in $paramSets) {
             if ($set -eq 'get') {
-                It 'Should demand an ItemViewIdentifier' {
+                It 'should demand an ItemViewIdentifier if request is GET' {
                     (((Get-Command -Name "$commandName").ParameterSets).Parameters | Where-Object -FilterScript {$_.IsMandatory -eq 1 -and $_.Name -eq 'ItemViewIdentifier'}).IsMandatory | Should Be $true
                 }
-                It 'Should demand a SortField' {
+                It 'Should demand an SortField if request is GET' {
                     (((Get-Command -Name "$commandName").ParameterSets).Parameters | Where-Object -FilterScript {$_.IsMandatory -eq 1 -and $_.Name -eq 'SortField'}).IsMandatory | Should Be $true
                 }
-                It 'Should demand an SortOrder' {
+                It 'Should demand an SortOrder if request is GET' {
                     (((Get-Command -Name "$commandName").ParameterSets).Parameters | Where-Object -FilterScript {$_.IsMandatory -eq 1 -and $_.Name -eq 'SortOrder'}).IsMandatory | Should Be $true
                 }
-                It 'Should demand an ColumnFilter' {
+                It 'Should demand an ColumnFilter if request is GET' {
                     (((Get-Command -Name "$commandName").ParameterSets).Parameters | Where-Object -FilterScript {$_.IsMandatory -eq 1 -and $_.Name -eq 'ColumnFilter'}).IsMandatory | Should Be $true
                 }
             }
 
             if ($set -eq 'import') {
-                It 'Should demand an Params' {
+                It 'Should demand an Params if request is POST' {
                     (((Get-Command -Name "$commandName").ParameterSets).Parameters | Where-Object -FilterScript {$_.IsMandatory -eq 1 -and $_.Name -eq 'Params'}).IsMandatory | Should Be $true
                 }
+                It 'Should demand an ImportHandlerIdentifier if request is POST' {
+                    (((Get-Command -Name "$commandName").ParameterSets).Parameters | Where-Object -FilterScript {$_.IsMandatory -eq 1 -and $_.Name -eq 'ImportHandlerIdentifier'}).IsMandatory | Should Be $true
+                }
             }
+            
 
         }
     }
