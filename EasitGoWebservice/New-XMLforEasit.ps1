@@ -78,7 +78,7 @@ function New-XMLforEasit {
     }
 
 
-    if ($import) {
+    if ($Import) {
         try {
             Write-Verbose "Creating xml element for ImportItemsRequest"
             $schImportItemsRequest = $payload.CreateElement("sch:ImportItemsRequest","$xmlnsSch")
@@ -172,7 +172,7 @@ function New-XMLforEasit {
         }
     }
 
-    if ($get) {
+    if ($Get) {
         try {
             Write-Verbose "Creating xml element for GetItemsRequest"
             $schGetItemsRequest = $payload.CreateElement("sch:GetItemsRequest","$xmlnsSch")
@@ -237,7 +237,7 @@ function New-XMLforEasit {
         }
     }
 
-    if ($ping) {
+    if ($Ping) {
         try {
             Write-Verbose "Creating xml element for PingRequest"
             $envelopePingRequest = $payload.CreateElement('sch:PingRequest',"$xmlnsSch")
