@@ -10,17 +10,17 @@ Logs are written to pathtoserverscript/PShttpServer.log with the following synta
 date time - Level - Message
 
 Current parameters that the server accepts:
-- BindingUrl
+- "BindingUrl"
     URL that the server will listen for incomming requests on.
     Default value is 'http://+'
     Adminstrative permissions are required for a binding to network names or addresses.
     [+] takes all requests to the port regardless of name or ip, * only requests that no other listener answers
 
-- Port
+- "Port"
     Set listening port for http server.
     Default port is 9080.
 
-- Basedir
+- "Basedir"
     Set the folder to look for scripts to run.
     Default folder is pathtoserverscript/resources
 
