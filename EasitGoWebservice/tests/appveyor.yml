@@ -1,11 +1,8 @@
-version: 2.0.{build}
+version: $env:APPVEYOR_BUILD_VERSION
 image:
   - Visual Studio 2015
-  - Visual Studio 2017
-  - Visual Studio 2019
-  - Ubuntu
-  - Ubuntu1604
 install:
   - ps: Install-Module Pester -Force -Scope CurrentUser
+build: off
 test_script:
   - ps: Invoke-Pester -EnableExit
