@@ -1,6 +1,6 @@
 # EasitPSHttpServer
 
-A simple http server written in Powershell.
+A simple http server written in Powershell..
 
 With this http server you can recieve exported objects from Easit GO and take action upon that object.
 In its current configuration the server will use the cmdlet 'Start-Job' to run the powershell script
