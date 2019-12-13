@@ -3,7 +3,7 @@ function Ping-GOWebService {
       .SYNOPSIS
             Ping BPS/GO web services.
       .DESCRIPTION
-            Can be used to check if service is available and correct credentials have been provided.
+            Can be used to check if service is available and correct credentials have been provided..
 
       .NOTES
             Copyright 2019 Easit AB
