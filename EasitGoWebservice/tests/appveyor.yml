@@ -1,8 +1,0 @@
-version: $env:APPVEYOR_BUILD_VERSION
-image:
-  - Visual Studio 2015
-install:
-  - ps: Install-Module Pester -Force -Scope CurrentUser
-build: off
-test_script:
-  - ps: Invoke-Pester -EnableExit
