@@ -1,10 +1,38 @@
 ﻿$here = Split-Path -Parent $MyInvocation.MyCommand.Path
 $scriptFolder = Split-Path -Parent $here
 $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path) -replace '\.Tests\.', '.'
+$commandName = $sut -replace '.ps1',''
 . "$scriptFolder\$sut"
 $scriptContent = Get-Content -Path "$scriptFolder\$sut" -Raw
+$paramSets = (Get-Command -Name "$commandName").ParameterSets.Name
 
 Describe "New-XMLforEasit" {
+
+    Context 'Mandatory parameters' {
+        foreach ($set in $paramSets) {
+            if ($set -eq 'get') {
+                It 'Should demand an ItemViewIdentifier' {
+                    (((Get-Command -Name "$commandName").ParameterSets).Parameters | Where-Object -FilterScript {$_.IsMandatory -eq 1 -and $_.Name -eq 'ItemViewIdentifier'}).IsMandatory | Should Be $true
+                }
+                It 'Should demand a SortField' {
+                    (((Get-Command -Name "$commandName").ParameterSets).Parameters | Where-Object -FilterScript {$_.IsMandatory -eq 1 -and $_.Name -eq 'SortField'}).IsMandatory | Should Be $true
+                }
+                It 'Should demand an SortOrder' {
+                    (((Get-Command -Name "$commandName").ParameterSets).Parameters | Where-Object -FilterScript {$_.IsMandatory -eq 1 -and $_.Name -eq 'SortOrder'}).IsMandatory | Should Be $true
+                }
+                It 'Should demand an ColumnFilter' {
+                    (((Get-Command -Name "$commandName").ParameterSets).Parameters | Where-Object -FilterScript {$_.IsMandatory -eq 1 -and $_.Name -eq 'ColumnFilter'}).IsMandatory | Should Be $true
+                }
+            }
+
+            if ($set -eq 'import') {
+                It 'Should demand an Params' {
+                    (((Get-Command -Name "$commandName").ParameterSets).Parameters | Where-Object -FilterScript {$_.IsMandatory -eq 1 -and $_.Name -eq 'Params'}).IsMandatory | Should Be $true
+                }
+            }
+
+        }
+    }
     
     Context 'Building XML' {
         It 'Should define schemas' {
