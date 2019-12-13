@@ -1,7 +1,7 @@
 function Import-GOContactItem {
       <#
       .SYNOPSIS
-            Send data to BPS/GO with web services.
+            Send data to BPS/GO with web services..
       .DESCRIPTION
             Update and create contacts in Easit BPS/GO. Returns ID for item in Easit BPS/GO.
             Specify 'ID' to update an existing contact.
