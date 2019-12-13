@@ -1,7 +1,7 @@
 function Get-GOItems { 
       <# 
       .SYNOPSIS 
-            Get data from BPS/GO with web services.
+            Get data from BPS/GO with web services..
       .DESCRIPTION 
             Connects to BPS/GO Web service with url, apikey and view and returns response as xml.
             If used with variable as in examples below, the following properties can be found as follows:
