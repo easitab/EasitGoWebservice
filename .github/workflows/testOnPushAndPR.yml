@@ -1,4 +1,4 @@
-name: CI
+name: Push and PR check
 
 on: [push, pull_request]
 
