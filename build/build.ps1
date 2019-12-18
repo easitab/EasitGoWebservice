@@ -3,7 +3,8 @@ New-Module -Name "$env:moduleName" -ScriptBlock {
     $scripts = Get-ChildItem -Path "$env:resourceRoot" -Filter "*.ps1"
     if (!(Test-Path -Path $modulePath)) {
         if (!(Test-Path -Path "$env:resourceRoot\$env:moduleName")) {
-            New-Item -Path "$env:resourceRoot" -Name "$env:moduleName" -ItemType "directory"
+            New-Item -Path "$env:resourceRoot" -Name "$env:moduleName" -ItemType "directory" | Out-Null
+            Write-Host "Created $env:resourceRoot\$env:moduleName"
         }
         $newModuleFile = New-Item -Path "$env:resourceRoot\$env:moduleName" -Name "$env:moduleName.psm1" -ItemType "file"
         Write-Host "Created $newModuleFile"
@@ -33,7 +34,15 @@ $manifest = @{
     Copyright         = "(c) 2019 $env:companyName. All rights reserved."
 }
 New-ModuleManifest @manifest | Out-Null
-$newManifestTest = Test-ModuleManifest -Path "$env:resourceRoot\$env:moduleName\$env:moduleName.psd1"
-if ($newManifestTest) {
-    Publish-Module -Path "$env:resourceRoot\$env:moduleName\" -NuGetApiKey "$env:galleryPublishingKey"
-}
+
+## Test section ##
+# Install-Module Pester -Force -Scope CurrentUser
+# Invoke-Pester -EnableExit
+
+## On build success script ##
+# $newManifestTest = Test-ModuleManifest -Path "$env:resourceRoot\$env:moduleName\$env:moduleName.psd1"
+
+## On build finish script ##
+# if ($newManifestTest) {
+    #Publish-Module -Path "$env:resourceRoot\$env:moduleName\" -NuGetApiKey "$env:galleryPublishingKey"
+#}
