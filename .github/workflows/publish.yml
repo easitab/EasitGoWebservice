@@ -1,18 +1,18 @@
-#name: Publish to PS Gallery
+name: Publish to PS Gallery
 
-#on:
-#  push:
-#    branches:
-#      - master
-#    tags:        
-#      - v1.6
+on:
+  push:
+    branches:
+      - master
+    tags:        
+      - v7.6.*
 
-#jobs:
-#  lint:
-#    name: Run psscriptanalyzer
-#    runs-on: ubuntu-latest
-#    steps:
-#    - uses: devblackops/github-action-psscriptanalyzer@master
+jobs:
+  lint:
+    name: Run psscriptanalyzer
+    runs-on: ubuntu-latest
+    steps:
+    - uses: devblackops/github-action-psscriptanalyzer@master
 
 #  test_individual_functions:
 #    needs: lint
