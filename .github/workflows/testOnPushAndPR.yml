@@ -16,6 +16,7 @@ jobs:
     - uses: devblackops/github-action-psscriptanalyzer@master
 
   test:
+    name: Pester tests
     needs: lint
     runs-on: ${{ matrix.os }}
     strategy:
@@ -30,3 +31,14 @@ jobs:
     - name: Invoke Pester
       shell: pwsh
       run: Invoke-Pester -EnableExit
+  
+  buildmodule:
+    name: Build Install-Module
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - continue-on-error: false
+      - name: Build module
+        shell: pwsh
+        run: /home/runner/work/EasitGoWebservice/EasitGoWebservice/build/tempbuild.ps1
+        run: Write-Host "Get-Location"
