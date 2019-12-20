@@ -2,10 +2,13 @@ name: Publish to PS Gallery
 
 on:
   push:
-    branches:
-      - master
-    tags:        
-      - v7.6.*
+#    branches:
+#      - master
+#    tags:        
+#      - v7.6.*
+  pull_request:
+    paths:
+    - 'functions/*.ps1'
 
 jobs:
   lint:

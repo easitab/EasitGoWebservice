@@ -4,6 +4,7 @@ on:
   push:
     paths:
     - 'functions/*.ps1'
+    - 'build/tempbuild.ps1'
   pull_request:
     paths:
     - 'functions/*.ps1'
@@ -40,5 +41,6 @@ jobs:
       - continue-on-error: false
       - name: Build module
         shell: pwsh
-        run: /home/runner/work/EasitGoWebservice/EasitGoWebservice/build/tempbuild.ps1
-        run: Write-Host "Get-Location"
+        run: |
+          /home/runner/work/EasitGoWebservice/EasitGoWebservice/build/tempbuild.ps1
+          Write-Host "Get-Location"
