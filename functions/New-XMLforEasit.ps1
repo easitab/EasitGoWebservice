@@ -113,66 +113,42 @@ function New-XMLforEasit {
             Write-Error "$_"
             break
         }
-        try {
-            Write-Verbose "Collecting list of used parameters"
-            $CommandName = $PSCmdlet.MyInvocation.InvocationName
-            $ParameterList = (Get-Command -Name $commandName).Parameters.Values
-            Write-Verbose "Successfully collected list of used parameters"
-        } catch {
-            Write-Error 'Failed to get list of used parameters!'
-            Write-Error "$_"
-            break
-        }
         Write-Verbose "Starting loop for creating xml element for each parameter"
-        foreach ($parameter in $parameterList) {
-            Write-Verbose "Starting loop for $($parameter.Name)"
-            $ParameterSetToMatch = 'BPSAttribute'
-            $parameterSets = $parameter.ParameterSets.Keys
-            if ($parameterSets -contains $ParameterSetToMatch) {
-                    Write-Verbose "$($parameter.Name) is part of BPS parameter set"
-                    $parDetails = Get-Variable -Name $parameter.Name
-                    if ($parDetails.Value) {
-                        Write-Verbose "$($parameter.Name) have a value"
-                        Write-Verbose "Creating xml element for $($parameter.Name) and will try to append it to payload!"
-                        if ($parDetails.Name -ne "Attachment") {
-                                try {
-                                    $parName = $parDetails.Name
-                                    $parValue = $parDetails.Value
-                                    $envelopeItemProperty = $payload.CreateElement("sch:Property","$xmlnsSch")
-                                    $envelopeItemProperty.SetAttribute('name',"$parName")
-                                    $envelopeItemProperty.InnerText = $parValue
-                                    $schItemToImport.AppendChild($envelopeItemProperty) | Out-Null
-                                    Write-Verbose "Added property $parName to payload!"
-                                } catch {
-                                    Write-Error "Failed to add property $parName in SOAP envelope!"
-                                    Write-Error "$_"
-                                }
-                        }
-                        if ($parDetails.Name -eq "Attachment") {
-                                try {
-                                    $parName = $parDetails.Name
-                                    $fileHeader = ""
-                                    $separator = "\"
-                                    $fileNametoHeader = $Attachment.Split($separator)
-                                    $fileHeader = $fileNametoHeader[-1]
-                                    $base64string = [Convert]::ToBase64String([System.IO.File]::ReadAllBytes("$Attachment"))
-                                    $envelopeItemAttachment = $payload.CreateElement("sch:Attachment","$xmlnsSch")
-                                    $envelopeItemAttachment.SetAttribute('name',"$fileHeader")
-                                    $envelopeItemAttachment.InnerText = $base64string
-                                    $schItemToImport.AppendChild($envelopeItemAttachment) | Out-Null
-                                    Write-Verbose "Added property $parName to payload!"
-                                } catch {
-                                    Write-Error "Failed to add property $parName in SOAP envelope!"
-                                    Write-Error "$_"
-                                }
-                        }
-                    } else {
-                        Write-Verbose "$($parameter.Name) does not have a value!"
-                    }
+        foreach ($parameter in $Params.GetEnumerator()) {
+            Write-Verbose "Starting loop for $($parameter.Name) with value $($parameter.Value)"
+            if ($parameter.Name -eq "Attachment") {
+                try {
+                    $parName = $parameter.Name
+                    $parValue = $parameter.Value
+                    $fileHeader = ""
+                    $separator = "\"
+                    $fileNametoHeader = $parValue.Split($separator)
+                    $fileHeader = $fileNametoHeader[-1]
+                    $base64string = [Convert]::ToBase64String([System.IO.File]::ReadAllBytes("$parValue"))
+                    $envelopeItemAttachment = $payload.CreateElement("sch:Attachment","$xmlnsSch")
+                    $envelopeItemAttachment.SetAttribute('name',"$fileHeader")
+                    $envelopeItemAttachment.InnerText = $base64string
+                    $schItemToImport.AppendChild($envelopeItemAttachment) | Out-Null
+                    Write-Verbose "Added property $parName to payload!"
+                } catch {
+                    Write-Error "Failed to add property $parName in SOAP envelope!"
+                    Write-Error "$_"
+                }
             } else {
-                    Write-Verbose "$($parameter.Name) is not part of BPS parameter set!"
-            } Write-Verbose "Loop for $($parameter.Name) reached end!"
-        }
+                $parName = $parameter.Name
+                $parValue = $parameter.Value
+                try {
+                    $envelopeItemProperty = $payload.CreateElement("sch:Property","$xmlnsSch")
+                    $envelopeItemProperty.SetAttribute('name',"$parName")
+                    $envelopeItemProperty.InnerText = $parValue
+                    $schItemToImport.AppendChild($envelopeItemProperty) | Out-Null
+                    Write-Verbose "Added property $parName to payload!"
+                } catch {
+                    Write-Error "Failed to add property $parName in SOAP envelope!"
+                    Write-Error "$_"
+                }
+            }
+        } Write-Verbose "Loop for $($parameter.Name) reached end!"
     }
 
     if ($Get) {
@@ -254,4 +230,5 @@ function New-XMLforEasit {
     }
     
     Write-Verbose "Successfully updated property values in SOAP envelope for all parameters with input provided!"
+    return $payload
 }
