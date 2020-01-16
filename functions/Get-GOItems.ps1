@@ -85,7 +85,9 @@ function Get-GOItems {
             [parameter(Mandatory=$false)]
             [switch] $SSO
       )
-
+      ## TO DO
+      # Remove all comments
+      
       #$ivi = $importViewIdentifier
       #$so = $sortOrder
       #$sf = $sortField
