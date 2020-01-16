@@ -19,7 +19,7 @@ function New-XMLforEasit {
         [Parameter(Mandatory=$true, ParameterSetName="get")]
         [string] $SortOrder,
 
-        [Parameter(Mandatory=$true, ParameterSetName="get")]
+        [Parameter(Mandatory=$false, ParameterSetName="get")]
         [string[]] $ColumnFilter,
 
         [parameter(Mandatory=$false, Position=0, ParameterSetName="import")]
@@ -195,24 +195,27 @@ function New-XMLforEasit {
             Write-Error "$_"
             break
         }
-
-        try {
-            $ColumnFilterValues = $ColumnFilter -split ','
-            [int]$ColumnFilterValuesCount = $ColumnFilterValues.Count
-            $i=0
-            do {
-                Write-Verbose "Creating xml element for Column filter"
-                $envelopeColumnFilter = $payload.CreateElement('sch:ColumnFilter',"$xmlnsSch")
-                $envelopeColumnFilter.SetAttribute("columnName","$uid")
-                $envelopeColumnFilter.SetAttribute("comparator","$uid")
-                $envelopeColumnFilter.InnerText  = "$ColumnFilter"
-                $schGetItemsRequest.AppendChild($envelopeColumnFilter) | Out-Null
-                $i+3
-            } until ($i -le $ColumnFilterValuesCount)
-        } catch {
-            Write-Error "Failed to create xml element for Page"
-            Write-Error "$_"
-            break
+        if ($ColumnFilter) {
+            try {
+                $ColumnFilterValues = $ColumnFilter -split ','
+                [int]$ColumnFilterValuesCount = $ColumnFilterValues.Count
+                $i=0
+                do {
+                    Write-Verbose "Creating xml element for Column filter"
+                    $envelopeColumnFilter = $payload.CreateElement('sch:ColumnFilter',"$xmlnsSch")
+                    $envelopeColumnFilter.SetAttribute("columnName","$uid")
+                    $envelopeColumnFilter.SetAttribute("comparator","$uid")
+                    $envelopeColumnFilter.InnerText  = "$ColumnFilter"
+                    $schGetItemsRequest.AppendChild($envelopeColumnFilter) | Out-Null
+                    $i+3
+                } until ($i -le $ColumnFilterValuesCount)
+            } catch {
+                Write-Error "Failed to create xml element for Page"
+                Write-Error "$_"
+                break
+            }
+        } else {
+            Write-Verbose "Skipping ColumnFilter as it is null!"
         }
     }
 
