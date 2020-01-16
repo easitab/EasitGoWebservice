@@ -20,9 +20,6 @@ Describe "New-XMLforEasit" {
                 It 'Should demand an SortOrder if request is GET' {
                     (((Get-Command -Name "$commandName").ParameterSets).Parameters | Where-Object -FilterScript {$_.IsMandatory -eq 1 -and $_.Name -eq 'SortOrder'}).IsMandatory | Should Be $true
                 }
-                It 'Should demand an ColumnFilter if request is GET' {
-                    (((Get-Command -Name "$commandName").ParameterSets).Parameters | Where-Object -FilterScript {$_.IsMandatory -eq 1 -and $_.Name -eq 'ColumnFilter'}).IsMandatory | Should Be $true
-                }
             }
 
             if ($set -eq 'import') {
