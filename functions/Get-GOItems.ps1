@@ -86,10 +86,10 @@ function Get-GOItems {
             [switch] $SSO
       )
 
-      $ivi = $importViewIdentifier
-      $so = $sortOrder
-      $sf = $sortField
-      $pc = $viewPageNumber
+      #$ivi = $importViewIdentifier
+      #$so = $sortOrder
+      #$sf = $sortField
+      #$pc = $viewPageNumber
 
       Write-Verbose 'Setting authentication header'
       # basic authentucation
@@ -99,45 +99,48 @@ function Get-GOItems {
       Write-Verbose 'Authentication header set'
 
       Write-Verbose 'Creating payload'
-#message payload from template
-$payload=@'
-<?xml version="1.0" encoding="utf-8"?>
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://www.easit.com/bps/schemas">
-    <soapenv:Header/>
-        <soapenv:Body>
-            <sch:GetItemsRequest>
-                <sch:ItemViewIdentifier>$ivi</sch:ItemViewIdentifier>
-                <sch:Page>$pc</sch:Page>
-                <sch:SortColumn order="$so">$sf</sch:SortColumn>
-                <!--<sch:ColumnFilter columnName="$cn" comparator="$comp">$cValue</sch:ColumnFilter>-->
-            </sch:GetItemsRequest>
-        </soapenv:Body>
-</soapenv:Envelope>
-'@
-      Write-Verbose 'Payload created'
 
-      Write-Verbose 'Replacing content in $payload with parameter input'
-      try {
-            $payload = $payload.Replace('$ivi', $ivi)
-            $payload = $payload.Replace('$pc', $pc)
-            $payload = $payload.Replace('$so', $so)
-            $payload = $payload.Replace('$sf', $sf)
-            if ($ColumnFilter) {
-                  $ColumnFilterArray = $ColumnFilter.Split(',')
-                  $ColumnFilterArray = $ColumnFilterArray.TrimStart()
-                  $payload = $payload.Replace('<!--', '')
-                  $payload = $payload.Replace('-->', '')
-                  $payload = $payload.Replace('$cn', $ColumnFilterArray[0])
-                  $payload = $payload.Replace('$comp', $ColumnFilterArray[1])
-                  $payload = $payload.Replace('$cValue', $ColumnFilterArray[2])
-                  Write-Verbose $payload
-            }
-      } catch {
-            Write-Error 'Failed to update payload'
-            Write-Error "$_"
-            return
-      }
-      Write-Verbose 'Done replacing content in $payload with parameter input'
+      $payload = New-XMLforEasit -Get -ItemViewIdentifier "$importViewIdentifier" -SortOrder "$sortOrder" -SortField "$sortField" -Page "$viewPageNumber" -ColumnFilter "$ColumnFilter"
+
+#message payload from template
+#$payload=@'
+#<?xml version="1.0" encoding="utf-8"?>
+#<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://www.easit.com/bps/schemas">
+#    <soapenv:Header/>
+#        <soapenv:Body>
+#            <sch:GetItemsRequest>
+#                <sch:ItemViewIdentifier>$ivi</sch:ItemViewIdentifier>
+#                <sch:Page>$pc</sch:Page>
+#                <sch:SortColumn order="$so">$sf</sch:SortColumn>
+#                <!--<sch:ColumnFilter columnName="$cn" comparator="$comp">$cValue</sch:ColumnFilter>-->
+#            </sch:GetItemsRequest>
+#        </soapenv:Body>
+#</soapenv:Envelope>
+#'@
+#      Write-Verbose 'Payload created'
+#
+#      Write-Verbose 'Replacing content in $payload with parameter input'
+#      try {
+#            $payload = $payload.Replace('$ivi', $ivi)
+#            $payload = $payload.Replace('$pc', $pc)
+#            $payload = $payload.Replace('$so', $so)
+#            $payload = $payload.Replace('$sf', $sf)
+#            if ($ColumnFilter) {
+#                  $ColumnFilterArray = $ColumnFilter.Split(',')
+#                  $ColumnFilterArray = $ColumnFilterArray.TrimStart()
+#                  $payload = $payload.Replace('<!--', '')
+#                  $payload = $payload.Replace('-->', '')
+#                  $payload = $payload.Replace('$cn', $ColumnFilterArray[0])
+#                  $payload = $payload.Replace('$comp', $ColumnFilterArray[1])
+#                  $payload = $payload.Replace('$cValue', $ColumnFilterArray[2])
+#                  Write-Verbose $payload
+#            }
+#      } catch {
+#            Write-Error 'Failed to update payload'
+#            Write-Error "$_"
+#            return
+#      }
+#      Write-Verbose 'Done replacing content in $payload with parameter input'
 
       #Write-Verbose 'Casting $payload as [xml]$SOAP'
       #[xml]$SOAP = $payload
