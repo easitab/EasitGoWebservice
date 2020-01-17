@@ -4,7 +4,7 @@ on:
   push:
     paths:
     - 'functions/*.ps1'
-    - 'build/tempbuild.ps1'
+#    - 'build/tempbuild.ps1'
   pull_request:
     paths:
     - 'functions/*.ps1'
@@ -33,15 +33,15 @@ jobs:
       shell: pwsh
       run: Invoke-Pester -EnableExit
   
-  buildmodule:
-    name: Build Install-Module
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - name: Build module
-      shell: pwsh
-      run: /home/runner/work/EasitGoWebservice/EasitGoWebservice/build/tempbuild.ps1
-    - name: Get location
-      shell: pwsh
-      run: Write-Host "Get-Location"
+#  buildmodule:
+#    name: Build Install-Module
+#    needs: test
+#    runs-on: ubuntu-latest
+#    steps:
+#    - uses: actions/checkout@v1
+#    - name: Build module
+#      shell: pwsh
+#      run: /home/runner/work/EasitGoWebservice/EasitGoWebservice/build/tempbuild.ps1
+#    - name: Get location
+#      shell: pwsh
+#      run: Write-Host "Get-Location"
