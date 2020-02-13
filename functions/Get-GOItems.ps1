@@ -104,7 +104,7 @@ function Get-GOItems {
 
       $payload = New-XMLforEasit -Get -ItemViewIdentifier "$importViewIdentifier" -SortOrder "$sortOrder" -SortField "$sortField" -Page "$viewPageNumber" -ColumnFilter "$ColumnFilter"
 
-#message payload from template
+
 #$payload=@'
 #<?xml version="1.0" encoding="utf-8"?>
 #<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://www.easit.com/bps/schemas">
