@@ -199,18 +199,25 @@ function New-XMLforEasit {
             try {
                 $ColumnFilterValues = $ColumnFilter -split ','
                 [int]$ColumnFilterValuesCount = $ColumnFilterValues.Count
-                $i=0
-                do {
+                #$i=0 | Out-Null
+                #do {
                     Write-Verbose "Creating xml element for Column filter"
-                    $envelopeColumnFilter = $payload.CreateElement('sch:ColumnFilter',"$xmlnsSch")
-                    $envelopeColumnFilter.SetAttribute("columnName","$uid")
-                    $envelopeColumnFilter.SetAttribute("comparator","$uid")
-                    $envelopeColumnFilter.InnerText  = "$ColumnFilter"
-                    $schGetItemsRequest.AppendChild($envelopeColumnFilter) | Out-Null
-                    $i+3
-                } until ($i -le $ColumnFilterValuesCount)
+                    $envelopeColumnFilter1 = $payload.CreateElement('sch:ColumnFilter',"$xmlnsSch")
+                    $envelopeColumnFilter1.SetAttribute("columnName","$($ColumnFilterValues[0])")
+                    $envelopeColumnFilter1.SetAttribute("comparator","$($ColumnFilterValues[1])")
+                    $envelopeColumnFilter1.InnerText  = "$($ColumnFilterValues[2])"
+                    $schGetItemsRequest.AppendChild($envelopeColumnFilter1) | Out-Null
+                    if ($ColumnFilterValuesCount -gt 2) {
+                        $envelopeColumnFilter2 = $payload.CreateElement('sch:ColumnFilter',"$xmlnsSch")
+                        $envelopeColumnFilter2.SetAttribute("columnName","$($ColumnFilterValues[3])")
+                        $envelopeColumnFilter2.SetAttribute("comparator","$($ColumnFilterValues[4])")
+                        $envelopeColumnFilter2.InnerText  = "$($ColumnFilterValues[5])"
+                        $schGetItemsRequest.AppendChild($envelopeColumnFilter2) | Out-Null
+                    }
+                    #$i+3 | Out-Null
+                #} until ($i -le $ColumnFilterValuesCount)
             } catch {
-                Write-Error "Failed to create xml element for Page"
+                Write-Error "Failed to create xml element for ColumnFilter"
                 Write-Error "$_"
                 break
             }
@@ -231,7 +238,9 @@ function New-XMLforEasit {
             break
       }
     }
-    
+    if ($PSCmdlet.MyInvocation.BoundParameters["Verbose"].IsPresent) {
+        $payload.Save("$HOME\Documents\payload.xml")
+    }
     Write-Verbose "Successfully updated property values in SOAP envelope for all parameters with input provided!"
     return $payload
 }
