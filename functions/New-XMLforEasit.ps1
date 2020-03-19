@@ -207,7 +207,7 @@ function New-XMLforEasit {
                     $envelopeColumnFilter1.SetAttribute("comparator","$($ColumnFilterValues[1])")
                     $envelopeColumnFilter1.InnerText  = "$($ColumnFilterValues[2])"
                     $schGetItemsRequest.AppendChild($envelopeColumnFilter1) | Out-Null
-                    if ($ColumnFilterValuesCount -gt 2) {
+                    if ($ColumnFilterValuesCount -gt 3) {
                         $envelopeColumnFilter2 = $payload.CreateElement('sch:ColumnFilter',"$xmlnsSch")
                         $envelopeColumnFilter2.SetAttribute("columnName","$($ColumnFilterValues[3])")
                         $envelopeColumnFilter2.SetAttribute("comparator","$($ColumnFilterValues[4])")
