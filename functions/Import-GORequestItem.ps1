@@ -188,7 +188,7 @@ function Import-GORequestItem {
             [string] $SLAID,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [int] $Urgency,
+            [string] $Urgency,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
             [Alias('Classification')]
