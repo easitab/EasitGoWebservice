@@ -51,6 +51,10 @@ function Get-GOItems {
       .PARAMETER ColumnFilter
             Used to filter data. Example: ColumnName,comparator,value
             Valid comparator: EQUALS, NOT_EQUALS, IN, NOT_IN, GREATER_THAN, GREATER_THAN_OR_EQUALS, LESS_THAN, LESS_THAN_OR_EQUALS, LIKE, NOT_LIKE
+            Current limit of filters is 2.
+            Work: ColumnName1,comparator1,value1
+            Work: ColumnName1,comparator1,value1,ColumnName2,comparator2,value2
+            Do NOT work: ColumnName1,comparator1,value1,ColumnName2,comparator2,value2,ColumnName3,comparator3,value3
       .PARAMETER SSO
             Used if system is using SSO with IWA (Active Directory). Not need when using SAML2
       #>
