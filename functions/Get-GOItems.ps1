@@ -19,7 +19,7 @@ function Get-GOItems {
             you may not use this file except in compliance with the License.
             You may obtain a copy of the License at
 
-                http://www.apache.org/licenses/LICENSE-2.0
+                  http://www.apache.org/licenses/LICENSE-2.0
 
             Unless required by applicable law or agreed to in writing, software
             distributed under the License is distributed on an "AS IS" BASIS,
@@ -51,12 +51,8 @@ function Get-GOItems {
       .PARAMETER ColumnFilter
             Used to filter data. Example: ColumnName,comparator,value
             Valid comparator: EQUALS, NOT_EQUALS, IN, NOT_IN, GREATER_THAN, GREATER_THAN_OR_EQUALS, LESS_THAN, LESS_THAN_OR_EQUALS, LIKE, NOT_LIKE
-            Current limit of filters is 2.
-            Work: ColumnName1,comparator1,value1
-            Work: ColumnName1,comparator1,value1,ColumnName2,comparator2,value2
-            Do NOT work: ColumnName1,comparator1,value1,ColumnName2,comparator2,value2,ColumnName3,comparator3,value3
       .PARAMETER SSO
-            Used if system is using SSO with IWA (Active Directory). Not need when using SAML2
+            Used if system is using SSO with IWA (Active Directory). Not needed when using SAML2
       #>
       [CmdletBinding()]
       param ( 
@@ -89,14 +85,40 @@ function Get-GOItems {
             [parameter(Mandatory=$false)]
             [switch] $SSO
       )
-      ## TO DO
-      # Remove all comments
       
-      #$ivi = $importViewIdentifier
-      #$so = $sortOrder
-      #$sf = $sortField
-      #$pc = $viewPageNumber
-
+      $validComparators = 'EQUALS', 'NOT_EQUALS', 'IN', 'NOT_IN', 'GREATER_THAN', 'GREATER_THAN_OR_EQUALS', 'LESS_THAN', 'LESS_THAN_OR_EQUALS', 'LIKE', 'NOT_LIKE'
+      ## Solution provided by Dennis Zakariasson <dennis.zakariasson@regionuppsala.se> thru issue 6
+      function Test-ColumnFilter {
+            [CmdletBinding()]
+            param (
+            [parameter()]
+            [String]$Filter,
+            [parameter()]
+            [string[]]$FilterValues) 
+            
+            if (!$filterValues[0] -or !$filterValues[1]) { 
+                  throw "Column or comparator has not been set in filter $filter!" 
+            }
+            if ($FilterValues[1] -notin $validComparators) { 
+                  throw "Invalid comparator '$($FilterValues[1])' in filter $filter! For a list of valid comparators, run command 'Get-Help Get-GoItems -Parameter ColumnFilter'" 
+            }
+      }
+      if ($ColumnFilter) { 
+            Write-Verbose "Validating column filter"
+            foreach ($filter in $ColumnFilter) {
+                  try {
+                        $FilterValues = $filter -replace ', ', ',' -split ','
+                        Test-ColumnFilter -Filter $filter -FilterValues $FilterValues
+                  } catch {
+                        Write-Error "Failed to create xml element for Page"
+                        Write-Error "$_"
+                        return
+                  }
+            }
+      } else {
+            Write-Verbose "Skipping ColumnFilter as it is null!"
+      }
+      ## End issue 6
       Write-Verbose 'Setting authentication header'
       # basic authentucation
       $pair = "$($apikey): "
@@ -107,49 +129,6 @@ function Get-GOItems {
       Write-Verbose 'Creating payload'
 
       $payload = New-XMLforEasit -Get -ItemViewIdentifier "$importViewIdentifier" -SortOrder "$sortOrder" -SortField "$sortField" -Page "$viewPageNumber" -ColumnFilter "$ColumnFilter"
-
-
-#$payload=@'
-#<?xml version="1.0" encoding="utf-8"?>
-#<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sch="http://www.easit.com/bps/schemas">
-#    <soapenv:Header/>
-#        <soapenv:Body>
-#            <sch:GetItemsRequest>
-#                <sch:ItemViewIdentifier>$ivi</sch:ItemViewIdentifier>
-#                <sch:Page>$pc</sch:Page>
-#                <sch:SortColumn order="$so">$sf</sch:SortColumn>
-#                <!--<sch:ColumnFilter columnName="$cn" comparator="$comp">$cValue</sch:ColumnFilter>-->
-#            </sch:GetItemsRequest>
-#        </soapenv:Body>
-#</soapenv:Envelope>
-#'@
-#      Write-Verbose 'Payload created'
-#
-#      Write-Verbose 'Replacing content in $payload with parameter input'
-#      try {
-#            $payload = $payload.Replace('$ivi', $ivi)
-#            $payload = $payload.Replace('$pc', $pc)
-#            $payload = $payload.Replace('$so', $so)
-#            $payload = $payload.Replace('$sf', $sf)
-#            if ($ColumnFilter) {
-#                  $ColumnFilterArray = $ColumnFilter.Split(',')
-#                  $ColumnFilterArray = $ColumnFilterArray.TrimStart()
-#                  $payload = $payload.Replace('<!--', '')
-#                  $payload = $payload.Replace('-->', '')
-#                  $payload = $payload.Replace('$cn', $ColumnFilterArray[0])
-#                  $payload = $payload.Replace('$comp', $ColumnFilterArray[1])
-#                  $payload = $payload.Replace('$cValue', $ColumnFilterArray[2])
-#                  Write-Verbose $payload
-#            }
-#      } catch {
-#            Write-Error 'Failed to update payload'
-#            Write-Error "$_"
-#            return
-#      }
-#      Write-Verbose 'Done replacing content in $payload with parameter input'
-
-      #Write-Verbose 'Casting $payload as [xml]$SOAP'
-      #[xml]$SOAP = $payload
 
       Write-Verbose 'Setting headers'
       # HTTP headers
