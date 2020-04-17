@@ -195,35 +195,27 @@ function New-XMLforEasit {
             Write-Error "$_"
             break
         }
+        ## Solution provided by Dennis Zakariasson <dennis.zakariasson@regionuppsala.se> thru issue 5
         if ($ColumnFilter) {
-            try {
-                $ColumnFilterValues = $ColumnFilter -split ','
-                [int]$ColumnFilterValuesCount = $ColumnFilterValues.Count
-                #$i=0 | Out-Null
-                #do {
-                    Write-Verbose "Creating xml element for Column filter"
-                    $envelopeColumnFilter1 = $payload.CreateElement('sch:ColumnFilter',"$xmlnsSch")
-                    $envelopeColumnFilter1.SetAttribute("columnName","$($ColumnFilterValues[0])")
-                    $envelopeColumnFilter1.SetAttribute("comparator","$($ColumnFilterValues[1])")
-                    $envelopeColumnFilter1.InnerText  = "$($ColumnFilterValues[2])"
-                    $schGetItemsRequest.AppendChild($envelopeColumnFilter1) | Out-Null
-                    if ($ColumnFilterValuesCount -gt 3) {
-                        $envelopeColumnFilter2 = $payload.CreateElement('sch:ColumnFilter',"$xmlnsSch")
-                        $envelopeColumnFilter2.SetAttribute("columnName","$($ColumnFilterValues[3])")
-                        $envelopeColumnFilter2.SetAttribute("comparator","$($ColumnFilterValues[4])")
-                        $envelopeColumnFilter2.InnerText  = "$($ColumnFilterValues[5])"
-                        $schGetItemsRequest.AppendChild($envelopeColumnFilter2) | Out-Null
-                    }
-                    #$i+3 | Out-Null
-                #} until ($i -le $ColumnFilterValuesCount)
-            } catch {
-                Write-Error "Failed to create xml element for ColumnFilter"
-                Write-Error "$_"
-                break
+            Write-Verbose "Creating xml element for Column filter"
+            foreach ($filter in $ColumnFilter) {
+                try {
+                    $ColumnFilterValues = $filter -replace ', ', ',' -split ','
+                    $envelopeColumnFilter = $payload.CreateElement('sch:ColumnFilter',"$xmlnsSch")
+                    $envelopeColumnFilter.SetAttribute("columnName","$($ColumnFilterValues[0])")
+                    $envelopeColumnFilter.SetAttribute("comparator","$($ColumnFilterValues[1])")
+                    $envelopeColumnFilter.InnerText = "$($ColumnFilterValues[2])"
+                    $schGetItemsRequest.AppendChild($envelopeColumnFilter) | Out-Null
+                } catch {
+                    Write-Error "Failed to create xml element for ColumnFilter"
+                    Write-Error "$_"
+                    break
+                }
             }
         } else {
             Write-Verbose "Skipping ColumnFilter as it is null!"
         }
+        ## End issue 6
     }
 
     if ($Ping) {
