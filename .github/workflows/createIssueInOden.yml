@@ -19,8 +19,6 @@ jobs:
     steps:
     - name: Install module.
       run: Install-Module -Name EasitGoWebservice -Force
-      run: Import-Module EasitGoWebservice -Force
-      run: Import-GORequestItem -url "${{ secrets.odenWS }}" -apikey "${{ secrets.odenAPI }}" -ihi ${{ secrets.odenIH }} -Description "GitHub ${{ github.ref }} Env ${{ env }}" -Subject "A new issue have been created on GitHub"
       shell: pwsh
     - name: Import module.
       run: Import-Module EasitGoWebservice -Force
