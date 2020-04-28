@@ -24,5 +24,5 @@ jobs:
       run: Import-Module EasitGoWebservice -Force
       shell: pwsh
     - name: Send request.
-      run: Import-GORequestItem -url "${{ secrets.odenWS }}" -apikey "${{ secrets.odenAPI }}" -ihi ${{ secrets.odenIH }} -Description "${{ github.event.issue.body }}"" -Subject "GitHub Issue ${{ github.event.issue.number }} - ${{ github.event.issue.title }}" -ShowDetails
+      run: Import-GORequestItem -url "${{ secrets.odenWS }}" -apikey "${{ secrets.odenAPI }}" -ihi ${{ secrets.odenIH }} -Description "${{ github.event.issue.body }}" -Subject "GitHub Issue ${{ github.event.issue.number }} - ${{ github.event.issue.title }}" -ShowDetails
       shell: pwsh
