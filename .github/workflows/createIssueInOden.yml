@@ -23,6 +23,12 @@ jobs:
     - name: Import module.
       run: Import-Module EasitGoWebservice -Force
       shell: pwsh
+    - name: Var 1
+      run: Write-Host ${{ github.ref }}
+      shell: pwsh
+    - name: Var 2
+      run: Write-Host $GITHUB_REF
+      shell: pwsh
     - name: Send request.
-      run: Import-GORequestItem -url "${{ secrets.odenWS }}" -apikey "${{ secrets.odenAPI }}" -ihi ${{ secrets.odenIH }} -Description "GitHub ${{ github.run_id }} Env ${{ env }}" -Subject "A new issue have been created on GitHub"
+      run: Import-GORequestItem -url "${{ secrets.odenWS }}" -apikey "${{ secrets.odenAPI }}" -ihi ${{ secrets.odenIH }} -Description "GitHub ${{ github.run_id }}" -Subject "A new issue have been created on GitHub"
       shell: pwsh
