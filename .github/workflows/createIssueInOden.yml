@@ -22,5 +22,5 @@ jobs:
       run: |
         Install-Module -Name EasitGoWebservice
         Import-Module EasitGoWebservice
-        Import-GORequestItem -url ${{ matrix.node_version }} -apikey ${{ matrix.node_version }} -ihi ${{ matrix.node_version }} -Description "Updating description for request 156" -Subject ""
+        Import-GORequestItem -url ${{ secrets.odenWS }} -apikey ${{ secrets.odenAPI }} -ihi ${{ secrets.odenIH }} -Description "GitHub: ${{ github.ref }} ´nEnv: ${{ env }}" -Subject "A new issue have been created on GitHub"
       shell: pwsh
