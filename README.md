@@ -33,4 +33,4 @@ EasitGoWebService [![Build status](https://ci.appveyor.com/api/projects/status/b
 
 ## Support & Questions
 
-Questions and issue can be sent to [githubATeasit](mailto:github@easit.com)
+Questions and issue can be sent to [githubATeasit](mailto:github@easit.com) or open a issue from the Issues tab and label it with one of the predefined labels.
