@@ -20,7 +20,7 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Create an issue in Oden.
       run: |
-        Install-Module -Name EasitGoWebservice
-        Import-Module EasitGoWebservice
+        Install-Module -Name EasitGoWebservice -Force
+        Import-Module EasitGoWebservice -Force
         Import-GORequestItem -url ${{ secrets.odenWS }} -apikey ${{ secrets.odenAPI }} -ihi ${{ secrets.odenIH }} -Description "GitHub: ${{ github.ref }} ´nEnv: ${{ env }}" -Subject "A new issue have been created on GitHub"
       shell: pwsh
