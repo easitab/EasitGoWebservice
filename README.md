@@ -24,12 +24,21 @@ Read more about [Install-Module](https://docs.microsoft.com/en-us/powershell/mod
 
 ## Current test and build status
 
-EasitGoWebService [![Build status](https://ci.appveyor.com/api/projects/status/bhw209scv0ijmt0x?svg=true)](https://ci.appveyor.com/project/easitab/easitgowebservice) 
+![Push and PR check](https://github.com/easitab/EasitGoWebservice/workflows/Push%20and%20PR%20check/badge.svg)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/bhw209scv0ijmt0x?svg=true)](https://ci.appveyor.com/project/easitab/easitgowebservice)
 
 
-## Functions with "work in progress" status
+## Branch model and development process
 
-* None at the moment
+* Head branches
+The repository has two branches with unlimited life: master and developement. Master corresponds to the latest officially delivered version. Developement is our development branch where we develop new functionality and continuously develop EasitGoWebservice.
+
+* Release branches
+Before a new release is delivered, we freeze the code and only allow bug fixes. This is done in a release segment (release / VERSION) that is based on development. Meanwhile, the development of new functions can continue towards development. When the release is ready for delivery it will be merged to master with a release tag. The final release from this tag is then built. After release, the release branch will also be added to development.
+
+* Hotfix branch
+When we need to make corrections in one or more releases, we create a hotfix branch per release to be corrected (hotfix / VERSION).
+We then create a bug fix branch (bugg/ID) from each hotfix branch and merge it via an pull request.
 
 ## Support & Questions
 
