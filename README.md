@@ -31,7 +31,7 @@ Read more about [Install-Module](https://docs.microsoft.com/en-us/powershell/mod
 ## Branch model and development process
 
 * Head branches<br/>
-The repository has two branches with unlimited life: master and developement. Master corresponds to the latest officially delivered version. Developement is our development branch where we develop new functionality and continuously develop EasitGoWebservice.
+The repository has two branches with unlimited life: master and development. Master corresponds to the latest officially delivered version. Development is our development branch where we develop new functionality and continuously develop EasitGoWebservice.
 
 * Release branches<br/>
 Before a new release is delivered, we freeze the code and only allow bug fixes. This is done in a release segment (release / VERSION) that is based on development. Meanwhile, the development of new functions can continue towards development. When the release is ready for delivery it will be merged to master with a release tag. The final release from this tag is then built. After release, the release branch will also be added to development.
