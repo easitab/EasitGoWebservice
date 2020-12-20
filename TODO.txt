@@ -1,0 +1,17 @@
+Add to GORequestItem:
+- DeliveryInformation
+- ApprovedBy
+- Approval
+- ProductsAndServices
+- Message
+- DesiredDelivery
+- PlannedDelivery
+- Workaround
+- ImpactAssessment
+- ResourceRequirement
+- Cause
+- LifeCycle
+- TypeOfChange
+- CategoryOfChange
+
+Add to 
