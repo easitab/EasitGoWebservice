@@ -1,8 +1,10 @@
 # PowerShell functions for Easit BPS and Easit GO
 
-## Current test and build status
+## Project status
 
-EasitGoWebService [![Build status](https://ci.appveyor.com/api/projects/status/bhw209scv0ijmt0x?svg=true)](https://ci.appveyor.com/project/easitab/easitgowebservice) 
+![Build & Publish status](https://ci.appveyor.com/api/projects/status/bhw209scv0ijmt0x?svg=true) ![Generate and update help](https://github.com/easitab/EasitManagementFramework/workflows/Generate%20and%20update%20help/badge.svg)
+
+![Test source with PSSA and Pester](https://github.com/easitab/EasitManagementFramework/workflows/Test%20source%20with%20PSSA%20and%20Pester/badge.svg) ![Test tests with Pester](https://github.com/easitab/EasitManagementFramework/workflows/Test%20tests%20with%20Pester/badge.svg)
 
 ## Docs
 
