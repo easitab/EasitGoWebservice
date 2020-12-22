@@ -64,7 +64,7 @@ function Convert-EasitXMLToPsObject {
             }
             $returnItem
         } else {
-            throw "Do not know what to do with XML"
+            throw "Do not know what to do with XML.."
         }
     }
     
