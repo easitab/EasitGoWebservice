@@ -1,0 +1,39 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Generate and update help
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the development branch
+on:
+  push:
+    paths:
+    - 'source/**'
+
+jobs:
+  # This workflow contains a single job called "build"
+  buildHelp:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-20.04
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITAUTOCOMMITPAT }}
+
+      - name: Build temp module
+        run: ./build/tempbuild_github.ps1
+        shell: pwsh
+      
+      # Runs a single command using the runners shell
+      - name: Generate and update docs
+        run: ./build/generateAndUpdateDocs.ps1
+        shell: pwsh
+      
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Generate and update help
+          commit_user_name: My GitHub Actions Bot
+          file_pattern: docs
+          push_options: --force

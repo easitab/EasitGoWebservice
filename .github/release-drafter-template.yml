@@ -1,0 +1,37 @@
+name-template: 'Release $RESOLVED_VERSION'
+tag-template: '$RESOLVED_VERSION'
+include-labels:
+  - 'feature'
+  - 'enhancement'
+  - 'test'
+  - 'fix'
+  - 'bugfix'
+  - 'bug'
+categories:
+  - title: 'Features'
+    label: 'feature'
+  - title: 'Enhancement'
+    labels: 
+      - 'enhancement'
+      - 'test'
+  - title: 'Bug Fixes'
+    labels:
+      - 'fix'
+      - 'bugfix'
+      - 'bug'
+change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+version-resolver:
+  major:
+    labels:
+      - 'major'
+  minor:
+    labels:
+      - 'minor'
+  patch:
+    labels:
+      - 'patch'
+  default: patch
+template: |
+  $CHANGES
+
+  $CONTRIBUTORS
