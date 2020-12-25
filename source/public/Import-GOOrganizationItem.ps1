@@ -249,10 +249,10 @@ function Import-GOOrganizationItem {
       )
 
       try {
-            Write-Verbose "Collecting list of used parameters"
+            Write-Verbose "Collecting list of used parameters.."
             $CommandName = $PSCmdlet.MyInvocation.InvocationName
             $ParameterList = (Get-Command -Name $commandName).Parameters.Values
-            Write-Verbose "Successfully collected list of used parameters"
+            Write-Verbose "Successfully collected list of used parameters."
       } catch {
             Write-Error 'Failed to get list of used parameters!'
             Write-Error "$_"
@@ -266,7 +266,7 @@ function Import-GOOrganizationItem {
             $ParameterSetToMatch = 'BPSAttribute'
             $parameterSets = $parameter.ParameterSets.Keys
             if ($parameterSets -contains $ParameterSetToMatch) {
-                  Write-Verbose "$($parameter.Name) is part of BPS parameter set"
+                  Write-Verbose "$($parameter.Name) is part of BPS parameter set!"
                   $parDetails = Get-Variable -Name $parameter.Name
                   if ($parDetails.Value) {
                         Write-Verbose "$($parameter.Name) have a value"
