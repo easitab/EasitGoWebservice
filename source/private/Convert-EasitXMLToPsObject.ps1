@@ -18,7 +18,11 @@ function Convert-EasitXMLToPsObject {
             $returnItem | Add-Member -MemberType Noteproperty -Name "totalNumberOfItems" -Value "$($Response.Envelope.Body.GetItemsResponse.totalNumberOfItems)"
             foreach ($column in $Response.Envelope.Body.GetItemsResponse.Columns.GetEnumerator()) {
                 Write-Verbose "Adding property $($column.InnerText) as Noteproperty to object"
-                $returnItem | Add-Member -MemberType Noteproperty -Name "$($column.InnerText)" -Value $null
+                try {
+                    $returnItem | Add-Member -MemberType Noteproperty -Name "$($column.InnerText)" -Value $null -ErrorAction 'Stop'
+                } catch [System.InvalidOperationException] {
+                    Write-Warning "$($column.InnerText) is used two times in the importViewIdentifier specified, this could be due to duplicates of the same field or that two fields have the same name. The value from the latest occurance will be used!"
+                }
             }
             foreach ($item in $Response.Envelope.Body.GetItemsResponse.Items.GetEnumerator()) {
                 foreach ($itemProperty in $item.GetEnumerator()) {
