@@ -18,6 +18,7 @@ jobs:
         failOnErrors: true
         failOnWarnings: false
         failOnInfos: false
+        settingsPath: ./.github/PSScriptAnalyzerSettings.psd1
 
   test:
     name: Pester tests
