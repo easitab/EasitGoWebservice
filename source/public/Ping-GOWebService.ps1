@@ -42,13 +42,13 @@ function Ping-GOWebService {
 
       $payload = New-XMLforEasit -Ping
 
-      Write-Verbose "Creating header for web request!"
+      Write-Verbose "Creating header for web request.."
       try {
             $pair = "$($apikey): "
             $encodedCreds = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes($pair))
             $basicAuthValue = "Basic $encodedCreds"
             $headers = @{SOAPAction = ""; Authorization = $basicAuthValue}
-            Write-Verbose "Header created for web request!"
+            Write-Verbose "Header created for web request."
       } catch {
             Write-Error "Failed to create header!"
             Write-Error "$_"
