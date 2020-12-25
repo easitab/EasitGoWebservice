@@ -104,7 +104,7 @@ function Get-GOItems {
             }
       }
       if ($ColumnFilter) { 
-            Write-Verbose "Validating column filter"
+            Write-Verbose "Validating column filter.."
             foreach ($filter in $ColumnFilter) {
                   try {
                         $FilterValues = $filter -replace ', ', ',' -split ','
