@@ -3,7 +3,7 @@ $projectRoot = Split-Path -Path $PSScriptRoot -Parent
 $sourceRoot = Join-Path -Path "$projectRoot" -ChildPath 'source'
 $tempModuleFileName = 'EasitGoWebservice'
 $docsRoot = Join-Path -Path "$projectRoot" -ChildPath 'docs'
-$docsVersionRoot = Join-Path -Path "$docsRoot" -ChildPath 'v1'
+$docsVersionRoot = Join-Path -Path "$docsRoot" -ChildPath 'v2'
 $tempModuleRoot = Join-Path -Path "$projectRoot" -ChildPath "$tempModuleFileName"
 Set-Location -Path $projectRoot
 # Runtime variables
@@ -35,7 +35,7 @@ foreach ($script in $allScripts) {
     } else {
         Write-Output "Unable to find $docsVersionRoot/${commandName}.md"
         try {
-            New-MarkdownHelp -Command $commandName -OutputFolder "$docsVersionRoot" -AlphabeticParamsOrder -OnlineVersionUrl "https://github.com/easitab/EasitGoWebservice/blob/development/docs/v1/${commandName}.md" -ErrorAction Stop
+            New-MarkdownHelp -Command $commandName -OutputFolder "$docsVersionRoot" -AlphabeticParamsOrder -OnlineVersionUrl "https://github.com/easitab/EasitGoWebservice/blob/development/docs/v2/${commandName}.md" -ErrorAction Stop
         } catch {
             Write-Error $_
             break
