@@ -44,7 +44,7 @@ function New-XMLforEasit {
         [System.Xml.XmlDeclaration] $xmlDeclaration = $payload.CreateXmlDeclaration("1.0", "UTF-8", $null)
         $payload.AppendChild($xmlDeclaration) | Out-Null
     } catch {
-        Write-Error "Failed to create xml object for payload"
+        Write-Error "Failed to create xml object for payload.."
         Write-Error "$_"
         break
     }
