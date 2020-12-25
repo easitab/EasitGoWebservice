@@ -176,344 +176,358 @@ function Import-GOAssetItem {
       #>
       [CmdletBinding()]
       param (
-            [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
+            [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
             [ValidateNotNullOrEmpty()]
             [Alias("uri")]
             [string] $url = "http://localhost/webservice/",
 
-            [parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true)]
+            [parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true)]
             [ValidateNotNullOrEmpty()]
             [Alias("api")]
             [string] $apikey,
 
-            [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
+            [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
             [ValidateNotNullOrEmpty()]
             [Alias("ihi")]
             [string] $ImportHandlerIdentifier = 'CreateAssetGeneral',
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [int] $ID,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [Alias("Type")]
             [string] $AssetType,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [Alias("InvoicingPeriod")]
             [string] $AssetInvoicingPeriod,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [Alias("SupplierOrganizationID")]
             [int] $AssetSupplierOrganizationID,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $Impact,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $Manufacturer,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [Alias("OwnerContact")]
             [int] $OwnerContactID,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [Alias("OwnerOrganization")]
             [int] $OwnerOrganizationID,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
-            [Alias("PriceListConnection","PriceList")]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
+            [Alias("PriceListConnection", "PriceList")]
             [int] $PriceListConnectionID,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $Status,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [Alias("City")]
             [string] $CityLocation,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [Alias("House")]
             [string] $HouseLocation,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $FinLifteTime,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $LifeCycle,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $ActivityDebit,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [Alias("Name")]
             [string] $AssetName,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [Alias("StartDate")]
             [string] $AssetStartDate,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $BarCode,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [Alias("CI")]
             [string] $CIReference,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $Description,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $FinancialNotes,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $LastInventoryDate,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $ObjectDebit,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $ProjectDebit,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $PurchaseDate,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $PurchaseOrderNumber,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $PurchaseValueCurrency,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $RoomLocation,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $SerialNumber,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $SupplierInvoiceId,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $TheftId,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $WarrantyExpireDate,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $ModelMonitor,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $MonitorType,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $MonitorSize,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $MonitorResolution,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [Alias("ConectionTypeMonitor")]
             [string] $ConectionType_Monitor,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $OperatingSystem,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $Equipment,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $ModelPC,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $ComputerType,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [int] $HardriveSize,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [int] $InternalMemory,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $ProcessorSpeed,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $SLA,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $SLAExpiredate,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $UserLogin,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [SecureString] $UserPassword,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $AssetPhoneModel,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $AssetPhoneType,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $Operator,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [Alias("IMEI")]
             [string] $IMEINumber,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $MobilePhoneNumber,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $PhoneNumber,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [Alias("puk")]
             [string] $PukCode,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $ModelPrinter,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [Alias("IP")]
             [string] $IPAdress,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [Alias("MAC")]
             [string] $MacAddress,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $NetworkName,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $ModelServer,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $DNSName,
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $ServiceBlackout,
 
-            [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
+            [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
             [int] $uid = "1",
 
-            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [Alias("File")]
             [string] $Attachment,
 
-            [parameter(Mandatory=$false)]
+            [parameter(Mandatory = $false)]
             [switch] $SSO,
 
-            [parameter(Mandatory=$false)]
+            [parameter(Mandatory = $false)]
             [switch] $dryRun,
 
-            [parameter(Mandatory=$false)]
+            [parameter(Mandatory = $false)]
             [switch] $ShowDetails
       )
-
-      try {
-            Write-Verbose "Collecting list of used parameters"
-            $CommandName = $PSCmdlet.MyInvocation.InvocationName
-            $ParameterList = (Get-Command -Name $commandName).Parameters.Values
-            Write-Verbose "Successfully collected list of used parameters"
-      } catch {
-            Write-Error 'Failed to get list of used parameters!'
-            Write-Error "$_"
-            break
+      begin {
+            Write-Verbose "$($MyInvocation.MyCommand) initialized"
       }
-
-      Write-Verbose "Starting loop for creating hashtable of parameter..."
-      $params = [ordered]@{}
-      foreach ($parameter in $parameterList) {
-            Write-Verbose "Starting loop for $($parameter.Name)"
-            $ParameterSetToMatch = 'BPSAttribute'
-            $parameterSets = $parameter.ParameterSets.Keys
-            if ($parameterSets -contains $ParameterSetToMatch) {
-                  Write-Verbose "$($parameter.Name) is part of BPS parameter set"
-                  $parDetails = Get-Variable -Name $parameter.Name
-                  if ($parDetails.Value) {
-                        Write-Verbose "$($parameter.Name) have a value"
-                        $parName = $parDetails.Name
-                        $parValue = $parDetails.Value
-                        $params.Add("$parName", "$parValue")
-                  } else {
-                        Write-Verbose "$($parameter.Name) does not have a value!"
+      process {
+            try {
+                  Write-Verbose "Collecting list of used parameters"
+                  $CommandName = $PSCmdlet.MyInvocation.InvocationName
+                  $ParameterList = (Get-Command -Name $commandName).Parameters.Values
+                  Write-Verbose "Successfully collected list of used parameters"
+            }
+            catch {
+                  Write-Error 'Failed to get list of used parameters!'
+                  Write-Error "$_"
+                  break
+            }
+            Write-Verbose "Starting loop for creating hashtable of parameter..."
+            $params = [ordered]@{}
+            foreach ($parameter in $parameterList) {
+                  Write-Verbose "Starting loop for $($parameter.Name)"
+                  $ParameterSetToMatch = 'BPSAttribute'
+                  $parameterSets = $parameter.ParameterSets.Keys
+                  if ($parameterSets -contains $ParameterSetToMatch) {
+                        Write-Verbose "$($parameter.Name) is part of BPS parameter set"
+                        $parDetails = Get-Variable -Name $parameter.Name
+                        if ($parDetails.Value) {
+                              Write-Verbose "$($parameter.Name) have a value"
+                              $parName = $parDetails.Name
+                              $parValue = $parDetails.Value
+                              $params.Add("$parName", "$parValue")
+                        }
+                        else {
+                              Write-Verbose "$($parameter.Name) does not have a value!"
+                        }
                   }
-            } else {
-                  Write-Verbose "$($parameter.Name) is not part of BPS parameter set!"
-            } Write-Verbose "Loop for $($parameter.Name) reached end!"
-      }
-      Write-Verbose "Successfully created hashtable of parameter!"
-      $payload = New-XMLforEasit -Import -ImportHandlerIdentifier "$ImportHandlerIdentifier" -Params $Params
+                  else {
+                        Write-Verbose "$($parameter.Name) is not part of BPS parameter set!"
+                  } Write-Verbose "Loop for $($parameter.Name) reached end!"
+            }
+            Write-Verbose "Successfully created hashtable of parameter!"
+            $payload = New-XMLforEasit -Import -ImportHandlerIdentifier "$ImportHandlerIdentifier" -Params $Params
 
-      if ($dryRun) {
-            Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it to BPS"
-            $i = 1
-            $currentUserProfile = [Environment]::GetEnvironmentVariable("USERPROFILE")
-            $userProfileDesktop = "$currentUserProfile\Desktop"
-            do {
-                  $outputFileName = "payload_$i.xml"
-                  if (Test-Path $userProfileDesktop\$outputFileName) {
-                        $i++
-                        Write-Host "$i"
-                  }
-            } until (!(Test-Path $userProfileDesktop\$outputFileName))
-            if (!(Test-Path $userProfileDesktop\$outputFileName)) {
-                  try {
+            if ($dryRun) {
+                  Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it to BPS"
+                  $i = 1
+                  $currentUserProfile = [Environment]::GetEnvironmentVariable("USERPROFILE")
+                  $userProfileDesktop = "$currentUserProfile\Desktop"
+                  do {
                         $outputFileName = "payload_$i.xml"
-                        $payload.Save("$userProfileDesktop\$outputFileName")
-                        Write-Verbose "Saved payload to file, will now end!"
-                        break
-                  } catch {
-                        Write-Error "Unable to save payload to file!"
-                        Write-Error "$_"
-                        break
+                        if (Test-Path $userProfileDesktop\$outputFileName) {
+                              $i++
+                              Write-Information "$i"
+                        }
+                  } until (!(Test-Path $userProfileDesktop\$outputFileName))
+                  if (!(Test-Path $userProfileDesktop\$outputFileName)) {
+                        try {
+                              $outputFileName = "payload_$i.xml"
+                              $payload.Save("$userProfileDesktop\$outputFileName")
+                              Write-Verbose "Saved payload to file, will now end!"
+                              break
+                        }
+                        catch {
+                              Write-Error "Unable to save payload to file!"
+                              Write-Error "$_"
+                              break
+                        }
                   }
             }
+
+            Write-Verbose "Creating header for web request!"
+            try {
+                  $pair = "$($apikey): "
+                  $encodedCreds = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes($pair))
+                  $basicAuthValue = "Basic $encodedCreds"
+                  $headers = @{SOAPAction = ""; Authorization = $basicAuthValue }
+                  Write-Verbose "Header created for web request!"
+            }
+            catch {
+                  Write-Error "Failed to create header!"
+                  Write-Error "$_"
+                  break
+            }
+            Write-Verbose "Calling web service and using payload as input for Body parameter"
+            if ($SSO) {
+                  try {
+                        Write-Verbose 'Using switch SSO. De facto UseDefaultCredentials for Invoke-WebRequest'
+                        $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $payload -Headers $headers -UseDefaultCredentials
+                        Write-Verbose "Successfully connected to and imported data to BPS"
+                  }
+                  catch {
+                        Write-Error "Failed to connect to BPS!"
+                        Write-Error "$_"
+                        return $payload
+                  }
+            }
+            else {
+                  try {
+                        $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $payload -Headers $headers
+                        Write-Verbose "Successfully connected to and imported data to BPS"
+                  }
+                  catch {
+                        Write-Error "Failed to connect to BPS!"
+                        Write-Error "$_"
+                        return $payload
+                  }
+            }
+
+            New-Variable -Name functionout
+            [xml]$functionout = $r.Content
+            Write-Verbose 'Casted content of reponse as [xml]$functionout'
+
+            if ($ShowDetails) {
+                  $responseResult = $functionout.Envelope.Body.ImportItemsResponse.ImportItemResult.result
+                  $responseID = $functionout.Envelope.Body.ImportItemsResponse.ImportItemResult.ReturnValues.ReturnValue.InnerXml
+                  Write-Information "Result: $responseResult"
+                  Write-Information "ID for created item: $responseID"
+            }
       }
 
-      Write-Verbose "Creating header for web request!"
-      try {
-            $pair = "$($apikey): "
-            $encodedCreds = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes($pair))
-            $basicAuthValue = "Basic $encodedCreds"
-            $headers = @{SOAPAction = ""; Authorization = $basicAuthValue}
-            Write-Verbose "Header created for web request!"
-      } catch {
-            Write-Error "Failed to create header!"
-            Write-Error "$_"
-            break
+      end {
+            Write-Verbose "$($MyInvocation.MyCommand) completed"
       }
-      Write-Verbose "Calling web service and using payload as input for Body parameter"
-      if ($SSO) {
-            try {
-                  Write-Verbose 'Using switch SSO. De facto UseDefaultCredentials for Invoke-WebRequest'
-                  $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $payload -Headers $headers -UseDefaultCredentials
-                  Write-Verbose "Successfully connected to and imported data to BPS"
-            } catch {
-                  Write-Error "Failed to connect to BPS!"
-                  Write-Error "$_"
-                  return $payload
-            }
-      } else {
-            try {
-                  $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $payload -Headers $headers
-                  Write-Verbose "Successfully connected to and imported data to BPS"
-            } catch {
-                  Write-Error "Failed to connect to BPS!"
-                  Write-Error "$_"
-                  return $payload
-            }
-      }
-      
-      New-Variable -Name functionout
-      [xml]$functionout = $r.Content
-      Write-Verbose 'Casted content of reponse as [xml]$functionout'
-
-      if ($ShowDetails) {
-            $responseResult = $functionout.Envelope.Body.ImportItemsResponse.ImportItemResult.result
-            $responseID = $functionout.Envelope.Body.ImportItemsResponse.ImportItemResult.ReturnValues.ReturnValue.InnerXml
-            Write-Host "Result: $responseResult"
-            Write-Host "ID for created item: $responseID"
-      }
-      Write-Verbose "Function complete!"
 }
