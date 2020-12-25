@@ -172,7 +172,7 @@ function Import-GOAssetItem {
             If specified, the response, including ID, will be displayed to host.
       .PARAMETER dryRun
             If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to BPS/GO.
-            This parameter does not append, rewrite or remove any files from your desktop.
+            This parameter does not append, rewrite or remove any files from your desktop..
       #>
       [CmdletBinding()]
       param (
