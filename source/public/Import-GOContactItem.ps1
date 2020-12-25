@@ -237,7 +237,7 @@ function Import-GOContactItem {
       $payload = New-XMLforEasit -Import -ImportHandlerIdentifier "$ImportHandlerIdentifier" -Params $Params
 
       if ($dryRun) {
-            Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it to BPS"
+            Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it to BPS.."
             $i = 1
             $currentUserProfile = [Environment]::GetEnvironmentVariable("USERPROFILE")
             $userProfileDesktop = "$currentUserProfile\Desktop"
