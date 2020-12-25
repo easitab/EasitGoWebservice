@@ -3,14 +3,11 @@ function Get-GOItems {
       .SYNOPSIS 
             Get data from BPS/GO with web services.
       .DESCRIPTION 
-            Connects to BPS/GO Web service with url, apikey and view and returns response as xml.
-            If used with variable as in examples below, the following properties can be found as follows:
+            Connects to BPS/GO Web service with url, apikey and view and returns each item as an objects.
+            
+            If the view specified to get items from contains two or more fields with the same name, the value from the latest field will be used.
 
-            Current page: $bpsdata.Envelope.Body.GetItemsResponse.page
-            Total number of pages in response: $bpsdata.Envelope.Body.GetItemsResponse.totalNumberOfPages
-            Total number of items in response: $bpsdata.Envelope.Body.GetItemsResponse.totalNumberOfItems
-            Items: $bpsdata.Envelope.Body.GetItemsResponse.Items
-            Details about fields used in view: $bpsdata.Envelope.Body.GetItemsResponse.Columns.Column
+            All returning objects will have these properties requestedPage, totalNumberOfPages and totalNumberOfItems beyond the once provided by the importViewIdentifier.
 
       .NOTES
             Copyright 2019 Easit AB
@@ -28,14 +25,16 @@ function Get-GOItems {
             limitations under the License.
 
       .LINK
-            https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Get-GOItems.ps1
+            https://github.com/easitab/EasitGoWebservice/blob/development/EasitGoWebservice/Get-GOItems.ps1
       
       .EXAMPLE 
-            $bpsdata = Get-GOItems -url http://localhost/test/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375 -view Incidents
+            Get-GOItems -url http://localhost/test/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375 -view Request
       .EXAMPLE
-            $bpsdata = Get-GOItems -url $url -apikey $api -view Incidents -page 1
+            Get-GOItems -url $url -apikey $api -view RequestsProblems -page 2
       .EXAMPLE
-            $bpsdata = Get-GOItems -url $url -apikey $api -view Incidents -page 1 -ColumnFilter 'Name,EQUALS,Extern organisation'
+            Get-GOItems -url $url -apikey $api -view RequestServiceRequests -page 1 -ColumnFilter 'Name,EQUALS,Extern organisation'
+      .EXAMPLE
+            Get-GOItems -url $url -apikey $api -view RequestIncidents -sortOrder Ascending -ColumnFilter "Status,IN,Registrerad", "Prioritet,IN,5"
       .PARAMETER url
             Address to BPS/GO webservice. Default = http://localhost/webservice/
       .PARAMETER apikey
@@ -105,8 +104,11 @@ function Get-GOItems {
       }
       if ($ColumnFilter) { 
             Write-Verbose "Validating column filter.."
+            Write-Verbose "ColumnFilter = $ColumnFilter"
+            Write-Verbose "ColumnFilters = $($ColumnFilter.Count)"
             foreach ($filter in $ColumnFilter) {
                   try {
+                        Write-Verbose $filter
                         $FilterValues = $filter -replace ', ', ',' -split ','
                         Test-ColumnFilter -Filter $filter -FilterValues $FilterValues
                   } catch {
@@ -129,7 +131,11 @@ function Get-GOItems {
       Write-Verbose 'Creating payload'
 
       $payload = New-XMLforEasit -Get -ItemViewIdentifier "$importViewIdentifier" -SortOrder "$sortOrder" -SortField "$sortField" -Page "$viewPageNumber" -ColumnFilter "$ColumnFilter"
-
+      
+      if ($PSCmdlet.MyInvocation.BoundParameters["Verbose"].IsPresent) {
+            Write-Verbose "Saving payload to ${Home}\Documents\payload.xml"
+            $payload.Save("$Home\Documents\payload.xml")
+      }
       Write-Verbose 'Setting headers'
       # HTTP headers
       $headers = @{SOAPAction = ""; Authorization = $basicAuthValue}
@@ -160,7 +166,10 @@ function Get-GOItems {
       
       New-Variable -Name functionout
       [xml]$functionout = $r.Content
-      Write-Verbose 'Casted content of reponse as [xml]$functionout'
-
-      return $functionout
+      try {
+            $returnObjects = Convert-EasitXMLToPsObject -Response $functionout
+      } catch {
+            throw $_
+      }
+      $returnObjects
 }

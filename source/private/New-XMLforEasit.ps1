@@ -198,13 +198,20 @@ function New-XMLforEasit {
         ## Solution provided by Dennis Zakariasson <dennis.zakariasson@regionuppsala.se> thru issue 5
         if ($ColumnFilter) {
             Write-Verbose "Creating xml element for Column filter"
-            foreach ($filter in $ColumnFilter) {
+            $Filters = $ColumnFilter -split ' '
+            Write-Verbose "Filters = $Filters"
+            Write-Verbose "Number of filters = $($Filters.Count)"
+            foreach ($filter in $Filters) {
                 try {
-                    $ColumnFilterValues = $filter -replace ', ', ',' -split ','
+                    Write-Verbose "filter = $filter"
+                    $ColumnFilterValues = $filter -split ','
                     $envelopeColumnFilter = $payload.CreateElement('sch:ColumnFilter',"$xmlnsSch")
+                    Write-Verbose "columnName = $($ColumnFilterValues[0])"
                     $envelopeColumnFilter.SetAttribute("columnName","$($ColumnFilterValues[0])")
                     $envelopeColumnFilter.SetAttribute("comparator","$($ColumnFilterValues[1])")
+                    Write-Verbose "comparator = $($ColumnFilterValues[1])"
                     $envelopeColumnFilter.InnerText = "$($ColumnFilterValues[2])"
+                    Write-Verbose "InnerText = $($ColumnFilterValues[2])"
                     $schGetItemsRequest.AppendChild($envelopeColumnFilter) | Out-Null
                 } catch {
                     Write-Error "Failed to create xml element for ColumnFilter"
@@ -229,9 +236,6 @@ function New-XMLforEasit {
             Write-Error "$_"
             break
       }
-    }
-    if ($PSCmdlet.MyInvocation.BoundParameters["Verbose"].IsPresent) {
-        $payload.Save("$HOME\Documents\payload.xml")
     }
     Write-Verbose "Successfully updated property values in SOAP envelope for all parameters with input provided!"
     return $payload
