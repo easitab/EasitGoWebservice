@@ -35,7 +35,7 @@ foreach ($script in $allScripts) {
     } else {
         Write-Output "Unable to find $docsVersionRoot/${commandName}.md"
         try {
-            New-MarkdownHelp -Command $commandName -OutputFolder "$docsVersionRoot" -AlphabeticParamsOrder -OnlineVersionUrl "https://github.com/easitab/EasitGoWebservice/blob/development/docs/v2/${commandName}.md" -ErrorAction Stop
+            New-MarkdownHelp -Command $commandName -OutputFolder "$docsVersionRoot" -AlphabeticParamsOrder -OnlineVersionUrl "https://github.com/easitab/EasitGoWebservice/blob/development/docs/v1/${commandName}.md" -ErrorAction Stop
         } catch {
             Write-Error $_
             break
