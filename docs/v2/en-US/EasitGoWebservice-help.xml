@@ -2,6 +2,90 @@
 <helpItems schema="maml" xmlns="http://msh">
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Convert-EasitXMLToPsObject</command:name>
+      <command:verb>Convert</command:verb>
+      <command:noun>EasitXMLToPsObject</command:noun>
+      <maml:description>
+        <maml:para>{{ Fill in the Synopsis }}</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>{{ Fill in the Description }}</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Convert-EasitXMLToPsObject</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Response</maml:name>
+          <maml:Description>
+            <maml:para>{{ Fill Response Description }}</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">XmlDocument</command:parameterValue>
+          <dev:type>
+            <maml:name>XmlDocument</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Response</maml:name>
+        <maml:Description>
+          <maml:para>{{ Fill Response Description }}</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">XmlDocument</command:parameterValue>
+        <dev:type>
+          <maml:name>XmlDocument</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.Xml.XmlDocument</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Object</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:remarks>
+          <maml:para>{{ Add example description here }}</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v2/Convert-EasitXMLToPsObject.md</maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Get-GOItems</command:name>
       <command:verb>Get</command:verb>
       <command:noun>GOItems</command:noun>
@@ -215,7 +299,7 @@
     <command:returnValues />
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Copyright 2021 Easit AB</maml:para>
+        <maml:para>Copyright 2019 Easit AB</maml:para>
         <maml:para>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at</maml:para>
         <maml:para>      http://www.apache.org/licenses/LICENSE-2.0</maml:para>
         <maml:para>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</maml:para>
@@ -247,11 +331,11 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v1/Get-GOItems.md</maml:uri>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v2/Get-GOItems.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
-        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/development/EasitGoWebservice/Get-GOItems.ps1</maml:linkText>
-        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/EasitGoWebservice/Get-GOItems.ps1</maml:uri>
+        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Get-GOItems.ps1</maml:linkText>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Get-GOItems.ps1</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>
@@ -477,7 +561,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>dryRun</maml:name>
           <maml:Description>
-            <maml:para>If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to BPS/GO. This parameter does not append, rewrite or remove any files from your desktop.</maml:para>
+            <maml:para>If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to BPS/GO. This parameter does not append, rewrite or remove any files from your desktop..</maml:para>
           </maml:Description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -1317,7 +1401,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>dryRun</maml:name>
         <maml:Description>
-          <maml:para>If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to BPS/GO. This parameter does not append, rewrite or remove any files from your desktop.</maml:para>
+          <maml:para>If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to BPS/GO. This parameter does not append, rewrite or remove any files from your desktop..</maml:para>
         </maml:Description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -1955,7 +2039,7 @@
     <command:returnValues />
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Copyright 2021 Easit AB</maml:para>
+        <maml:para>Copyright 2019 Easit AB</maml:para>
         <maml:para>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at</maml:para>
         <maml:para>    http://www.apache.org/licenses/LICENSE-2.0</maml:para>
         <maml:para>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</maml:para>
@@ -1994,11 +2078,11 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v1/Import-GOAssetItem.md</maml:uri>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v2/Import-GOAssetItem.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
-        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/development/EasitGoWebservice/Import-GOAssetItem.ps1</maml:linkText>
-        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/EasitGoWebservice/Import-GOAssetItem.ps1</maml:uri>
+        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-GOAssetItem.ps1</maml:linkText>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-GOAssetItem.ps1</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>
@@ -2790,7 +2874,7 @@
     <command:returnValues />
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Copyright 2021 Easit AB</maml:para>
+        <maml:para>Copyright 2019 Easit AB</maml:para>
         <maml:para>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at</maml:para>
         <maml:para>    http://www.apache.org/licenses/LICENSE-2.0</maml:para>
         <maml:para>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</maml:para>
@@ -2829,11 +2913,11 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v1/Import-GOContactItem.md</maml:uri>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v2/Import-GOContactItem.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
-        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/development/EasitGoWebservice/Import-GOContactItem.ps1</maml:linkText>
-        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/EasitGoWebservice/Import-GOContactItem.ps1</maml:uri>
+        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-GOContactItem.ps1</maml:linkText>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-GOContactItem.ps1</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>
@@ -3769,7 +3853,7 @@
     <command:returnValues />
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Copyright 2021 Easit AB</maml:para>
+        <maml:para>Copyright 2019 Easit AB</maml:para>
         <maml:para>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at</maml:para>
         <maml:para>    http://www.apache.org/licenses/LICENSE-2.0</maml:para>
         <maml:para>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</maml:para>
@@ -3808,11 +3892,11 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v1/Import-GOOrganizationItem.md</maml:uri>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v2/Import-GOOrganizationItem.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
-        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/development/EasitGoWebservice/Import-BPSContactItem.ps1</maml:linkText>
-        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/EasitGoWebservice/Import-BPSContactItem.ps1</maml:uri>
+        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-BPSContactItem.ps1</maml:linkText>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-BPSContactItem.ps1</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>
@@ -4652,7 +4736,7 @@
     <command:returnValues />
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Copyright 2021 Easit AB</maml:para>
+        <maml:para>Copyright 2019 Easit AB</maml:para>
         <maml:para>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at</maml:para>
         <maml:para>    http://www.apache.org/licenses/LICENSE-2.0</maml:para>
         <maml:para>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</maml:para>
@@ -4691,11 +4775,11 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v1/Import-GORequestItem.md</maml:uri>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v2/Import-GORequestItem.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
-        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/development/EasitGoWebservice/Import-GORequestItem.ps1</maml:linkText>
-        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/EasitGoWebservice/Import-GORequestItem.ps1</maml:uri>
+        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-GORequestItem.ps1</maml:linkText>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-GORequestItem.ps1</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>
@@ -4705,7 +4789,7 @@
       <command:verb>New</command:verb>
       <command:noun>XMLforEasit</command:noun>
       <maml:description>
-        <maml:para>Helper function to create XML payload to send to Easit webservice.</maml:para>
+        <maml:para>{{ Fill in the Synopsis }}</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -4998,7 +5082,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v1/New-XMLforEasit.md</maml:uri>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v2/New-XMLforEasit.md</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>
@@ -5073,7 +5157,7 @@
     <command:returnValues />
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Copyright 2021 Easit AB</maml:para>
+        <maml:para>Copyright 2019 Easit AB</maml:para>
         <maml:para>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at</maml:para>
         <maml:para>    http://www.apache.org/licenses/LICENSE-2.0</maml:para>
         <maml:para>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</maml:para>
@@ -5091,11 +5175,11 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v1/Ping-GOWebService.md</maml:uri>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v2/Ping-GOWebService.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
-        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/development/EasitGoWebservice/Ping-GOWebService.ps1</maml:linkText>
-        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/EasitGoWebservice/Ping-GOWebService.ps1</maml:uri>
+        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Ping-GOWebService.ps1</maml:linkText>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Ping-GOWebService.ps1</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>

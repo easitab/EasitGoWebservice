@@ -69,6 +69,6 @@ function Convert-EasitXMLToPsObject {
     }
     
     end {
-        Write-Verbose "$($MyInvocation.MyCommand) completed"
+        Write-Verbose "$($MyInvocation.MyCommand) completed."
     }
 }
