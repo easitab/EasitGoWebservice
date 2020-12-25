@@ -220,7 +220,7 @@ function Import-GORequestItem {
       )
 
       try {
-            Write-Verbose "Collecting list of used parameters.."
+            Write-Verbose "Collecting list of used parameters."
             $CommandName = $PSCmdlet.MyInvocation.InvocationName
             $ParameterList = (Get-Command -Name $commandName).Parameters.Values
             Write-Verbose "Successfully collected list of used parameters"
