@@ -6,6 +6,7 @@ name: Generate and update help
 # events but only for the development branch
 on:
   push:
+    branches: 'release/**'
     paths:
     - 'source/**'
 
