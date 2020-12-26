@@ -8,45 +8,52 @@ schema: 2.0.0
 # Get-GOItems
 
 ## SYNOPSIS
+
 Get data from BPS/GO with web services.
 
 ## SYNTAX
 
-```
+```powershell
 Get-GOItems [[-url] <String>] [-apikey] <String> [-importViewIdentifier] <String> [[-sortOrder] <String>]
  [[-sortField] <String>] [[-viewPageNumber] <Int32>] [[-ColumnFilter] <String[]>] [-SSO] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Connects to BPS/GO Web service with url, apikey and view and returns response as xml.
-If used with variable as in examples below, the following properties can be found as follows:
 
-Current page: $bpsdata.Envelope.Body.GetItemsResponse.page
-Total number of pages in response: $bpsdata.Envelope.Body.GetItemsResponse.totalNumberOfPages
-Total number of items in response: $bpsdata.Envelope.Body.GetItemsResponse.totalNumberOfItems
-Items: $bpsdata.Envelope.Body.GetItemsResponse.Items
-Details about fields used in view: $bpsdata.Envelope.Body.GetItemsResponse.Columns.Column
+Connects to BPS/GO Web service with url, apikey and view and returns each item as an objects.<br>
+If the view specified to get items from contains two or more fields with the same name, the value from the latest field will be used.<br>
+All returning objects will have these properties requestedPage, totalNumberOfPages and totalNumberOfItems beyond the once provided by the importViewIdentifier.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
-$bpsdata = Get-GOItems -url http://localhost/test/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375 -view Incidents
+
+```powershell
+Get-GOItems -url 'http://localhost/test/webservice/' -apikey '4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375' -view 'Request'
 ```
 
 ### EXAMPLE 2
-```
-$bpsdata = Get-GOItems -url $url -apikey $api -view Incidents -page 1
+
+```powershell
+Get-GOItems -url "$url" -apikey "$api" -view 'RequestsProblems' -page 2
 ```
 
 ### EXAMPLE 3
+
+```powershell
+Get-GOItems -url "$url" -apikey "$api" -view 'RequestServiceRequests' -page 1 -ColumnFilter 'Name,EQUALS,Extern organisation'
 ```
-$bpsdata = Get-GOItems -url $url -apikey $api -view Incidents -page 1 -ColumnFilter 'Name,EQUALS,Extern organisation'
+
+### EXAMPLE 4
+
+```powershell
+Get-GOItems -url "$url" -apikey "$api" -view 'RequestIncidents' -sortOrder 'Ascending' -ColumnFilter "Status,IN,Registrerad", "Prioritet,IN,5"
 ```
 
 ## PARAMETERS
 
 ### -apikey
+
 API-key for BPS/GO.
 
 ```yaml
@@ -62,8 +69,9 @@ Accept wildcard characters: False
 ```
 
 ### -ColumnFilter
-Used to filter data.
-Example: ColumnName,comparator,value
+
+Used to filter data.<br>
+Example: ColumnName,comparator,value<br>
 Valid comparator: EQUALS, NOT_EQUALS, IN, NOT_IN, GREATER_THAN, GREATER_THAN_OR_EQUALS, LESS_THAN, LESS_THAN_OR_EQUALS, LIKE, NOT_LIKE
 
 ```yaml
@@ -79,6 +87,7 @@ Accept wildcard characters: False
 ```
 
 ### -importViewIdentifier
+
 View to get data from.
 
 ```yaml
@@ -94,6 +103,7 @@ Accept wildcard characters: False
 ```
 
 ### -sortField
+
 Field to sort data with.
 Default = Id
 
@@ -110,6 +120,7 @@ Accept wildcard characters: False
 ```
 
 ### -sortOrder
+
 Order in which to sort data, Descending or Ascending.
 Default = Descending
 
@@ -126,6 +137,7 @@ Accept wildcard characters: False
 ```
 
 ### -SSO
+
 Used if system is using SSO with IWA (Active Directory).
 Not needed when using SAML2
 
@@ -142,6 +154,7 @@ Accept wildcard characters: False
 ```
 
 ### -url
+
 Address to BPS/GO webservice.
 Default = http://localhost/webservice/
 
@@ -158,6 +171,7 @@ Accept wildcard characters: False
 ```
 
 ### -viewPageNumber
+
 Used to get data from specific page in view.
 Each page contains 25 items.
 Default = 1.
@@ -181,7 +195,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### PSObject
+
 ## NOTES
+
 Copyright 2019 Easit AB
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -198,5 +215,5 @@ limitations under the License.
 
 ## RELATED LINKS
 
-[https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Get-GOItems.ps1](https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Get-GOItems.ps1)
+[https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Get-GOItems.ps1](https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Get-GOItems.ps1)
 
