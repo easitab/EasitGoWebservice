@@ -8,7 +8,7 @@
 
 ## Docs
 
-[You will find the docs regarding EasitGoWebservice here](https://github.com/easitab/EasitGoWebservice/blob/development/docs/README.md)
+[You will find the docs regarding EasitGoWebservice here](https://github.com/easitab/EasitGoWebservice/blob/development/docs/)
 
 ## Support & Questions
 
