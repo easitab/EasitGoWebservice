@@ -6,11 +6,11 @@
       <command:verb>Convert</command:verb>
       <command:noun>EasitXMLToPsObject</command:noun>
       <maml:description>
-        <maml:para>{{ Fill in the Synopsis }}</maml:para>
+        <maml:para>"Private" cmdlet that act as helper function.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{ Fill in the Description }}</maml:para>
+      <maml:para>Converts XML response from Easit BPS and Easit GO to PSObjects.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -18,7 +18,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
           <maml:name>Response</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill Response Description }}</maml:para>
+            <maml:para>XML document to convert.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">XmlDocument</command:parameterValue>
           <dev:type>
@@ -33,7 +33,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>Response</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill Response Description }}</maml:para>
+          <maml:para>XML document to convert.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">XmlDocument</command:parameterValue>
         <dev:type>
@@ -65,15 +65,20 @@
     </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para></maml:para>
+        <maml:para>Copyright 2021 Easit AB</maml:para>
+        <maml:para>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at</maml:para>
+        <maml:para>      http://www.apache.org/licenses/LICENSE-2.0</maml:para>
+        <maml:para>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $payload -Headers $headers
+PS C:\&gt; [xml]$functionout = $r.Content
+PS C:\&gt; Convert-EasitXMLToPsObject -Response $functionout</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para></maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -81,6 +86,10 @@
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
         <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v2/Convert-EasitXMLToPsObject.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/development/source/private/Convert-EasitXMLToPsObject.ps1</maml:linkText>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/source/private/Convert-EasitXMLToPsObject.ps1</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>
@@ -94,8 +103,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Connects to BPS/GO Web service with url, apikey and view and returns response as xml. If used with variable as in examples below, the following properties can be found as follows:</maml:para>
-      <maml:para>Current page: $bpsdata.Envelope.Body.GetItemsResponse.page Total number of pages in response: $bpsdata.Envelope.Body.GetItemsResponse.totalNumberOfPages Total number of items in response: $bpsdata.Envelope.Body.GetItemsResponse.totalNumberOfItems Items: $bpsdata.Envelope.Body.GetItemsResponse.Items Details about fields used in view: $bpsdata.Envelope.Body.GetItemsResponse.Columns.Column</maml:para>
+      <maml:para>Connects to BPS/GO Web service with url, apikey and view and returns each item as an objects.&lt;br&gt; If the view specified to get items from contains two or more fields with the same name, the value from the latest field will be used.&lt;br&gt; All returning objects will have these properties requestedPage, totalNumberOfPages and totalNumberOfItems beyond the once provided by the importViewIdentifier.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -175,7 +183,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="7" aliases="none">
           <maml:name>ColumnFilter</maml:name>
           <maml:Description>
-            <maml:para>Used to filter data. Example: ColumnName,comparator,value Valid comparator: EQUALS, NOT_EQUALS, IN, NOT_IN, GREATER_THAN, GREATER_THAN_OR_EQUALS, LESS_THAN, LESS_THAN_OR_EQUALS, LIKE, NOT_LIKE</maml:para>
+            <maml:para>Used to filter data.&lt;br&gt; Example: ColumnName,comparator,value&lt;br&gt; Valid comparator: EQUALS, NOT_EQUALS, IN, NOT_IN, GREATER_THAN, GREATER_THAN_OR_EQUALS, LESS_THAN, LESS_THAN_OR_EQUALS, LIKE, NOT_LIKE</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
           <dev:type>
@@ -213,7 +221,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="7" aliases="none">
         <maml:name>ColumnFilter</maml:name>
         <maml:Description>
-          <maml:para>Used to filter data. Example: ColumnName,comparator,value Valid comparator: EQUALS, NOT_EQUALS, IN, NOT_IN, GREATER_THAN, GREATER_THAN_OR_EQUALS, LESS_THAN, LESS_THAN_OR_EQUALS, LIKE, NOT_LIKE</maml:para>
+          <maml:para>Used to filter data.&lt;br&gt; Example: ColumnName,comparator,value&lt;br&gt; Valid comparator: EQUALS, NOT_EQUALS, IN, NOT_IN, GREATER_THAN, GREATER_THAN_OR_EQUALS, LESS_THAN, LESS_THAN_OR_EQUALS, LIKE, NOT_LIKE</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
         <dev:type>
@@ -296,7 +304,16 @@
       </command:parameter>
     </command:parameters>
     <command:inputTypes />
-    <command:returnValues />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>PSObject</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
     <maml:alertSet>
       <maml:alert>
         <maml:para>Copyright 2019 Easit AB</maml:para>
@@ -308,21 +325,28 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
-        <dev:code>$bpsdata = Get-GOItems -url http://localhost/test/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375 -view Incidents</dev:code>
+        <dev:code>Get-GOItems -url 'http://localhost/test/webservice/' -apikey '4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375' -view 'Request'</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
-        <dev:code>$bpsdata = Get-GOItems -url $url -apikey $api -view Incidents -page 1</dev:code>
+        <dev:code>Get-GOItems -url "$url" -apikey "$api" -view 'RequestsProblems' -page 2</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
-        <dev:code>$bpsdata = Get-GOItems -url $url -apikey $api -view Incidents -page 1 -ColumnFilter 'Name,EQUALS,Extern organisation'</dev:code>
+        <dev:code>Get-GOItems -url "$url" -apikey "$api" -view 'RequestServiceRequests' -page 1 -ColumnFilter 'Name,EQUALS,Extern organisation'</dev:code>
+        <dev:remarks>
+          <maml:para></maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- EXAMPLE 4 --------------------------</maml:title>
+        <dev:code>Get-GOItems -url "$url" -apikey "$api" -view 'RequestIncidents' -sortOrder 'Ascending' -ColumnFilter "Status,IN,Registrerad", "Prioritet,IN,5"</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
@@ -334,8 +358,8 @@
         <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v2/Get-GOItems.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
-        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Get-GOItems.ps1</maml:linkText>
-        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Get-GOItems.ps1</maml:uri>
+        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Get-GOItems.ps1</maml:linkText>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Get-GOItems.ps1</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>
@@ -1146,7 +1170,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="uri">
           <maml:name>url</maml:name>
           <maml:Description>
-            <maml:para>Address to BPS/GO webservice. Default = http://localhost/webservice/</maml:para>
+            <maml:para>Address to BPS/GO webservice.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1989,7 +2013,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="uri">
         <maml:name>url</maml:name>
         <maml:Description>
-          <maml:para>Address to BPS/GO webservice. Default = http://localhost/webservice/</maml:para>
+          <maml:para>Address to BPS/GO webservice.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -2081,8 +2105,8 @@
         <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v2/Import-GOAssetItem.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
-        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-GOAssetItem.ps1</maml:linkText>
-        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-GOAssetItem.ps1</maml:uri>
+        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Import-GOAssetItem.ps1</maml:linkText>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Import-GOAssetItem.ps1</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>
@@ -2259,7 +2283,8 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Impact</maml:name>
           <maml:Description>
-            <maml:para>Contacts impact level. 1. Minor, 2. Medium or 3. Major.</maml:para>
+            <maml:para>Contacts impact level.</maml:para>
+            <maml:para>1. Minor 2. Medium 3. Major</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -2644,7 +2669,8 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>Impact</maml:name>
         <maml:Description>
-          <maml:para>Contacts impact level. 1. Minor, 2. Medium or 3. Major.</maml:para>
+          <maml:para>Contacts impact level.</maml:para>
+          <maml:para>1. Minor 2. Medium 3. Major</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -2883,28 +2909,28 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
-        <dev:code>Import-GOContactItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateContact -OrganizationID "12" -Position "Manager" -Deparment "Support" -FirstName "Test" -Surname "Testsson" -Username "te12te" -SecId "97584621" -Verbose -ShowDetails</dev:code>
+        <dev:code>Import-GOContactItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateContact' -OrganizationID "12" -Position "Manager" -Deparment "Support" -FirstName "Test" -Surname "Testsson" -Username "te12te" -SecId "97584621" -Verbose -ShowDetails</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
-        <dev:code>Import-GOContactItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ihi CreateContact -ID "649" -Inactive "true"</dev:code>
+        <dev:code>Import-GOContactItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ihi CreateContact -ID "649" -Inactive "true"</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
-        <dev:code>Import-GOContactItem -url http://localhost/webservice/ -api a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateContact -ID "649" -Surname "Andersson" -Email "test.anders@company.com" -FQDN "$FQDN"</dev:code>
+        <dev:code>Import-GOContactItem -url 'http://localhost/webservice/' -api 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateContact' -ID "649" -Surname "Andersson" -Email "test.anders@company.com" -FQDN "$FQDN"</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 4 --------------------------</maml:title>
-        <dev:code>Import-GOContactItem -url $url -apikey $api -ihi $identifier -ID "156" -Inactive "false" -Responsible_Manager "true"</dev:code>
+        <dev:code>Import-GOContactItem -url "$url" -apikey "$api" -ihi "$identifier" -ID "156" -Inactive "false" -Responsible_Manager "true"</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
@@ -2916,8 +2942,8 @@
         <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v2/Import-GOContactItem.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
-        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-GOContactItem.ps1</maml:linkText>
-        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-GOContactItem.ps1</maml:uri>
+        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Import-GOContactItem.ps1</maml:linkText>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Import-GOContactItem.ps1</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>
@@ -3296,7 +3322,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>uid</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill uid Description }}</maml:para>
+            <maml:para>Parameter to specify what value to set as attribut UID and id for the XML property ItemToImport.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
@@ -3755,7 +3781,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>uid</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill uid Description }}</maml:para>
+          <maml:para>Parameter to specify what value to set as attribut UID and id for the XML property ItemToImport.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
@@ -3862,28 +3888,28 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
-        <dev:code>Import-GOOrganizationItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateOrganization_Internal -Name "IT and things" -ParentItemID "124" -CustomerNumber "1648752" -BusinessDebit "4687" -Country "Sverige" -Status "Active" -Verbose -ShowDetails</dev:code>
+        <dev:code>Import-GOOrganizationItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateOrganization' -Name 'IT and things' -ParentItemID '124' -CustomerNumber '1648752' -BusinessDebit '4687' -Country 'Sverige' -Status 'Active' -Verbose -ShowDetails</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
-        <dev:code>Import-GOOrganizationItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ihi CreateOrganization_External -Name "Stuff and IT" -CustomerNumber "4678524" -BusinessDebit "1684" -AccountManager "account.manager@company.com" -MainContractID "85" -ServiceManager "username123"</dev:code>
+        <dev:code>Import-GOOrganizationItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ihi 'CreateOrganizationExternal' -Name 'Stuff and IT' -CustomerNumber '4678524' -BusinessDebit '1684' -AccountManager 'account.manager@company.com' -MainContractID '85' -ServiceManager 'username123'</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
-        <dev:code>Import-GOOrganizationItem -url http://localhost/webservice/ -api a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateOrganization_Supplier -ID "467" -Category "Food" -Status "Active"</dev:code>
+        <dev:code>Import-GOOrganizationItem -url 'http://localhost/webservice/' -api 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateOrganizationSupplier' -ID '467' -Category 'Food' -Status 'Active'</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 4 --------------------------</maml:title>
-        <dev:code>Import-GOOrganizationItem -url $url -apikey $api -ihi $identifier -ID "156" -Status "Inactive"</dev:code>
+        <dev:code>Import-GOOrganizationItem -url "$url" -apikey "$api" -ihi "$identifier" -ID '156' -Status 'Inactive'</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
@@ -3895,8 +3921,8 @@
         <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v2/Import-GOOrganizationItem.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
-        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-BPSContactItem.ps1</maml:linkText>
-        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-BPSContactItem.ps1</maml:uri>
+        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Import-GOOrganizationItem.ps1</maml:linkText>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Import-GOOrganizationItem.ps1</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>
@@ -4745,28 +4771,28 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
-        <dev:code>Import-GORequestItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateRequest -Subject Testing1 -Description Testing1 -ContactID 5 -Status Registrerad -Verbose -ShowDetails</dev:code>
+        <dev:code>Import-GORequestItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateRequest' -Subject 'Testing1' -Description 'Testing1' -Status 'Registrerad'</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
-        <dev:code>Import-GORequestItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateRequest -Subject Testing1 -Description Testing1 -ContactID 5 -Status Registrerad</dev:code>
+        <dev:code>Import-GORequestItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateRequestIncident' -Subject 'Testing1' -Description 'Testing1' -ContactID '5' -Status 'Registrerad' -Verbose -ShowDetails</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
-        <dev:code>Import-GORequestItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateRequest -ID "156" -Description "Testing2. Nytt test!"</dev:code>
+        <dev:code>Import-GORequestItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateRequestProblem' -ID '156' -Description 'Testing2. Nytt test!'</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 4 --------------------------</maml:title>
-        <dev:code>Import-GORequestItem -url $url -apikey $api -ihi $identifier -ID "156" -Description "Updating description for request 156"</dev:code>
+        <dev:code>Import-GORequestItem -url "$url" -apikey "$api" -ihi "$identifier" -ID '156' -Description 'Updating description for request 156'</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
@@ -4778,8 +4804,8 @@
         <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v2/Import-GORequestItem.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
-        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-GORequestItem.ps1</maml:linkText>
-        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-GORequestItem.ps1</maml:uri>
+        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Import-GORequestItem.ps1</maml:linkText>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Import-GORequestItem.ps1</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>
@@ -4789,11 +4815,11 @@
       <command:verb>New</command:verb>
       <command:noun>XMLforEasit</command:noun>
       <maml:description>
-        <maml:para>{{ Fill in the Synopsis }}</maml:para>
+        <maml:para>"Private" cmdlet that act as helper function.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{ Fill in the Description }}</maml:para>
+      <maml:para>This cmdlet "builds" a XML-object that can be sent to Easit BPS and Easit GO to get or create/update items.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -4801,7 +4827,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Get</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill Get Description }}</maml:para>
+            <maml:para>Tells cmdlet that the XML-object should be built in order to get items from Easit BPS or Easit GO.</maml:para>
           </maml:Description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -4812,7 +4838,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ColumnFilter</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill ColumnFilter Description }}</maml:para>
+            <maml:para>Used to filter data.&lt;br&gt; Example: ColumnName,comparator,value&lt;br&gt;</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
           <dev:type>
@@ -4824,7 +4850,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ItemViewIdentifier</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill ItemViewIdentifier Description }}</maml:para>
+            <maml:para>Tells cmdlet what value that the XML-object should set for the ItemViewIdentifier property.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -4836,19 +4862,19 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Page</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill Page Description }}</maml:para>
+            <maml:para>Tells cmdlet what value that the XML-object should set for the Page property.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
             <maml:name>Int32</maml:name>
             <maml:uri />
           </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
+          <dev:defaultValue>1</dev:defaultValue>
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>SortField</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill SortField Description }}</maml:para>
+            <maml:para>Tells cmdlet what value that the XML-object should set for the SortColumn property.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -4860,7 +4886,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>SortOrder</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill SortOrder Description }}</maml:para>
+            <maml:para>Tells cmdlet what value that the XML-object should set as the attribut order for the SortColumn property.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -4875,7 +4901,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Import</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill Import Description }}</maml:para>
+            <maml:para>Tells cmdlet that the XML-object should be built in order to import items to Easit BPS or Easit GO.</maml:para>
           </maml:Description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -4886,7 +4912,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ImportHandlerIdentifier</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill ImportHandlerIdentifier Description }}</maml:para>
+            <maml:para>Tells cmdlet what value that the XML-object should set for the ImportHandlerIdentifier property. As this is an "global" property and not for any specific item it is handled separatly.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -4898,7 +4924,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Params</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill Params Description }}</maml:para>
+            <maml:para>The values provided in this parameter will represent the XML properties for the item sent.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
           <dev:type>
@@ -4913,7 +4939,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Ping</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill Ping Description }}</maml:para>
+            <maml:para>Tells cmdlet if an XML-object should be built in order to ping a webservice.</maml:para>
           </maml:Description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -4927,7 +4953,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>ColumnFilter</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill ColumnFilter Description }}</maml:para>
+          <maml:para>Used to filter data.&lt;br&gt; Example: ColumnName,comparator,value&lt;br&gt;</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
         <dev:type>
@@ -4939,7 +4965,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Get</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill Get Description }}</maml:para>
+          <maml:para>Tells cmdlet that the XML-object should be built in order to get items from Easit BPS or Easit GO.</maml:para>
         </maml:Description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -4951,7 +4977,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Import</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill Import Description }}</maml:para>
+          <maml:para>Tells cmdlet that the XML-object should be built in order to import items to Easit BPS or Easit GO.</maml:para>
         </maml:Description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -4963,7 +4989,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>ImportHandlerIdentifier</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill ImportHandlerIdentifier Description }}</maml:para>
+          <maml:para>Tells cmdlet what value that the XML-object should set for the ImportHandlerIdentifier property. As this is an "global" property and not for any specific item it is handled separatly.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -4975,7 +5001,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>ItemViewIdentifier</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill ItemViewIdentifier Description }}</maml:para>
+          <maml:para>Tells cmdlet what value that the XML-object should set for the ItemViewIdentifier property.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -4987,19 +5013,19 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Page</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill Page Description }}</maml:para>
+          <maml:para>Tells cmdlet what value that the XML-object should set for the Page property.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
           <maml:name>Int32</maml:name>
           <maml:uri />
         </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
+        <dev:defaultValue>1</dev:defaultValue>
       </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Params</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill Params Description }}</maml:para>
+          <maml:para>The values provided in this parameter will represent the XML properties for the item sent.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
         <dev:type>
@@ -5011,7 +5037,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Ping</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill Ping Description }}</maml:para>
+          <maml:para>Tells cmdlet if an XML-object should be built in order to ping a webservice.</maml:para>
         </maml:Description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -5023,7 +5049,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>SortField</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill SortField Description }}</maml:para>
+          <maml:para>Tells cmdlet what value that the XML-object should set for the SortColumn property.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -5035,7 +5061,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>SortOrder</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill SortOrder Description }}</maml:para>
+          <maml:para>Tells cmdlet what value that the XML-object should set as the attribut order for the SortColumn property.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -5073,9 +5099,16 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; $payload = New-XMLforEasit -Get -ItemViewIdentifier "$importViewIdentifier" -SortOrder "$sortOrder" -SortField "$sortField" -Page "$viewPageNumber" -ColumnFilter "$ColumnFilter"</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para></maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; $payload = New-XMLforEasit -Import -ImportHandlerIdentifier "$ImportHandlerIdentifier" -Params $Params</dev:code>
+        <dev:remarks>
+          <maml:para></maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
