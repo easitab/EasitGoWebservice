@@ -15,7 +15,7 @@ function New-XMLforEasit {
 
         [Parameter(Mandatory=$true, ParameterSetName="get")]
         [string] $SortField,
-        
+
         [Parameter(Mandatory=$true, ParameterSetName="get")]
         [string] $SortOrder,
 
@@ -31,8 +31,6 @@ function New-XMLforEasit {
         [Parameter(Mandatory=$true, ParameterSetName="import")]
         [hashtable] $Params
     )
-
-
 
     Write-Verbose "Defining xmlns:soapenv and xmlns:sch"
     $xmlnsSoapEnv = "http://schemas.xmlsoap.org/soap/envelope/"
@@ -101,7 +99,7 @@ function New-XMLforEasit {
             Write-Error "$_"
             break
         }
-    
+
         try {
             Write-Verbose "Creating xml element for ItemToImport"
             $schItemToImport = $payload.CreateElement("sch:ItemToImport","$xmlnsSch")

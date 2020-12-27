@@ -8,42 +8,54 @@ schema: 2.0.0
 # New-XMLforEasit
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+"Private" cmdlet that act as helper function.
 
 ## SYNTAX
 
 ### ping
-```
+
+```powershell
 New-XMLforEasit [-Ping] [<CommonParameters>]
 ```
 
 ### get
-```
+
+```powershell
 New-XMLforEasit [-Get] -ItemViewIdentifier <String> [-Page <Int32>] -SortField <String> -SortOrder <String>
  [-ColumnFilter <String[]>] [<CommonParameters>]
 ```
 
 ### import
-```
+
+```powershell
 New-XMLforEasit [-Import] -ImportHandlerIdentifier <String> -Params <Hashtable> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+This cmdlet "builds" a XML-object that can be sent to Easit BPS and Easit GO to get or create/update items.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> $payload = New-XMLforEasit -Get -ItemViewIdentifier "$importViewIdentifier" -SortOrder "$sortOrder" -SortField "$sortField" -Page "$viewPageNumber" -ColumnFilter "$ColumnFilter"
 ```
 
-{{ Add example description here }}
+### Example 2
+
+```powershell
+PS C:\> $payload = New-XMLforEasit -Import -ImportHandlerIdentifier "$ImportHandlerIdentifier" -Params $Params
+```
 
 ## PARAMETERS
 
 ### -ColumnFilter
-{{ Fill ColumnFilter Description }}
+
+Used to filter data.<br>
+Example: ColumnName,comparator,value<br>
 
 ```yaml
 Type: String[]
@@ -58,7 +70,8 @@ Accept wildcard characters: False
 ```
 
 ### -Get
-{{ Fill Get Description }}
+
+Tells cmdlet that the XML-object should be built in order to get items from Easit BPS or Easit GO.
 
 ```yaml
 Type: SwitchParameter
@@ -73,7 +86,8 @@ Accept wildcard characters: False
 ```
 
 ### -Import
-{{ Fill Import Description }}
+
+Tells cmdlet that the XML-object should be built in order to import items to Easit BPS or Easit GO.
 
 ```yaml
 Type: SwitchParameter
@@ -88,7 +102,8 @@ Accept wildcard characters: False
 ```
 
 ### -ImportHandlerIdentifier
-{{ Fill ImportHandlerIdentifier Description }}
+
+Tells cmdlet what value that the XML-object should set for the ImportHandlerIdentifier property. As this is an "global" property and not for any specific item it is handled separatly.
 
 ```yaml
 Type: String
@@ -103,7 +118,8 @@ Accept wildcard characters: False
 ```
 
 ### -ItemViewIdentifier
-{{ Fill ItemViewIdentifier Description }}
+
+Tells cmdlet what value that the XML-object should set for the ItemViewIdentifier property.
 
 ```yaml
 Type: String
@@ -118,7 +134,8 @@ Accept wildcard characters: False
 ```
 
 ### -Page
-{{ Fill Page Description }}
+
+Tells cmdlet what value that the XML-object should set for the Page property.
 
 ```yaml
 Type: Int32
@@ -127,13 +144,14 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: 1
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -Params
-{{ Fill Params Description }}
+
+The values provided in this parameter will represent the XML properties for the item sent.
 
 ```yaml
 Type: Hashtable
@@ -148,7 +166,8 @@ Accept wildcard characters: False
 ```
 
 ### -Ping
-{{ Fill Ping Description }}
+
+Tells cmdlet if an XML-object should be built in order to ping a webservice.
 
 ```yaml
 Type: SwitchParameter
@@ -163,7 +182,8 @@ Accept wildcard characters: False
 ```
 
 ### -SortField
-{{ Fill SortField Description }}
+
+Tells cmdlet what value that the XML-object should set for the SortColumn property.
 
 ```yaml
 Type: String
@@ -178,7 +198,8 @@ Accept wildcard characters: False
 ```
 
 ### -SortOrder
-{{ Fill SortOrder Description }}
+
+Tells cmdlet what value that the XML-object should set as the attribut *order* for the SortColumn property.
 
 ```yaml
 Type: String
