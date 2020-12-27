@@ -8,11 +8,12 @@ schema: 2.0.0
 # Import-GORequestItem
 
 ## SYNOPSIS
+
 Send data to BPS/GO with web services.
 
 ## SYNTAX
 
-```
+```powershell
 Import-GORequestItem [-url <String>] -apikey <String> [-ImportHandlerIdentifier <String>] [-ID <Int32>]
  [-ContactID <Int32>] [-OrganizationID <Int32>] [-Category <String>] [-ManagerGroup <String>]
  [-Manager <String>] [-Type <String>] [-Status <String>] [-ParentItemID <Int32>] [-Priority <String>]
@@ -24,6 +25,7 @@ Import-GORequestItem [-url <String>] -apikey <String> [-ImportHandlerIdentifier 
 ```
 
 ## DESCRIPTION
+
 Update and create requests in Easit BPS/GO.
 Returns ID for item in Easit BPS/GO..
 Specify 'ID' to update an existing item.
@@ -31,28 +33,33 @@ Specify 'ID' to update an existing item.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
-Import-GORequestItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateRequest -Subject Testing1 -Description Testing1 -ContactID 5 -Status Registrerad -Verbose -ShowDetails
+
+```powershell
+Import-GORequestItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateRequest' -Subject 'Testing1' -Description 'Testing1' -Status 'Registrerad'
 ```
 
 ### EXAMPLE 2
-```
-Import-GORequestItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateRequest -Subject Testing1 -Description Testing1 -ContactID 5 -Status Registrerad
+
+```powershell
+Import-GORequestItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateRequestIncident' -Subject 'Testing1' -Description 'Testing1' -ContactID '5' -Status 'Registrerad' -Verbose -ShowDetails
 ```
 
 ### EXAMPLE 3
-```
-Import-GORequestItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateRequest -ID "156" -Description "Testing2. Nytt test!"
+
+```powershell
+Import-GORequestItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateRequestProblem' -ID '156' -Description 'Testing2. Nytt test!'
 ```
 
 ### EXAMPLE 4
-```
-Import-GORequestItem -url $url -apikey $api -ihi $identifier -ID "156" -Description "Updating description for request 156"
+
+```powershell
+Import-GORequestItem -url "$url" -apikey "$api" -ihi "$identifier" -ID '156' -Description 'Updating description for request 156'
 ```
 
 ## PARAMETERS
 
 ### -apikey
+
 API-key for BPS/GO.
 
 ```yaml
@@ -68,6 +75,7 @@ Accept wildcard characters: False
 ```
 
 ### -AssetsCollectionID
+
 ID of asset to connect to the request.
 Adds item to collection.
 
@@ -84,6 +92,7 @@ Accept wildcard characters: False
 ```
 
 ### -Attachment
+
 Full path to file to be included in payload.
 
 ```yaml
@@ -99,6 +108,7 @@ Accept wildcard characters: False
 ```
 
 ### -Category
+
 Contacts category.
 
 ```yaml
@@ -114,6 +124,7 @@ Accept wildcard characters: False
 ```
 
 ### -CausalField
+
 Closure cause.
 
 ```yaml
@@ -129,6 +140,7 @@ Accept wildcard characters: False
 ```
 
 ### -CIID
+
 {{ Fill CIID Description }}
 
 ```yaml
@@ -144,6 +156,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClassificationID
+
 ID of classification to connect with request.
 Can be found on the classification in BPS/GO.
 
@@ -160,6 +173,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClosingCategory
+
 Closure category.
 
 ```yaml
@@ -175,6 +189,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContactID
+
 ID of contact in BPS/GO.
 Can be found on the contact in BPS/GO.
 
@@ -191,6 +206,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
+
 Description of request.
 
 ```yaml
@@ -206,6 +222,7 @@ Accept wildcard characters: False
 ```
 
 ### -dryRun
+
 If specified, payload will be save as payload.xml to your desktop instead of sent to BPS/GO.
 
 ```yaml
@@ -221,6 +238,7 @@ Accept wildcard characters: False
 ```
 
 ### -FaqKnowledgeResolutionText
+
 Solution for the request.
 
 ```yaml
@@ -236,6 +254,7 @@ Accept wildcard characters: False
 ```
 
 ### -ID
+
 ID for request in BPS/GO.
 Existing item will be updated if provided.
 
@@ -252,6 +271,7 @@ Accept wildcard characters: False
 ```
 
 ### -Impact
+
 Impact of request.
 
 ```yaml
@@ -267,6 +287,7 @@ Accept wildcard characters: False
 ```
 
 ### -ImportHandlerIdentifier
+
 ImportHandler to import data with.
 Default = CreateRequest
 
@@ -283,6 +304,7 @@ Accept wildcard characters: False
 ```
 
 ### -KnowledgebaseArticleID
+
 ID of knowledgebase article to connect with request.
 Can be found on the knowledgebase article in BPS/GO.
 
@@ -299,6 +321,7 @@ Accept wildcard characters: False
 ```
 
 ### -Manager
+
 Username or email of user that should be used as manager.
 
 ```yaml
@@ -314,6 +337,7 @@ Accept wildcard characters: False
 ```
 
 ### -ManagerGroup
+
 Name of manager group
 
 ```yaml
@@ -329,6 +353,7 @@ Accept wildcard characters: False
 ```
 
 ### -OrganizationID
+
 ID for organization to which the contact belongs to.
 Can be found on the organization in BPS/GO.
 
@@ -345,6 +370,7 @@ Accept wildcard characters: False
 ```
 
 ### -Owner
+
 Owner of request.
 
 ```yaml
@@ -360,6 +386,7 @@ Accept wildcard characters: False
 ```
 
 ### -ParentItemID
+
 ID of parent item.
 Matches agains existing items.
 
@@ -376,6 +403,7 @@ Accept wildcard characters: False
 ```
 
 ### -Priority
+
 Priority for item.
 Matches agains existing priorities.
 
@@ -392,6 +420,7 @@ Accept wildcard characters: False
 ```
 
 ### -ReferenceContactID
+
 ID of reference contact.
 Can be found on the contact in BPS/GO.
 
@@ -408,6 +437,7 @@ Accept wildcard characters: False
 ```
 
 ### -ReferenceOrganizationID
+
 ID of reference organization.
 Can be found on the organization in BPS/GO.
 
@@ -424,6 +454,7 @@ Accept wildcard characters: False
 ```
 
 ### -ServiceID
+
 ID of article to connect with request.
 Can be found on the article in BPS/GO.
 
@@ -440,6 +471,7 @@ Accept wildcard characters: False
 ```
 
 ### -ShowDetails
+
 If specified, the response, including ID, will be displayed to host.
 
 ```yaml
@@ -455,6 +487,7 @@ Accept wildcard characters: False
 ```
 
 ### -SLAID
+
 ID of contract to connect with request.
 Can be found on the contract in BPS/GO.
 
@@ -471,6 +504,7 @@ Accept wildcard characters: False
 ```
 
 ### -SSO
+
 Used if system is using SSO with IWA (Active Directory).
 Not need when using SAML2
 
@@ -487,6 +521,7 @@ Accept wildcard characters: False
 ```
 
 ### -Status
+
 Name of status.
 Matches agains existing statuses.
 
@@ -503,6 +538,7 @@ Accept wildcard characters: False
 ```
 
 ### -Subject
+
 Subject of request.
 
 ```yaml
@@ -518,6 +554,7 @@ Accept wildcard characters: False
 ```
 
 ### -Type
+
 Name of type.
 Matches agains existing types.
 
@@ -534,6 +571,7 @@ Accept wildcard characters: False
 ```
 
 ### -uid
+
 {{ Fill uid Description }}
 
 ```yaml
@@ -549,6 +587,7 @@ Accept wildcard characters: False
 ```
 
 ### -Urgency
+
 Urgency of request.
 
 ```yaml
@@ -564,6 +603,7 @@ Accept wildcard characters: False
 ```
 
 ### -url
+
 Address to BPS/GO webservice.
 Default = http://localhost/webservice/
 
@@ -580,6 +620,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -587,6 +628,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+
 Copyright 2019 Easit AB
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -603,5 +645,5 @@ limitations under the License.
 
 ## RELATED LINKS
 
-[https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-GORequestItem.ps1](https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-GORequestItem.ps1)
+[https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Import-GORequestItem.ps1](https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Import-GORequestItem.ps1)
 
