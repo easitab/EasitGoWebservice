@@ -8,11 +8,12 @@ schema: 2.0.0
 # Import-GOAssetItem
 
 ## SYNOPSIS
+
 Send data to BPS/GO with web services.
 
 ## SYNTAX
 
-```
+```powershell
 Import-GOAssetItem [-url <String>] -apikey <String> [-ImportHandlerIdentifier <String>] [-ID <Int32>]
  [-AssetType <String>] [-AssetInvoicingPeriod <String>] [-AssetSupplierOrganizationID <Int32>]
  [-Impact <String>] [-Manufacturer <String>] [-OwnerContactID <Int32>] [-OwnerOrganizationID <Int32>]
@@ -34,6 +35,7 @@ Import-GOAssetItem [-url <String>] -apikey <String> [-ImportHandlerIdentifier <S
 ```
 
 ## DESCRIPTION
+
 Update and create assets in Easit BPS/GO.
 Returns ID for asset in Easit BPS/GO.
 Specify 'ID' to update an existing asset.
@@ -41,28 +43,33 @@ Specify 'ID' to update an existing asset.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+
+```powershell
 Import-GOAssetItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateAssetGeneral -AssetName "Test" -SerialNumber "SN-467952" -Description "One general asset." -Status "Active" -Verbose -ShowDetails
 ```
 
 ### EXAMPLE 2
-```
+
+```powershell
 Import-GOAssetItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ihi CreateAssetServer -AssetStartDate "2018-06-26" -InternalMemory "32" -HardriveSize "500" -Status "Active"
 ```
 
 ### EXAMPLE 3
-```
+
+```powershell
 Import-GOAssetItem -url http://localhost/webservice/ -api a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateAssetPC -ID "45" -OperatingSystem "Windows 10" -Status "Inactive"
 ```
 
 ### EXAMPLE 4
-```
+
+```powershell
 Import-GOAssetItem -url $url -apikey $api -ihi $identifier -ID "156" -Status "Inactive"
 ```
 
 ## PARAMETERS
 
 ### -ActivityDebit
+
 Activity debit for asset.
 
 ```yaml
@@ -78,6 +85,7 @@ Accept wildcard characters: False
 ```
 
 ### -apikey
+
 API-key for BPS/GO.
 
 ```yaml
@@ -93,6 +101,7 @@ Accept wildcard characters: False
 ```
 
 ### -AssetInvoicingPeriod
+
 Invoicing period for asset.
 
 ```yaml
@@ -108,6 +117,7 @@ Accept wildcard characters: False
 ```
 
 ### -AssetName
+
 Name of asset.
 
 ```yaml
@@ -123,6 +133,7 @@ Accept wildcard characters: False
 ```
 
 ### -AssetPhoneModel
+
 Model of phone.
 
 ```yaml
@@ -138,6 +149,7 @@ Accept wildcard characters: False
 ```
 
 ### -AssetPhoneType
+
 Type of phone.
 
 ```yaml
@@ -153,6 +165,7 @@ Accept wildcard characters: False
 ```
 
 ### -AssetStartDate
+
 Contract start date for asset.
 Format = yyyy-MM-dd
 
@@ -169,6 +182,7 @@ Accept wildcard characters: False
 ```
 
 ### -AssetSupplierOrganizationID
+
 ID of organization to be set as supplier of asset.
 
 ```yaml
@@ -184,6 +198,7 @@ Accept wildcard characters: False
 ```
 
 ### -AssetType
+
 Type of asset.
 
 ```yaml
@@ -199,6 +214,7 @@ Accept wildcard characters: False
 ```
 
 ### -Attachment
+
 Full path to file to be included in payload.
 
 ```yaml
@@ -214,6 +230,7 @@ Accept wildcard characters: False
 ```
 
 ### -BarCode
+
 Bar code for asset.
 
 ```yaml
@@ -229,6 +246,7 @@ Accept wildcard characters: False
 ```
 
 ### -CIReference
+
 Reference ID for asset.
 
 ```yaml
@@ -244,6 +262,7 @@ Accept wildcard characters: False
 ```
 
 ### -CityLocation
+
 Location (City) of asset.
 
 ```yaml
@@ -259,6 +278,7 @@ Accept wildcard characters: False
 ```
 
 ### -ComputerType
+
 Type of PC/Computer.
 
 ```yaml
@@ -274,6 +294,7 @@ Accept wildcard characters: False
 ```
 
 ### -ConectionType_Monitor
+
 Conection type of monitor.
 
 ```yaml
@@ -289,6 +310,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
+
 Description of asset.
 
 ```yaml
@@ -304,6 +326,7 @@ Accept wildcard characters: False
 ```
 
 ### -DNSName
+
 Server DNS name.
 
 ```yaml
@@ -319,6 +342,7 @@ Accept wildcard characters: False
 ```
 
 ### -dryRun
+
 If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to BPS/GO.
 This parameter does not append, rewrite or remove any files from your desktop..
 
@@ -335,6 +359,7 @@ Accept wildcard characters: False
 ```
 
 ### -Equipment
+
 Equipment of asset.
 
 ```yaml
@@ -350,6 +375,7 @@ Accept wildcard characters: False
 ```
 
 ### -FinancialNotes
+
 Financial notes for asset.
 
 ```yaml
@@ -365,6 +391,7 @@ Accept wildcard characters: False
 ```
 
 ### -FinLifteTime
+
 Financial lifte time of asset.
 
 ```yaml
@@ -380,6 +407,7 @@ Accept wildcard characters: False
 ```
 
 ### -HardriveSize
+
 Hardrive size of asset.
 
 ```yaml
@@ -395,6 +423,7 @@ Accept wildcard characters: False
 ```
 
 ### -HouseLocation
+
 Location (House) of asset.
 
 ```yaml
@@ -410,6 +439,7 @@ Accept wildcard characters: False
 ```
 
 ### -ID
+
 ID for asset in BPS/GO.
 
 ```yaml
@@ -425,6 +455,7 @@ Accept wildcard characters: False
 ```
 
 ### -IMEINumber
+
 IMEI number of phone.
 
 ```yaml
@@ -440,6 +471,7 @@ Accept wildcard characters: False
 ```
 
 ### -Impact
+
 Impact of asset.
 
 ```yaml
@@ -455,6 +487,7 @@ Accept wildcard characters: False
 ```
 
 ### -ImportHandlerIdentifier
+
 ImportHandler to import data with.
 Default = CreateAssetGeneral
 
@@ -471,6 +504,7 @@ Accept wildcard characters: False
 ```
 
 ### -InternalMemory
+
 Internal memory of asset.
 
 ```yaml
@@ -486,6 +520,7 @@ Accept wildcard characters: False
 ```
 
 ### -IPAdress
+
 IP address to printer.
 
 ```yaml
@@ -501,6 +536,7 @@ Accept wildcard characters: False
 ```
 
 ### -LastInventoryDate
+
 Last inventory date of asset.
 Format = yyyy-MM-dd
 
@@ -517,6 +553,7 @@ Accept wildcard characters: False
 ```
 
 ### -LifeCycle
+
 Life cycle of asset.
 
 ```yaml
@@ -532,6 +569,7 @@ Accept wildcard characters: False
 ```
 
 ### -MacAddress
+
 Printer mac address.
 
 ```yaml
@@ -547,6 +585,7 @@ Accept wildcard characters: False
 ```
 
 ### -Manufacturer
+
 Manufacturer of asset.
 
 ```yaml
@@ -562,6 +601,7 @@ Accept wildcard characters: False
 ```
 
 ### -MobilePhoneNumber
+
 Mobile phone number.
 
 ```yaml
@@ -577,6 +617,7 @@ Accept wildcard characters: False
 ```
 
 ### -ModelMonitor
+
 Model of monitor.
 
 ```yaml
@@ -592,6 +633,7 @@ Accept wildcard characters: False
 ```
 
 ### -ModelPC
+
 Model of PC/Computer.
 
 ```yaml
@@ -607,6 +649,7 @@ Accept wildcard characters: False
 ```
 
 ### -ModelPrinter
+
 Model of printer.
 
 ```yaml
@@ -622,6 +665,7 @@ Accept wildcard characters: False
 ```
 
 ### -ModelServer
+
 Model of server.
 
 ```yaml
@@ -637,6 +681,7 @@ Accept wildcard characters: False
 ```
 
 ### -MonitorResolution
+
 Resolution of monitor.
 
 ```yaml
@@ -652,6 +697,7 @@ Accept wildcard characters: False
 ```
 
 ### -MonitorSize
+
 Size of monitor.
 
 ```yaml
@@ -667,6 +713,7 @@ Accept wildcard characters: False
 ```
 
 ### -MonitorType
+
 Type of monitor.
 
 ```yaml
@@ -682,6 +729,7 @@ Accept wildcard characters: False
 ```
 
 ### -NetworkName
+
 Printer network name.
 
 ```yaml
@@ -697,6 +745,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectDebit
+
 Object debit for asset.
 
 ```yaml
@@ -712,6 +761,7 @@ Accept wildcard characters: False
 ```
 
 ### -OperatingSystem
+
 Operating system for asset.
 
 ```yaml
@@ -727,6 +777,7 @@ Accept wildcard characters: False
 ```
 
 ### -Operator
+
 Operator for phone.
 
 ```yaml
@@ -742,6 +793,7 @@ Accept wildcard characters: False
 ```
 
 ### -OwnerContactID
+
 ID of contact to be set as owner of asset.
 
 ```yaml
@@ -757,6 +809,7 @@ Accept wildcard characters: False
 ```
 
 ### -OwnerOrganizationID
+
 ID of organization to be set as owner of asset.
 
 ```yaml
@@ -772,6 +825,7 @@ Accept wildcard characters: False
 ```
 
 ### -PhoneNumber
+
 Phone number.
 
 ```yaml
@@ -787,6 +841,7 @@ Accept wildcard characters: False
 ```
 
 ### -PriceListConnectionID
+
 ID of price list to connect with asset.
 
 ```yaml
@@ -802,6 +857,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProcessorSpeed
+
 Processor speed of asset.
 
 ```yaml
@@ -817,6 +873,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProjectDebit
+
 Project debit for asset.
 
 ```yaml
@@ -832,6 +889,7 @@ Accept wildcard characters: False
 ```
 
 ### -PukCode
+
 PUK code for phone.
 
 ```yaml
@@ -847,6 +905,7 @@ Accept wildcard characters: False
 ```
 
 ### -PurchaseDate
+
 Date of purchase of asset.
 Format = yyyy-MM-dd
 
@@ -863,6 +922,7 @@ Accept wildcard characters: False
 ```
 
 ### -PurchaseOrderNumber
+
 Purchase order number of asset.
 
 ```yaml
@@ -878,6 +938,7 @@ Accept wildcard characters: False
 ```
 
 ### -PurchaseValueCurrency
+
 Purchase value of asset.
 
 ```yaml
@@ -893,6 +954,7 @@ Accept wildcard characters: False
 ```
 
 ### -RoomLocation
+
 Location (Room) of asset.
 
 ```yaml
@@ -908,6 +970,7 @@ Accept wildcard characters: False
 ```
 
 ### -SerialNumber
+
 Serial number for asset.
 
 ```yaml
@@ -923,6 +986,7 @@ Accept wildcard characters: False
 ```
 
 ### -ServiceBlackout
+
 Notes about when service is undergoing maintenance.
 
 ```yaml
@@ -938,6 +1002,7 @@ Accept wildcard characters: False
 ```
 
 ### -ShowDetails
+
 If specified, the response, including ID, will be displayed to host.
 
 ```yaml
@@ -953,6 +1018,7 @@ Accept wildcard characters: False
 ```
 
 ### -SLA
+
 Service level agreement of asset.
 Valid values = true / false.
 
@@ -969,6 +1035,7 @@ Accept wildcard characters: False
 ```
 
 ### -SLAExpiredate
+
 Expire date for SLA of asset.
 Format: yyyy-MM-dd
 
@@ -985,6 +1052,7 @@ Accept wildcard characters: False
 ```
 
 ### -SSO
+
 Used if system is using SSO with IWA (Active Directory).
 Not need when using SAML2
 
@@ -1001,6 +1069,7 @@ Accept wildcard characters: False
 ```
 
 ### -Status
+
 Status for asset.
 
 ```yaml
@@ -1016,6 +1085,7 @@ Accept wildcard characters: False
 ```
 
 ### -SupplierInvoiceId
+
 ID of invoice from supplier.
 
 ```yaml
@@ -1031,6 +1101,7 @@ Accept wildcard characters: False
 ```
 
 ### -TheftId
+
 Theft ID for asset.
 
 ```yaml
@@ -1046,6 +1117,7 @@ Accept wildcard characters: False
 ```
 
 ### -uid
+
 Unique ID for object during import.
 Default = 1.
 
@@ -1062,8 +1134,8 @@ Accept wildcard characters: False
 ```
 
 ### -url
+
 Address to BPS/GO webservice.
-Default = http://localhost/webservice/
 
 ```yaml
 Type: String
@@ -1078,6 +1150,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserLogin
+
 Username of person using asset.
 
 ```yaml
@@ -1093,6 +1166,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserPassword
+
 Password for person using asset.
 
 ```yaml
@@ -1108,6 +1182,7 @@ Accept wildcard characters: False
 ```
 
 ### -WarrantyExpireDate
+
 Date for when warranty of asset expires.
 Format = yyyy-MM-dd
 
@@ -1124,6 +1199,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -1131,6 +1207,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+
 Copyright 2019 Easit AB
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -1147,5 +1224,5 @@ limitations under the License.
 
 ## RELATED LINKS
 
-[https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-GOAssetItem.ps1](https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-GOAssetItem.ps1)
+[https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Import-GOAssetItem.ps1](https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Import-GOAssetItem.ps1)
 
