@@ -4,11 +4,11 @@ function Convert-EasitXMLToPsObject {
         [Parameter(Mandatory,ValueFromPipeline)]
         [xml]$Response
     )
-    
+
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
+
     process {
         $returnItem = New-Object PSObject
         if ($Response.Envelope.Body.GetItemsResponse) {
@@ -71,7 +71,7 @@ function Convert-EasitXMLToPsObject {
             throw "Do not know what to do with XML.."
         }
     }
-    
+
     end {
         Write-Verbose "$($MyInvocation.MyCommand) completed."
     }
