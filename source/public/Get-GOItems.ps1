@@ -84,7 +84,7 @@ function Get-GOItems {
       }
       ## End issue 6
       Write-Verbose 'Creating payload'
-      
+
       try {
             $payload = New-XMLforEasit @xmlParams
       } catch {
