@@ -28,6 +28,12 @@ function Get-GOItems {
             [string[]] $ColumnFilter,
 
             [parameter(Mandatory = $false)]
+            [switch] $dryRun,
+
+            [parameter(Mandatory = $false)]
+            [switch] $UseBasicParsing,
+
+            [parameter(Mandatory = $false)]
             [switch] $SSO
       )
 
@@ -48,6 +54,13 @@ function Get-GOItems {
                   throw "Invalid comparator '$($FilterValues[1])' in filter $filter! For a list of valid comparators, run command 'Get-Help Get-GoItems -Parameter ColumnFilter'"
             }
       }
+      $xmlParams = @{
+            Get = $true
+            ItemViewIdentifier = "$importViewIdentifier"
+            SortOrder = "$sortOrder"
+            SortField = "$sortField"
+            Page = "$viewPageNumber"
+      }
       if ($ColumnFilter) {
             Write-Verbose "Validating column filter.."
             Write-Verbose "ColumnFilter = $ColumnFilter"
@@ -64,64 +77,70 @@ function Get-GOItems {
                         return
                   }
             }
+            $xmlParams.Add('ColumnFilter',"$ColumnFilter")
       }
       else {
             Write-Verbose "Skipping ColumnFilter as it is null!"
       }
       ## End issue 6
-      Write-Verbose 'Setting authentication header'
-      # basic authentucation
-      $pair = "$($apikey): "
-      $encodedCreds = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes($pair))
-      $basicAuthValue = "Basic $encodedCreds"
-      Write-Verbose 'Authentication header set'
-
       Write-Verbose 'Creating payload'
 
-      $payload = New-XMLforEasit -Get -ItemViewIdentifier "$importViewIdentifier" -SortOrder "$sortOrder" -SortField "$sortField" -Page "$viewPageNumber" -ColumnFilter "$ColumnFilter"
-
-      if ($PSCmdlet.MyInvocation.BoundParameters["Verbose"].IsPresent) {
-            Write-Verbose "Saving payload to ${Home}\Documents\payload.xml"
-            $payload.Save("$Home\Documents\payload.xml")
-      }
-      Write-Verbose 'Setting headers'
-      # HTTP headers
-      $headers = @{SOAPAction = ""; Authorization = $basicAuthValue }
-      Write-Verbose 'Headers set'
-
-      # Calling web service
-      Write-Verbose 'Calling web service and using $SOAP as input for Body parameter'
-      if ($SSO) {
-            try {
-                  Write-Verbose 'Using switch SSO. De facto UseDefaultCredentials for Invoke-WebRequest'
-                  $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $payload -Headers $headers -UseDefaultCredentials
-                  Write-Verbose "Successfully connected to and got data from BPS"
-            }
-            catch {
-                  Write-Error "Failed to connect to BPS!"
-                  Write-Error "$_"
-                  return $payload
-            }
-      }
-      else {
-            try {
-                  $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $payload -Headers $headers
-                  Write-Verbose "Successfully connected to and got data from BPS"
-            }
-            catch {
-                  Write-Error "Failed to connect to BPS!"
-                  Write-Error "$_"
-                  return $payload
-            }
-      }
-
-      New-Variable -Name functionout
-      [xml]$functionout = $r.Content
       try {
-            $returnObjects = Convert-EasitXMLToPsObject -Response $functionout
+            $payload = New-XMLforEasit @xmlParams
+      } catch {
+            throw $_
+      }
+      if ($dryRun) {
+            Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it"
+            $i = 1
+            $currentUserProfile = [Environment]::GetEnvironmentVariable("USERPROFILE")
+            $userProfileDesktop = "$currentUserProfile\Desktop"
+            do {
+                  $outputFileName = "payload_$i.xml"
+                  if (Test-Path $userProfileDesktop\$outputFileName) {
+                        $i++
+                        Write-Verbose "$i"
+                  }
+            } until (!(Test-Path $userProfileDesktop\$outputFileName))
+            if (!(Test-Path $userProfileDesktop\$outputFileName)) {
+                  try {
+                        $outputFileName = "payload_$i.xml"
+                        $payload.Save("$userProfileDesktop\$outputFileName")
+                        Write-Verbose "Saved payload to file, will now end!"
+                        break
+                  }
+                  catch {
+                        throw $_
+                  }
+            }
+      }
+      $easitWebRequestParams = @{
+            Uri = "$url"
+            Apikey = "$apikey"
+            Body = $payload
+      }
+      if ($SSO) {
+            Write-Verbose "Adding UseDefaultCredentials to param hash"
+            $easitWebRequestParams.Add('UseDefaultCredentials',$true)
+      }
+      if ($UseBasicParsing) {
+            Write-Verbose "Adding UseBasicParsing to param hash"
+            $easitWebRequestParams.Add('UseBasicParsing',$true)
+      }
+      try {
+            Write-Verbose "Calling Invoke-EasitWebRequest"
+            $r = Invoke-EasitWebRequest @easitWebRequestParams
       }
       catch {
             throw $_
       }
-      $returnObjects
+      try {
+            Write-Verbose "Converting response"
+            $returnObject = Convert-EasitXMLToPsObject -Response $r
+      }
+      catch {
+            throw $_
+      }
+      Write-Verbose "Returning converted response"
+      $returnObject
 }

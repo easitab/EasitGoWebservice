@@ -35,19 +35,33 @@ Get-GOItems -url 'http://localhost/test/webservice/' -apikey '4745f62b7371c2aa5c
 ### EXAMPLE 2
 
 ```powershell
+$url = 'http://localhost/test/webservice/'
+$api = '4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375'
 Get-GOItems -url "$url" -apikey "$api" -view 'RequestsProblems' -page 2
 ```
 
 ### EXAMPLE 3
 
 ```powershell
-Get-GOItems -url "$url" -apikey "$api" -view 'RequestServiceRequests' -page 1 -ColumnFilter 'Name,EQUALS,Extern organisation'
+$getGoItemsParams = @{
+      url = 'http://localhost/test/webservice/'
+      api = '4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375'
+      view = 'RequestServiceRequests'
+      ColumnFilter = 'Name,EQUALS,Extern organisation'
+}
+Get-GOItems @getGoItemsParams
 ```
 
 ### EXAMPLE 4
 
 ```powershell
-Get-GOItems -url "$url" -apikey "$api" -view 'RequestIncidents' -sortOrder 'Ascending' -ColumnFilter "Status,IN,Registrerad", "Prioritet,IN,5"
+$getGoItemsParams = @{
+      url = 'http://localhost/test/webservice/'
+      api = '4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375'
+      view = 'RequestIncidents'
+      sortOrder = 'Ascending'
+}
+Get-GOItems @getGoItemsParams -ColumnFilter "Status,IN,Registrerad", "Prioritet,IN,5"
 ```
 
 ## PARAMETERS
@@ -138,8 +152,8 @@ Accept wildcard characters: False
 
 ### -SSO
 
-Used if system is using SSO with IWA (Active Directory).
-Not needed when using SAML2
+Used if system is using SSO with IWA (Active Directory). Not needed when using SAML2.<br>
+Cmdlet will use the credentials of the current user to send the web request.
 
 ```yaml
 Type: SwitchParameter
@@ -195,7 +209,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### PSObject
+### System.Object
 
 ## NOTES
 
