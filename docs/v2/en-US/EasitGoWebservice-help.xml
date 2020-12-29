@@ -195,7 +195,7 @@ PS C:\&gt; Convert-EasitXMLToPsObject -Response $functionout</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>SSO</maml:name>
           <maml:Description>
-            <maml:para>Used if system is using SSO with IWA (Active Directory). Not needed when using SAML2</maml:para>
+            <maml:para>Used if system is using SSO with IWA (Active Directory). Not needed when using SAML2.&lt;br&gt; Cmdlet will use the credentials of the current user to send the web request.</maml:para>
           </maml:Description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -269,7 +269,7 @@ PS C:\&gt; Convert-EasitXMLToPsObject -Response $functionout</dev:code>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>SSO</maml:name>
         <maml:Description>
-          <maml:para>Used if system is using SSO with IWA (Active Directory). Not needed when using SAML2</maml:para>
+          <maml:para>Used if system is using SSO with IWA (Active Directory). Not needed when using SAML2.&lt;br&gt; Cmdlet will use the credentials of the current user to send the web request.</maml:para>
         </maml:Description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -307,7 +307,7 @@ PS C:\&gt; Convert-EasitXMLToPsObject -Response $functionout</dev:code>
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>PSObject</maml:name>
+          <maml:name>System.Object</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -332,21 +332,35 @@ PS C:\&gt; Convert-EasitXMLToPsObject -Response $functionout</dev:code>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
-        <dev:code>Get-GOItems -url "$url" -apikey "$api" -view 'RequestsProblems' -page 2</dev:code>
+        <dev:code>$url = 'http://localhost/test/webservice/'
+$api = '4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375'
+Get-GOItems -url "$url" -apikey "$api" -view 'RequestsProblems' -page 2</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
-        <dev:code>Get-GOItems -url "$url" -apikey "$api" -view 'RequestServiceRequests' -page 1 -ColumnFilter 'Name,EQUALS,Extern organisation'</dev:code>
+        <dev:code>$getGoItemsParams = @{
+      url = 'http://localhost/test/webservice/'
+      api = '4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375'
+      view = 'RequestServiceRequests'
+      ColumnFilter = 'Name,EQUALS,Extern organisation'
+}
+Get-GOItems @getGoItemsParams</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 4 --------------------------</maml:title>
-        <dev:code>Get-GOItems -url "$url" -apikey "$api" -view 'RequestIncidents' -sortOrder 'Ascending' -ColumnFilter "Status,IN,Registrerad", "Prioritet,IN,5"</dev:code>
+        <dev:code>$getGoItemsParams = @{
+      url = 'http://localhost/test/webservice/'
+      api = '4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375'
+      view = 'RequestIncidents'
+      sortOrder = 'Ascending'
+}
+Get-GOItems @getGoItemsParams -ColumnFilter "Status,IN,Registrerad", "Prioritet,IN,5"</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
