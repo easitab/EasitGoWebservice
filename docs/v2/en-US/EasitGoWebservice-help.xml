@@ -2141,7 +2141,7 @@ Get-GOItems @getGoItemsParams -ColumnFilter "Status,IN,Registrerad", "Prioritet,
     <command:examples>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
-        <dev:code>Import-GOAssetItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateAssetGeneral -AssetName "Test" -SerialNumber "SN-467952" -Description "One general asset." -Status "Active"</dev:code>
+        <dev:code>Import-GOAssetItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateAssetGeneral' -AssetName "Test" -SerialNumber "SN-467952" -Description "One general asset." -Status "Active"</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
@@ -2161,7 +2161,7 @@ Import-GOAssetItem -url "$url" -apikey "$apikey" -ihi 'CreateAssetServer' -Asset
     url = 'http://localhost/webservice/'
     api = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
     ImportHandlerIdentifier = 'CreateAssetPC' 
-    ID = '45' 
+    ID = 45
     OperatingSystem = 'Windows 10'
     Status = 'Inactive'
 }
@@ -2177,7 +2177,7 @@ Import-GOAssetItem @importEasitItem</dev:code>
     apikey = "$api"
     ihi = "$identifier"
 }
-Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
+Import-GOAssetItem @importEasitItem -ID 156 -Status 'Inactive'</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
@@ -2200,11 +2200,11 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
       <command:verb>Import</command:verb>
       <command:noun>GOContactItem</command:noun>
       <maml:description>
-        <maml:para>Send data to BPS/GO with web services.</maml:para>
+        <maml:para>Send data to Easit BPS / Easit GO with web services.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Update and create contacts in Easit BPS/GO. Returns ID for item in Easit BPS/GO. Specify 'ID' to update an existing contact.</maml:para>
+      <maml:para>Update and create contacts in Easit BPS / Easit GO. Specify 'ID' to update an existing contact.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2212,7 +2212,7 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="api">
           <maml:name>apikey</maml:name>
           <maml:Description>
-            <maml:para>API-key for BPS/GO.</maml:para>
+            <maml:para>API-key for Easit BPS / Easit GO.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -2296,7 +2296,7 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>dryRun</maml:name>
           <maml:Description>
-            <maml:para>If specified, payload will be save as payload.xml to your desktop instead of sent to BPS.</maml:para>
+            <maml:para>If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to Easit BPS / Easit GO. This parameter does not append, rewrite or remove any files from your desktop.</maml:para>
           </maml:Description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -2331,7 +2331,7 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>FirstName</maml:name>
           <maml:Description>
-            <maml:para>First name of contact in BPS/GO.</maml:para>
+            <maml:para>First name of contact in Easit BPS / Easit GO.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -2355,7 +2355,7 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>ID</maml:name>
           <maml:Description>
-            <maml:para>ID for contact in BPS/GO.</maml:para>
+            <maml:para>ID for contact in Easit BPS / Easit GO.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
@@ -2380,7 +2380,7 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ihi">
           <maml:name>ImportHandlerIdentifier</maml:name>
           <maml:Description>
-            <maml:para>ImportHandler to import data with. Default = CreateContact</maml:para>
+            <maml:para>ImportHandler to import data with.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -2440,7 +2440,7 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>OrganizationID</maml:name>
           <maml:Description>
-            <maml:para>ID for organization to which the contact belongs to. Can be found on the organization in BPS/GO.</maml:para>
+            <maml:para>ID for organization to which the contact belongs to.&lt;br&gt; Can be found on the organization in Easit BPS / Easit GO.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -2510,17 +2510,6 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>ShowDetails</maml:name>
-          <maml:Description>
-            <maml:para>If specified, the response, including ID, will be displayed to host.</maml:para>
-          </maml:Description>
-          <dev:type>
-            <maml:name>SwitchParameter</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>False</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>SSO</maml:name>
           <maml:Description>
             <maml:para>Used if system is using SSO with IWA (Active Directory). Not need when using SAML2</maml:para>
@@ -2534,7 +2523,7 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Surname</maml:name>
           <maml:Description>
-            <maml:para>Last name of contact in BPS/GO.</maml:para>
+            <maml:para>Last name of contact in Easit BPS / Easit GO.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -2558,7 +2547,7 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>uid</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill uid Description }}</maml:para>
+            <maml:para>Unique ID for object during import.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
@@ -2570,7 +2559,7 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="uri">
           <maml:name>url</maml:name>
           <maml:Description>
-            <maml:para>Address to BPS/GO webservice. Default = http://localhost/webservice/</maml:para>
+            <maml:para>URL to Easit BPS / Easit GO web service.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -2578,6 +2567,17 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>Http://localhost/webservice/</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>UseBasicParsing</maml:name>
+          <maml:Description>
+            <maml:para>This parameter is required when Internet Explorer is not installed on the computers, such as on a Server Core installation of a Windows Server operating system.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Username</maml:name>
@@ -2597,7 +2597,7 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="api">
         <maml:name>apikey</maml:name>
         <maml:Description>
-          <maml:para>API-key for BPS/GO.</maml:para>
+          <maml:para>API-key for Easit BPS / Easit GO.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -2681,7 +2681,7 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>dryRun</maml:name>
         <maml:Description>
-          <maml:para>If specified, payload will be save as payload.xml to your desktop instead of sent to BPS.</maml:para>
+          <maml:para>If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to Easit BPS / Easit GO. This parameter does not append, rewrite or remove any files from your desktop.</maml:para>
         </maml:Description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -2717,7 +2717,7 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>FirstName</maml:name>
         <maml:Description>
-          <maml:para>First name of contact in BPS/GO.</maml:para>
+          <maml:para>First name of contact in Easit BPS / Easit GO.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -2741,7 +2741,7 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>ID</maml:name>
         <maml:Description>
-          <maml:para>ID for contact in BPS/GO.</maml:para>
+          <maml:para>ID for contact in Easit BPS / Easit GO.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
@@ -2766,7 +2766,7 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ihi">
         <maml:name>ImportHandlerIdentifier</maml:name>
         <maml:Description>
-          <maml:para>ImportHandler to import data with. Default = CreateContact</maml:para>
+          <maml:para>ImportHandler to import data with.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -2826,7 +2826,7 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>OrganizationID</maml:name>
         <maml:Description>
-          <maml:para>ID for organization to which the contact belongs to. Can be found on the organization in BPS/GO.</maml:para>
+          <maml:para>ID for organization to which the contact belongs to.&lt;br&gt; Can be found on the organization in Easit BPS / Easit GO.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -2896,18 +2896,6 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>ShowDetails</maml:name>
-        <maml:Description>
-          <maml:para>If specified, the response, including ID, will be displayed to host.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-        <dev:type>
-          <maml:name>SwitchParameter</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>False</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>SSO</maml:name>
         <maml:Description>
           <maml:para>Used if system is using SSO with IWA (Active Directory). Not need when using SAML2</maml:para>
@@ -2922,7 +2910,7 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>Surname</maml:name>
         <maml:Description>
-          <maml:para>Last name of contact in BPS/GO.</maml:para>
+          <maml:para>Last name of contact in Easit BPS / Easit GO.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -2946,7 +2934,7 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>uid</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill uid Description }}</maml:para>
+          <maml:para>Unique ID for object during import.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
@@ -2958,7 +2946,7 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="uri">
         <maml:name>url</maml:name>
         <maml:Description>
-          <maml:para>Address to BPS/GO webservice. Default = http://localhost/webservice/</maml:para>
+          <maml:para>URL to Easit BPS / Easit GO web service.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -2966,6 +2954,18 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>Http://localhost/webservice/</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>UseBasicParsing</maml:name>
+        <maml:Description>
+          <maml:para>This parameter is required when Internet Explorer is not installed on the computers, such as on a Server Core installation of a Windows Server operating system.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>Username</maml:name>
@@ -2981,10 +2981,19 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
       </command:parameter>
     </command:parameters>
     <command:inputTypes />
-    <command:returnValues />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Object</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Copyright 2019 Easit AB</maml:para>
+        <maml:para>Copyright 2021 Easit AB</maml:para>
         <maml:para>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at</maml:para>
         <maml:para>    http://www.apache.org/licenses/LICENSE-2.0</maml:para>
         <maml:para>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</maml:para>
@@ -2993,28 +3002,44 @@ Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"</dev:code>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
-        <dev:code>Import-GOContactItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateContact' -OrganizationID "12" -Position "Manager" -Deparment "Support" -FirstName "Test" -Surname "Testsson" -Username "te12te" -SecId "97584621" -Verbose -ShowDetails</dev:code>
+        <dev:code>Import-GOContactItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateContact' -OrganizationID 12 -Position 'Manager' -Deparment 'Support' -FirstName 'Test' -Surname 'Testsson' -Username 'te12te' -SecId '97584621'</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
-        <dev:code>Import-GOContactItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ihi CreateContact -ID "649" -Inactive "true"</dev:code>
+        <dev:code>$url = 'http://localhost/webservice/'
+$apikey = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
+Import-GOContactItem -url "$url" -apikey "$apikey" -ihi 'CreateContact' -ID 649 -Inactive 'true'</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
-        <dev:code>Import-GOContactItem -url 'http://localhost/webservice/' -api 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateContact' -ID "649" -Surname "Andersson" -Email "test.anders@company.com" -FQDN "$FQDN"</dev:code>
+        <dev:code>$importEasitItem = @{
+    url = 'http://localhost/webservice/'
+    api = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
+    ImportHandlerIdentifier = 'CreateContact'
+    ID = 649
+    Surname = 'Andersson'
+    Email = 'test.anders@company.com'
+    FQDN = "$FQDN"
+}
+Import-GOContactItem @importEasitItem</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 4 --------------------------</maml:title>
-        <dev:code>Import-GOContactItem -url "$url" -apikey "$api" -ihi "$identifier" -ID "156" -Inactive "false" -Responsible_Manager "true"</dev:code>
+        <dev:code>$importEasitItem = @{
+    url = 'http://localhost/webservice/'
+    api = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
+    ImportHandlerIdentifier = 'CreateContact'
+}
+Import-GOContactItem @importEasitItem -ID 156 -Inactive 'false' -Responsible_Manager 'true'</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
