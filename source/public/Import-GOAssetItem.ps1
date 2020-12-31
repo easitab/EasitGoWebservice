@@ -1,179 +1,4 @@
 function Import-GOAssetItem {
-      <#
-      .SYNOPSIS
-            Send data to BPS/GO with web services.
-      .DESCRIPTION
-            Update and create assets in Easit BPS/GO. Returns ID for asset in Easit BPS/GO.
-            Specify 'ID' to update an existing asset.
-
-      .NOTES
-            Copyright 2019 Easit AB
-
-            Licensed under the Apache License, Version 2.0 (the "License");
-            you may not use this file except in compliance with the License.
-            You may obtain a copy of the License at
-
-                http://www.apache.org/licenses/LICENSE-2.0
-
-            Unless required by applicable law or agreed to in writing, software
-            distributed under the License is distributed on an "AS IS" BASIS,
-            WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-            See the License for the specific language governing permissions and
-            limitations under the License.
-
-      .LINK
-            https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Import-GOAssetItem.ps1
-
-      .EXAMPLE
-            Import-GOAssetItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateAssetGeneral -AssetName "Test" -SerialNumber "SN-467952" -Description "One general asset." -Status "Active" -Verbose -ShowDetails
-      .EXAMPLE
-            Import-GOAssetItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ihi CreateAssetServer -AssetStartDate "2018-06-26" -InternalMemory "32" -HardriveSize "500" -Status "Active"
-      .EXAMPLE
-            Import-GOAssetItem -url http://localhost/webservice/ -api a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateAssetPC -ID "45" -OperatingSystem "Windows 10" -Status "Inactive"
-      .EXAMPLE
-            Import-GOAssetItem -url $url -apikey $api -ihi $identifier -ID "156" -Status "Inactive"
-      .PARAMETER url
-            Address to BPS/GO webservice. Default = http://localhost/webservice/
-      .PARAMETER apikey
-            API-key for BPS/GO.
-      .PARAMETER ImportHandlerIdentifier
-            ImportHandler to import data with. Default = CreateAssetGeneral
-      .PARAMETER ID
-            ID for asset in BPS/GO.
-      .PARAMETER UID
-            Unique ID for object during import. Default = 1.
-      .PARAMETER AssetType
-            Type of asset.
-      .PARAMETER AssetInvoicingPeriod
-            Invoicing period for asset.
-      .PARAMETER AssetSupplierOrganizationID
-            ID of organization to be set as supplier of asset.
-      .PARAMETER Impact
-            Impact of asset.
-      .PARAMETER Manufacturer
-            Manufacturer of asset.
-      .PARAMETER OwnerContactID
-            ID of contact to be set as owner of asset.
-      .PARAMETER OwnerOrganizationID
-            ID of organization to be set as owner of asset.
-      .PARAMETER PriceListConnectionID
-            ID of price list to connect with asset.
-      .PARAMETER Status
-            Status for asset.
-      .PARAMETER CityLocation
-            Location (City) of asset.
-      .PARAMETER HouseLocation
-            Location (House) of asset.
-      .PARAMETER FinLifteTime
-            Financial lifte time of asset.
-      .PARAMETER LifeCycle
-            Life cycle of asset.
-      .PARAMETER ActivityDebit
-            Activity debit for asset.
-      .PARAMETER AssetName
-            Name of asset.
-      .PARAMETER AssetStartDate
-            Contract start date for asset. Format = yyyy-MM-dd
-      .PARAMETER BarCode
-            Bar code for asset.
-      .PARAMETER CIReference
-            Reference ID for asset.
-      .PARAMETER Description
-            Description of asset.
-      .PARAMETER FinancialNotes
-            Financial notes for asset.
-      .PARAMETER LastInventoryDate
-            Last inventory date of asset. Format = yyyy-MM-dd
-      .PARAMETER ObjectDebit
-            Object debit for asset.
-      .PARAMETER ProjectDebit
-            Project debit for asset.
-      .PARAMETER PurchaseDate
-            Date of purchase of asset. Format = yyyy-MM-dd
-      .PARAMETER PurchaseOrderNumber
-            Purchase order number of asset.
-      .PARAMETER PurchaseValueCurrency
-            Purchase value of asset.
-      .PARAMETER RoomLocation
-            Location (Room) of asset.
-      .PARAMETER SerialNumber
-            Serial number for asset.
-      .PARAMETER SupplierInvoiceId
-            ID of invoice from supplier.
-      .PARAMETER TheftId
-            Theft ID for asset.
-      .PARAMETER WarrantyExpireDate
-            Date for when warranty of asset expires. Format = yyyy-MM-dd
-      .PARAMETER ModelMonitor
-            Model of monitor.
-      .PARAMETER MonitorType
-            Type of monitor.
-      .PARAMETER MonitorSize
-            Size of monitor.
-      .PARAMETER MonitorResolution
-            Resolution of monitor.
-      .PARAMETER ConectionType_Monitor
-            Conection type of monitor.
-      .PARAMETER OperatingSystem
-            Operating system for asset.
-      .PARAMETER Equipment
-            Equipment of asset.
-      .PARAMETER ModelPC
-            Model of PC/Computer.
-      .PARAMETER ComputerType
-            Type of PC/Computer.
-      .PARAMETER HardriveSize
-            Hardrive size of asset.
-      .PARAMETER InternalMemory
-            Internal memory of asset.
-      .PARAMETER ProcessorSpeed
-            Processor speed of asset.
-      .PARAMETER SLA
-            Service level agreement of asset. Valid values = true / false.
-      .PARAMETER SLAExpiredate
-            Expire date for SLA of asset. Format: yyyy-MM-dd
-      .PARAMETER UserLogin
-            Username of person using asset.
-      .PARAMETER UserPassword
-            Password for person using asset.
-      .PARAMETER AssetPhoneModel
-            Model of phone.
-      .PARAMETER AssetPhoneType
-            Type of phone.
-      .PARAMETER Operator
-            Operator for phone.
-      .PARAMETER IMEINumber
-            IMEI number of phone.
-      .PARAMETER MobilePhoneNumber
-            Mobile phone number.
-      .PARAMETER PhoneNumber
-            Phone number.
-      .PARAMETER PukCode
-            PUK code for phone.
-      .PARAMETER ModelPrinter
-            Model of printer.
-      .PARAMETER IPAdress
-            IP address to printer.
-      .PARAMETER MacAddress
-            Printer mac address.
-      .PARAMETER NetworkName
-            Printer network name.
-      .PARAMETER ModelServer
-            Model of server.
-      .PARAMETER DNSName
-            Server DNS name.
-      .PARAMETER ServiceBlackout
-            Notes about when service is undergoing maintenance.
-      .PARAMETER Attachment
-            Full path to file to be included in payload.
-      .PARAMETER SSO
-            Used if system is using SSO with IWA (Active Directory). Not need when using SAML2
-      .PARAMETER ShowDetails
-            If specified, the response, including ID, will be displayed to host.
-      .PARAMETER dryRun
-            If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to BPS/GO.
-            This parameter does not append, rewrite or remove any files from your desktop..
-      #>
       [CmdletBinding()]
       param (
             [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
@@ -250,6 +75,13 @@ function Import-GOAssetItem {
 
             [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [Alias("StartDate")]
+            [ValidateScript({
+                  if ($_ -match '^\d{4}-\d{2}-\d{2}') {
+                        $true
+                  } else {
+                        throw "$_ does not match the format (yyyy-MM-dd) required for this parameter."
+                  }
+            })]
             [string] $AssetStartDate,
 
             [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
@@ -266,6 +98,13 @@ function Import-GOAssetItem {
             [string] $FinancialNotes,
 
             [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
+            [ValidateScript({
+                  if ($_ -match '^\d{4}-\d{2}-\d{2}') {
+                        $true
+                  } else {
+                        throw "$_ does not match the format (yyyy-MM-dd) required for this parameter."
+                  }
+            })]
             [string] $LastInventoryDate,
 
             [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
@@ -275,6 +114,13 @@ function Import-GOAssetItem {
             [string] $ProjectDebit,
 
             [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
+            [ValidateScript({
+                  if ($_ -match '^\d{4}-\d{2}-\d{2}') {
+                        $true
+                  } else {
+                        throw "$_ does not match the format (yyyy-MM-dd) required for this parameter."
+                  }
+            })]
             [string] $PurchaseDate,
 
             [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
@@ -296,6 +142,13 @@ function Import-GOAssetItem {
             [string] $TheftId,
 
             [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
+            [ValidateScript({
+                  if ($_ -match '^\d{4}-\d{2}-\d{2}') {
+                        $true
+                  } else {
+                        throw "$_ does not match the format (yyyy-MM-dd) required for this parameter."
+                  }
+            })]
             [string] $WarrantyExpireDate,
 
             [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
@@ -339,6 +192,13 @@ function Import-GOAssetItem {
             [string] $SLA,
 
             [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
+            [ValidateScript({
+                  if ($_ -match '^\d{4}-\d{2}-\d{2}') {
+                        $true
+                  } else {
+                        throw "$_ does not match the format (yyyy-MM-dd) required for this parameter."
+                  }
+            })]
             [string] $SLAExpiredate,
 
             [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
@@ -404,10 +264,10 @@ function Import-GOAssetItem {
             [switch] $SSO,
 
             [parameter(Mandatory = $false)]
-            [switch] $dryRun,
+            [switch] $UseBasicParsing,
 
             [parameter(Mandatory = $false)]
-            [switch] $ShowDetails
+            [switch] $dryRun
       )
       begin {
             Write-Verbose "$($MyInvocation.MyCommand) initialized"
@@ -454,18 +314,20 @@ function Import-GOAssetItem {
                   Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it to BPS"
                   $i = 1
                   $currentUserProfile = [Environment]::GetEnvironmentVariable("USERPROFILE")
-                  $userProfileDesktop = "$currentUserProfile\Desktop"
+                  $userProfileDesktop = Join-Path -Path $currentUserProfile -ChildPath 'Desktop'
                   do {
                         $outputFileName = "payload_$i.xml"
-                        if (Test-Path $userProfileDesktop\$outputFileName) {
+                        $payloadFile = Join-Path -Path $userProfileDesktop -ChildPath "$outputFileName"
+                        if (Test-Path $payloadFile) {
                               $i++
                               Write-Information "$i"
                         }
-                  } until (!(Test-Path $userProfileDesktop\$outputFileName))
-                  if (!(Test-Path $userProfileDesktop\$outputFileName)) {
+                  } until (!(Test-Path $payloadFile))
+                  if (!(Test-Path $payloadFile)) {
                         try {
                               $outputFileName = "payload_$i.xml"
-                              $payload.Save("$userProfileDesktop\$outputFileName")
+                              $payloadFile = Join-Path -Path $userProfileDesktop -ChildPath "$outputFileName"
+                              $payload.Save("$payloadFile")
                               Write-Verbose "Saved payload to file, will now end!"
                               break
                         }
@@ -476,55 +338,35 @@ function Import-GOAssetItem {
                         }
                   }
             }
-
-            Write-Verbose "Creating header for web request!"
+            $easitWebRequestParams = @{
+                  Uri = "$url"
+                  Apikey = "$apikey"
+                  Body = $payload
+            }
+            if ($SSO) {
+                  Write-Verbose "Adding UseDefaultCredentials to param hash"
+                  $easitWebRequestParams.Add('UseDefaultCredentials',$true)
+            }
+            if ($UseBasicParsing) {
+                  Write-Verbose "Adding UseBasicParsing to param hash"
+                  $easitWebRequestParams.Add('UseBasicParsing',$true)
+            }
             try {
-                  $pair = "$($apikey): "
-                  $encodedCreds = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes($pair))
-                  $basicAuthValue = "Basic $encodedCreds"
-                  $headers = @{SOAPAction = ""; Authorization = $basicAuthValue }
-                  Write-Verbose "Header created for web request!"
+                  Write-Verbose "Calling Invoke-EasitWebRequest"
+                  $r = Invoke-EasitWebRequest @easitWebRequestParams
             }
             catch {
-                  Write-Error "Failed to create header!"
-                  Write-Error "$_"
-                  break
+                  throw $_
             }
-            Write-Verbose "Calling web service and using payload as input for Body parameter"
-            if ($SSO) {
-                  try {
-                        Write-Verbose 'Using switch SSO. De facto UseDefaultCredentials for Invoke-WebRequest'
-                        $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $payload -Headers $headers -UseDefaultCredentials
-                        Write-Verbose "Successfully connected to and imported data to BPS"
-                  }
-                  catch {
-                        Write-Error "Failed to connect to BPS!"
-                        Write-Error "$_"
-                        return $payload
-                  }
+            try {
+                  Write-Verbose "Converting response"
+                  $returnObject = Convert-EasitXMLToPsObject -Response $r
             }
-            else {
-                  try {
-                        $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $payload -Headers $headers
-                        Write-Verbose "Successfully connected to and imported data to BPS"
-                  }
-                  catch {
-                        Write-Error "Failed to connect to BPS!"
-                        Write-Error "$_"
-                        return $payload
-                  }
+            catch {
+                  throw $_
             }
-
-            New-Variable -Name functionout
-            [xml]$functionout = $r.Content
-            Write-Verbose 'Casted content of reponse as [xml]$functionout'
-
-            if ($ShowDetails) {
-                  $responseResult = $functionout.Envelope.Body.ImportItemsResponse.ImportItemResult.result
-                  $responseID = $functionout.Envelope.Body.ImportItemsResponse.ImportItemResult.ReturnValues.ReturnValue.InnerXml
-                  Write-Information "Result: $responseResult"
-                  Write-Information "ID for created item: $responseID"
-            }
+            Write-Verbose "Returning converted response"
+            return $returnObject
       }
 
       end {

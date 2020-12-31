@@ -9,18 +9,19 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Get data from BPS/GO with web services.
+Get data from Easit BPS / Easit GO with web services.
 
 ## SYNTAX
 
 ```powershell
 Get-GOItems [[-url] <String>] [-apikey] <String> [-importViewIdentifier] <String> [[-sortOrder] <String>]
- [[-sortField] <String>] [[-viewPageNumber] <Int32>] [[-ColumnFilter] <String[]>] [-SSO] [<CommonParameters>]
+ [[-sortField] <String>] [[-viewPageNumber] <Int32>] [[-ColumnFilter] <String[]>] [-dryRun] [-UseBasicParsing]
+ [-SSO] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-Connects to BPS/GO Web service with url, apikey and view and returns each item as an objects.<br>
+Connects to Easit BPS / Easit GO web service with url, apikey and view and returns each item as an objects.<br>
 If the view specified to get items from contains two or more fields with the same name, the value from the latest field will be used.<br>
 All returning objects will have these properties requestedPage, totalNumberOfPages and totalNumberOfItems beyond the once provided by the importViewIdentifier.
 
@@ -68,7 +69,7 @@ Get-GOItems @getGoItemsParams -ColumnFilter "Status,IN,Registrerad", "Prioritet,
 
 ### -apikey
 
-API-key for BPS/GO.
+API-key for Easit BPS / Easit GO.
 
 ```yaml
 Type: String
@@ -76,7 +77,7 @@ Parameter Sets: (All)
 Aliases: api
 
 Required: True
-Position: 2
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -94,7 +95,24 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 7
+Position: 6
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -dryRun
+
+If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to Easit BPS / Easit GO.
+This parameter does not append, rewrite or remove any files from your desktop.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -110,7 +128,7 @@ Parameter Sets: (All)
 Aliases: view
 
 Required: True
-Position: 3
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -119,7 +137,6 @@ Accept wildcard characters: False
 ### -sortField
 
 Field to sort data with.
-Default = Id
 
 ```yaml
 Type: String
@@ -127,7 +144,7 @@ Parameter Sets: (All)
 Aliases: sf
 
 Required: False
-Position: 5
+Position: 4
 Default value: Id
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -136,7 +153,6 @@ Accept wildcard characters: False
 ### -sortOrder
 
 Order in which to sort data, Descending or Ascending.
-Default = Descending
 
 ```yaml
 Type: String
@@ -144,7 +160,7 @@ Parameter Sets: (All)
 Aliases: so
 
 Required: False
-Position: 4
+Position: 3
 Default value: Descending
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -152,7 +168,7 @@ Accept wildcard characters: False
 
 ### -SSO
 
-Used if system is using SSO with IWA (Active Directory). Not needed when using SAML2.<br>
+Used if system is using SSO with IWA (Active Directory). Not needed when using SSO with SAML2.<br>
 Cmdlet will use the credentials of the current user to send the web request.
 
 ```yaml
@@ -169,7 +185,7 @@ Accept wildcard characters: False
 
 ### -url
 
-Address to BPS/GO webservice.
+URL to Easit BPS / Easit GO web service.
 Default = http://localhost/webservice/
 
 ```yaml
@@ -178,17 +194,31 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 1
+Position: 0
 Default value: Http://localhost/webservice/
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -UseBasicParsing
+
+This parameter is required when Internet Explorer is not installed on the computers, such as on a Server Core installation of a Windows Server operating system.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -viewPageNumber
 
-Used to get data from specific page in view.
-Each page contains 25 items.
-Default = 1.
+Used to get data from specific page in view. Each page contains 25 items.
 
 ```yaml
 Type: Int32
@@ -196,13 +226,14 @@ Parameter Sets: (All)
 Aliases: page
 
 Required: False
-Position: 6
+Position: 5
 Default value: 1
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -213,7 +244,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
-Copyright 2019 Easit AB
+Copyright 2021 Easit AB
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -230,4 +261,3 @@ limitations under the License.
 ## RELATED LINKS
 
 [https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Get-GOItems.ps1](https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Get-GOItems.ps1)
-
