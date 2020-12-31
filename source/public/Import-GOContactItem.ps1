@@ -99,10 +99,10 @@ function Import-GOContactItem {
             [switch] $SSO,
 
             [parameter(Mandatory = $false)]
-            [switch] $dryRun,
+            [switch] $UseBasicParsing,
 
             [parameter(Mandatory = $false)]
-            [switch] $ShowDetails
+            [switch] $dryRun
       )
       begin {
             Write-Verbose "$($MyInvocation.MyCommand) initialized"
@@ -147,21 +147,23 @@ function Import-GOContactItem {
             $payload = New-XMLforEasit -Import -ImportHandlerIdentifier "$ImportHandlerIdentifier" -Params $Params
 
             if ($dryRun) {
-                  Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it to BPS.."
+                  Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it to BPS"
                   $i = 1
                   $currentUserProfile = [Environment]::GetEnvironmentVariable("USERPROFILE")
-                  $userProfileDesktop = "$currentUserProfile\Desktop"
+                  $userProfileDesktop = Join-Path -Path $currentUserProfile -ChildPath 'Desktop'
                   do {
                         $outputFileName = "payload_$i.xml"
-                        if (Test-Path $userProfileDesktop\$outputFileName) {
+                        $payloadFile = Join-Path -Path $userProfileDesktop -ChildPath "$outputFileName"
+                        if (Test-Path $payloadFile) {
                               $i++
-                              Write-Verbose "Filename counter: $i"
+                              Write-Information "$i"
                         }
-                  } until (!(Test-Path $userProfileDesktop\$outputFileName))
-                  if (!(Test-Path $userProfileDesktop\$outputFileName)) {
+                  } until (!(Test-Path $payloadFile))
+                  if (!(Test-Path $payloadFile)) {
                         try {
                               $outputFileName = "payload_$i.xml"
-                              $payload.Save("$userProfileDesktop\$outputFileName")
+                              $payloadFile = Join-Path -Path $userProfileDesktop -ChildPath "$outputFileName"
+                              $payload.Save("$payloadFile")
                               Write-Verbose "Saved payload to file, will now end!"
                               break
                         }
@@ -172,55 +174,35 @@ function Import-GOContactItem {
                         }
                   }
             }
-
-            Write-Verbose "Creating header for web request!"
+            $easitWebRequestParams = @{
+                  Uri = "$url"
+                  Apikey = "$apikey"
+                  Body = $payload
+            }
+            if ($SSO) {
+                  Write-Verbose "Adding UseDefaultCredentials to param hash"
+                  $easitWebRequestParams.Add('UseDefaultCredentials',$true)
+            }
+            if ($UseBasicParsing) {
+                  Write-Verbose "Adding UseBasicParsing to param hash"
+                  $easitWebRequestParams.Add('UseBasicParsing',$true)
+            }
             try {
-                  $pair = "$($apikey): "
-                  $encodedCreds = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes($pair))
-                  $basicAuthValue = "Basic $encodedCreds"
-                  $headers = @{SOAPAction = ""; Authorization = $basicAuthValue }
-                  Write-Verbose "Header created for web request!"
+                  Write-Verbose "Calling Invoke-EasitWebRequest"
+                  $r = Invoke-EasitWebRequest @easitWebRequestParams
             }
             catch {
-                  Write-Error "Failed to create header!"
-                  Write-Error "$_"
-                  break
+                  throw $_
             }
-            Write-Verbose "Calling web service and using payload as input for Body parameter"
-            if ($SSO) {
-                  try {
-                        Write-Verbose 'Using switch SSO. De facto UseDefaultCredentials for Invoke-WebRequest'
-                        $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $payload -Headers $headers -UseDefaultCredentials
-                        Write-Verbose "Successfully connected to and imported data to BPS"
-                  }
-                  catch {
-                        Write-Error "Failed to connect to BPS!"
-                        Write-Error "$_"
-                        return $payload
-                  }
+            try {
+                  Write-Verbose "Converting response"
+                  $returnObject = Convert-EasitXMLToPsObject -Response $r
             }
-            else {
-                  try {
-                        $r = Invoke-WebRequest -Uri $url -Method POST -ContentType 'text/xml' -Body $payload -Headers $headers
-                        Write-Verbose "Successfully connected to and imported data to BPS"
-                  }
-                  catch {
-                        Write-Error "Failed to connect to BPS!"
-                        Write-Error "$_"
-                        return $payload
-                  }
+            catch {
+                  throw $_
             }
-
-            New-Variable -Name functionout
-            [xml]$functionout = $r.Content
-            Write-Verbose 'Casted content of reponse as [xml]$functionout'
-
-            if ($ShowDetails) {
-                  $responseResult = $functionout.Envelope.Body.ImportItemsResponse.ImportItemResult.result
-                  $responseID = $functionout.Envelope.Body.ImportItemsResponse.ImportItemResult.ReturnValues.ReturnValue.InnerXml
-                  Write-Information "Result: $responseResult"
-                  Write-Information "ID for created item: $responseID"
-            }
+            Write-Verbose "Returning converted response"
+            return $returnObject
       }
       end {
             Write-Verbose "$($MyInvocation.MyCommand) completed"

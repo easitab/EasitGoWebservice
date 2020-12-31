@@ -43,7 +43,7 @@ Update and / or create assets in Easit BPS / Easit GO. Specify 'ID' to update an
 ### EXAMPLE 1
 
 ```powershell
-Import-GOAssetItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateAssetGeneral -AssetName "Test" -SerialNumber "SN-467952" -Description "One general asset." -Status "Active"
+Import-GOAssetItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateAssetGeneral' -AssetName "Test" -SerialNumber "SN-467952" -Description "One general asset." -Status "Active"
 ```
 
 ### EXAMPLE 2
@@ -61,7 +61,7 @@ $importEasitItem = @{
     url = 'http://localhost/webservice/'
     api = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
     ImportHandlerIdentifier = 'CreateAssetPC' 
-    ID = '45' 
+    ID = 45
     OperatingSystem = 'Windows 10'
     Status = 'Inactive'
 }
@@ -76,7 +76,7 @@ $importEasitItem = @{
     apikey = "$api"
     ihi = "$identifier"
 }
-Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"
+Import-GOAssetItem @importEasitItem -ID 156 -Status 'Inactive'
 ```
 
 ## PARAMETERS
