@@ -9,7 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Send data to BPS/GO with web services.
+Send data to Easit BPS / Easit GO with web services.
 
 ## SYNTAX
 
@@ -31,39 +31,52 @@ Import-GOAssetItem [-url <String>] -apikey <String> [-ImportHandlerIdentifier <S
  [-Operator <String>] [-IMEINumber <String>] [-MobilePhoneNumber <String>] [-PhoneNumber <String>]
  [-PukCode <String>] [-ModelPrinter <String>] [-IPAdress <String>] [-MacAddress <String>]
  [-NetworkName <String>] [-ModelServer <String>] [-DNSName <String>] [-ServiceBlackout <String>] [-uid <Int32>]
- [-Attachment <String>] [-SSO] [-dryRun] [-ShowDetails] [<CommonParameters>]
+ [-Attachment <String>] [-SSO] [-UseBasicParsing] [-dryRun] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-Update and create assets in Easit BPS/GO.
-Returns ID for asset in Easit BPS/GO.
-Specify 'ID' to update an existing asset.
+Update and / or create assets in Easit BPS / Easit GO. Specify 'ID' to update an existing asset.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 
 ```powershell
-Import-GOAssetItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateAssetGeneral -AssetName "Test" -SerialNumber "SN-467952" -Description "One general asset." -Status "Active" -Verbose -ShowDetails
+Import-GOAssetItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateAssetGeneral -AssetName "Test" -SerialNumber "SN-467952" -Description "One general asset." -Status "Active"
 ```
 
 ### EXAMPLE 2
 
 ```powershell
-Import-GOAssetItem -url http://localhost/webservice/ -apikey a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ihi CreateAssetServer -AssetStartDate "2018-06-26" -InternalMemory "32" -HardriveSize "500" -Status "Active"
+$url = 'http://localhost/webservice/'
+$apikey = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
+Import-GOAssetItem -url "$url" -apikey "$apikey" -ihi 'CreateAssetServer' -AssetStartDate '2018-06-26' -InternalMemory '32' -HardriveSize '500' -Status 'Active'
 ```
 
 ### EXAMPLE 3
 
 ```powershell
-Import-GOAssetItem -url http://localhost/webservice/ -api a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618 -ImportHandlerIdentifier CreateAssetPC -ID "45" -OperatingSystem "Windows 10" -Status "Inactive"
+$importEasitItem = @{
+    url = 'http://localhost/webservice/'
+    api = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
+    ImportHandlerIdentifier = 'CreateAssetPC' 
+    ID = '45' 
+    OperatingSystem = 'Windows 10'
+    Status = 'Inactive'
+}
+Import-GOAssetItem @importEasitItem
 ```
 
 ### EXAMPLE 4
 
 ```powershell
-Import-GOAssetItem -url $url -apikey $api -ihi $identifier -ID "156" -Status "Inactive"
+$importEasitItem = @{
+    url = "$url"
+    apikey = "$api"
+    ihi = "$identifier"
+}
+Import-GOAssetItem @importEasitItem -ID "156" -Status "Inactive"
 ```
 
 ## PARAMETERS
@@ -86,7 +99,7 @@ Accept wildcard characters: False
 
 ### -apikey
 
-API-key for BPS/GO.
+API-key for Easit BPS / Easit GO.
 
 ```yaml
 Type: String
@@ -343,8 +356,8 @@ Accept wildcard characters: False
 
 ### -dryRun
 
-If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to BPS/GO.
-This parameter does not append, rewrite or remove any files from your desktop..
+If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to Easit BPS / Easit GO.
+This parameter does not append, rewrite or remove any files from your desktop.
 
 ```yaml
 Type: SwitchParameter
@@ -440,7 +453,7 @@ Accept wildcard characters: False
 
 ### -ID
 
-ID for asset in BPS/GO.
+ID for asset in Easit BPS / Easit GO.
 
 ```yaml
 Type: Int32
@@ -489,7 +502,6 @@ Accept wildcard characters: False
 ### -ImportHandlerIdentifier
 
 ImportHandler to import data with.
-Default = CreateAssetGeneral
 
 ```yaml
 Type: String
@@ -906,8 +918,7 @@ Accept wildcard characters: False
 
 ### -PurchaseDate
 
-Date of purchase of asset.
-Format = yyyy-MM-dd
+Date of purchase of asset. Format = yyyy-MM-dd
 
 ```yaml
 Type: String
@@ -1001,22 +1012,6 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -ShowDetails
-
-If specified, the response, including ID, will be displayed to host.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -SLA
 
 Service level agreement of asset.
@@ -1053,8 +1048,8 @@ Accept wildcard characters: False
 
 ### -SSO
 
-Used if system is using SSO with IWA (Active Directory).
-Not need when using SAML2
+Used if system is using SSO with IWA (Active Directory). Not needed when using SSO with SAML2.<br>
+Cmdlet will use the credentials of the current user to send the web request.
 
 ```yaml
 Type: SwitchParameter
@@ -1119,7 +1114,6 @@ Accept wildcard characters: False
 ### -uid
 
 Unique ID for object during import.
-Default = 1.
 
 ```yaml
 Type: Int32
@@ -1135,7 +1129,7 @@ Accept wildcard characters: False
 
 ### -url
 
-Address to BPS/GO webservice.
+URL to Easit BPS / Easit GO web service.
 
 ```yaml
 Type: String
@@ -1146,6 +1140,22 @@ Required: False
 Position: Named
 Default value: Http://localhost/webservice/
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -UseBasicParsing
+
+This parameter is required when Internet Explorer is not installed on the computers, such as on a Server Core installation of a Windows Server operating system.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -1199,16 +1209,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ## OUTPUTS
 
+### System.Object
+
 ## NOTES
 
-Copyright 2019 Easit AB
+Copyright 2021 Easit AB
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
