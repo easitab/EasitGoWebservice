@@ -9,7 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Send data to BPS/GO with web services.
+Send data to Easit BPS / Easit GO with web services.
 
 ## SYNTAX
 
@@ -20,47 +20,61 @@ Import-GOContactItem [-url <String>] -apikey <String> [-ImportHandlerIdentifier 
  [-PreferredMethodForNotification <String>] [-Building <String>] [-Checkbox_Authorized_Purchaser <String>]
  [-Checkbox_Responsible_Manager <String>] [-Deparment <String>] [-ExternalId <String>] [-FQDN <String>]
  [-Inactive <String>] [-MobilePhone <String>] [-Note <String>] [-Phone <String>] [-Room <String>]
- [-Title <String>] [-Username <String>] [-uid <Int32>] [-Attachment <String>] [-SSO] [-dryRun] [-ShowDetails]
- [<CommonParameters>]
+ [-Title <String>] [-Username <String>] [-uid <Int32>] [-Attachment <String>] [-SSO] [-UseBasicParsing]
+ [-dryRun] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-Update and create contacts in Easit BPS/GO.
-Returns ID for item in Easit BPS/GO.
-Specify 'ID' to update an existing contact.
+Update and create contacts in Easit BPS / Easit GO. Specify 'ID' to update an existing contact.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 
 ```powershell
-Import-GOContactItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateContact' -OrganizationID "12" -Position "Manager" -Deparment "Support" -FirstName "Test" -Surname "Testsson" -Username "te12te" -SecId "97584621" -Verbose -ShowDetails
+Import-GOContactItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateContact' -OrganizationID 12 -Position 'Manager' -Deparment 'Support' -FirstName 'Test' -Surname 'Testsson' -Username 'te12te' -SecId '97584621'
 ```
 
 ### EXAMPLE 2
 
 ```powershell
-Import-GOContactItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ihi CreateContact -ID "649" -Inactive "true"
+$url = 'http://localhost/webservice/'
+$apikey = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
+Import-GOContactItem -url "$url" -apikey "$apikey" -ihi 'CreateContact' -ID 649 -Inactive 'true'
 ```
 
 ### EXAMPLE 3
 
 ```powershell
-Import-GOContactItem -url 'http://localhost/webservice/' -api 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateContact' -ID "649" -Surname "Andersson" -Email "test.anders@company.com" -FQDN "$FQDN"
+$importEasitItem = @{
+    url = 'http://localhost/webservice/'
+    api = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
+    ImportHandlerIdentifier = 'CreateContact'
+    ID = 649
+    Surname = 'Andersson'
+    Email = 'test.anders@company.com'
+    FQDN = "$FQDN"
+}
+Import-GOContactItem @importEasitItem
 ```
 
 ### EXAMPLE 4
 
 ```powershell
-Import-GOContactItem -url "$url" -apikey "$api" -ihi "$identifier" -ID "156" -Inactive "false" -Responsible_Manager "true"
+$importEasitItem = @{
+    url = 'http://localhost/webservice/'
+    api = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
+    ImportHandlerIdentifier = 'CreateContact'
+}
+Import-GOContactItem @importEasitItem -ID 156 -Inactive 'false' -Responsible_Manager 'true'
 ```
 
 ## PARAMETERS
 
 ### -apikey
 
-API-key for BPS/GO.
+API-key for Easit BPS / Easit GO.
 
 ```yaml
 Type: String
@@ -172,7 +186,7 @@ Accept wildcard characters: False
 
 ### -dryRun
 
-If specified, payload will be save as payload.xml to your desktop instead of sent to BPS.
+If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to Easit BPS / Easit GO. This parameter does not append, rewrite or remove any files from your desktop.
 
 ```yaml
 Type: SwitchParameter
@@ -220,7 +234,7 @@ Accept wildcard characters: False
 
 ### -FirstName
 
-First name of contact in BPS/GO.
+First name of contact in Easit BPS / Easit GO.
 
 ```yaml
 Type: String
@@ -252,7 +266,7 @@ Accept wildcard characters: False
 
 ### -ID
 
-ID for contact in BPS/GO.
+ID for contact in Easit BPS / Easit GO.
 
 ```yaml
 Type: Int32
@@ -289,7 +303,6 @@ Accept wildcard characters: False
 ### -ImportHandlerIdentifier
 
 ImportHandler to import data with.
-Default = CreateContact
 
 ```yaml
 Type: String
@@ -370,8 +383,8 @@ Accept wildcard characters: False
 
 ### -OrganizationID
 
-ID for organization to which the contact belongs to.
-Can be found on the organization in BPS/GO.
+ID for organization to which the contact belongs to.<br>
+Can be found on the organization in Easit BPS / Easit GO.
 
 ```yaml
 Type: String
@@ -466,22 +479,6 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -ShowDetails
-
-If specified, the response, including ID, will be displayed to host.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -SSO
 
 Used if system is using SSO with IWA (Active Directory).
@@ -501,7 +498,7 @@ Accept wildcard characters: False
 
 ### -Surname
 
-Last name of contact in BPS/GO.
+Last name of contact in Easit BPS / Easit GO.
 
 ```yaml
 Type: String
@@ -533,7 +530,7 @@ Accept wildcard characters: False
 
 ### -uid
 
-{{ Fill uid Description }}
+Unique ID for object during import.
 
 ```yaml
 Type: Int32
@@ -549,8 +546,7 @@ Accept wildcard characters: False
 
 ### -url
 
-Address to BPS/GO webservice.
-Default = http://localhost/webservice/
+URL to Easit BPS / Easit GO web service.
 
 ```yaml
 Type: String
@@ -561,6 +557,22 @@ Required: False
 Position: Named
 Default value: Http://localhost/webservice/
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -UseBasicParsing
+
+This parameter is required when Internet Explorer is not installed on the computers, such as on a Server Core installation of a Windows Server operating system.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -588,9 +600,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### System.Object
+
 ## NOTES
 
-Copyright 2019 Easit AB
+Copyright 2021 Easit AB
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
