@@ -1,15 +1,15 @@
 function Invoke-EasitWebRequest {
     [CmdletBinding()]
     param (
-        [Parameter()]
+        [Parameter(Mandatory)]
         [String] $Uri,
-        [Parameter()]
+        [Parameter(Mandatory)]
         [String] $Apikey,
         [Parameter()]
         [String] $Method = 'POST',
         [Parameter()]
         [String] $ContentType = 'text/xml',
-        [Parameter()]
+        [Parameter(Mandatory)]
         [xml] $Body,
         [Parameter()]
         [Switch] $UseDefaultCredentials,

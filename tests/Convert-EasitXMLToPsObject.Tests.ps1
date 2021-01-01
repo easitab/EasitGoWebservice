@@ -9,14 +9,12 @@ BeforeAll {
     if (Test-Path $codeFile) {
         . $codeFile
     } else {
-        Write-Output "Unable to locate code file to test against!" -ForegroundColor Red
+        Write-Host "Unable to locate code file to test against!" -ForegroundColor Red
     }
 }
-Describe 'Import-GOOrganizationItem' {
-    It 'should demand an api key' {
-        Get-Command "$commandName" | Should -HaveParameter apikey -Mandatory
-    }
-    It 'should have a parameter named url with a default value' {
-        Get-Command "$commandName" | Should -HaveParameter url -DefaultValue 'http://localhost/webservice/'
+Describe 'Convert-EasitXMLToPsObject' {
+    It 'should demand and only accept XML object' {
+        Get-Command "$commandName" | Should -HaveParameter Response -Type xml
+        Get-Command "$commandName" | Should -HaveParameter Response -Mandatory
     }
 }
