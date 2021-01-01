@@ -108,6 +108,63 @@ function Import-GORequestItem {
             [int] $uid = "1",
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [string]$DeliveryInformation,
+
+            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [Alias('ApprovedBy')]
+            [int] $ApprovedByID,
+
+            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [string] $Approval,
+
+            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [string] $ProductsAndServices,
+            
+            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [string] $Message,
+
+            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [ValidateScript({
+                  if ($_ -match '^\d{4}-\d{2}-\d{2}') {
+                        $true
+                  } else {
+                        throw "$_ does not match the format (yyyy-MM-dd) required for this parameter."
+                  }
+            })]
+            [string] $DesiredDelivery,
+
+            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [ValidateScript({
+                  if ($_ -match '^\d{4}-\d{2}-\d{2}') {
+                        $true
+                  } else {
+                        throw "$_ does not match the format (yyyy-MM-dd) required for this parameter."
+                  }
+            })]
+            [string] $PlannedDelivery,
+
+            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [string] $Workaround,
+
+            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [string] $ImpactAssessment,
+
+            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [string] $ResourceRequirement,
+
+            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [string] $Cause,
+
+            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [string] $LifeCycle,
+            
+            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [string] $TypeOfChange,
+            
+            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
+            [string] $CategoryOfChange,
+
+            [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
             [Alias("File")]
             [string] $Attachment,
 
