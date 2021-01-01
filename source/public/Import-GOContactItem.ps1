@@ -145,7 +145,6 @@ function Import-GOContactItem {
             }
             Write-Verbose "Successfully created hashtable of parameter!"
             $payload = New-XMLforEasit -Import -ImportHandlerIdentifier "$ImportHandlerIdentifier" -Params $Params
-
             if ($dryRun) {
                   Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it to BPS"
                   $i = 1
