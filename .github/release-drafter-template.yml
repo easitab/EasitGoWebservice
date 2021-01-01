@@ -7,12 +7,14 @@ include-labels:
   - 'fix'
   - 'bugfix'
   - 'bug'
+  - 'documentation'
 categories:
   - title: 'Features'
     label: 'feature'
   - title: 'Enhancement'
     labels: 
       - 'enhancement'
+      - 'documentation'
       - 'test'
   - title: 'Bug Fixes'
     labels:
