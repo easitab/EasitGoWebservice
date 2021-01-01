@@ -9,7 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Send data to BPS/GO with web services.
+Send data to Easit BPS / Easit GO with web services.
 
 ## SYNTAX
 
@@ -22,14 +22,12 @@ Import-GOOrganizationItem [-url <String>] -apikey <String> [-ImportHandlerIdenti
  [-Phone <String>] [-PostNummer <String>] [-ResponsibilityDebit <String>] [-UtdelningsAdress <String>]
  [-VisitingAddress <String>] [-VisitingCity <String>] [-VisitingZipCode <String>] [-Webshop <String>]
  [-Website <String>] [-AccountManager <String>] [-ServiceManager <String>] [-uid <Int32>]
- [-Attachment <String>] [-SSO] [-dryRun] [-ShowDetails] [<CommonParameters>]
+ [-Attachment <String>] [-SSO] [-UseBasicParsing] [-dryRun] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-Update and create organization in Easit BPS/GO.
-Returns ID for item in Easit BPS/GO.
-Specify 'ID' to update an existing organization.
+Update and / or create organizations in Easit BPS / Easit GO. Specify 'ID' to update an existing asset.
 
 ## EXAMPLES
 
@@ -46,7 +44,9 @@ Import-GOOrganizationItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f
 Creates a new organization with *Name* as 'Stuff and IT', *CustomerNumber* as '4678524' and *BusinessDebit* as '1684'. It will set a existing contact with the email 'account.manager@company.com' as *AccountManager*, it will set an existing contract with ID '85' as *MainContract* and an existing user with username 'username123' as *ServiceManager*.
 
 ```powershell
-Import-GOOrganizationItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ihi 'CreateOrganizationExternal' -Name 'Stuff and IT' -CustomerNumber '4678524' -BusinessDebit '1684' -AccountManager 'account.manager@company.com' -MainContractID '85' -ServiceManager 'username123'
+$url = 'http://localhost/webservice/'
+$apikey = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
+Import-GOOrganizationItem -url "$url" -apikey "$apikey" -ihi 'CreateOrganizationExternal' -Name 'Stuff and IT' -CustomerNumber '4678524' -BusinessDebit '1684' -AccountManager 'account.manager@company.com' -MainContractID '85' -ServiceManager 'username123'
 ```
 
 ### EXAMPLE 3
@@ -54,7 +54,15 @@ Import-GOOrganizationItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f
 Updates the organization with ID 467 the values from parameters *Category* and *Status*.
 
 ```powershell
-Import-GOOrganizationItem -url 'http://localhost/webservice/' -api 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateOrganizationSupplier' -ID '467' -Category 'Food' -Status 'Active'
+$importEasitItem = @{
+    url = 'http://localhost/webservice/'
+    api = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
+    ImportHandlerIdentifier = 'CreateOrganizationSupplier'
+    ID = '467'
+    Category = 'Food'
+    Status = 'Active'
+}
+Import-GOOrganizationItem @importEasitItem
 ```
 
 ### EXAMPLE 4
@@ -62,7 +70,13 @@ Import-GOOrganizationItem -url 'http://localhost/webservice/' -api 'a8d5eba7f4da
 Updates the organization with ID 156 to have 'Inactive' as *Status*.
 
 ```powershell
-Import-GOOrganizationItem -url "$url" -apikey "$api" -ihi "$identifier" -ID '156' -Status 'Inactive'
+$importEasitItem = @{
+    url = 'http://localhost/webservice/'
+    api = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
+    ImportHandlerIdentifier = 'CreateOrganizationSupplier'
+    ID = '156'
+}
+Import-GOOrganizationItem @importEasitItem -Status 'Inactive'
 ```
 
 ## PARAMETERS
@@ -101,7 +115,7 @@ Accept wildcard characters: False
 
 ### -apikey
 
-API-key for BPS/GO.
+API-key for Easit BPS / Easit GO.
 
 ```yaml
 Type: String
@@ -261,7 +275,8 @@ Accept wildcard characters: False
 
 ### -dryRun
 
-If specified, payload will be save as payload.xml to your desktop instead of sent to BPS/GO.
+If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to Easit BPS / Easit GO.
+This parameter does not append, rewrite or remove any files from your desktop.
 
 ```yaml
 Type: SwitchParameter
@@ -310,7 +325,7 @@ Accept wildcard characters: False
 
 ### -ID
 
-ID of organization in BPS/GO.
+ID of organization in Easit BPS / Easit GO.
 
 ```yaml
 Type: String
@@ -327,7 +342,6 @@ Accept wildcard characters: False
 ### -ImportHandlerIdentifier
 
 ImportHandler to import data with.
-Default = CreateOrganization_Internal
 
 ```yaml
 Type: String
@@ -501,26 +515,10 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -ShowDetails
-
-If specified, the response, including ID, will be displayed to host.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -SSO
 
-Used if system is using SSO with IWA (Active Directory).
-Not need when using SAML2
+Used if system is using SSO with IWA (Active Directory). Not needed when using SSO with SAML2.<br>
+Cmdlet will use the credentials of the current user to send the web request.
 
 ```yaml
 Type: SwitchParameter
@@ -568,8 +566,7 @@ Accept wildcard characters: False
 
 ### -url
 
-Address to BPS/GO webservice.
-Default = http://localhost/webservice/
+URL to Easit BPS / Easit GO web service.
 
 ```yaml
 Type: String
@@ -580,6 +577,22 @@ Required: False
 Position: Named
 Default value: Http://localhost/webservice/
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -UseBasicParsing
+
+This parameter is required when Internet Explorer is not installed on the computers, such as on a Server Core installation of a Windows Server operating system.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -687,9 +700,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### System.Object
+
 ## NOTES
 
-Copyright 2019 Easit AB
+Copyright 2021 Easit AB
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -706,4 +721,3 @@ limitations under the License.
 ## RELATED LINKS
 
 [https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Import-GOOrganizationItem.ps1](https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Import-GOOrganizationItem.ps1)
-
