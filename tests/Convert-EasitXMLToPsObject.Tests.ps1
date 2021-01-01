@@ -9,7 +9,7 @@ BeforeAll {
     if (Test-Path $codeFile) {
         . $codeFile
     } else {
-        Write-Host "Unable to locate code file to test against!" -ForegroundColor Red
+        Write-Output "Unable to locate code file to test against!" -ForegroundColor Red
     }
 }
 Describe 'Convert-EasitXMLToPsObject' {
