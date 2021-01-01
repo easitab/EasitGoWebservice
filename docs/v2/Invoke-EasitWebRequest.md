@@ -1,6 +1,6 @@
 ---
-external help file:
-Module Name:
+external help file: EasitGoWebservice-help.xml
+Module Name: EasitGoWebservice
 online version: https://github.com/easitab/EasitGoWebservice/blob/development/docs/v2/Invoke-EasitWebRequest.md
 schema: 2.0.0
 ---
