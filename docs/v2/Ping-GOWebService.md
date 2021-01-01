@@ -8,28 +8,32 @@ schema: 2.0.0
 # Ping-GOWebService
 
 ## SYNOPSIS
-Ping BPS/GO web services.
+
+Ping Easit BPS / Easit GO web services.
 
 ## SYNTAX
 
-```
+```powershell
 Ping-GOWebService [[-url] <String>] [-apikey] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Can be used to check if service is available and correct credentials have been provided..
+
+Can be used to check if service is available and correct credentials have been provided.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
-Ping-GOWebService -url http://localhost/test/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375
+
+```powershell
+Ping-GOWebService -url 'http://localhost/test/webservice/' -apikey '4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375'
 ```
 
 ## PARAMETERS
 
 ### -apikey
-API key for BPS/GO.
+
+API-key for Easit BPS / Easit GO.
 
 ```yaml
 Type: String
@@ -43,9 +47,43 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -dryRun
+
+If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to Easit BPS / Easit GO.
+This parameter does not append, rewrite or remove any files from your desktop.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SSO
+
+Used if system is using SSO with IWA (Active Directory). Not needed when using SSO with SAML2.<br>
+Cmdlet will use the credentials of the current user to send the web request.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -url
-Address to BPS/GO webservice.
-Default = http://localhost/webservice/
+
+URL to Easit BPS / Easit GO web service.
 
 ```yaml
 Type: String
@@ -59,15 +97,35 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -UseBasicParsing
+
+This parameter is required when Internet Explorer is not installed on the computers, such as on a Server Core installation of a Windows Server operating system.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ## OUTPUTS
 
+### System.Object
+
 ## NOTES
-Copyright 2019 Easit AB
+
+Copyright 2021 Easit AB
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -83,5 +141,4 @@ limitations under the License.
 
 ## RELATED LINKS
 
-[https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Ping-GOWebService.ps1](https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Ping-GOWebService.ps1)
-
+[https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Ping-GOWebService.ps1](https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Ping-GOWebService.ps1)

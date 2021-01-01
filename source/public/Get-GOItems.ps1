@@ -91,21 +91,21 @@ function Get-GOItems {
             throw $_
       }
       if ($dryRun) {
-            Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it"
+            Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it to BPS"
             $i = 1
             $currentUserProfile = [Environment]::GetEnvironmentVariable("USERPROFILE")
-            $userProfileDesktop = "$currentUserProfile\Desktop"
+            $userProfileDesktop = Join-Path -Path $currentUserProfile -ChildPath 'Desktop'
             do {
                   $outputFileName = "payload_$i.xml"
-                  if (Test-Path $userProfileDesktop\$outputFileName) {
+                  $payloadFile = Join-Path -Path $userProfileDesktop -ChildPath "$outputFileName"
+                  if (Test-Path $payloadFile) {
                         $i++
                         Write-Verbose "$i"
                   }
-            } until (!(Test-Path $userProfileDesktop\$outputFileName))
-            if (!(Test-Path $userProfileDesktop\$outputFileName)) {
+            } until (!(Test-Path $payloadFile))
+            if (!(Test-Path $payloadFile)) {
                   try {
-                        $outputFileName = "payload_$i.xml"
-                        $payload.Save("$userProfileDesktop\$outputFileName")
+                        $payload.Save("$payloadFile")
                         Write-Verbose "Saved payload to file, will now end!"
                         break
                   }
