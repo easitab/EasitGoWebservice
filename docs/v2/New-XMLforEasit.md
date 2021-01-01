@@ -214,14 +214,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
-### System.Object
+### XmlDocument
+
 ## NOTES
 
 ## RELATED LINKS
+
+[https://github.com/easitab/EasitGoWebservice/blob/development/source/private/New-XMLforEasit.ps1](https://github.com/easitab/EasitGoWebservice/blob/development/source/private/New-XMLforEasit.ps1)
