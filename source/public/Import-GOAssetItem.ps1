@@ -320,21 +320,17 @@ function Import-GOAssetItem {
                         $payloadFile = Join-Path -Path $userProfileDesktop -ChildPath "$outputFileName"
                         if (Test-Path $payloadFile) {
                               $i++
-                              Write-Information "$i"
+                              Write-Verbose "$i"
                         }
                   } until (!(Test-Path $payloadFile))
                   if (!(Test-Path $payloadFile)) {
                         try {
-                              $outputFileName = "payload_$i.xml"
-                              $payloadFile = Join-Path -Path $userProfileDesktop -ChildPath "$outputFileName"
                               $payload.Save("$payloadFile")
                               Write-Verbose "Saved payload to file, will now end!"
                               break
                         }
                         catch {
-                              Write-Error "Unable to save payload to file!"
-                              Write-Error "$_"
-                              break
+                              throw $_
                         }
                   }
             }
