@@ -4066,11 +4066,11 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
       <command:verb>Import</command:verb>
       <command:noun>GORequestItem</command:noun>
       <maml:description>
-        <maml:para>Send data to BPS/GO with web services.</maml:para>
+        <maml:para>Send data to Easit BPS / Easit GO with web services.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Update and create requests in Easit BPS/GO. Returns ID for item in Easit BPS/GO.. Specify 'ID' to update an existing item.</maml:para>
+      <maml:para>Update and / or create requests in Easit BPS / Easit GO. Specify 'ID' to update an existing request.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -4078,11 +4078,35 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="api">
           <maml:name>apikey</maml:name>
           <maml:Description>
-            <maml:para>API-key for BPS/GO.</maml:para>
+            <maml:para>API-key for Easit BPS / Easit GO.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
             <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>Approval</maml:name>
+          <maml:Description>
+            <maml:para>Approval for the Service Request.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ApprovedBy">
+          <maml:name>ApprovedByID</maml:name>
+          <maml:Description>
+            <maml:para>ID of contact responsible for approving. Can be found on the contact in Easit BPS / Easit GO.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -4123,6 +4147,18 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>CategoryOfChange</maml:name>
+          <maml:Description>
+            <maml:para>What category of change is it.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ClosureCause">
           <maml:name>CausalField</maml:name>
           <maml:Description>
@@ -4135,10 +4171,22 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>Cause</maml:name>
+          <maml:Description>
+            <maml:para>Description of cause.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="CI">
           <maml:name>CIID</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill CIID Description }}</maml:para>
+            <maml:para>ID of asset to connect to request. Can be found on the asset in Easit BPS / Easit GO.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
@@ -4150,7 +4198,7 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="Classification">
           <maml:name>ClassificationID</maml:name>
           <maml:Description>
-            <maml:para>ID of classification to connect with request. Can be found on the classification in BPS/GO.</maml:para>
+            <maml:para>ID of classification to connect with request. Can be found on the classification in Easit BPS / Easit GO.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
@@ -4174,7 +4222,7 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>ContactID</maml:name>
           <maml:Description>
-            <maml:para>ID of contact in BPS/GO. Can be found on the contact in BPS/GO.</maml:para>
+            <maml:para>ID of contact in Easit BPS / Easit GO. Can be found on the contact in BPS/GO.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
@@ -4182,6 +4230,18 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>0</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>DeliveryInformation</maml:name>
+          <maml:Description>
+            <maml:para>Information to be used when delivering service request.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Description</maml:name>
@@ -4195,10 +4255,22 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>DesiredDelivery</maml:name>
+          <maml:Description>
+            <maml:para>Date when delivery is desired.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>dryRun</maml:name>
           <maml:Description>
-            <maml:para>If specified, payload will be save as payload.xml to your desktop instead of sent to BPS/GO.</maml:para>
+            <maml:para>If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to Easit BPS / Easit GO. This parameter does not append, rewrite or remove any files from your desktop.</maml:para>
           </maml:Description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -4242,10 +4314,22 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>ImpactAssessment</maml:name>
+          <maml:Description>
+            <maml:para>An assessment of the impact for the problem.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ihi">
           <maml:name>ImportHandlerIdentifier</maml:name>
           <maml:Description>
-            <maml:para>ImportHandler to import data with. Default = CreateRequest</maml:para>
+            <maml:para>ImportHandler to import data with.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -4257,7 +4341,7 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="KnowledgebaseArticle, KB">
           <maml:name>KnowledgebaseArticleID</maml:name>
           <maml:Description>
-            <maml:para>ID of knowledgebase article to connect with request. Can be found on the knowledgebase article in BPS/GO.</maml:para>
+            <maml:para>ID of knowledgebase article to connect with request. Can be found on the knowledgebase article in Easit BPS / Easit GO.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
@@ -4265,6 +4349,18 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>0</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>LifeCycle</maml:name>
+          <maml:Description>
+            <maml:para>What life cycle is the item in.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Manager</maml:name>
@@ -4291,9 +4387,21 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>Message</maml:name>
+          <maml:Description>
+            <maml:para>Message to the manager.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>OrganizationID</maml:name>
           <maml:Description>
-            <maml:para>ID for organization to which the contact belongs to. Can be found on the organization in BPS/GO.</maml:para>
+            <maml:para>ID for organization to which the contact belongs to. Can be found on the organization in Easit BPS / Easit GO.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
@@ -4327,6 +4435,18 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
           <dev:defaultValue>0</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>PlannedDelivery</maml:name>
+          <maml:Description>
+            <maml:para>Date when delivery is planned to.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>Priority</maml:name>
           <maml:Description>
             <maml:para>Priority for item. Matches agains existing priorities.</maml:para>
@@ -4339,9 +4459,21 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>ProductsAndServices</maml:name>
+          <maml:Description>
+            <maml:para>What products and / or services should the request have.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>ReferenceContactID</maml:name>
           <maml:Description>
-            <maml:para>ID of reference contact. Can be found on the contact in BPS/GO.</maml:para>
+            <maml:para>ID of reference contact. Can be found on the contact in Easit BPS / Easit GO.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
@@ -4353,7 +4485,7 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>ReferenceOrganizationID</maml:name>
           <maml:Description>
-            <maml:para>ID of reference organization. Can be found on the organization in BPS/GO.</maml:para>
+            <maml:para>ID of reference organization. Can be found on the organization in Easit BPS / Easit GO.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
@@ -4361,11 +4493,23 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>0</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>ResourceRequirement</maml:name>
+          <maml:Description>
+            <maml:para>Requirement for resources.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="Article">
           <maml:name>ServiceID</maml:name>
           <maml:Description>
-            <maml:para>ID of article to connect with request. Can be found on the article in BPS/GO.</maml:para>
+            <maml:para>ID of article to connect with request. Can be found on the article in Easit BPS / Easit GO.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
@@ -4374,21 +4518,10 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
           </dev:type>
           <dev:defaultValue>0</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>ShowDetails</maml:name>
-          <maml:Description>
-            <maml:para>If specified, the response, including ID, will be displayed to host.</maml:para>
-          </maml:Description>
-          <dev:type>
-            <maml:name>SwitchParameter</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>False</dev:defaultValue>
-        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="SLA">
           <maml:name>SLAID</maml:name>
           <maml:Description>
-            <maml:para>ID of contract to connect with request. Can be found on the contract in BPS/GO.</maml:para>
+            <maml:para>ID of contract to connect with request. Can be found on the contract in Easit BPS / Easit GO.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -4400,7 +4533,7 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>SSO</maml:name>
           <maml:Description>
-            <maml:para>Used if system is using SSO with IWA (Active Directory). Not need when using SAML2</maml:para>
+            <maml:para>Used if system is using SSO with IWA (Active Directory). Not needed when using SSO with SAML2.&lt;br&gt; Cmdlet will use the credentials of the current user to send the web request.</maml:para>
           </maml:Description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -4445,9 +4578,21 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>TypeOfChange</maml:name>
+          <maml:Description>
+            <maml:para>What type of change is it.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
           <maml:name>uid</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill uid Description }}</maml:para>
+            <maml:para>Unique ID for object during import.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
@@ -4471,7 +4616,7 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="uri">
           <maml:name>url</maml:name>
           <maml:Description>
-            <maml:para>Address to BPS/GO webservice. Default = http://localhost/webservice/</maml:para>
+            <maml:para>URL to Easit BPS / Easit GO web service.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -4480,17 +4625,64 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
           </dev:type>
           <dev:defaultValue>Http://localhost/webservice/</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>UseBasicParsing</maml:name>
+          <maml:Description>
+            <maml:para>This parameter is required when Internet Explorer is not installed on the computers, such as on a Server Core installation of a Windows Server operating system.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+          <maml:name>Workaround</maml:name>
+          <maml:Description>
+            <maml:para>What workaround is available.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="api">
         <maml:name>apikey</maml:name>
         <maml:Description>
-          <maml:para>API-key for BPS/GO.</maml:para>
+          <maml:para>API-key for Easit BPS / Easit GO.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
           <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>Approval</maml:name>
+        <maml:Description>
+          <maml:para>Approval for the Service Request.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ApprovedBy">
+        <maml:name>ApprovedByID</maml:name>
+        <maml:Description>
+          <maml:para>ID of contact responsible for approving. Can be found on the contact in Easit BPS / Easit GO.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -4531,6 +4723,18 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>CategoryOfChange</maml:name>
+        <maml:Description>
+          <maml:para>What category of change is it.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ClosureCause">
         <maml:name>CausalField</maml:name>
         <maml:Description>
@@ -4543,10 +4747,22 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>Cause</maml:name>
+        <maml:Description>
+          <maml:para>Description of cause.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="CI">
         <maml:name>CIID</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill CIID Description }}</maml:para>
+          <maml:para>ID of asset to connect to request. Can be found on the asset in Easit BPS / Easit GO.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
@@ -4558,7 +4774,7 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="Classification">
         <maml:name>ClassificationID</maml:name>
         <maml:Description>
-          <maml:para>ID of classification to connect with request. Can be found on the classification in BPS/GO.</maml:para>
+          <maml:para>ID of classification to connect with request. Can be found on the classification in Easit BPS / Easit GO.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
@@ -4582,7 +4798,7 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>ContactID</maml:name>
         <maml:Description>
-          <maml:para>ID of contact in BPS/GO. Can be found on the contact in BPS/GO.</maml:para>
+          <maml:para>ID of contact in Easit BPS / Easit GO. Can be found on the contact in BPS/GO.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
@@ -4590,6 +4806,18 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>0</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>DeliveryInformation</maml:name>
+        <maml:Description>
+          <maml:para>Information to be used when delivering service request.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>Description</maml:name>
@@ -4603,10 +4831,22 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>DesiredDelivery</maml:name>
+        <maml:Description>
+          <maml:para>Date when delivery is desired.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>dryRun</maml:name>
         <maml:Description>
-          <maml:para>If specified, payload will be save as payload.xml to your desktop instead of sent to BPS/GO.</maml:para>
+          <maml:para>If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to Easit BPS / Easit GO. This parameter does not append, rewrite or remove any files from your desktop.</maml:para>
         </maml:Description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -4651,10 +4891,22 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>ImpactAssessment</maml:name>
+        <maml:Description>
+          <maml:para>An assessment of the impact for the problem.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="ihi">
         <maml:name>ImportHandlerIdentifier</maml:name>
         <maml:Description>
-          <maml:para>ImportHandler to import data with. Default = CreateRequest</maml:para>
+          <maml:para>ImportHandler to import data with.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -4666,7 +4918,7 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="KnowledgebaseArticle, KB">
         <maml:name>KnowledgebaseArticleID</maml:name>
         <maml:Description>
-          <maml:para>ID of knowledgebase article to connect with request. Can be found on the knowledgebase article in BPS/GO.</maml:para>
+          <maml:para>ID of knowledgebase article to connect with request. Can be found on the knowledgebase article in Easit BPS / Easit GO.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
@@ -4674,6 +4926,18 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>0</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>LifeCycle</maml:name>
+        <maml:Description>
+          <maml:para>What life cycle is the item in.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>Manager</maml:name>
@@ -4700,9 +4964,21 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>Message</maml:name>
+        <maml:Description>
+          <maml:para>Message to the manager.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>OrganizationID</maml:name>
         <maml:Description>
-          <maml:para>ID for organization to which the contact belongs to. Can be found on the organization in BPS/GO.</maml:para>
+          <maml:para>ID for organization to which the contact belongs to. Can be found on the organization in Easit BPS / Easit GO.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
@@ -4736,6 +5012,18 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
         <dev:defaultValue>0</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>PlannedDelivery</maml:name>
+        <maml:Description>
+          <maml:para>Date when delivery is planned to.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>Priority</maml:name>
         <maml:Description>
           <maml:para>Priority for item. Matches agains existing priorities.</maml:para>
@@ -4748,9 +5036,21 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>ProductsAndServices</maml:name>
+        <maml:Description>
+          <maml:para>What products and / or services should the request have.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>ReferenceContactID</maml:name>
         <maml:Description>
-          <maml:para>ID of reference contact. Can be found on the contact in BPS/GO.</maml:para>
+          <maml:para>ID of reference contact. Can be found on the contact in Easit BPS / Easit GO.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
@@ -4762,7 +5062,7 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>ReferenceOrganizationID</maml:name>
         <maml:Description>
-          <maml:para>ID of reference organization. Can be found on the organization in BPS/GO.</maml:para>
+          <maml:para>ID of reference organization. Can be found on the organization in Easit BPS / Easit GO.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
@@ -4770,11 +5070,23 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>0</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>ResourceRequirement</maml:name>
+        <maml:Description>
+          <maml:para>Requirement for resources.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="Article">
         <maml:name>ServiceID</maml:name>
         <maml:Description>
-          <maml:para>ID of article to connect with request. Can be found on the article in BPS/GO.</maml:para>
+          <maml:para>ID of article to connect with request. Can be found on the article in Easit BPS / Easit GO.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
@@ -4783,22 +5095,10 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
         </dev:type>
         <dev:defaultValue>0</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>ShowDetails</maml:name>
-        <maml:Description>
-          <maml:para>If specified, the response, including ID, will be displayed to host.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-        <dev:type>
-          <maml:name>SwitchParameter</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>False</dev:defaultValue>
-      </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="SLA">
         <maml:name>SLAID</maml:name>
         <maml:Description>
-          <maml:para>ID of contract to connect with request. Can be found on the contract in BPS/GO.</maml:para>
+          <maml:para>ID of contract to connect with request. Can be found on the contract in Easit BPS / Easit GO.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -4810,7 +5110,7 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>SSO</maml:name>
         <maml:Description>
-          <maml:para>Used if system is using SSO with IWA (Active Directory). Not need when using SAML2</maml:para>
+          <maml:para>Used if system is using SSO with IWA (Active Directory). Not needed when using SSO with SAML2.&lt;br&gt; Cmdlet will use the credentials of the current user to send the web request.</maml:para>
         </maml:Description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -4856,9 +5156,21 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>TypeOfChange</maml:name>
+        <maml:Description>
+          <maml:para>What type of change is it.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
         <maml:name>uid</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill uid Description }}</maml:para>
+          <maml:para>Unique ID for object during import.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
@@ -4882,7 +5194,7 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="uri">
         <maml:name>url</maml:name>
         <maml:Description>
-          <maml:para>Address to BPS/GO webservice. Default = http://localhost/webservice/</maml:para>
+          <maml:para>URL to Easit BPS / Easit GO web service.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -4891,12 +5203,45 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
         </dev:type>
         <dev:defaultValue>Http://localhost/webservice/</dev:defaultValue>
       </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>UseBasicParsing</maml:name>
+        <maml:Description>
+          <maml:para>This parameter is required when Internet Explorer is not installed on the computers, such as on a Server Core installation of a Windows Server operating system.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="none">
+        <maml:name>Workaround</maml:name>
+        <maml:Description>
+          <maml:para>What workaround is available.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
     </command:parameters>
     <command:inputTypes />
-    <command:returnValues />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Object</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Copyright 2019 Easit AB</maml:para>
+        <maml:para>Copyright 2021 Easit AB</maml:para>
         <maml:para>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at</maml:para>
         <maml:para>    http://www.apache.org/licenses/LICENSE-2.0</maml:para>
         <maml:para>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</maml:para>
@@ -4912,21 +5257,36 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
-        <dev:code>Import-GORequestItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateRequestIncident' -Subject 'Testing1' -Description 'Testing1' -ContactID '5' -Status 'Registrerad' -Verbose -ShowDetails</dev:code>
+        <dev:code>$url = 'http://localhost/webservice/'
+$apikey = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
+Import-GORequestItem -url "$url" -apikey "$apikey" -ImportHandlerIdentifier 'CreateRequestIncident' -Subject 'Testing1' -Description 'Testing1' -ContactID '5' -Status 'Registrerad' -Verbose -ShowDetails</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 3 --------------------------</maml:title>
-        <dev:code>Import-GORequestItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateRequestProblem' -ID '156' -Description 'Testing2. Nytt test!'</dev:code>
+        <dev:code>$importEasitItem = @{
+    url = 'http://localhost/webservice/'
+    apikey = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
+    ImportHandlerIdentifier = 'CreateRequestProblem'
+    ID = '156'
+    Description = 'Testing2. Nytt test!'
+}
+Import-GORequestItem @importEasitItem</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 4 --------------------------</maml:title>
-        <dev:code>Import-GORequestItem -url "$url" -apikey "$api" -ihi "$identifier" -ID '156' -Description 'Updating description for request 156'</dev:code>
+        <dev:code>$importEasitItem = @{
+    url = 'http://localhost/webservice/'
+    apikey = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
+    ImportHandlerIdentifier = 'CreateRequestProblem'
+    ID = '156'
+}
+Import-GORequestItem @importEasitItem -Description 'Updating description for request 156'</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
