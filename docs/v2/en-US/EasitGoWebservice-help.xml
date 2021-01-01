@@ -5578,7 +5578,7 @@ Import-GORequestItem @importEasitItem -Description 'Updating description for req
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Object</maml:name>
+          <maml:name>XmlDocument</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -5610,6 +5610,10 @@ Import-GORequestItem @importEasitItem -Description 'Updating description for req
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
         <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v2/New-XMLforEasit.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/development/source/private/New-XMLforEasit.ps1</maml:linkText>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/source/private/New-XMLforEasit.ps1</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>
