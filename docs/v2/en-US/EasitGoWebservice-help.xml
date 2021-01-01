@@ -5858,11 +5858,11 @@ PS C:\&gt; Invoke-EasitWebRequest @easitWebRequestParams</dev:code>
       <command:verb>Ping</command:verb>
       <command:noun>GOWebService</command:noun>
       <maml:description>
-        <maml:para>Ping BPS/GO web services.</maml:para>
+        <maml:para>Ping Easit BPS / Easit GO web services.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Can be used to check if service is available and correct credentials have been provided..</maml:para>
+      <maml:para>Can be used to check if service is available and correct credentials have been provided.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -5870,7 +5870,7 @@ PS C:\&gt; Invoke-EasitWebRequest @easitWebRequestParams</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>url</maml:name>
           <maml:Description>
-            <maml:para>Address to BPS/GO webservice. Default = http://localhost/webservice/</maml:para>
+            <maml:para>URL to Easit BPS / Easit GO web service.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -5882,7 +5882,7 @@ PS C:\&gt; Invoke-EasitWebRequest @easitWebRequestParams</dev:code>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="api">
           <maml:name>apikey</maml:name>
           <maml:Description>
-            <maml:para>API key for BPS/GO.</maml:para>
+            <maml:para>API-key for Easit BPS / Easit GO.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -5891,13 +5891,46 @@ PS C:\&gt; Invoke-EasitWebRequest @easitWebRequestParams</dev:code>
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>dryRun</maml:name>
+          <maml:Description>
+            <maml:para>If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to Easit BPS / Easit GO. This parameter does not append, rewrite or remove any files from your desktop.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SSO</maml:name>
+          <maml:Description>
+            <maml:para>Used if system is using SSO with IWA (Active Directory). Not needed when using SSO with SAML2.&lt;br&gt; Cmdlet will use the credentials of the current user to send the web request.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>UseBasicParsing</maml:name>
+          <maml:Description>
+            <maml:para>This parameter is required when Internet Explorer is not installed on the computers, such as on a Server Core installation of a Windows Server operating system.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="api">
         <maml:name>apikey</maml:name>
         <maml:Description>
-          <maml:para>API key for BPS/GO.</maml:para>
+          <maml:para>API-key for Easit BPS / Easit GO.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -5906,10 +5939,34 @@ PS C:\&gt; Invoke-EasitWebRequest @easitWebRequestParams</dev:code>
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>dryRun</maml:name>
+        <maml:Description>
+          <maml:para>If specified, payload will be save as payload_1.xml (or next available number) to your desktop instead of sent to Easit BPS / Easit GO. This parameter does not append, rewrite or remove any files from your desktop.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>SSO</maml:name>
+        <maml:Description>
+          <maml:para>Used if system is using SSO with IWA (Active Directory). Not needed when using SSO with SAML2.&lt;br&gt; Cmdlet will use the credentials of the current user to send the web request.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>url</maml:name>
         <maml:Description>
-          <maml:para>Address to BPS/GO webservice. Default = http://localhost/webservice/</maml:para>
+          <maml:para>URL to Easit BPS / Easit GO web service.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -5918,12 +5975,33 @@ PS C:\&gt; Invoke-EasitWebRequest @easitWebRequestParams</dev:code>
         </dev:type>
         <dev:defaultValue>Http://localhost/webservice/</dev:defaultValue>
       </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>UseBasicParsing</maml:name>
+        <maml:Description>
+          <maml:para>This parameter is required when Internet Explorer is not installed on the computers, such as on a Server Core installation of a Windows Server operating system.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
     </command:parameters>
     <command:inputTypes />
-    <command:returnValues />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Object</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Copyright 2019 Easit AB</maml:para>
+        <maml:para>Copyright 2021 Easit AB</maml:para>
         <maml:para>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at</maml:para>
         <maml:para>    http://www.apache.org/licenses/LICENSE-2.0</maml:para>
         <maml:para>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</maml:para>
@@ -5932,7 +6010,7 @@ PS C:\&gt; Invoke-EasitWebRequest @easitWebRequestParams</dev:code>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
-        <dev:code>Ping-GOWebService -url http://localhost/test/webservice/ -apikey 4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375</dev:code>
+        <dev:code>Ping-GOWebService -url 'http://localhost/test/webservice/' -apikey '4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375'</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
@@ -5944,8 +6022,8 @@ PS C:\&gt; Invoke-EasitWebRequest @easitWebRequestParams</dev:code>
         <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v2/Ping-GOWebService.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
-        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Ping-GOWebService.ps1</maml:linkText>
-        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/master/EasitGoWebservice/Ping-GOWebService.ps1</maml:uri>
+        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Ping-GOWebService.ps1</maml:linkText>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/source/public/Ping-GOWebService.ps1</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>
