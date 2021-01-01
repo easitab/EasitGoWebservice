@@ -153,7 +153,6 @@ function Import-GOOrganizationItem {
                   Write-Error "$_"
                   break
             }
-
             Write-Verbose "Starting loop for creating hashtable of parameter..."
             $params = [ordered]@{}
             foreach ($parameter in $parameterList) {
