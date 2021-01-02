@@ -95,6 +95,97 @@ PS C:\&gt; Convert-EasitXMLToPsObject -Response $functionout</dev:code>
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Export-PayloadToFile</command:name>
+      <command:verb>Export</command:verb>
+      <command:noun>PayloadToFile</command:noun>
+      <maml:description>
+        <maml:para>"Private" cmdlet that act as helper function.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Stores XMLDocument object in a file.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Export-PayloadToFile</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>Payload</maml:name>
+          <maml:Description>
+            <maml:para>XMLDocument to save / export to file.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">XmlDocument</command:parameterValue>
+          <dev:type>
+            <maml:name>XmlDocument</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>Payload</maml:name>
+        <maml:Description>
+          <maml:para>XMLDocument to save / export to file.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">XmlDocument</command:parameterValue>
+        <dev:type>
+          <maml:name>XmlDocument</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.Xml.XmlDocument</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>FileInfo</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>Export-PayloadToFile creates a file that contains the XML.</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Copyright 2021 Easit AB</maml:para>
+        <maml:para>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at</maml:para>
+        <maml:para>      http://www.apache.org/licenses/LICENSE-2.0</maml:para>
+        <maml:para>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Export-PayloadToFile -Payload $payload</dev:code>
+        <dev:remarks>
+          <maml:para></maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/docs/v2/Export-PayloadToFile.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/easitab/EasitGoWebservice/blob/development/source/private/Export-PayloadToFile.ps1</maml:linkText>
+        <maml:uri>https://github.com/easitab/EasitGoWebservice/blob/development/source/private/Export-PayloadToFile.ps1</maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Get-GOItems</command:name>
       <command:verb>Get</command:verb>
       <command:noun>GOItems</command:noun>
