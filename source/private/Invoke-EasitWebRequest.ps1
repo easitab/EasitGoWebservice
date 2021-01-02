@@ -19,6 +19,7 @@ function Invoke-EasitWebRequest {
 
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
+        $ProgressPreference = 'SilentlyContinue'
     }
 
     process {
@@ -69,6 +70,7 @@ function Invoke-EasitWebRequest {
         return $returnObject
     }
     end {
+        $ProgressPreference = 'Continue'
         Write-Verbose "$($MyInvocation.MyCommand) completed"
     }
 }
