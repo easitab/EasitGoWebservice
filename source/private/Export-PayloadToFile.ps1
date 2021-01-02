@@ -12,8 +12,7 @@ function Export-PayloadToFile {
 
     process {
         $i = 1
-        $currentUserProfile = [Environment]::GetEnvironmentVariable("USERPROFILE")
-        $userProfileDesktop = Join-Path -Path $currentUserProfile -ChildPath 'Desktop'
+        $userProfileDesktop = Join-Path -Path $HOME -ChildPath 'Desktop'
         do {
             $outputFileName = "payload_$i.xml"
             $payloadFile = Join-Path -Path $userProfileDesktop -ChildPath "$outputFileName"
@@ -26,7 +25,6 @@ function Export-PayloadToFile {
             try {
                     $Payload.Save("$payloadFile")
                     Write-Information "Saved payload to file ($payloadFile), will now end!"
-                    break
             }
             catch {
                     throw $_
