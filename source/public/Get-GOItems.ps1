@@ -92,27 +92,12 @@ function Get-GOItems {
       }
       if ($dryRun) {
             Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it to BPS"
-            $i = 1
-            $currentUserProfile = [Environment]::GetEnvironmentVariable("USERPROFILE")
-            $userProfileDesktop = Join-Path -Path $currentUserProfile -ChildPath 'Desktop'
-            do {
-                  $outputFileName = "payload_$i.xml"
-                  $payloadFile = Join-Path -Path $userProfileDesktop -ChildPath "$outputFileName"
-                  if (Test-Path $payloadFile) {
-                        $i++
-                        Write-Verbose "$i"
-                  }
-            } until (!(Test-Path $payloadFile))
-            if (!(Test-Path $payloadFile)) {
-                  try {
-                        $payload.Save("$payloadFile")
-                        Write-Verbose "Saved payload to file, will now end!"
-                        break
-                  }
-                  catch {
-                        throw $_
-                  }
+            try {
+                  Export-PayloadToFile -Payload $payload
+            } catch {
+                  throw $_
             }
+            break
       }
       $easitWebRequestParams = @{
             Uri = "$url"
