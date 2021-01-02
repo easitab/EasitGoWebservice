@@ -27,7 +27,7 @@ foreach ($script in $allScripts) {
     if (Test-Path -Path "$docsVersionRoot/${commandName}.md") {
         Write-Output "Found $docsVersionRoot/${commandName}.md"
         try {
-            Update-MarkdownHelp -Path "$docsVersionRoot/${commandName}.md" -AlphabeticParamsOrder -ErrorAction Stop
+            Update-MarkdownHelp -Path "$docsVersionRoot/${commandName}.md" -AlphabeticParamsOrder -UpdateInputOutput -ErrorAction Stop
         } catch {
             Write-Error $_
             break
