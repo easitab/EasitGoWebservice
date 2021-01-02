@@ -16,11 +16,11 @@ function Invoke-EasitWebRequest {
         [Parameter()]
         [Switch] $UseBasicParsing
     )
-    
+
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
+
     process {
         Write-Verbose "Creating header for web request"
         try {

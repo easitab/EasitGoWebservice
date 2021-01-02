@@ -32,11 +32,11 @@ function Import-GOCustomItem {
         [parameter(Mandatory = $false)]
         [switch] $dryRun
     )
-    
+
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
+
     process {
         $params = [ordered]@{}
         foreach ($property in $CustomProperties.GetEnumerator()) {
@@ -110,7 +110,7 @@ function Import-GOCustomItem {
         Write-Verbose "Returning converted response"
         return $returnObject
     }
-    
+
     end {
         Write-Verbose "$($MyInvocation.MyCommand) completed"
     }
