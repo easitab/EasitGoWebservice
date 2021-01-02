@@ -4,6 +4,9 @@ on:
   push:
     paths:
     - 'docs/v2/**'
+    branches:
+    - 'development'
+    - 'release*/2*'
 
 jobs:
   buildHelp:
