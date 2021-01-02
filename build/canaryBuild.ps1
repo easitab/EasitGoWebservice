@@ -1,17 +1,24 @@
 # Runtime variables
 $projectRoot = Split-Path -Path $PSScriptRoot -Parent
 $moduleName = Split-Path -Path $projectRoot -Leaf
-$sourceRoot = Join-Path -Path "$projectRoot" -ChildPath 'source'
-$moduleRoot = Join-Path -Path "$projectRoot" -ChildPath "module"
-$canaryModuleRoot = Join-Path -Path "$moduleRoot" -ChildPath "canaryBuild"
-$modulePath = Join-Path -Path "$canaryModuleRoot" -ChildPath "${moduleName}.psm1"
+$sourceRoot = Join-Path -Path $projectRoot -ChildPath 'source'
+$moduleRoot = Join-Path -Path $projectRoot -ChildPath "module"
+$canaryModuleRoot = Join-Path -Path $moduleRoot -ChildPath "canaryBuild"
+$modulePath = Join-Path -Path $canaryModuleRoot -ChildPath "${moduleName}.psm1"
+$manifestPath = Join-Path -Path $canaryModuleRoot -ChildPath "${moduleName}.psd1"
 # Runtime variables
 Set-Location -Path $projectRoot
 if (Test-Path -Path $modulePath) {
     Remove-Item -Path "$modulePath" -Force
 }
-if (Test-Path -Path "$canaryModuleRoot/${moduleName}.psd1") {
-    Remove-Item -Path "$canaryModuleRoot/${moduleName}.psd1" -Force
+if (!(Test-Path $moduleRoot)) {
+    New-Item -Path $projectRoot -Name "module" -ItemType "directory"
+}
+if (!(Test-Path -Path $canaryModuleRoot)) {
+    New-Item -Path $moduleRoot -Name "canaryBuild" -ItemType "directory"
+}
+if (Test-Path -Path $manifestPath) {
+    Remove-Item -Path $manifestPath -Force
 }
 Write-Output "New module start"
 New-Module -Name "$moduleName" -ScriptBlock {

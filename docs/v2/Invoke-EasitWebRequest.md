@@ -25,6 +25,7 @@ This cmdlet performs the web request to Easit BPS / Easit GO. It uses Invoke-Web
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> $easitWebRequestParams = @{
             Uri = "$url"
