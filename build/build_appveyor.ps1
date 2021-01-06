@@ -27,14 +27,19 @@ New-Module -Name "$env:moduleName" -ScriptBlock {
         }
     }
 } | Out-Null
+
 $moduleFilePath = Join-Path -Path "$env:moduleRoot" -ChildPath "${env:moduleName}.psm1"
+
 if (Test-Path -Path "$moduleFilePath") {
     Write-Output "Check for moduleFilePath, OK!"
 }
+
 else {
     throw "Unable to find $moduleFilePath"
 }
+
 $manifestFilePath = Join-Path -Path "$env:moduleRoot" -ChildPath "${env:moduleName}.psd1"
+
 $manifest = @{
     Path              = "$manifestFilePath"
     RootModule        = "$env:moduleName.psm1"
@@ -48,7 +53,9 @@ $manifest = @{
     PowerShellVersion = '5.1'
     Copyright         = "(c) 2020 $env:companyName. All rights reserved."
 }
+
 New-ModuleManifest @manifest | Out-Null
+
 if (Test-Path -Path "$manifestFilePath") {
     Write-Output "Check for manifestFilePath, OK!"
 } else {
@@ -64,6 +71,6 @@ Invoke-Pester
 
 if (Test-ModuleManifest -Path "$manifestFilePath") {
     $moduleRootPath = Resolve-Path "$env:moduleRoot"
-    Publish-Module -Path "$moduleRootPath" -NuGetApiKey "$env:galleryPublishingKey"
+    #Publish-Module -Path "$moduleRootPath" -NuGetApiKey "$env:galleryPublishingKey"
     Write-Output "Module published!"
 }
