@@ -595,6 +595,17 @@ Get-GOItems @getGoItemsParams -ColumnFilter "Status,IN,Registrerad", "Prioritet,
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
+      <command:example>
+        <maml:title>-------------------------- EXAMPLE 5 --------------------------</maml:title>
+        <dev:code>$getGoItemsParams = @{
+      view = 'RequestIncidents'
+      sortOrder = 'Ascending'
+}
+Get-GOItems @getGoItemsParams -ColumnFilter "Status,IN,Registrerad", "Prioritet,IN,5"</dev:code>
+        <dev:remarks>
+          <maml:para></maml:para>
+        </dev:remarks>
+      </command:example>
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
