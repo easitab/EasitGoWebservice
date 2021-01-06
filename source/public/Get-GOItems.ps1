@@ -28,8 +28,8 @@ function Get-GOItems {
             [string[]] $ColumnFilter,
 
             [parameter(Mandatory = $false)]
-            [Alias("configfile",'cf')]
-            [string] $ConfigurationFile,
+            [Alias('configdir')]
+            [string] $ConfigurationDirectory,
 
             [parameter(Mandatory = $false)]
             [switch] $dryRun,
