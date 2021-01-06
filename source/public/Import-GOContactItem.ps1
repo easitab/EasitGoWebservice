@@ -6,7 +6,7 @@ function Import-GOContactItem {
             [Alias("uri")]
             [string] $url,
 
-            [parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true)]
+            [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
             [ValidateNotNullOrEmpty()]
             [Alias("api")]
             [string] $apikey,
