@@ -18,7 +18,7 @@ function Import-GOCustomItem {
 
         [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias('configdir')]
-        [string] $ConfigurationDirectory,
+        [string] $ConfigurationDirectory = $Home,
 
         [parameter(Mandatory = $true, ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
         [hashtable] $CustomProperties,
