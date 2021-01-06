@@ -4,6 +4,8 @@ pull_requests:
 branches:
   only:
   - /v\d*\.\d*\.\d*/
+  - /release\/.*/
+  - /release\/v\d*\.\d*\.\d*/
 skip_non_tags: true
 skip_branch_with_pr: true
 build_script:
