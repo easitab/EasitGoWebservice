@@ -1,4 +1,4 @@
-version: 1.2.{build}
+version: 1.69.{build}
 skip_branch_with_pr: true
 build_script:
 - ps: "New-Module -Name \"$env:moduleName\" -ScriptBlock {\n    $modulePath = \"$env:resourceRoot\\$env:moduleName\\$env:moduleName.psm1\"\n    $scripts = Get-ChildItem -Path \"$env:resourceRoot\" -Filter \"*.ps1\"\n    if (!(Test-Path -Path $modulePath)) {\n        if (!(Test-Path -Path \"$env:resourceRoot\\$env:moduleName\")) {\n            New-Item -Path \"$env:resourceRoot\" -Name \"$env:moduleName\" -ItemType \"directory\" | Out-Null\n            Write-Host \"Created $env:resourceRoot\\$env:moduleName\"\n        }\n        $newModuleFile = New-Item -Path \"$env:resourceRoot\\$env:moduleName\" -Name \"$env:moduleName.psm1\" -ItemType \"file\"\n        Write-Host \"Created $newModuleFile\"\n    }\n    foreach ($script in $scripts) {\n        $exportFunction = \"Export-ModuleMember -Function $($script.BaseName)\"\n        $scriptName = \"$($script.Name)\"\n        $scriptContent = Get-Content -Path \"$env:resourceRoot\\$scriptName\" -Raw\n        if (Test-Path -Path $modulePath) {\n            Add-Content -Path $modulePath -Value $scriptContent\n            if (!($exportFunction -eq 'New-XMLforEasit')) {\n                Add-Content -Path $modulePath -Value $exportFunction\n            }\n        }\n    }\n}\n\n$manifest = @{\n    Path              = \"$env:resourceRoot\\$env:moduleName\\$env:moduleName.psd1\" \n    RootModule        = \"$env:moduleName.psm1\" \n    CompanyName       = \"$env:companyName\"\n    Author            = \"$env:moduleAuthor\" \n    ModuleVersion     = \"$env:APPVEYOR_BUILD_VERSION\"\n    HelpInfoUri       = \"$env:helpInfoUri\"\n    Description       = 'Description to be used with Easit BPS & Easit GO webservice API'\n    PowerShellVersion = '5.1'\n    Copyright         = \"(c) 2019 $env:companyName. All rights reserved.\"\n}\nNew-ModuleManifest @manifest | Out-Null"
@@ -13,5 +13,5 @@ on_success:
 on_finish:
 - ps: >-
     if ($newManifestTest) {
-        Publish-Module -Path "$env:resourceRoot\$env:moduleName\" -NuGetApiKey "$env:galleryPublishingKey"
+        #Publish-Module -Path "$env:resourceRoot\$env:moduleName\" -NuGetApiKey "$env:galleryPublishingKey"
     }
