@@ -18,7 +18,7 @@ function Import-GOOrganizationItem {
 
             [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
             [Alias('configdir')]
-            [string] $ConfigurationDirectory,
+            [string] $ConfigurationDirectory = $Home,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
             [string] $Country,
