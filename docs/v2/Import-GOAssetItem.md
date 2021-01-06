@@ -79,6 +79,17 @@ $importEasitItem = @{
 Import-GOAssetItem @importEasitItem -ID 156 -Status 'Inactive'
 ```
 
+### EXAMPLE 5
+
+```powershell
+$importEasitItem = @{
+    ihi = "$identifier"
+}
+Import-GOAssetItem @importEasitItem -ID 156 -Status 'Inactive'
+```
+
+In this example we have a configuration file located in our users home directory with the url and apikey.
+
 ## PARAMETERS
 
 ### -ActivityDebit
@@ -106,7 +117,7 @@ Type: String
 Parameter Sets: (All)
 Aliases: api
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
