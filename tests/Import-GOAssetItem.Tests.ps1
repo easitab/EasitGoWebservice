@@ -13,10 +13,13 @@ BeforeAll {
     }
 }
 Describe 'Import-GOAssetItem' {
-    It 'should demand an api key' {
-        Get-Command "$commandName" | Should -HaveParameter apikey -Mandatory
+    It 'should have a parameter named apikey' {
+        Get-Command "$commandName" | Should -HaveParameter apikey
     }
-    It 'should have a parameter named url with a default value' {
-        Get-Command "$commandName" | Should -HaveParameter url -DefaultValue 'http://localhost/webservice/'
+    It 'should have a parameter named url' {
+        Get-Command "$commandName" | Should -HaveParameter url
+    }
+    It 'should have a parameter named ImportHandlerIdentifier with a default value' {
+        Get-Command "$commandName" | Should -HaveParameter ImportHandlerIdentifier -DefaultValue 'CreateAssetGeneral'
     }
 }
