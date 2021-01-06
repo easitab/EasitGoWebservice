@@ -4,11 +4,11 @@ function Get-ConfigurationFile {
         [Parameter(Mandatory)]
         [string] $Path
     )
-    
+
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
+
     process {
         $configFilePath = Join-Path "$Path" -ChildPath 'easitWS.properties'
         if (Test-Path $configFilePath) {
@@ -31,7 +31,7 @@ function Get-ConfigurationFile {
         }
         return $easitWSConfig
     }
-    
+
     end {
         Write-Verbose "$($MyInvocation.MyCommand) completed"
     }

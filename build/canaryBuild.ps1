@@ -36,7 +36,7 @@ New-Module -Name "$moduleName" -ScriptBlock {
     foreach ($script in $allScripts) {
         $exportFunction = "Export-ModuleMember -Function $($script.BaseName)"
         $scriptContent = Get-Content -Path "$($script.FullName)" -Raw
-        if (Test-Path -Path $modulePath) {    
+        if (Test-Path -Path $modulePath) {
             try {
                 Add-Content -Path $modulePath -Value $scriptContent -ErrorAction Stop
             } catch {
@@ -49,8 +49,8 @@ New-Module -Name "$moduleName" -ScriptBlock {
 Write-Output "New module end"
 $projectUriRoot = 'https://github.com/easitab/EasitGoWebservice'
 $manifest = @{
-    Path              = "$canaryModuleRoot/${moduleName}.psd1" 
-    RootModule        = "${moduleName}.psm1" 
+    Path              = "$canaryModuleRoot/${moduleName}.psd1"
+    RootModule        = "${moduleName}.psm1"
     CompanyName       = "Easit AB"
     Author            = "Anders Thyrsson"
     ModuleVersion     = "0.0.1"

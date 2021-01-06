@@ -25,7 +25,7 @@ New-Module -Name "$tempModuleFileName" -ScriptBlock {
     foreach ($script in $allScripts) {
         $exportFunction = "Export-ModuleMember -Function $($script.BaseName)"
         $scriptContent = Get-Content -Path "$($script.FullName)" -Raw
-        if (Test-Path -Path $tempModulePath) {    
+        if (Test-Path -Path $tempModulePath) {
             try {
                 Add-Content -Path $tempModuleFile -Value $scriptContent -ErrorAction Stop
             } catch {
@@ -44,8 +44,8 @@ New-Module -Name "$tempModuleFileName" -ScriptBlock {
 Write-Output "New module end"
 $projectUriRoot = 'https://github.com/easitab/EasitGoWebservice'
 $manifest = @{
-    Path              = "$tempModuleRoot/${tempModuleFileName}.psd1" 
-    RootModule        = "$tempModuleRoot/${tempModuleFileName}.psm1" 
+    Path              = "$tempModuleRoot/${tempModuleFileName}.psd1"
+    RootModule        = "$tempModuleRoot/${tempModuleFileName}.psm1"
     CompanyName       = "Easit AB"
     Author            = "Anders Thyrsson"
     ModuleVersion     = "0.0.1"
