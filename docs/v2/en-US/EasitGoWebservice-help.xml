@@ -3494,7 +3494,7 @@ Import-GOContactItem @importEasitItem -ID 156 -Inactive 'false' -Responsible_Man
         <dev:code>PS C:\&gt; $CustomProperties = @{'ID' = 12,'Name' = 'OurFirstContract'}
 PS C:\&gt; Import-GOContactItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateCustomItem' -CustomProperties $CustomProperties</dev:code>
         <dev:remarks>
-          <maml:para>In this exampel we use the importhandler CreateCustomItem to update a contract with the name OurFirstContract .</maml:para>
+          <maml:para></maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
@@ -3506,7 +3506,15 @@ PS C:\&gt; Import-GOContactItem -url 'http://localhost/webservice/' -apikey 'a8d
 PS C:\&gt; $CustomProperties = @{'Name' = 'ACustomProject','Status' = 'Ongoing'}
 PS C:\&gt; Import-GOContactItem @importEasitItem -ImportHandlerIdentifier 'CreateCustomItem' -CustomProperties $CustomProperties</dev:code>
         <dev:remarks>
-          <maml:para>In this exampel we use the importhandler CreateProject to create a project with status Ongoing.</maml:para>
+          <maml:para></maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; $CustomProperties = @{'Name' = 'ACustomProject','Status' = 'Ongoing'}
+PS C:\&gt; Import-GOContactItem -ImportHandlerIdentifier 'CreateCustomItem' -CustomProperties $CustomProperties</dev:code>
+        <dev:remarks>
+          <maml:para></maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
