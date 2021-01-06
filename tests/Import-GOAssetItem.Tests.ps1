@@ -19,6 +19,9 @@ Describe 'Import-GOAssetItem' {
     It 'should have a parameter named url' {
         Get-Command "$commandName" | Should -HaveParameter url
     }
+    It 'should have a parameter named ConfigurationDirectory' {
+        Get-Command "$commandName" | Should -HaveParameter ConfigurationDirectory
+    }
     It 'should have a parameter named ImportHandlerIdentifier with a default value' {
         Get-Command "$commandName" | Should -HaveParameter ImportHandlerIdentifier -DefaultValue 'CreateAssetGeneral'
     }
