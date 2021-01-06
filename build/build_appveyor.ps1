@@ -14,30 +14,30 @@ New-Module -Name "$env:moduleName" -ScriptBlock {
         if (Test-Path -Path $modulePath) {
             Add-Content -Path $modulePath -Value $scriptContent
         } else {
-            Write-Output "Unable to find modulePath at $modulePath" -ForegroundColor Red
+            Write-Output "Unable to find modulePath at $modulePath"
         }
     }
     foreach ($publicScript in $pubScripts) {
         $scriptContent = Get-Content -Path "$($publicScript.FullName)" -Raw
-        if (Test-Path -Path $modulePath) {   
-            Add-Content -Path $modulePath -Value $scriptContent                     
+        if (Test-Path -Path $modulePath) {
+            Add-Content -Path $modulePath -Value $scriptContent
             Add-Content -Path $modulePath -Value "Export-ModuleMember -Function $($publicScript.BaseName)"
         } else {
-            Write-Output "Unable to find modulePath at $modulePath" -ForegroundColor Red
+            Write-Output "Unable to find modulePath at $modulePath"
         }
     }
 } | Out-Null
 $moduleFilePath = Join-Path -Path "$env:moduleRoot" -ChildPath "${env:moduleName}.psm1"
 if (Test-Path -Path "$moduleFilePath") {
-    Write-Host "Check for moduleFilePath, OK!" -ForegroundColor Green
+    Write-Output "Check for moduleFilePath, OK!"
 }
 else {
     throw "Unable to find $moduleFilePath"
 }
 $manifestFilePath = Join-Path -Path "$env:moduleRoot" -ChildPath "${env:moduleName}.psd1"
 $manifest = @{
-    Path              = "$manifestFilePath" 
-    RootModule        = "$env:moduleName.psm1" 
+    Path              = "$manifestFilePath"
+    RootModule        = "$env:moduleName.psm1"
     CompanyName       = "$env:companyName"
     Author            = "$env:moduleAuthor"
     ModuleVersion     = "$env:APPVEYOR_BUILD_VERSION"
@@ -50,7 +50,7 @@ $manifest = @{
 }
 New-ModuleManifest @manifest | Out-Null
 if (Test-Path -Path "$manifestFilePath") {
-    Write-Host "Check for manifestFilePath, OK!" -ForegroundColor Green
+    Write-Output "Check for manifestFilePath, OK!"
 } else {
     throw "Unable to find $manifestFilePath"
 }
@@ -65,5 +65,5 @@ Invoke-Pester
 if (Test-ModuleManifest -Path "$manifestFilePath") {
     $moduleRootPath = Resolve-Path "$env:moduleRoot"
     Publish-Module -Path "$moduleRootPath" -NuGetApiKey "$env:galleryPublishingKey"
-    Write-Host "Module published!" -ForegroundColor Green
+    Write-Output "Module published!"
 }
