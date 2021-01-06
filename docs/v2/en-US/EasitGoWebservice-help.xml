@@ -3239,6 +3239,16 @@ Import-GOContactItem @importEasitItem -ID 156 -Inactive 'false' -Responsible_Man
           <maml:para></maml:para>
         </dev:remarks>
       </command:example>
+      <command:example>
+        <maml:title>-------------------------- EXAMPLE 5 --------------------------</maml:title>
+        <dev:code>$importEasitItem = @{
+    ImportHandlerIdentifier = 'CreateContact'
+}
+Import-GOContactItem @importEasitItem -ID 156 -Inactive 'false' -Responsible_Manager 'true'</dev:code>
+        <dev:remarks>
+          <maml:para>In this example we have a configuration file located in our users home directory with the url and apikey.</maml:para>
+        </dev:remarks>
+      </command:example>
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
