@@ -645,7 +645,7 @@ Get-GOItems @getGoItemsParams -ColumnFilter "Status,IN,Registrerad", "Prioritet,
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="api">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="api">
           <maml:name>apikey</maml:name>
           <maml:Description>
             <maml:para>API-key for Easit BPS / Easit GO.</maml:para>
@@ -1485,7 +1485,7 @@ Get-GOItems @getGoItemsParams -ColumnFilter "Status,IN,Registrerad", "Prioritet,
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="api">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName)" position="named" aliases="api">
         <maml:name>apikey</maml:name>
         <maml:Description>
           <maml:para>API-key for Easit BPS / Easit GO.</maml:para>
@@ -2375,6 +2375,16 @@ Import-GOAssetItem @importEasitItem</dev:code>
 Import-GOAssetItem @importEasitItem -ID 156 -Status 'Inactive'</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- EXAMPLE 5 --------------------------</maml:title>
+        <dev:code>$importEasitItem = @{
+    ihi = "$identifier"
+}
+Import-GOAssetItem @importEasitItem -ID 156 -Status 'Inactive'</dev:code>
+        <dev:remarks>
+          <maml:para>In this example we have a configuration file located in our users home directory with the url and apikey.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
