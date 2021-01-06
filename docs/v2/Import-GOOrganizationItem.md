@@ -79,6 +79,18 @@ $importEasitItem = @{
 Import-GOOrganizationItem @importEasitItem -Status 'Inactive'
 ```
 
+### EXAMPLE 5
+
+```powershell
+$importEasitItem = @{
+    ImportHandlerIdentifier = 'CreateOrganizationSupplier'
+    ID = '156'
+}
+Import-GOOrganizationItem @importEasitItem -Status 'Inactive'
+```
+
+In this example we have a configuration file located in our users home directory with the url and apikey.
+
 ## PARAMETERS
 
 ### -AccountManager
