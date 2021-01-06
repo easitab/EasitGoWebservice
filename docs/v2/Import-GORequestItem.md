@@ -45,7 +45,7 @@ Import-GORequestItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa7
 ```powershell
 $url = 'http://localhost/webservice/'
 $apikey = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
-Import-GORequestItem -url "$url" -apikey "$apikey" -ImportHandlerIdentifier 'CreateRequestIncident' -Subject 'Testing1' -Description 'Testing1' -ContactID '5' -Status 'Registrerad' -Verbose -ShowDetails
+Import-GORequestItem -url "$url" -apikey "$apikey" -ImportHandlerIdentifier 'CreateRequestIncident' -Subject 'Testing1' -Description 'Testing1' -ContactID '5' -Status 'Registrerad'
 ```
 
 ### EXAMPLE 3
@@ -67,6 +67,18 @@ Import-GORequestItem @importEasitItem
 $importEasitItem = @{
     url = 'http://localhost/webservice/'
     apikey = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
+    ImportHandlerIdentifier = 'CreateRequestProblem'
+    ID = '156'
+}
+Import-GORequestItem @importEasitItem -Description 'Updating description for request 156'
+```
+
+### EXAMPLE 5
+
+In this example we have a configuration file located in our users home directory with the url and apikey.
+
+```powershell
+$importEasitItem = @{
     ImportHandlerIdentifier = 'CreateRequestProblem'
     ID = '156'
 }
