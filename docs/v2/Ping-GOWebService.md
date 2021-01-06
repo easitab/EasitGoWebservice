@@ -29,6 +29,14 @@ Can be used to check if service is available and correct credentials have been p
 Ping-GOWebService -url 'http://localhost/test/webservice/' -apikey '4745f62b7371c2aa5cb80be8cd56e6372f495f6g8c60494ek7f231548bb2a375'
 ```
 
+### EXAMPLE 2
+
+In this example we have a configuration file located in our users home directory with the url and apikey.
+
+```powershell
+Ping-GOWebService
+```
+
 ## PARAMETERS
 
 ### -apikey
