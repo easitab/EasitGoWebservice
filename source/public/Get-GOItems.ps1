@@ -2,9 +2,9 @@ function Get-GOItems {
       [CmdletBinding()]
       param (
             [parameter(Mandatory = $false)]
-            [string] $url = "http://localhost/webservice/",
+            [string] $url,
 
-            [parameter(Mandatory = $true)]
+            [parameter(Mandatory = $false)]
             [Alias("api")]
             [string] $apikey,
 
@@ -28,6 +28,10 @@ function Get-GOItems {
             [string[]] $ColumnFilter,
 
             [parameter(Mandatory = $false)]
+            [Alias('configdir')]
+            [string] $ConfigurationDirectory,
+
+            [parameter(Mandatory = $false)]
             [switch] $dryRun,
 
             [parameter(Mandatory = $false)]
@@ -36,7 +40,40 @@ function Get-GOItems {
             [parameter(Mandatory = $false)]
             [switch] $SSO
       )
-
+      if (!($url) -or !($apikey)) {
+            Write-Verbose "url or apikey NOT provided, checking for local configuration file"
+            if ($ConfigurationFile) {
+                  $localConfigPath = $ConfigurationFile
+            } else {
+                  $localConfigPath = $Home
+            }
+            try {
+                  $wsConfig = Get-ConfigurationFile -Path $localConfigPath
+            } catch {
+                  throw $_
+            }
+            if ($wsConfig) {
+                  if (!($url)) {
+                        $url = $wsConfig.url
+                  } else {
+                        Write-Verbose "url provided via cmdlet parameter, using that"
+                  }
+                  if (!($apikey)) {
+                        if ($wsConfig.apikey.Length -gt 0) {
+                              $apikey = $wsConfig.apikey
+                              Write-Verbose "Using apikey from local configuration file"
+                        } else {
+                              Write-Warning "You need to provide an apikey, either via cmdlet parameters OR local configuration file."
+                              break
+                        }
+                  } else {
+                        Write-Verbose "apikey provided via cmdlet parameter, using that"
+                  }
+            } else {
+                  Write-Warning "You need to provide an url and apikey, either via cmdlet parameters OR local configuration file. If url is not provided it defaults to http://localhost/webservice/"
+                  break
+            }
+      }
       $validComparators = 'EQUALS', 'NOT_EQUALS', 'IN', 'NOT_IN', 'GREATER_THAN', 'GREATER_THAN_OR_EQUALS', 'LESS_THAN', 'LESS_THAN_OR_EQUALS', 'LIKE', 'NOT_LIKE'
       ## Solution provided by Dennis Zakariasson <dennis.zakariasson@regionuppsala.se> thru issue 6
       function Test-ColumnFilter {

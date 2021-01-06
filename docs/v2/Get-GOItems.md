@@ -65,6 +65,18 @@ $getGoItemsParams = @{
 Get-GOItems @getGoItemsParams -ColumnFilter "Status,IN,Registrerad", "Prioritet,IN,5"
 ```
 
+### EXAMPLE 5
+
+In this example we have a configuration file located in our users home directory with the url and apikey.
+
+```powershell
+$getGoItemsParams = @{
+      view = 'RequestIncidents'
+      sortOrder = 'Ascending'
+}
+Get-GOItems @getGoItemsParams -ColumnFilter "Status,IN,Registrerad", "Prioritet,IN,5"
+```
+
 ## PARAMETERS
 
 ### -apikey
