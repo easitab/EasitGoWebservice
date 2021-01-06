@@ -1,4 +1,4 @@
-name-template: 'Release 2.0.0' #$RESOLVED_VERSION'
+name-template: '$NEXT_MINOR_VERSION' #$RESOLVED_VERSION'
 tag-template: '$RESOLVED_VERSION'
 include-labels:
   - 'feature'
