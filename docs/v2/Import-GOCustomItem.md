@@ -46,6 +46,15 @@ PS C:\> Import-GOContactItem @importEasitItem -ImportHandlerIdentifier 'CreateCu
 
 In this exampel we use the importhandler *CreateProject* to create a project with status Ongoing.
 
+### Example 3
+
+```powershell
+PS C:\> $CustomProperties = @{'Name' = 'ACustomProject','Status' = 'Ongoing'}
+PS C:\> Import-GOContactItem -ImportHandlerIdentifier 'CreateCustomItem' -CustomProperties $CustomProperties
+```
+
+In this example we have a configuration file located in our users home directory with the url and apikey.
+
 ## PARAMETERS
 
 ### -apikey
