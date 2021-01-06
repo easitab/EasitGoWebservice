@@ -5735,7 +5735,7 @@ Import-GOOrganizationItem @importEasitItem -Status 'Inactive'</dev:code>
         <maml:title>-------------------------- EXAMPLE 2 --------------------------</maml:title>
         <dev:code>$url = 'http://localhost/webservice/'
 $apikey = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
-Import-GORequestItem -url "$url" -apikey "$apikey" -ImportHandlerIdentifier 'CreateRequestIncident' -Subject 'Testing1' -Description 'Testing1' -ContactID '5' -Status 'Registrerad' -Verbose -ShowDetails</dev:code>
+Import-GORequestItem -url "$url" -apikey "$apikey" -ImportHandlerIdentifier 'CreateRequestIncident' -Subject 'Testing1' -Description 'Testing1' -ContactID '5' -Status 'Registrerad'</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
@@ -5759,6 +5759,17 @@ Import-GORequestItem @importEasitItem</dev:code>
         <dev:code>$importEasitItem = @{
     url = 'http://localhost/webservice/'
     apikey = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
+    ImportHandlerIdentifier = 'CreateRequestProblem'
+    ID = '156'
+}
+Import-GORequestItem @importEasitItem -Description 'Updating description for request 156'</dev:code>
+        <dev:remarks>
+          <maml:para></maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- EXAMPLE 5 --------------------------</maml:title>
+        <dev:code>$importEasitItem = @{
     ImportHandlerIdentifier = 'CreateRequestProblem'
     ID = '156'
 }
