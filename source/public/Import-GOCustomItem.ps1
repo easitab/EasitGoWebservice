@@ -6,12 +6,12 @@ function Import-GOCustomItem {
         [Alias("uri")]
         [string] $url,
 
-        [parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true)]
+        [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
         [ValidateNotNullOrEmpty()]
         [Alias("api")]
         [string] $apikey,
 
-        [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
+        [parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true)]
         [ValidateNotNullOrEmpty()]
         [Alias("ihi")]
         [string] $ImportHandlerIdentifier,

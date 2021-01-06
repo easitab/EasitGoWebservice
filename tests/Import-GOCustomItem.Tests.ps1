@@ -19,13 +19,22 @@ Describe 'Import-GOCustomItem' {
     It 'should have a parameter named url' {
         Get-Command "$commandName" | Should -HaveParameter url
     }
+    It 'should have a parameter named ConfigurationDirectory' {
+        Get-Command "$commandName" | Should -HaveParameter ConfigurationDirectory
+    }
     It 'should have a parameter named ImportHandlerIdentifier' {
         Get-Command "$commandName" | Should -HaveParameter ImportHandlerIdentifier
+    }
+    It 'should demand a value for ImportHandlerIdentifier' {
+        Get-Command "$commandName" | Should -HaveParameter ImportHandlerIdentifier -Mandatory
     }
     It 'should have a parameter named CustomProperties' {
         Get-Command "$commandName" | Should -HaveParameter CustomProperties
     }
     It 'should demand a value for CustomProperties' {
         Get-Command "$commandName" | Should -HaveParameter CustomProperties -Mandatory
+    }
+    It 'input type for CustomProperties should be hashtable' {
+        Get-Command "$commandName" | Should -HaveParameter CustomProperties -Type 'hashtable'
     }
 }

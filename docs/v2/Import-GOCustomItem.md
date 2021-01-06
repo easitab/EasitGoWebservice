@@ -26,14 +26,16 @@ Create and update any item in Easit BPS / Easit GO. This cmdlet can be used with
 
 ### Example 1
 
+In this exampel we use the importhandler *CreateCustomItem* to update a contract with the name *OurFirstContract*.
+
 ```powershell
 PS C:\> $CustomProperties = @{'ID' = 12,'Name' = 'OurFirstContract'}
 PS C:\> Import-GOContactItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateCustomItem' -CustomProperties $CustomProperties
 ```
 
-In this exampel we use the importhandler *CreateCustomItem* to update a contract with the name *OurFirstContract*.
-
 ### Example 2
+
+In this exampel we use the importhandler *CreateProject* to create a project with status Ongoing.
 
 ```powershell
 PS C:\> $importEasitItem = @{
@@ -44,16 +46,14 @@ PS C:\> $CustomProperties = @{'Name' = 'ACustomProject','Status' = 'Ongoing'}
 PS C:\> Import-GOContactItem @importEasitItem -ImportHandlerIdentifier 'CreateCustomItem' -CustomProperties $CustomProperties
 ```
 
-In this exampel we use the importhandler *CreateProject* to create a project with status Ongoing.
-
 ### Example 3
+
+In this example we have a configuration file located in our users home directory with the url and apikey.
 
 ```powershell
 PS C:\> $CustomProperties = @{'Name' = 'ACustomProject','Status' = 'Ongoing'}
 PS C:\> Import-GOContactItem -ImportHandlerIdentifier 'CreateCustomItem' -CustomProperties $CustomProperties
 ```
-
-In this example we have a configuration file located in our users home directory with the url and apikey.
 
 ## PARAMETERS
 
