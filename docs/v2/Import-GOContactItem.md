@@ -70,6 +70,17 @@ $importEasitItem = @{
 Import-GOContactItem @importEasitItem -ID 156 -Inactive 'false' -Responsible_Manager 'true'
 ```
 
+### EXAMPLE 5
+
+```powershell
+$importEasitItem = @{
+    ImportHandlerIdentifier = 'CreateContact'
+}
+Import-GOContactItem @importEasitItem -ID 156 -Inactive 'false' -Responsible_Manager 'true'
+```
+
+In this example we have a configuration file located in our users home directory with the url and apikey.
+
 ## PARAMETERS
 
 ### -apikey
