@@ -13,8 +13,8 @@ BeforeAll {
     }
 }
 Describe 'Get-GOItems' {
-    It 'should demand an api key' {
-        Get-Command "$commandName" | Should -HaveParameter apikey -Mandatory
+    It 'should have a parameter named apikey' {
+        Get-Command "$commandName" | Should -HaveParameter apikey
     }
     It 'should demand a importViewIdentifier or "view"' {
         Get-Command "$commandName" | Should -HaveParameter importViewIdentifier -Mandatory
@@ -28,7 +28,7 @@ Describe 'Get-GOItems' {
     It 'should have a parameter named viewPageNumber with a default value' {
         Get-Command "$commandName" | Should -HaveParameter viewPageNumber -DefaultValue 1
     }
-    It 'should have a parameter named url with a default value' {
-        Get-Command "$commandName" | Should -HaveParameter url -DefaultValue 'http://localhost/webservice/'
+    It 'should have a parameter named url' {
+        Get-Command "$commandName" | Should -HaveParameter url
     }
 }
