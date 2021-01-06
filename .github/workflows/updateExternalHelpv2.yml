@@ -5,8 +5,7 @@ on:
     paths:
     - 'docs/v2/**'
     branches:
-    - 'development'
-    - 'release*/2*'
+    - 'release/v2*'
 
 jobs:
   buildHelp:
