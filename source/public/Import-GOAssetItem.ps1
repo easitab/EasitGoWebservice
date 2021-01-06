@@ -18,7 +18,7 @@ function Import-GOAssetItem {
 
             [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
             [Alias("configdir")]
-            [string] $ConfigurationDirectory,
+            [string] $ConfigurationDirectory = $Home,
 
             [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [int] $ID,
