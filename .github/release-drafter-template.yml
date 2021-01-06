@@ -1,4 +1,4 @@
-name-template: '$NEXT_MINOR_VERSION' #$RESOLVED_VERSION'
+name-template: '$NEXT_PATCH_VERSION' #$RESOLVED_VERSION'
 tag-template: '$RESOLVED_VERSION'
 include-labels:
   - 'feature'
