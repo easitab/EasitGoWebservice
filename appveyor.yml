@@ -80,6 +80,6 @@ on_finish:
 - ps: >-
     if (Test-ModuleManifest -Path "$manifestFilePath") {
         $moduleRootPath = Resolve-Path "$env:moduleRoot"
-        #Publish-Module -Path "$moduleRootPath" -NuGetApiKey "$env:galleryPublishingKey"
+        Publish-Module -Path "$moduleRootPath" -NuGetApiKey "$env:galleryPublishingKey"
         Write-Output "Module published!"
     }
