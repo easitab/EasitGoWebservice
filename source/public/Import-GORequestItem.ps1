@@ -18,7 +18,7 @@ function Import-GORequestItem {
 
             [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
             [Alias('configdir')]
-            [string] $ConfigurationDirectory,
+            [string] $ConfigurationDirectory = $Home,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
             [Alias('Item','ItemID')]

@@ -2,9 +2,9 @@ function Get-GOItems {
       [CmdletBinding()]
       param (
             [parameter(Mandatory = $false)]
-            [string] $url = "http://localhost/webservice/",
+            [string] $url,
 
-            [parameter(Mandatory = $true)]
+            [parameter(Mandatory = $false)]
             [Alias("api")]
             [string] $apikey,
 
@@ -28,6 +28,10 @@ function Get-GOItems {
             [string[]] $ColumnFilter,
 
             [parameter(Mandatory = $false)]
+            [Alias('configdir')]
+            [string] $ConfigurationDirectory = $Home,
+
+            [parameter(Mandatory = $false)]
             [switch] $dryRun,
 
             [parameter(Mandatory = $false)]
@@ -36,7 +40,40 @@ function Get-GOItems {
             [parameter(Mandatory = $false)]
             [switch] $SSO
       )
-
+      if (!($url) -or !($apikey)) {
+            Write-Verbose "url or apikey NOT provided, checking for local configuration file"
+            if ($ConfigurationFile) {
+                  $localConfigPath = $ConfigurationFile
+            } else {
+                  $localConfigPath = $Home
+            }
+            try {
+                  $wsConfig = Get-ConfigurationFile -Path $localConfigPath
+            } catch {
+                  throw $_
+            }
+            if ($wsConfig) {
+                  if (!($url)) {
+                        $url = $wsConfig.url
+                  } else {
+                        Write-Verbose "url provided via cmdlet parameter, using that"
+                  }
+                  if (!($apikey)) {
+                        if ($wsConfig.apikey.Length -gt 0) {
+                              $apikey = $wsConfig.apikey
+                              Write-Verbose "Using apikey from local configuration file"
+                        } else {
+                              Write-Warning "You need to provide an apikey, either via cmdlet parameters OR local configuration file."
+                              break
+                        }
+                  } else {
+                        Write-Verbose "apikey provided via cmdlet parameter, using that"
+                  }
+            } else {
+                  Write-Warning "You need to provide an url and apikey, either via cmdlet parameters OR local configuration file. If url is not provided it defaults to http://localhost/webservice/"
+                  break
+            }
+      }
       $validComparators = 'EQUALS', 'NOT_EQUALS', 'IN', 'NOT_IN', 'GREATER_THAN', 'GREATER_THAN_OR_EQUALS', 'LESS_THAN', 'LESS_THAN_OR_EQUALS', 'LIKE', 'NOT_LIKE'
       ## Solution provided by Dennis Zakariasson <dennis.zakariasson@regionuppsala.se> thru issue 6
       function Test-ColumnFilter {
@@ -129,15 +166,16 @@ function Get-GOItems {
       Write-Verbose "Returning converted response"
       $returnObject
 }
+
 function Import-GOAssetItem {
       [CmdletBinding()]
       param (
             [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
             [ValidateNotNullOrEmpty()]
             [Alias("uri")]
-            [string] $url = "http://localhost/webservice/",
+            [string] $url,
 
-            [parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true)]
+            [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
             [ValidateNotNullOrEmpty()]
             [Alias("api")]
             [string] $apikey,
@@ -146,6 +184,10 @@ function Import-GOAssetItem {
             [ValidateNotNullOrEmpty()]
             [Alias("ihi")]
             [string] $ImportHandlerIdentifier = 'CreateAssetGeneral',
+
+            [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
+            [Alias("configdir")]
+            [string] $ConfigurationDirectory = $Home,
 
             [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [int] $ID,
@@ -404,6 +446,40 @@ function Import-GOAssetItem {
             Write-Verbose "$($MyInvocation.MyCommand) initialized"
       }
       process {
+            if (!($url) -or !($apikey)) {
+                  Write-Verbose "url or apikey NOT provided, checking for local configuration file"
+                  if ($ConfigurationDirectory) {
+                        $localConfigPath = $ConfigurationDirectory
+                  } else {
+                        $localConfigPath = $Home
+                  }
+                  try {
+                        $wsConfig = Get-ConfigurationFile -Path $localConfigPath
+                  } catch {
+                        throw $_
+                  }
+                  if ($wsConfig) {
+                        if (!($url)) {
+                              $url = $wsConfig.url
+                        } else {
+                              Write-Verbose "url provided via cmdlet parameter, using that"
+                        }
+                        if (!($apikey)) {
+                              if ($wsConfig.apikey.Length -gt 0) {
+                                    $apikey = $wsConfig.apikey
+                                    Write-Verbose "Using apikey from local configuration file"
+                              } else {
+                                    Write-Warning "You need to provide an apikey, either via cmdlet parameters OR local configuration file."
+                                    break
+                              }
+                        } else {
+                              Write-Verbose "apikey provided via cmdlet parameter, using that"
+                        }
+                  } else {
+                        Write-Warning "You need to provide an url and apikey, either via cmdlet parameters OR local configuration file. If url is not provided it defaults to http://localhost/webservice/"
+                        break
+                  }
+            }
             try {
                   Write-Verbose "Collecting list of used parameters"
                   $CommandName = $PSCmdlet.MyInvocation.InvocationName
@@ -488,15 +564,16 @@ function Import-GOAssetItem {
             Write-Verbose "$($MyInvocation.MyCommand) completed"
       }
 }
+
 function Import-GOContactItem {
       [CmdletBinding()]
       param (
             [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
             [ValidateNotNullOrEmpty()]
             [Alias("uri")]
-            [string] $url = "http://localhost/webservice/",
+            [string] $url,
 
-            [parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true)]
+            [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
             [ValidateNotNullOrEmpty()]
             [Alias("api")]
             [string] $apikey,
@@ -505,6 +582,10 @@ function Import-GOContactItem {
             [ValidateNotNullOrEmpty()]
             [Alias("ihi")]
             [string] $ImportHandlerIdentifier = "CreateContact",
+
+            [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
+            [Alias('configdir')]
+            [string] $ConfigurationDirectory = $Home,
 
             [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [string] $FirstName,
@@ -598,6 +679,40 @@ function Import-GOContactItem {
             Write-Verbose "$($MyInvocation.MyCommand) initialized"
       }
       process {
+            if (!($url) -or !($apikey)) {
+                  Write-Verbose "url or apikey NOT provided, checking for local configuration file"
+                  if ($ConfigurationDirectory) {
+                        $localConfigPath = $ConfigurationDirectory
+                  } else {
+                        $localConfigPath = $Home
+                  }
+                  try {
+                        $wsConfig = Get-ConfigurationFile -Path $localConfigPath
+                  } catch {
+                        throw $_
+                  }
+                  if ($wsConfig) {
+                        if (!($url)) {
+                              $url = $wsConfig.url
+                        } else {
+                              Write-Verbose "url provided via cmdlet parameter, using that"
+                        }
+                        if (!($apikey)) {
+                              if ($wsConfig.apikey.Length -gt 0) {
+                                    $apikey = $wsConfig.apikey
+                                    Write-Verbose "Using apikey from local configuration file"
+                              } else {
+                                    Write-Warning "You need to provide an apikey, either via cmdlet parameters OR local configuration file."
+                                    break
+                              }
+                        } else {
+                              Write-Verbose "apikey provided via cmdlet parameter, using that"
+                        }
+                  } else {
+                        Write-Warning "You need to provide an url and apikey, either via cmdlet parameters OR local configuration file. If url is not provided it defaults to http://localhost/webservice/"
+                        break
+                  }
+            }
             try {
                   Write-Verbose "Collecting list of used parameters"
                   $CommandName = $PSCmdlet.MyInvocation.InvocationName
@@ -689,17 +804,21 @@ function Import-GOCustomItem {
         [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
         [ValidateNotNullOrEmpty()]
         [Alias("uri")]
-        [string] $url = "http://localhost/webservice/",
+        [string] $url,
 
-        [parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true)]
+        [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
         [ValidateNotNullOrEmpty()]
         [Alias("api")]
         [string] $apikey,
 
-        [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
+        [parameter(Mandatory = $true, ValueFromPipelineByPropertyName = $true)]
         [ValidateNotNullOrEmpty()]
         [Alias("ihi")]
         [string] $ImportHandlerIdentifier,
+
+        [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
+        [Alias('configdir')]
+        [string] $ConfigurationDirectory = $Home,
 
         [parameter(Mandatory = $true, ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
         [hashtable] $CustomProperties,
@@ -723,6 +842,40 @@ function Import-GOCustomItem {
     }
 
     process {
+        if (!($url) -or !($apikey)) {
+            Write-Verbose "url or apikey NOT provided, checking for local configuration file"
+            if ($ConfigurationDirectory) {
+                $localConfigPath = $ConfigurationDirectory
+            } else {
+                $localConfigPath = $Home
+            }
+            try {
+                $wsConfig = Get-ConfigurationFile -Path $localConfigPath
+            } catch {
+                throw $_
+            }
+            if ($wsConfig) {
+                if (!($url)) {
+                    $url = $wsConfig.url
+                } else {
+                    Write-Verbose "url provided via cmdlet parameter, using that"
+                }
+                if (!($apikey)) {
+                    if ($wsConfig.apikey.Length -gt 0) {
+                        $apikey = $wsConfig.apikey
+                        Write-Verbose "Using apikey from local configuration file"
+                    } else {
+                        Write-Warning "You need to provide an apikey, either via cmdlet parameters OR local configuration file."
+                        break
+                    }
+                } else {
+                    Write-Verbose "apikey provided via cmdlet parameter, using that"
+                }
+            } else {
+                Write-Warning "You need to provide an url and apikey, either via cmdlet parameters OR local configuration file. If url is not provided it defaults to http://localhost/webservice/"
+                break
+            }
+        }
         $params = [ordered]@{}
         foreach ($property in $CustomProperties.GetEnumerator()) {
             try {
@@ -791,9 +944,9 @@ function Import-GOOrganizationItem {
             [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
             [ValidateNotNullOrEmpty()]
             [Alias("uri")]
-            [string] $url = "http://localhost/webservice/",
+            [string] $url,
 
-            [parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true)]
+            [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
             [ValidateNotNullOrEmpty()]
             [Alias("api")]
             [string] $apikey,
@@ -801,7 +954,11 @@ function Import-GOOrganizationItem {
             [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
             [ValidateNotNullOrEmpty()]
             [Alias("ihi")]
-            [string] $ImportHandlerIdentifier = "CreateOrganization_Internal",
+            [string] $ImportHandlerIdentifier = "CreateOrganization",
+
+            [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
+            [Alias('configdir')]
+            [string] $ConfigurationDirectory = $Home,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
             [string] $Country,
@@ -930,6 +1087,40 @@ function Import-GOOrganizationItem {
             Write-Verbose "$($MyInvocation.MyCommand) initialized"
       }
       process {
+            if (!($url) -or !($apikey)) {
+                  Write-Verbose "url or apikey NOT provided, checking for local configuration file"
+                  if ($ConfigurationDirectory) {
+                        $localConfigPath = $ConfigurationDirectory
+                  } else {
+                        $localConfigPath = $Home
+                  }
+                  try {
+                        $wsConfig = Get-ConfigurationFile -Path $localConfigPath
+                  } catch {
+                        throw $_
+                  }
+                  if ($wsConfig) {
+                        if (!($url)) {
+                              $url = $wsConfig.url
+                        } else {
+                              Write-Verbose "url provided via cmdlet parameter, using that"
+                        }
+                        if (!($apikey)) {
+                              if ($wsConfig.apikey.Length -gt 0) {
+                                    $apikey = $wsConfig.apikey
+                                    Write-Verbose "Using apikey from local configuration file"
+                              } else {
+                                    Write-Warning "You need to provide an apikey, either via cmdlet parameters OR local configuration file."
+                                    break
+                              }
+                        } else {
+                              Write-Verbose "apikey provided via cmdlet parameter, using that"
+                        }
+                  } else {
+                        Write-Warning "You need to provide an url and apikey, either via cmdlet parameters OR local configuration file. If url is not provided it defaults to http://localhost/webservice/"
+                        break
+                  }
+            }
             try {
                   Write-Verbose "Collecting list of used parameters.."
                   $CommandName = $PSCmdlet.MyInvocation.InvocationName
@@ -1010,15 +1201,16 @@ function Import-GOOrganizationItem {
             Write-Verbose "$($MyInvocation.MyCommand) completed"
       }
 }
+
 function Import-GORequestItem {
       [CmdletBinding()]
       param (
             [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
             [ValidateNotNullOrEmpty()]
             [Alias("uri")]
-            [string] $url = "http://localhost/webservice/",
+            [string] $url,
 
-            [parameter(Mandatory=$true,ValueFromPipelineByPropertyName=$true)]
+            [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
             [ValidateNotNullOrEmpty()]
             [Alias("api")]
             [string] $apikey,
@@ -1027,6 +1219,10 @@ function Import-GORequestItem {
             [ValidateNotNullOrEmpty()]
             [Alias('ihi')]
             [string] $ImportHandlerIdentifier = 'CreateRequest',
+
+            [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
+            [Alias('configdir')]
+            [string] $ConfigurationDirectory = $Home,
 
             [parameter(ParameterSetName='BPSAttribute',ValueFromPipelineByPropertyName=$true)]
             [Alias('Item','ItemID')]
@@ -1193,6 +1389,40 @@ function Import-GORequestItem {
             Write-Verbose "$($MyInvocation.MyCommand) initialized"
       }
       process {
+            if (!($url) -or !($apikey)) {
+                  Write-Verbose "url or apikey NOT provided, checking for local configuration file"
+                  if ($ConfigurationDirectory) {
+                        $localConfigPath = $ConfigurationDirectory
+                  } else {
+                        $localConfigPath = $Home
+                  }
+                  try {
+                        $wsConfig = Get-ConfigurationFile -Path $localConfigPath
+                  } catch {
+                        throw $_
+                  }
+                  if ($wsConfig) {
+                        if (!($url)) {
+                              $url = $wsConfig.url
+                        } else {
+                              Write-Verbose "url provided via cmdlet parameter, using that"
+                        }
+                        if (!($apikey)) {
+                              if ($wsConfig.apikey.Length -gt 0) {
+                                    $apikey = $wsConfig.apikey
+                                    Write-Verbose "Using apikey from local configuration file"
+                              } else {
+                                    Write-Warning "You need to provide an apikey, either via cmdlet parameters OR local configuration file."
+                                    break
+                              }
+                        } else {
+                              Write-Verbose "apikey provided via cmdlet parameter, using that"
+                        }
+                  } else {
+                        Write-Warning "You need to provide an url and apikey, either via cmdlet parameters OR local configuration file. If url is not provided it defaults to http://localhost/webservice/"
+                        break
+                  }
+            }
             try {
                   Write-Verbose "Collecting list of used parameters."
                   $CommandName = $PSCmdlet.MyInvocation.InvocationName
@@ -1273,15 +1503,20 @@ function Import-GORequestItem {
             Write-Verbose "$($MyInvocation.MyCommand) completed"
       }
 }
+
 function Ping-GOWebService {
       [CmdletBinding()]
       param (
             [parameter(Mandatory=$false)]
-            [string] $url = "http://localhost/webservice/",
+            [string] $url,
 
-            [parameter(Mandatory=$true)]
+            [parameter(Mandatory=$false)]
             [Alias("api")]
             [string] $apikey,
+
+            [parameter(Mandatory = $false)]
+            [Alias('configdir')]
+            [string] $ConfigurationDirectory = $Home,
 
             [parameter(Mandatory=$false)]
             [switch] $SSO,
@@ -1292,6 +1527,40 @@ function Ping-GOWebService {
             [parameter(Mandatory=$false)]
             [switch] $dryRun
       )
+      if (!($url) -or !($apikey)) {
+            Write-Verbose "url or apikey NOT provided, checking for local configuration file"
+            if ($ConfigurationDirectory) {
+                  $localConfigPath = $ConfigurationDirectory
+            } else {
+                  $localConfigPath = $Home
+            }
+            try {
+                  $wsConfig = Get-ConfigurationFile -Path $localConfigPath
+            } catch {
+                  throw $_
+            }
+            if ($wsConfig) {
+                  if (!($url)) {
+                        $url = $wsConfig.url
+                  } else {
+                        Write-Verbose "url provided via cmdlet parameter, using that"
+                  }
+                  if (!($apikey)) {
+                        if ($wsConfig.apikey.Length -gt 0) {
+                              $apikey = $wsConfig.apikey
+                              Write-Verbose "Using apikey from local configuration file"
+                        } else {
+                              Write-Warning "You need to provide an apikey, either via cmdlet parameters OR local configuration file."
+                              break
+                        }
+                  } else {
+                        Write-Verbose "apikey provided via cmdlet parameter, using that"
+                  }
+            } else {
+                  Write-Warning "You need to provide an url and apikey, either via cmdlet parameters OR local configuration file. If url is not provided it defaults to http://localhost/webservice/"
+                  break
+            }
+      }
       try {
             $payload = New-XMLforEasit -Ping
       } catch {
@@ -1336,6 +1605,7 @@ function Ping-GOWebService {
       Write-Verbose "Returning converted response"
       return $returnObject
 }
+
 function Convert-EasitXMLToPsObject {
     [CmdletBinding()]
     param (
@@ -1452,6 +1722,44 @@ function Export-PayloadToFile {
     end {
         $InformationPreference = 'SilentlyContinue'
         Write-Verbose "$($MyInvocation.MyCommand) completed."
+    }
+}
+function Get-ConfigurationFile {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory)]
+        [string] $Path
+    )
+
+    begin {
+        Write-Verbose "$($MyInvocation.MyCommand) initialized"
+    }
+
+    process {
+        $configFilePath = Join-Path "$Path" -ChildPath 'easitWS.properties'
+        if (Test-Path $configFilePath) {
+            Write-Verbose "Found local configuration file"
+            try {
+                $easitWSConfig = Get-Content -Raw -Path $configFilePath -ErrorAction Stop | ConvertFrom-Json -ErrorAction Stop
+            } catch {
+                throw $_
+            }
+            Write-Verbose "Retrieved local configuration file"
+            if ($easitWSConfig.url.Length -gt 0) {
+                Write-Verbose "Using url from local configuration file, $($easitWSConfig.url)"
+            } else {
+                Write-Verbose "Using url default, http://localhost/webservice/"
+                $easitWSConfig.url = 'http://localhost/webservice/'
+            }
+        } else {
+            Write-Warning "Unable to locate configuration file"
+            $easitWSConfig = $false
+        }
+        return $easitWSConfig
+    }
+
+    end {
+        Write-Verbose "$($MyInvocation.MyCommand) completed"
     }
 }
 function Invoke-EasitWebRequest {

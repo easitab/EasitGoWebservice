@@ -1,4 +1,4 @@
-version: 2.0.{build}
+version: 15.1.{build}
 pull_requests:
   do_not_increment_build_number: true
 branches:
@@ -80,6 +80,6 @@ on_finish:
 - ps: >-
     if (Test-ModuleManifest -Path "$manifestFilePath") {
         $moduleRootPath = Resolve-Path "$env:moduleRoot"
-        Publish-Module -Path "$moduleRootPath" -NuGetApiKey "$env:galleryPublishingKey"
+        #Publish-Module -Path "$moduleRootPath" -NuGetApiKey "$env:galleryPublishingKey"
         Write-Output "Module published!"
     }

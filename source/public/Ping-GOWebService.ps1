@@ -10,7 +10,7 @@ function Ping-GOWebService {
 
             [parameter(Mandatory = $false)]
             [Alias('configdir')]
-            [string] $ConfigurationDirectory,
+            [string] $ConfigurationDirectory = $Home,
 
             [parameter(Mandatory=$false)]
             [switch] $SSO,
