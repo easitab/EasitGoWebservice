@@ -8,6 +8,16 @@ branches:
   - /release/v\d*\.\d*\.\d*/
 skip_non_tags: true
 skip_branch_with_pr: true
+environment:
+  moduleName: EasitGoWebservice
+  companyName: Easit AB
+  resourceRoot: C:\projects\easitgowebservice
+  helpInfoUri: https://github.com/easitab/EasitGoWebservice/blob/release/v2.0.0/docs/v2/
+  moduleAuthor: Anders Thyrsson
+  projectUri: https://github.com/easitab/EasitGoWebservice
+  sourceRoot: C:\projects\easitgowebservice\source
+  licenseUri: https://github.com/easitab/EasitGoWebservice/blob/development/LICENSE
+  moduleRoot: C:\projects\easitgowebservice\EasitGoWebservice
 build_script:
 - ps: >-
     New-Module -Name "$env:moduleName" -ScriptBlock {
