@@ -13,8 +13,9 @@ Ping Easit BPS / Easit GO web services.
 
 ## SYNTAX
 
-```powershell
-Ping-GOWebService [[-url] <String>] [-apikey] <String> [<CommonParameters>]
+```
+Ping-GOWebService [[-url] <String>] [[-apikey] <String>] [[-ConfigurationDirectory] <String>] [-SSO]
+ [-UseBasicParsing] [-dryRun] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -48,7 +49,22 @@ Type: String
 Parameter Sets: (All)
 Aliases: api
 
-Required: True
+Required: False
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ConfigurationDirectory
+{{ Fill ConfigurationDirectory Description }}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: configdir
+
+Required: False
 Position: 2
 Default value: None
 Accept pipeline input: False
@@ -99,7 +115,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 1
+Position: 0
 Default value: Http://localhost/webservice/
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -122,15 +138,14 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
+### None
 ## OUTPUTS
 
 ### System.Object
-
 ## NOTES
 
 Copyright 2021 Easit AB
