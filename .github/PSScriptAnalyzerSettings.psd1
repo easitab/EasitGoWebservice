@@ -1,0 +1,5 @@
+@{
+    ExcludeRules = @('PSReviewUnusedParameter',
+        'PSUseShouldProcessForStateChangingFunctions',
+        'PSUseDeclaredVarsMoreThanAssignments')
+}

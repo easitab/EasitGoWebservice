@@ -1,0 +1,31 @@
+name: Generate and update external help, v2
+
+on:
+  push:
+    paths:
+    - 'docs/v2/**'
+    branches:
+    - 'release/v2**'
+
+jobs:
+  buildHelp:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITAUTOCOMMITPAT }}
+
+      - name: Build temp module
+        run: ./build/tempbuild_github.ps1
+        shell: pwsh
+
+      - name: Generate and update docs
+        run: ./build/generateAndUpdateExternalHelpv2.ps1
+        shell: pwsh
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Generate and update help
+          commit_user_name: My GitHub Actions Bot
+          file_pattern: docs
+          push_options: --force

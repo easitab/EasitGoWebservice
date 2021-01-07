@@ -1,0 +1,24 @@
+name: Canary build
+
+on:
+  schedule:
+    - cron:  '0 2 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITAUTOCOMMITPAT }}
+
+      - name: Canary build
+        run: ./build/canaryBuild.ps1
+        shell: pwsh
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Canary build
+          commit_user_name: GitHub Actions
+          file_pattern: module/canaryBuild
+          push_options: '--force'

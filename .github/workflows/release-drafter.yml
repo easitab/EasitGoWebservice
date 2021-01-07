@@ -1,0 +1,22 @@
+name: Release Notes
+
+on:
+  push:
+    branches: 'release/**'
+    paths-ignore:
+    - '.github/**'
+    - 'workflows/**'
+
+jobs:
+  update_release_draft:
+    name: update_release_draft
+    runs-on: ubuntu-20.04
+    steps:
+      - name: generate_release_draft
+
+        uses: release-drafter/release-drafter@v5
+        with:
+
+          config-name: release-drafter-template.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
