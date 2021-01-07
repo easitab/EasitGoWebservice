@@ -13,9 +13,10 @@ Send data to Easit BPS / Easit GO with web services.
 
 ## SYNTAX
 
-```powershell
-Import-GOCustomItem [-url <String>] -apikey <String> [-ImportHandlerIdentifier <String>]
- [-CustomProperties <Hashtable>] [<CommonParameters>]
+```
+Import-GOCustomItem [-url <String>] [-apikey <String>] -ImportHandlerIdentifier <String>
+ [-ConfigurationDirectory <String>] -CustomProperties <Hashtable> [-Attachment <String>] [-SSO]
+ [-UseBasicParsing] [-dryRun] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -66,7 +67,37 @@ Type: String
 Parameter Sets: (All)
 Aliases: api
 
-Required: True
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Attachment
+{{ Fill Attachment Description }}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: File
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -ConfigurationDirectory
+{{ Fill ConfigurationDirectory Description }}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: configdir
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
@@ -114,7 +145,7 @@ Type: String
 Parameter Sets: (All)
 Aliases: ihi
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
@@ -171,19 +202,15 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### System.String
-
 ### System.Collections.Hashtable
-
 ## OUTPUTS
 
 ### System.Object
-
 ## NOTES
 
 ## RELATED LINKS

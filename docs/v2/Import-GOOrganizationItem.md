@@ -13,16 +13,17 @@ Send data to Easit BPS / Easit GO with web services.
 
 ## SYNTAX
 
-```powershell
-Import-GOOrganizationItem [-url <String>] -apikey <String> [-ImportHandlerIdentifier <String>]
- [-Country <String>] [-Category <String>] [-Status <String>] [-ParentItemID <Int32>] [-MainContractID <String>]
- [-ID <String>] [-AnvNamn <String>] [-BusinessDebit <String>] [-Counterpart <String>]
- [-CustomerNumber <String>] [-DeliveryAddress <String>] [-DeliveryCity <String>] [-DeliveryZipCode <String>]
- [-ExternalId <String>] [-Fax <String>] [-Losen <String>] [-Name <String>] [-Notes <String>] [-Ort <String>]
- [-Phone <String>] [-PostNummer <String>] [-ResponsibilityDebit <String>] [-UtdelningsAdress <String>]
- [-VisitingAddress <String>] [-VisitingCity <String>] [-VisitingZipCode <String>] [-Webshop <String>]
- [-Website <String>] [-AccountManager <String>] [-ServiceManager <String>] [-uid <Int32>]
- [-Attachment <String>] [-SSO] [-UseBasicParsing] [-dryRun] [<CommonParameters>]
+```
+Import-GOOrganizationItem [-url <String>] [-apikey <String>] [-ImportHandlerIdentifier <String>]
+ [-ConfigurationDirectory <String>] [-Country <String>] [-Category <String>] [-Status <String>]
+ [-ParentItemID <Int32>] [-MainContractID <String>] [-ID <String>] [-AnvNamn <String>]
+ [-BusinessDebit <String>] [-Counterpart <String>] [-CustomerNumber <String>] [-DeliveryAddress <String>]
+ [-DeliveryCity <String>] [-DeliveryZipCode <String>] [-ExternalId <String>] [-Fax <String>] [-Losen <String>]
+ [-Name <String>] [-Notes <String>] [-Ort <String>] [-Phone <String>] [-PostNummer <String>]
+ [-ResponsibilityDebit <String>] [-UtdelningsAdress <String>] [-VisitingAddress <String>]
+ [-VisitingCity <String>] [-VisitingZipCode <String>] [-Webshop <String>] [-Website <String>]
+ [-AccountManager <String>] [-ServiceManager <String>] [-uid <Int32>] [-Attachment <String>] [-SSO]
+ [-UseBasicParsing] [-dryRun] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -134,7 +135,7 @@ Type: String
 Parameter Sets: (All)
 Aliases: api
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
@@ -181,6 +182,21 @@ Category of organization.
 Type: String
 Parameter Sets: (All)
 Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -ConfigurationDirectory
+{{ Fill ConfigurationDirectory Description }}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: configdir
 
 Required: False
 Position: Named
@@ -705,15 +721,15 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
+### System.String
+### System.Int32
 ## OUTPUTS
 
 ### System.Object
-
 ## NOTES
 
 Copyright 2021 Easit AB

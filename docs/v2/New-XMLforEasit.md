@@ -14,21 +14,18 @@ schema: 2.0.0
 ## SYNTAX
 
 ### ping
-
-```powershell
+```
 New-XMLforEasit [-Ping] [<CommonParameters>]
 ```
 
 ### get
-
-```powershell
+```
 New-XMLforEasit [-Get] -ItemViewIdentifier <String> [-Page <Int32>] -SortField <String> -SortOrder <String>
  [-ColumnFilter <String[]>] [<CommonParameters>]
 ```
 
 ### import
-
-```powershell
+```
 New-XMLforEasit [-Import] -ImportHandlerIdentifier <String> -Params <Hashtable> [<CommonParameters>]
 ```
 
@@ -214,17 +211,14 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
-### XmlDocument
-
+### System.Object
 ## NOTES
 
 ## RELATED LINKS

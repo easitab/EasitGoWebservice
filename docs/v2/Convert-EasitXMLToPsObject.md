@@ -13,7 +13,7 @@ schema: 2.0.0
 
 ## SYNTAX
 
-```powershell
+```
 Convert-EasitXMLToPsObject [-Response] <XmlDocument> [<CommonParameters>]
 ```
 
@@ -50,17 +50,14 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### System.Xml.XmlDocument
-
 ## OUTPUTS
 
 ### System.Object
-
 ## NOTES
 
 Copyright 2021 Easit AB

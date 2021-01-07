@@ -13,25 +13,26 @@ Send data to Easit BPS / Easit GO with web services.
 
 ## SYNTAX
 
-```powershell
-Import-GOAssetItem [-url <String>] -apikey <String> [-ImportHandlerIdentifier <String>] [-ID <Int32>]
- [-AssetType <String>] [-AssetInvoicingPeriod <String>] [-AssetSupplierOrganizationID <Int32>]
- [-Impact <String>] [-Manufacturer <String>] [-OwnerContactID <Int32>] [-OwnerOrganizationID <Int32>]
- [-PriceListConnectionID <Int32>] [-Status <String>] [-CityLocation <String>] [-HouseLocation <String>]
- [-FinLifteTime <String>] [-LifeCycle <String>] [-ActivityDebit <String>] [-AssetName <String>]
- [-AssetStartDate <String>] [-BarCode <String>] [-CIReference <String>] [-Description <String>]
- [-FinancialNotes <String>] [-LastInventoryDate <String>] [-ObjectDebit <String>] [-ProjectDebit <String>]
- [-PurchaseDate <String>] [-PurchaseOrderNumber <String>] [-PurchaseValueCurrency <String>]
- [-RoomLocation <String>] [-SerialNumber <String>] [-SupplierInvoiceId <String>] [-TheftId <String>]
- [-WarrantyExpireDate <String>] [-ModelMonitor <String>] [-MonitorType <String>] [-MonitorSize <String>]
- [-MonitorResolution <String>] [-ConectionType_Monitor <String>] [-OperatingSystem <String>]
- [-Equipment <String>] [-ModelPC <String>] [-ComputerType <String>] [-HardriveSize <Int32>]
- [-InternalMemory <Int32>] [-ProcessorSpeed <String>] [-SLA <String>] [-SLAExpiredate <String>]
- [-UserLogin <String>] [-UserPassword <SecureString>] [-AssetPhoneModel <String>] [-AssetPhoneType <String>]
- [-Operator <String>] [-IMEINumber <String>] [-MobilePhoneNumber <String>] [-PhoneNumber <String>]
- [-PukCode <String>] [-ModelPrinter <String>] [-IPAdress <String>] [-MacAddress <String>]
- [-NetworkName <String>] [-ModelServer <String>] [-DNSName <String>] [-ServiceBlackout <String>] [-uid <Int32>]
- [-Attachment <String>] [-SSO] [-UseBasicParsing] [-dryRun] [<CommonParameters>]
+```
+Import-GOAssetItem [-url <String>] [-apikey <String>] [-ImportHandlerIdentifier <String>]
+ [-ConfigurationDirectory <String>] [-ID <Int32>] [-AssetType <String>] [-AssetInvoicingPeriod <String>]
+ [-AssetSupplierOrganizationID <Int32>] [-Impact <String>] [-Manufacturer <String>] [-OwnerContactID <Int32>]
+ [-OwnerOrganizationID <Int32>] [-PriceListConnectionID <Int32>] [-Status <String>] [-CityLocation <String>]
+ [-HouseLocation <String>] [-FinLifteTime <String>] [-LifeCycle <String>] [-ActivityDebit <String>]
+ [-AssetName <String>] [-AssetStartDate <String>] [-BarCode <String>] [-CIReference <String>]
+ [-Description <String>] [-FinancialNotes <String>] [-LastInventoryDate <String>] [-ObjectDebit <String>]
+ [-ProjectDebit <String>] [-PurchaseDate <String>] [-PurchaseOrderNumber <String>]
+ [-PurchaseValueCurrency <String>] [-RoomLocation <String>] [-SerialNumber <String>]
+ [-SupplierInvoiceId <String>] [-TheftId <String>] [-WarrantyExpireDate <String>] [-ModelMonitor <String>]
+ [-MonitorType <String>] [-MonitorSize <String>] [-MonitorResolution <String>]
+ [-ConectionType_Monitor <String>] [-OperatingSystem <String>] [-Equipment <String>] [-ModelPC <String>]
+ [-ComputerType <String>] [-HardriveSize <Int32>] [-InternalMemory <Int32>] [-ProcessorSpeed <String>]
+ [-SLA <String>] [-SLAExpiredate <String>] [-UserLogin <String>] [-UserPassword <SecureString>]
+ [-AssetPhoneModel <String>] [-AssetPhoneType <String>] [-Operator <String>] [-IMEINumber <String>]
+ [-MobilePhoneNumber <String>] [-PhoneNumber <String>] [-PukCode <String>] [-ModelPrinter <String>]
+ [-IPAdress <String>] [-MacAddress <String>] [-NetworkName <String>] [-ModelServer <String>]
+ [-DNSName <String>] [-ServiceBlackout <String>] [-uid <Int32>] [-Attachment <String>] [-SSO]
+ [-UseBasicParsing] [-dryRun] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -325,6 +326,21 @@ Conection type of monitor.
 Type: String
 Parameter Sets: (All)
 Aliases: ConectionTypeMonitor
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -ConfigurationDirectory
+{{ Fill ConfigurationDirectory Description }}
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: configdir
 
 Required: False
 Position: Named
@@ -1220,15 +1236,16 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
+### System.String
+### System.Int32
+### System.Security.SecureString
 ## OUTPUTS
 
 ### System.Object
-
 ## NOTES
 
 Copyright 2021 Easit AB
