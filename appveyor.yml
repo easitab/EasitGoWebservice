@@ -1,11 +1,9 @@
-version: 15.1.{build}
+version: 2.0.{build}
 pull_requests:
   do_not_increment_build_number: true
 branches:
   only:
-  - /v\d*\.\d*\.\d*/
-  - /release/.*/
-  - /release/v\d*\.\d*\.\d*/
+  - main
 skip_non_tags: true
 skip_branch_with_pr: true
 environment:
