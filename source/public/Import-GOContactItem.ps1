@@ -1,5 +1,8 @@
 function Import-GOContactItem {
-      [CmdletBinding()]
+      [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Import-GOContactItem.md")]
+      <#
+      .EXTERNALHELP EasitGoWebservice-help.xml
+      #>
       param (
             [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
             [ValidateNotNullOrEmpty()]
