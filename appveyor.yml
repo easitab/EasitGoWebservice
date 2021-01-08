@@ -12,7 +12,7 @@ environment:
   moduleName: EasitGoWebservice
   companyName: Easit AB
   resourceRoot: C:\projects\easitgowebservice
-  helpInfoUri: https://github.com/easitab/EasitGoWebservice/blob/release/v2.0.0/docs/v2/
+  helpInfoUri: https://github.com/easitab/EasitGoWebservice/tree/main/docs/v2/
   moduleAuthor: Anders Thyrsson
   projectUri: https://github.com/easitab/EasitGoWebservice
   sourceRoot: C:\projects\easitgowebservice\source
