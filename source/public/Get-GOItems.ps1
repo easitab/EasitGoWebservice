@@ -1,5 +1,8 @@
 function Get-GOItems {
-      [CmdletBinding()]
+      [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Get-GOItems.md")]
+      <#
+      .EXTERNALHELP EasitGoWebservice-help.xml
+      #>
       param (
             [parameter(Mandatory = $false)]
             [string] $url,

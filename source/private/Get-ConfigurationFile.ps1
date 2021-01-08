@@ -1,5 +1,8 @@
 function Get-ConfigurationFile {
-    [CmdletBinding()]
+    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Get-ConfigurationFile.md")]
+    <#
+    .EXTERNALHELP EasitGoWebservice-help.xml
+    #>
     param (
         [Parameter(Mandatory)]
         [string] $Path

@@ -1,5 +1,8 @@
 function Export-PayloadToFile {
-    [CmdletBinding()]
+    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Export-PayloadToFile.md")]
+    <#
+    .EXTERNALHELP EasitGoWebservice-help.xml
+    #>
     param (
         [Parameter(Mandatory)]
         [xml]$Payload
