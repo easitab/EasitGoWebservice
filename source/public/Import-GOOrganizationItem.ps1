@@ -1,5 +1,8 @@
 function Import-GOOrganizationItem {
-      [CmdletBinding()]
+      [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Import-GOOrganizationItem.md")]
+      <#
+      .EXTERNALHELP EasitGoWebservice-help.xml
+      #>
       param (
             [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
             [ValidateNotNullOrEmpty()]

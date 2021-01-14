@@ -1,5 +1,8 @@
 function Invoke-EasitWebRequest {
-    [CmdletBinding()]
+    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Invoke-EasitWebRequest.md")]
+    <#
+    .EXTERNALHELP EasitGoWebservice-help.xml
+    #>
     param (
         [Parameter(Mandatory)]
         [String] $Uri,

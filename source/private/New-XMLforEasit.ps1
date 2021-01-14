@@ -1,5 +1,8 @@
 function New-XMLforEasit {
-    [CmdletBinding()]
+    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/New-XMLforEasit.md")]
+    <#
+    .EXTERNALHELP EasitGoWebservice-help.xml
+    #>
     param (
         [parameter(Mandatory=$false, Position=0, ParameterSetName="ping")]
         [switch] $Ping,

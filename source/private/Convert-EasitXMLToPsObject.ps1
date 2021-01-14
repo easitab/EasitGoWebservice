@@ -1,5 +1,8 @@
 function Convert-EasitXMLToPsObject {
-    [CmdletBinding()]
+    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Convert-EasitXMLToPsObject.md")]
+    <#
+    .EXTERNALHELP EasitGoWebservice-help.xml
+    #>
     param (
         [Parameter(Mandatory,ValueFromPipeline)]
         [xml]$Response
