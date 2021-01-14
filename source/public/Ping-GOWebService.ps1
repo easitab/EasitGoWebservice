@@ -1,5 +1,8 @@
 function Ping-GOWebService {
-      [CmdletBinding()]
+      [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Ping-GOWebService.md")]
+      <#
+      .EXTERNALHELP EasitGoWebservice-help.xml
+      #>
       param (
             [parameter(Mandatory=$false)]
             [string] $url,

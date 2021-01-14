@@ -1,18 +1,16 @@
-version: 15.1.{build}
+version: 2.0.{build}
 pull_requests:
   do_not_increment_build_number: true
 branches:
   only:
-  - /v\d*\.\d*\.\d*/
-  - /release/.*/
-  - /release/v\d*\.\d*\.\d*/
+  - main
 skip_non_tags: true
 skip_branch_with_pr: true
 environment:
   moduleName: EasitGoWebservice
   companyName: Easit AB
   resourceRoot: C:\projects\easitgowebservice
-  helpInfoUri: https://github.com/easitab/EasitGoWebservice/blob/release/v2.0.0/docs/v2/
+  helpInfoUri: https://github.com/easitab/EasitGoWebservice/tree/main/docs/v2/
   moduleAuthor: Anders Thyrsson
   projectUri: https://github.com/easitab/EasitGoWebservice
   sourceRoot: C:\projects\easitgowebservice\source
@@ -90,6 +88,6 @@ on_finish:
 - ps: >-
     if (Test-ModuleManifest -Path "$manifestFilePath") {
         $moduleRootPath = Resolve-Path "$env:moduleRoot"
-        #Publish-Module -Path "$moduleRootPath" -NuGetApiKey "$env:galleryPublishingKey"
+        Publish-Module -Path "$moduleRootPath" -NuGetApiKey "$env:galleryPublishingKey"
         Write-Output "Module published!"
     }
