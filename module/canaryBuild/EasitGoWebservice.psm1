@@ -1,5 +1,8 @@
 function Get-GOItems {
-      [CmdletBinding()]
+      [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Get-GOItems.md")]
+      <#
+      .EXTERNALHELP EasitGoWebservice-help.xml
+      #>
       param (
             [parameter(Mandatory = $false)]
             [string] $url,
@@ -168,7 +171,10 @@ function Get-GOItems {
 }
 
 function Import-GOAssetItem {
-      [CmdletBinding()]
+      [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Import-GOAssetItem.md")]
+      <#
+      .EXTERNALHELP EasitGoWebservice-help.xml
+      #>
       param (
             [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
             [ValidateNotNullOrEmpty()]
@@ -566,7 +572,10 @@ function Import-GOAssetItem {
 }
 
 function Import-GOContactItem {
-      [CmdletBinding()]
+      [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Import-GOContactItem.md")]
+      <#
+      .EXTERNALHELP EasitGoWebservice-help.xml
+      #>
       param (
             [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
             [ValidateNotNullOrEmpty()]
@@ -799,7 +808,10 @@ function Import-GOContactItem {
 }
 
 function Import-GOCustomItem {
-    [CmdletBinding()]
+    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Import-GOCustomItem.md")]
+    <#
+    .EXTERNALHELP EasitGoWebservice-help.xml
+    #>
     param (
         [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
         [ValidateNotNullOrEmpty()]
@@ -939,7 +951,10 @@ function Import-GOCustomItem {
     }
 }
 function Import-GOOrganizationItem {
-      [CmdletBinding()]
+      [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Import-GOOrganizationItem.md")]
+      <#
+      .EXTERNALHELP EasitGoWebservice-help.xml
+      #>
       param (
             [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
             [ValidateNotNullOrEmpty()]
@@ -1203,7 +1218,10 @@ function Import-GOOrganizationItem {
 }
 
 function Import-GORequestItem {
-      [CmdletBinding()]
+      [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Import-GORequestItem.md")]
+      <#
+      .EXTERNALHELP EasitGoWebservice-help.xml
+      #>
       param (
             [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
             [ValidateNotNullOrEmpty()]
@@ -1505,7 +1523,10 @@ function Import-GORequestItem {
 }
 
 function Ping-GOWebService {
-      [CmdletBinding()]
+      [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Ping-GOWebService.md")]
+      <#
+      .EXTERNALHELP EasitGoWebservice-help.xml
+      #>
       param (
             [parameter(Mandatory=$false)]
             [string] $url,
@@ -1607,7 +1628,10 @@ function Ping-GOWebService {
 }
 
 function Convert-EasitXMLToPsObject {
-    [CmdletBinding()]
+    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Convert-EasitXMLToPsObject.md")]
+    <#
+    .EXTERNALHELP EasitGoWebservice-help.xml
+    #>
     param (
         [Parameter(Mandatory,ValueFromPipeline)]
         [xml]$Response
@@ -1686,7 +1710,10 @@ function Convert-EasitXMLToPsObject {
 }
 
 function Export-PayloadToFile {
-    [CmdletBinding()]
+    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Export-PayloadToFile.md")]
+    <#
+    .EXTERNALHELP EasitGoWebservice-help.xml
+    #>
     param (
         [Parameter(Mandatory)]
         [xml]$Payload
@@ -1725,7 +1752,10 @@ function Export-PayloadToFile {
     }
 }
 function Get-ConfigurationFile {
-    [CmdletBinding()]
+    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Get-ConfigurationFile.md")]
+    <#
+    .EXTERNALHELP EasitGoWebservice-help.xml
+    #>
     param (
         [Parameter(Mandatory)]
         [string] $Path
@@ -1763,7 +1793,10 @@ function Get-ConfigurationFile {
     }
 }
 function Invoke-EasitWebRequest {
-    [CmdletBinding()]
+    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Invoke-EasitWebRequest.md")]
+    <#
+    .EXTERNALHELP EasitGoWebservice-help.xml
+    #>
     param (
         [Parameter(Mandatory)]
         [String] $Uri,
@@ -1839,7 +1872,10 @@ function Invoke-EasitWebRequest {
     }
 }
 function New-XMLforEasit {
-    [CmdletBinding()]
+    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/New-XMLforEasit.md")]
+    <#
+    .EXTERNALHELP EasitGoWebservice-help.xml
+    #>
     param (
         [parameter(Mandatory=$false, Position=0, ParameterSetName="ping")]
         [switch] $Ping,
