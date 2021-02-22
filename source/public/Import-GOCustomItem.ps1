@@ -82,10 +82,8 @@ function Import-GOCustomItem {
         $params = [ordered]@{}
         foreach ($property in $CustomProperties.GetEnumerator()) {
             try {
-                $propertyName = $property.Key
-                $propertyValue = $parDetails.Value
-                Write-Verbose "Adding $propertyName with the value $propertyValue"
-                $params.Add("$propertyName", "$propertyValue")
+                Write-Verbose "Adding $($property.Key) with the value $($property.Value)"
+                $params.Add("$($property.Key)", "$($property.Value)")
             } catch {
                 throw $_
             }
