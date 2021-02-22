@@ -199,7 +199,8 @@ function New-XMLforEasit {
         ## Solution provided by Dennis Zakariasson <dennis.zakariasson@regionuppsala.se> thru issue 5
         if ($ColumnFilter) {
             Write-Verbose "Creating xml element for Column filter"
-            $Filters = $ColumnFilter -split ' '
+            Write-Verbose "ColumnFilter = $ColumnFilter"
+            $Filters = $ColumnFilter -replace '; ', ';' -split ';'
             Write-Verbose "Filters = $Filters"
             Write-Verbose "Number of filters = $($Filters.Count)"
             foreach ($filter in $Filters) {

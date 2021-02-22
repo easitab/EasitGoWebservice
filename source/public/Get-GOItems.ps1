@@ -105,9 +105,12 @@ function Get-GOItems {
             Write-Verbose "Validating column filter.."
             Write-Verbose "ColumnFilter = $ColumnFilter"
             Write-Verbose "ColumnFilters = $($ColumnFilter.Count)"
+            $filterCounter = 1
+            $numberOfFilters = $ColumnFilter.Count
+            $checkedColumnFilter = @()
             foreach ($filter in $ColumnFilter) {
                   try {
-                        Write-Verbose $filter
+                        Write-Verbose "Testing filter: $filter"
                         $FilterValues = $filter -replace ', ', ',' -split ','
                         Test-ColumnFilter -Filter $filter -FilterValues $FilterValues
                   }
@@ -116,8 +119,14 @@ function Get-GOItems {
                         Write-Error "$_"
                         return
                   }
+                  if ($filterCounter -lt $numberOfFilters) {
+                        $checkedColumnFilter += "$filter;"
+                  } else {
+                        $checkedColumnFilter += "$filter"
+                  }
+                  $filterCounter++
             }
-            $xmlParams.Add('ColumnFilter',"$ColumnFilter")
+            $xmlParams.Add('ColumnFilter',"$checkedColumnFilter")
       }
       else {
             Write-Verbose "Skipping ColumnFilter as it is null!"
@@ -131,7 +140,7 @@ function Get-GOItems {
             throw $_
       }
       if ($dryRun) {
-            Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it to BPS"
+            Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it"
             try {
                   Export-PayloadToFile -Payload $payload
             } catch {
