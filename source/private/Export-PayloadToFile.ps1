@@ -21,7 +21,7 @@ function Export-PayloadToFile {
             $payloadFile = Join-Path -Path $userProfileDesktop -ChildPath "$outputFileName"
             if (Test-Path $payloadFile) {
                     $i++
-                    Write-Verbose "$i"
+                    Write-Verbose "$payloadFile already exists"
             }
         } until (!(Test-Path $payloadFile))
         if (!(Test-Path $payloadFile)) {

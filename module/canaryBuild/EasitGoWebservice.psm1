@@ -1,5 +1,8 @@
 function Get-GOItems {
-      [CmdletBinding()]
+      [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Get-GOItems.md")]
+      <#
+      .EXTERNALHELP EasitGoWebservice-help.xml
+      #>
       param (
             [parameter(Mandatory = $false)]
             [string] $url,
@@ -168,7 +171,10 @@ function Get-GOItems {
 }
 
 function Import-GOAssetItem {
-      [CmdletBinding()]
+      [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Import-GOAssetItem.md")]
+      <#
+      .EXTERNALHELP EasitGoWebservice-help.xml
+      #>
       param (
             [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
             [ValidateNotNullOrEmpty()]
@@ -566,7 +572,10 @@ function Import-GOAssetItem {
 }
 
 function Import-GOContactItem {
-      [CmdletBinding()]
+      [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Import-GOContactItem.md")]
+      <#
+      .EXTERNALHELP EasitGoWebservice-help.xml
+      #>
       param (
             [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
             [ValidateNotNullOrEmpty()]
@@ -799,7 +808,10 @@ function Import-GOContactItem {
 }
 
 function Import-GOCustomItem {
-    [CmdletBinding()]
+    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Import-GOCustomItem.md")]
+    <#
+    .EXTERNALHELP EasitGoWebservice-help.xml
+    #>
     param (
         [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
         [ValidateNotNullOrEmpty()]
@@ -939,7 +951,10 @@ function Import-GOCustomItem {
     }
 }
 function Import-GOOrganizationItem {
-      [CmdletBinding()]
+      [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Import-GOOrganizationItem.md")]
+      <#
+      .EXTERNALHELP EasitGoWebservice-help.xml
+      #>
       param (
             [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
             [ValidateNotNullOrEmpty()]
@@ -1203,7 +1218,10 @@ function Import-GOOrganizationItem {
 }
 
 function Import-GORequestItem {
-      [CmdletBinding()]
+      [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Import-GORequestItem.md")]
+      <#
+      .EXTERNALHELP EasitGoWebservice-help.xml
+      #>
       param (
             [parameter(Mandatory=$false,ValueFromPipelineByPropertyName=$true)]
             [ValidateNotNullOrEmpty()]
@@ -1505,7 +1523,10 @@ function Import-GORequestItem {
 }
 
 function Ping-GOWebService {
-      [CmdletBinding()]
+      [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Ping-GOWebService.md")]
+      <#
+      .EXTERNALHELP EasitGoWebservice-help.xml
+      #>
       param (
             [parameter(Mandatory=$false)]
             [string] $url,
@@ -1607,7 +1628,10 @@ function Ping-GOWebService {
 }
 
 function Convert-EasitXMLToPsObject {
-    [CmdletBinding()]
+    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Convert-EasitXMLToPsObject.md")]
+    <#
+    .EXTERNALHELP EasitGoWebservice-help.xml
+    #>
     param (
         [Parameter(Mandatory,ValueFromPipeline)]
         [xml]$Response
@@ -1618,49 +1642,54 @@ function Convert-EasitXMLToPsObject {
     }
 
     process {
-        $returnItem = New-Object PSObject
         if ($Response.Envelope.Body.GetItemsResponse) {
             Write-Verbose "XML contains GetItemsResponse"
-            $returnItem | Add-Member -MemberType Noteproperty -Name "requestedPage" -Value "$($Response.Envelope.Body.GetItemsResponse.requestedPage)"
-            $returnItem | Add-Member -MemberType Noteproperty -Name "totalNumberOfPages" -Value "$($Response.Envelope.Body.GetItemsResponse.totalNumberOfPages)"
-            $returnItem | Add-Member -MemberType Noteproperty -Name "totalNumberOfItems" -Value "$($Response.Envelope.Body.GetItemsResponse.totalNumberOfItems)"
-            foreach ($column in $Response.Envelope.Body.GetItemsResponse.Columns.GetEnumerator()) {
-                Write-Verbose "Adding property $($column.InnerText) as Noteproperty to object"
-                try {
-                    $returnItem | Add-Member -MemberType Noteproperty -Name "$($column.InnerText)" -Value $null -ErrorAction 'Stop'
-                } catch [System.InvalidOperationException] {
-                    Write-Warning "$($column.InnerText) is used two times in the importViewIdentifier specified, this could be due to duplicates of the same field or that two fields have the same name. The value from the latest occurance will be used!"
-                }
-            }
-            foreach ($item in $Response.Envelope.Body.GetItemsResponse.Items.GetEnumerator()) {
-                foreach ($itemProperty in $item.GetEnumerator()) {
-                    $itemPropertyName = "$($itemProperty.Name)"
-                    Write-Verbose "itemPropertyName = $itemPropertyName"
-                    $itemPropertyValue = "$($itemProperty.InnerText)"
-                    Write-Verbose "itemPropertyValue = $itemPropertyValue"
-                    Write-Verbose "Setting $itemPropertyName to $itemPropertyValue"
-                    $returnItem."$itemPropertyName" = "$itemPropertyValue"
-                    if ("$($itemProperty.InnerText)" -match ' \/ ') {
-                        Write-Verbose "$($itemProperty.InnerText) -match '/'"
-                        $tempPropertyValues = @()
-                        $tempPropertyValues = $itemProperty.InnerText -split ' / '
-                        Write-Verbose "tempPropertyValue with slashes = $tempPropertyValues"
-                        $count = 1
-                        foreach ($tempPropertyValue in $tempPropertyValues) {
-                            Write-Verbose "${propertyName}_${count} = $tempPropertyValue"
-                            if ("$($itemProperty.rawValue)" -notmatch 'null') {
-                                Write-Verbose "Adding ${itemPropertyName}_${count} with value $tempPropertyValue"
-                                $returnItem | Add-Member -MemberType Noteproperty -Name "${itemPropertyName}_${count}" -Value "$tempPropertyValue"
-                            }
-                            $count++
+            if ($Response.Envelope.Body.GetItemsResponse.Items) {
+                foreach ($item in $Response.Envelope.Body.GetItemsResponse.Items.GetEnumerator()) {
+                    $returnItem = New-Object PSObject
+                    $returnItem | Add-Member -MemberType Noteproperty -Name "requestedPage" -Value "$($Response.Envelope.Body.GetItemsResponse.requestedPage)"
+                    $returnItem | Add-Member -MemberType Noteproperty -Name "totalNumberOfPages" -Value "$($Response.Envelope.Body.GetItemsResponse.totalNumberOfPages)"
+                    $returnItem | Add-Member -MemberType Noteproperty -Name "totalNumberOfItems" -Value "$($Response.Envelope.Body.GetItemsResponse.totalNumberOfItems)"
+                    foreach ($column in $Response.Envelope.Body.GetItemsResponse.Columns.GetEnumerator()) {
+                        Write-Verbose "Adding property $($column.InnerText) as Noteproperty to object"
+                        try {
+                            $returnItem | Add-Member -MemberType Noteproperty -Name "$($column.InnerText)" -Value $null -ErrorAction 'Stop'
+                        } catch [System.InvalidOperationException] {
+                            Write-Warning "$($column.InnerText) is used two times in the importViewIdentifier specified, this could be due to duplicates of the same field or that two fields have the same name. The value from the latest occurance will be used!"
                         }
-                        $returnItem."$itemPropertyName" = "customArrayList"
                     }
+                    foreach ($itemProperty in $item.GetEnumerator()) {
+                        $itemPropertyName = "$($itemProperty.Name)"
+                        Write-Verbose "itemPropertyName = $itemPropertyName"
+                        $itemPropertyValue = "$($itemProperty.InnerText)"
+                        Write-Verbose "itemPropertyValue = $itemPropertyValue"
+                        Write-Verbose "Setting $itemPropertyName to $itemPropertyValue"
+                        $returnItem."$itemPropertyName" = "$itemPropertyValue"
+                        if ("$($itemProperty.InnerText)" -match ' \/ ') {
+                            Write-Verbose "$($itemProperty.InnerText) -match '/'"
+                            $tempPropertyValues = @()
+                            $tempPropertyValues = $itemProperty.InnerText -split ' / '
+                            Write-Verbose "tempPropertyValue with slashes = $tempPropertyValues"
+                            $count = 1
+                            foreach ($tempPropertyValue in $tempPropertyValues) {
+                                Write-Verbose "${propertyName}_${count} = $tempPropertyValue"
+                                if ("$($itemProperty.rawValue)" -notmatch 'null') {
+                                    Write-Verbose "Adding ${itemPropertyName}_${count} with value $tempPropertyValue"
+                                    $returnItem | Add-Member -MemberType Noteproperty -Name "${itemPropertyName}_${count}" -Value "$tempPropertyValue"
+                                }
+                                $count++
+                            }
+                            $returnItem."$itemPropertyName" = "customArrayList"
+                        }
+                    }
+                    $returnItem
                 }
-                $returnItem
+            } else {
+                Write-Warning "View did not return any items or objects"
             }
         } elseif ($Response.Envelope.Body.ImportItemsResponse) {
             Write-Verbose "XML contains ImportItemsResponse"
+            $returnItem = New-Object PSObject
             $importItemResult = "$($Response.Envelope.Body.ImportItemsResponse.ImportItemResult.result)"
             $returnItem | Add-Member -MemberType Noteproperty -Name "ImportItemResult" -Value "$importItemResult"
             foreach ($returnValue in $Response.Envelope.Body.ImportItemsResponse.ImportItemResult.ReturnValues.GetEnumerator()) {
@@ -1671,11 +1700,13 @@ function Convert-EasitXMLToPsObject {
             $returnItem
         } elseif ($Response.Envelope.Body.PingResponse) {
             Write-Verbose "XML contains PingResponse"
+            $returnItem = New-Object PSObject
             foreach ($pingProperty in $Response.Envelope.Body.PingResponse.GetEnumerator()) {
                 $returnItem | Add-Member -MemberType Noteproperty -Name "$($pingProperty.name)" -Value "$($pingProperty.InnerText)"
             }
             $returnItem
         } else {
+            Write-Warning "Response do not contain GetItemsResponse, ImportItemsResponse or PingResponse"
             throw "Do not know what to do with XML.."
         }
     }
@@ -1686,7 +1717,10 @@ function Convert-EasitXMLToPsObject {
 }
 
 function Export-PayloadToFile {
-    [CmdletBinding()]
+    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Export-PayloadToFile.md")]
+    <#
+    .EXTERNALHELP EasitGoWebservice-help.xml
+    #>
     param (
         [Parameter(Mandatory)]
         [xml]$Payload
@@ -1725,7 +1759,10 @@ function Export-PayloadToFile {
     }
 }
 function Get-ConfigurationFile {
-    [CmdletBinding()]
+    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Get-ConfigurationFile.md")]
+    <#
+    .EXTERNALHELP EasitGoWebservice-help.xml
+    #>
     param (
         [Parameter(Mandatory)]
         [string] $Path
@@ -1763,7 +1800,10 @@ function Get-ConfigurationFile {
     }
 }
 function Invoke-EasitWebRequest {
-    [CmdletBinding()]
+    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Invoke-EasitWebRequest.md")]
+    <#
+    .EXTERNALHELP EasitGoWebservice-help.xml
+    #>
     param (
         [Parameter(Mandatory)]
         [String] $Uri,
@@ -1839,7 +1879,10 @@ function Invoke-EasitWebRequest {
     }
 }
 function New-XMLforEasit {
-    [CmdletBinding()]
+    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/New-XMLforEasit.md")]
+    <#
+    .EXTERNALHELP EasitGoWebservice-help.xml
+    #>
     param (
         [parameter(Mandatory=$false, Position=0, ParameterSetName="ping")]
         [switch] $Ping,

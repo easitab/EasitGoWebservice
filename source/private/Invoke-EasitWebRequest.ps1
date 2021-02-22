@@ -59,11 +59,12 @@ function Invoke-EasitWebRequest {
             ($requestResponse = Invoke-WebRequest @webRequestParams -ErrorAction Stop).BaseResponse
             Write-Verbose "Successfully connected to and imported data"
         } catch [System.Net.WebException] {
-            Write-Verbose "StatusCode = $($_.Exception.Response.StatusDescription)"
-            if ($_.Exception.Response.StatusDescription -eq 404) {
+            $statusCode = $_.Exception.Response.StatusCode.value__
+            Write-Verbose "StatusCode = $statusCode"
+            if ($statusCode -eq 404) {
                 $dets = "url"
             }
-            if ($_.Exception.Response.StatusDescription -eq 500) {
+            if ($statusCode -eq 500) {
                 $dets = "apikey, ImportHandlerIdentifier/importViewIdentifier and properties for the items/object in payload"
                 $addHelp = "You can try running $((Get-Variable MyInvocation -Scope 1).Value.MyCommand.Name) with -dryRun to save payload to your desktop (${HOME}\Desktop\payload_x.xml)."
             }
