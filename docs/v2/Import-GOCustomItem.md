@@ -30,7 +30,7 @@ Create and update any item in Easit BPS / Easit GO. This cmdlet can be used with
 In this exampel we use the importhandler *CreateCustomItem* to update a contract with the name *OurFirstContract*.
 
 ```powershell
-PS C:\> $CustomProperties = @{'ID' = 12,'Name' = 'OurFirstContract'}
+PS C:\> $CustomProperties = @{'ID' = 12;'Name' = 'OurFirstContract'}
 PS C:\> Import-GOContactItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateCustomItem' -CustomProperties $CustomProperties
 ```
 
@@ -43,7 +43,7 @@ PS C:\> $importEasitItem = @{
             url = 'http://localhost/webservice/'
             api = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
         }
-PS C:\> $CustomProperties = @{'Name' = 'ACustomProject','Status' = 'Ongoing'}
+PS C:\> $CustomProperties = @{'Name' = 'ACustomProject';'Status' = 'Ongoing'}
 PS C:\> Import-GOContactItem @importEasitItem -ImportHandlerIdentifier 'CreateCustomItem' -CustomProperties $CustomProperties
 ```
 
@@ -52,7 +52,7 @@ PS C:\> Import-GOContactItem @importEasitItem -ImportHandlerIdentifier 'CreateCu
 In this example we have a configuration file located in our users home directory with the url and apikey.
 
 ```powershell
-PS C:\> $CustomProperties = @{'Name' = 'ACustomProject','Status' = 'Ongoing'}
+PS C:\> $CustomProperties = @{'Name' = 'ACustomProject';'Status' = 'Ongoing'}
 PS C:\> Import-GOContactItem -ImportHandlerIdentifier 'CreateCustomItem' -CustomProperties $CustomProperties
 ```
 
@@ -90,7 +90,8 @@ Accept wildcard characters: False
 ```
 
 ### -ConfigurationDirectory
-{{ Fill ConfigurationDirectory Description }}
+
+Path to directory where the configuration file for the web service is.
 
 ```yaml
 Type: String
