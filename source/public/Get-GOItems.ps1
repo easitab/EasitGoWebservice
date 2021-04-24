@@ -31,6 +31,9 @@ function Get-GOItems {
             [string[]] $ColumnFilter,
 
             [parameter(Mandatory = $false)]
+            [string] $IdFilter,
+
+            [parameter(Mandatory = $false)]
             [Alias('configdir')]
             [string] $ConfigurationDirectory = $Home,
 
@@ -138,6 +141,11 @@ function Get-GOItems {
       }
       else {
             Write-Verbose "Skipping ColumnFilter as it is null!"
+      }
+      if ($IdFilter) {
+            $xmlParams.Add('IdFilter',"$IdFilter")
+      } else {
+            Write-Verbose "Skipping IdFilter as it is null!"
       }
       ## End issue 6
       Write-Verbose 'Creating payload'
