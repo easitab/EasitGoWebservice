@@ -20,10 +20,10 @@ Describe 'Get-GOItems' {
         Get-Command "$commandName" | Should -HaveParameter importViewIdentifier -Mandatory
     }
     It 'should have a parameter named sortOrder with a default value' {
-        Get-Command "$commandName" | Should -HaveParameter sortOrder -DefaultValue 'Descending'
+        Get-Command "$commandName" | Should -HaveParameter sortOrder -Not -Mandatory
     }
     It 'should have a parameter named sortField with a default value' {
-        Get-Command "$commandName" | Should -HaveParameter sortField -DefaultValue 'Id'
+        Get-Command "$commandName" | Should -HaveParameter sortField -Not -Mandatory
     }
     It 'should have a parameter named viewPageNumber with a default value' {
         Get-Command "$commandName" | Should -HaveParameter viewPageNumber -DefaultValue 1

@@ -16,10 +16,10 @@ function New-XMLforEasit {
         [Parameter(Mandatory=$false, ParameterSetName="get")]
         [int] $Page = 1,
 
-        [Parameter(Mandatory=$true, ParameterSetName="get")]
+        [Parameter(Mandatory=$false, ParameterSetName="get")]
         [string] $SortField,
 
-        [Parameter(Mandatory=$true, ParameterSetName="get")]
+        [Parameter(Mandatory=$false, ParameterSetName="get")]
         [string] $SortOrder,
 
         [Parameter(Mandatory=$false, ParameterSetName="get")]
@@ -184,17 +184,24 @@ function New-XMLforEasit {
             Write-Error "$_"
             break
         }
-
-        try {
-            Write-Verbose "Creating xml element for SortColumn order"
-            $envelopeSortColumnOrder = $payload.CreateElement('sch:SortColumn',"$xmlnsSch")
-            $envelopeSortColumnOrder.SetAttribute("order","$SortOrder")
-            $envelopeSortColumnOrder.InnerText  = "$SortField"
-            $schGetItemsRequest.AppendChild($envelopeSortColumnOrder) | Out-Null
-        } catch {
-            Write-Error "Failed to create xml element for Page"
-            Write-Error "$_"
-            break
+        if (!([string]::IsNullOrWhiteSpace($sortOrder))) {
+            if ([string]::IsNullOrWhiteSpace($sortField)) {
+                  Write-Warning "Please provide a sortField when using sortOrder"
+                  break
+            }
+            if (!([string]::IsNullOrWhiteSpace($sortField))) {
+                try {
+                    Write-Verbose "Creating xml element for SortColumn order"
+                    $envelopeSortColumnOrder = $payload.CreateElement('sch:SortColumn',"$xmlnsSch")
+                    $envelopeSortColumnOrder.SetAttribute("order","$SortOrder")
+                    $envelopeSortColumnOrder.InnerText  = "$SortField"
+                    $schGetItemsRequest.AppendChild($envelopeSortColumnOrder) | Out-Null
+                } catch {
+                    Write-Error "Failed to create xml element for Page"
+                    Write-Error "$_"
+                    break
+                }
+            }
         }
         ## Solution provided by Dennis Zakariasson <dennis.zakariasson@regionuppsala.se> thru issue 5
         if ($ColumnFilter) {
