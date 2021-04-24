@@ -228,37 +228,35 @@ function Import-GOOrganizationItem {
                   } catch {
                         throw $_
                   }
-                  break
+            } else {
+                  $easitWebRequestParams = @{
+                        Uri = "$url"
+                        Apikey = "$apikey"
+                        Body = $payload
+                  }
+                  if ($SSO) {
+                        Write-Verbose "Adding UseDefaultCredentials to param hash"
+                        $easitWebRequestParams.Add('UseDefaultCredentials',$true)
+                  }
+                  if ($UseBasicParsing) {
+                        Write-Verbose "Adding UseBasicParsing to param hash"
+                        $easitWebRequestParams.Add('UseBasicParsing',$true)
+                  }
+                  try {
+                        Write-Verbose "Calling Invoke-EasitWebRequest"
+                        $r = Invoke-EasitWebRequest @easitWebRequestParams
+                  } catch {
+                        throw $_
+                  }
+                  try {
+                        Write-Verbose "Converting response"
+                        $returnObject = Convert-EasitXMLToPsObject -Response $r
+                  } catch {
+                        throw $_
+                  }
+                  Write-Verbose "Returning converted response"
+                  return $returnObject
             }
-            $easitWebRequestParams = @{
-                  Uri = "$url"
-                  Apikey = "$apikey"
-                  Body = $payload
-            }
-            if ($SSO) {
-                  Write-Verbose "Adding UseDefaultCredentials to param hash"
-                  $easitWebRequestParams.Add('UseDefaultCredentials',$true)
-            }
-            if ($UseBasicParsing) {
-                  Write-Verbose "Adding UseBasicParsing to param hash"
-                  $easitWebRequestParams.Add('UseBasicParsing',$true)
-            }
-            try {
-                  Write-Verbose "Calling Invoke-EasitWebRequest"
-                  $r = Invoke-EasitWebRequest @easitWebRequestParams
-            }
-            catch {
-                  throw $_
-            }
-            try {
-                  Write-Verbose "Converting response"
-                  $returnObject = Convert-EasitXMLToPsObject -Response $r
-            }
-            catch {
-                  throw $_
-            }
-            Write-Verbose "Returning converted response"
-            return $returnObject
       }
       end {
             Write-Verbose "$($MyInvocation.MyCommand) completed"
