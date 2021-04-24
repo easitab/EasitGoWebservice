@@ -17,11 +17,11 @@ function Get-GOItems {
 
             [parameter(Mandatory = $false)]
             [Alias("so")]
-            [string] $sortOrder = "Descending",
+            [string] $sortOrder,
 
             [parameter(Mandatory = $false)]
             [Alias("sf")]
-            [string] $sortField = "Id",
+            [string] $sortField,
 
             [parameter(Mandatory = $false)]
             [Alias("page")]
@@ -97,9 +97,17 @@ function Get-GOItems {
       $xmlParams = @{
             Get = $true
             ItemViewIdentifier = "$importViewIdentifier"
-            SortOrder = "$sortOrder"
-            SortField = "$sortField"
             Page = "$viewPageNumber"
+      }
+      if (!([string]::IsNullOrWhiteSpace($sortOrder))) {
+            $xmlParams.Add('SortOrder',"$sortOrder")
+            if ([string]::IsNullOrWhiteSpace($sortField)) {
+                  Write-Warning "Please provide a sortField when using sortOrder"
+                  break
+            }
+      }
+      if (!([string]::IsNullOrWhiteSpace($sortField))) {
+            $xmlParams.Add('SortField',"$sortField")
       }
       if ($ColumnFilter) {
             Write-Verbose "Validating column filter.."
