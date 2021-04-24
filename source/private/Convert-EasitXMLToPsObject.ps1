@@ -14,7 +14,7 @@ function Convert-EasitXMLToPsObject {
 
     process {
         if ($Response.Envelope.Body.Fault) {
-            throw "$($Response.Envelope.Body.Fault.faultstring)"
+            throw "$($Response.Envelope.Body.Fault.faultstring.innerText)"
         } else {
             if ($Response.Envelope.Body.GetItemsResponse) {
                 Write-Verbose "XML contains GetItemsResponse"

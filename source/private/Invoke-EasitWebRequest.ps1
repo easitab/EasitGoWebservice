@@ -61,14 +61,18 @@ function Invoke-EasitWebRequest {
         } catch [System.Net.WebException] {
             $statusCode = $_.Exception.Response.StatusCode.value__
             Write-Verbose "StatusCode = $statusCode"
-            if ($statusCode -eq 404) {
-                $dets = "url"
+            $erMessStart = 'An exception was caught:'
+            if (!($statusCode) -or $statusCode -ne 500) {
+                throw "$($_.Exception.Message)"
             }
-            if ($statusCode -eq 500) {
-                $dets = "apikey, ImportHandlerIdentifier/importViewIdentifier and properties for the items/object in payload"
-                $addHelp = "You can try running $((Get-Variable MyInvocation -Scope 1).Value.MyCommand.Name) with -dryRun to save payload to your desktop (${HOME}\Desktop\payload_x.xml)."
+            if ($statusCode -and $statusCode -eq 500) {
+                $reader = New-Object System.IO.StreamReader($_.Exception.Response.GetResponseStream())
+                $reader.BaseStream.Position = 0
+                $reader.DiscardBufferedData()
+                [xml]$xmlResponse = $reader.ReadToEnd()
+                $dets = "$($xmlResponse.Envelope.Body.Fault.faultstring.innerText)"
+                throw "$erMessStart $dets"
             }
-            throw "An exception was caught: $($_.Exception.Message). Please check so that $dets are correct. $addHelp"
         }
         [xml]$returnObject = $requestResponse.Content
         return $returnObject
