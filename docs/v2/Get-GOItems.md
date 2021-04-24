@@ -146,6 +146,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -IdFilter
+
+Database id for item to get.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: view
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -importViewIdentifier
 
 View to get data from.
