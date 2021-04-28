@@ -114,7 +114,8 @@ Accept wildcard characters: False
 ```
 
 ### -ConfigurationDirectory
-{{ Fill ConfigurationDirectory Description }}
+
+Path to directory where the configuration file for the web service is.
 
 ```yaml
 Type: String
@@ -137,6 +138,22 @@ This parameter does not append, rewrite or remove any files from your desktop.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IdFilter
+
+Database id for item to get.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: view
 
 Required: False
 Position: Named

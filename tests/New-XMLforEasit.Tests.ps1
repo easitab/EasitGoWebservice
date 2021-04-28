@@ -33,10 +33,10 @@ Describe "New-XMLforEasit" {
                     Get-Command "$commandName" | Should -HaveParameter ItemViewIdentifier -Mandatory
                 }
                 It 'an SortField if request is Get' {
-                    Get-Command "$commandName" | Should -HaveParameter SortField -Mandatory
+                    Get-Command "$commandName" | Should -HaveParameter SortField -Not -Mandatory
                 }
                 It 'an SortOrder if request is Get' {
-                    Get-Command "$commandName" | Should -HaveParameter SortOrder -Mandatory
+                    Get-Command "$commandName" | Should -HaveParameter SortOrder -Not -Mandatory
                 }
             }
             if ($set.Name -eq 'import') {

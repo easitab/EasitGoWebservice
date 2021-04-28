@@ -191,7 +191,8 @@ Accept wildcard characters: False
 ```
 
 ### -ConfigurationDirectory
-{{ Fill ConfigurationDirectory Description }}
+
+Path to directory where the configuration file for the web service is.
 
 ```yaml
 Type: String

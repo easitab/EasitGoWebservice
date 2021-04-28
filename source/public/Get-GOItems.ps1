@@ -17,11 +17,11 @@ function Get-GOItems {
 
             [parameter(Mandatory = $false)]
             [Alias("so")]
-            [string] $sortOrder = "Descending",
+            [string] $sortOrder,
 
             [parameter(Mandatory = $false)]
             [Alias("sf")]
-            [string] $sortField = "Id",
+            [string] $sortField,
 
             [parameter(Mandatory = $false)]
             [Alias("page")]
@@ -29,6 +29,9 @@ function Get-GOItems {
 
             [parameter(Mandatory = $false)]
             [string[]] $ColumnFilter,
+
+            [parameter(Mandatory = $false)]
+            [string] $IdFilter,
 
             [parameter(Mandatory = $false)]
             [Alias('configdir')]
@@ -97,9 +100,17 @@ function Get-GOItems {
       $xmlParams = @{
             Get = $true
             ItemViewIdentifier = "$importViewIdentifier"
-            SortOrder = "$sortOrder"
-            SortField = "$sortField"
             Page = "$viewPageNumber"
+      }
+      if (!([string]::IsNullOrWhiteSpace($sortOrder))) {
+            $xmlParams.Add('SortOrder',"$sortOrder")
+            if ([string]::IsNullOrWhiteSpace($sortField)) {
+                  Write-Warning "Please provide a sortField when using sortOrder"
+                  break
+            }
+      }
+      if (!([string]::IsNullOrWhiteSpace($sortField))) {
+            $xmlParams.Add('SortField',"$sortField")
       }
       if ($ColumnFilter) {
             Write-Verbose "Validating column filter.."
@@ -131,6 +142,11 @@ function Get-GOItems {
       else {
             Write-Verbose "Skipping ColumnFilter as it is null!"
       }
+      if ($IdFilter) {
+            $xmlParams.Add('IdFilter',"$IdFilter")
+      } else {
+            Write-Verbose "Skipping IdFilter as it is null!"
+      }
       ## End issue 6
       Write-Verbose 'Creating payload'
 
@@ -146,35 +162,33 @@ function Get-GOItems {
             } catch {
                   throw $_
             }
-            break
+      } else {
+            $easitWebRequestParams = @{
+                  Uri = "$url"
+                  Apikey = "$apikey"
+                  Body = $payload
+            }
+            if ($SSO) {
+                  Write-Verbose "Adding UseDefaultCredentials to param hash"
+                  $easitWebRequestParams.Add('UseDefaultCredentials',$true)
+            }
+            if ($UseBasicParsing) {
+                  Write-Verbose "Adding UseBasicParsing to param hash"
+                  $easitWebRequestParams.Add('UseBasicParsing',$true)
+            }
+            try {
+                  Write-Verbose "Calling Invoke-EasitWebRequest"
+                  $r = Invoke-EasitWebRequest @easitWebRequestParams
+            } catch {
+                  throw $_
+            }
+            try {
+                  Write-Verbose "Converting response"
+                  $returnObject = Convert-EasitXMLToPsObject -Response $r
+            } catch {
+                  throw $_
+            }
+            Write-Verbose "Returning converted response"
+            $returnObject
       }
-      $easitWebRequestParams = @{
-            Uri = "$url"
-            Apikey = "$apikey"
-            Body = $payload
-      }
-      if ($SSO) {
-            Write-Verbose "Adding UseDefaultCredentials to param hash"
-            $easitWebRequestParams.Add('UseDefaultCredentials',$true)
-      }
-      if ($UseBasicParsing) {
-            Write-Verbose "Adding UseBasicParsing to param hash"
-            $easitWebRequestParams.Add('UseBasicParsing',$true)
-      }
-      try {
-            Write-Verbose "Calling Invoke-EasitWebRequest"
-            $r = Invoke-EasitWebRequest @easitWebRequestParams
-      }
-      catch {
-            throw $_
-      }
-      try {
-            Write-Verbose "Converting response"
-            $returnObject = Convert-EasitXMLToPsObject -Response $r
-      }
-      catch {
-            throw $_
-      }
-      Write-Verbose "Returning converted response"
-      $returnObject
 }

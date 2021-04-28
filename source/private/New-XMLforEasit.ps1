@@ -16,14 +16,17 @@ function New-XMLforEasit {
         [Parameter(Mandatory=$false, ParameterSetName="get")]
         [int] $Page = 1,
 
-        [Parameter(Mandatory=$true, ParameterSetName="get")]
+        [Parameter(Mandatory=$false, ParameterSetName="get")]
         [string] $SortField,
 
-        [Parameter(Mandatory=$true, ParameterSetName="get")]
+        [Parameter(Mandatory=$false, ParameterSetName="get")]
         [string] $SortOrder,
 
         [Parameter(Mandatory=$false, ParameterSetName="get")]
         [string[]] $ColumnFilter,
+
+        [Parameter(Mandatory=$false, ParameterSetName="get")]
+        [string] $IdFilter,
 
         [parameter(Mandatory=$false, Position=0, ParameterSetName="import")]
         [switch] $Import,
@@ -184,17 +187,24 @@ function New-XMLforEasit {
             Write-Error "$_"
             break
         }
-
-        try {
-            Write-Verbose "Creating xml element for SortColumn order"
-            $envelopeSortColumnOrder = $payload.CreateElement('sch:SortColumn',"$xmlnsSch")
-            $envelopeSortColumnOrder.SetAttribute("order","$SortOrder")
-            $envelopeSortColumnOrder.InnerText  = "$SortField"
-            $schGetItemsRequest.AppendChild($envelopeSortColumnOrder) | Out-Null
-        } catch {
-            Write-Error "Failed to create xml element for Page"
-            Write-Error "$_"
-            break
+        if (!([string]::IsNullOrWhiteSpace($sortOrder))) {
+            if ([string]::IsNullOrWhiteSpace($sortField)) {
+                  Write-Warning "Please provide a sortField when using sortOrder"
+                  break
+            }
+            if (!([string]::IsNullOrWhiteSpace($sortField))) {
+                try {
+                    Write-Verbose "Creating xml element for SortColumn order"
+                    $envelopeSortColumnOrder = $payload.CreateElement('sch:SortColumn',"$xmlnsSch")
+                    $envelopeSortColumnOrder.SetAttribute("order","$SortOrder")
+                    $envelopeSortColumnOrder.InnerText  = "$SortField"
+                    $schGetItemsRequest.AppendChild($envelopeSortColumnOrder) | Out-Null
+                } catch {
+                    Write-Error "Failed to create xml element for Page"
+                    Write-Error "$_"
+                    break
+                }
+            }
         }
         ## Solution provided by Dennis Zakariasson <dennis.zakariasson@regionuppsala.se> thru issue 5
         if ($ColumnFilter) {
@@ -225,6 +235,18 @@ function New-XMLforEasit {
             Write-Verbose "Skipping ColumnFilter as it is null!"
         }
         ## End issue 6
+        if (!([string]::IsNullOrWhiteSpace($IdFilter))) {
+            try {
+                Write-Verbose "Creating xml element for Page"
+                $envelopePage = $payload.CreateElement('sch:IdFilter',"$xmlnsSch")
+                $envelopePage.InnerText  = "$IdFilter"
+                $schGetItemsRequest.AppendChild($envelopePage) | Out-Null
+            } catch {
+                Write-Error "Failed to create xml element for Page"
+                Write-Error "$_"
+                break
+            }
+        }
     }
 
     if ($Ping) {
