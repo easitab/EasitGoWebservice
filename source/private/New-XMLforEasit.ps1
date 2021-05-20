@@ -138,6 +138,22 @@ function New-XMLforEasit {
                     Write-Error "Failed to add property $parName in SOAP envelope!"
                     Write-Error "$_"
                 }
+            } elseif ($parameter.Value.Count -gt 1) {
+                
+                foreach($p in $parameter.Value){
+                    $parName = $parameter.Name
+                    $parValue = $p
+                    try {
+                        $envelopeItemProperty = $payload.CreateElement("sch:Property","$xmlnsSch")
+                        $envelopeItemProperty.SetAttribute('name',"$parName")
+                        $envelopeItemProperty.InnerText = $parValue
+                        $schItemToImport.AppendChild($envelopeItemProperty) | Out-Null
+                        Write-Verbose "Added property $parName to payload!"
+                    } catch {
+                        Write-Error "Failed to add property $parName in SOAP envelope!"
+                        Write-Error "$_"
+                    }
+                }
             } else {
                 $parName = $parameter.Name
                 $parValue = $parameter.Value
