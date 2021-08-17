@@ -66,6 +66,59 @@ function New-XMLforEasit {
             Write-Error "$_"
             break
         }
+        Write-Verbose "Starting loop for creating xml element for each parameter"
+        foreach ($parameter in $Params.GetEnumerator()) {
+            Write-Verbose "Starting loop for $($parameter.Name) with value $($parameter.Value)"
+            if ($parameter.Name -eq "Attachment") {
+                try {
+                    $parName = $parameter.Name
+                    $parValue = $parameter.Value
+                    $fileHeader = ""
+                    $separator = "\"
+                    $fileNametoHeader = $parValue.Split($separator)
+                    $fileHeader = $fileNametoHeader[-1]
+                    $base64string = [Convert]::ToBase64String([System.IO.File]::ReadAllBytes("$parValue"))
+                    $envelopeItemAttachment = $payload.CreateElement("sch:Attachment","$xmlnsSch")
+                    $envelopeItemAttachment.SetAttribute('name',"$fileHeader")
+                    $envelopeItemAttachment.InnerText = $base64string
+                    $schItemToImport.AppendChild($envelopeItemAttachment) | Out-Null
+                    Write-Verbose "Added property $parName to payload!"
+                } catch {
+                    Write-Error "Failed to add property $parName in SOAP envelope!"
+                    Write-Error "$_"
+                }
+            } elseif ($parameter.Value.Count -gt 1) {
+                
+                foreach($p in $parameter.Value){
+                    $parName = $parameter.Name
+                    $parValue = $p
+                    try {
+                        $envelopeItemProperty = $payload.CreateElement("sch:Property","$xmlnsSch")
+                        $envelopeItemProperty.SetAttribute('name',"$parName")
+                        $envelopeItemProperty.InnerText = $parValue
+                        $schItemToImport.AppendChild($envelopeItemProperty) | Out-Null
+                        Write-Verbose "Added property $parName to payload!"
+                    } catch {
+                        Write-Error "Failed to add property $parName in SOAP envelope!"
+                        Write-Error "$_"
+                    }
+                }
+            } else {
+                $parName = $parameter.Name
+                $parValue = $parameter.Value
+                try {
+                    $envelopeItemProperty = $payload.CreateElement("sch:Property","$xmlnsSch")
+                    $envelopeItemProperty.SetAttribute('name',"$parName")
+                    $envelopeItemProperty.InnerText = $parValue
+                    $schItemToImport.AppendChild($envelopeItemProperty) | Out-Null
+                    Write-Verbose "Added property $parName to payload!"
+                } catch {
+                    Write-Error "Failed to add property $parName in SOAP envelope!"
+                    Write-Error "$_"
+                }
+            }
+        } Write-Verbose "Loop for $($parameter.Name) reached end!"
+    }
 
         try {
             Write-Verbose "Creating xml element for Header"
@@ -288,4 +341,6 @@ function New-XMLforEasit {
     end {
         Write-Verbose "$($MyInvocation.MyCommand) completed"
     }
+    Write-Verbose "Successfully updated property values in SOAP envelope for all parameters with input provided!"
+    return $payload
 }
