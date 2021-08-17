@@ -51,10 +51,19 @@ function Convert-EasitXMLToPsObject {
                                     if ("$($itemProperty.rawValue)" -notmatch 'null') {
                                         Write-Verbose "Adding ${itemPropertyName}_${count} with value $tempPropertyValue"
                                         $returnItem | Add-Member -MemberType Noteproperty -Name "${itemPropertyName}_${count}" -Value "$tempPropertyValue"
+                                        $returnItem | Add-Member -MemberType Noteproperty -Name "${itemPropertyName}_${count}_rawValue" -Value "$itemPropertyrawValue"
                                     }
                                     $count++
                                 }
                                 $returnItem."$itemPropertyName" = "customArrayList"
+                            } else {
+                                if (!([string]::IsNullOrEmpty("$($itemProperty.rawValue)"))) {
+                                    $itemPropertyrawValue = "$($itemProperty.rawValue)"
+                                    $itemPropertyrawValueName = "${itemPropertyName}_rawValue"
+                                    Write-Verbose "itemPropertyrawValueName = $itemPropertyrawValueName"
+                                    Write-Verbose "itemPropertyrawValue = $itemPropertyrawValue"
+                                    $returnItem | Add-Member -MemberType Noteproperty -Name "${itemPropertyName}_rawValue" -Value "$itemPropertyrawValue"
+                                }
                             }
                         }
                         $returnItem
