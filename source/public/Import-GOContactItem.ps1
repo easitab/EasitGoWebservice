@@ -100,7 +100,7 @@ function Import-GOContactItem {
 
             [parameter(ParameterSetName = 'BPSAttribute', ValueFromPipelineByPropertyName = $true)]
             [Alias("File")]
-            [string] $Attachment,
+            [string[]] $Attachment,
 
             [parameter(Mandatory = $false)]
             [switch] $SSO,
@@ -171,7 +171,7 @@ function Import-GOContactItem {
                         Write-Verbose "$($parameter.Name) is part of BPS parameter set"
                         $parDetails = Get-Variable -Name $parameter.Name
                         if ($parDetails.Value) {
-                              Write-Verbose "$($parameter.Name) have a value"
+                              Write-Verbose "$($parameter.Name) have a value, $($parDetails.Value)"
                               $parName = $parDetails.Name
                               $parValue = $parDetails.Value
                               $params.Add("$parName", "$parValue")
