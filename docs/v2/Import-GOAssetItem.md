@@ -91,6 +91,18 @@ Import-GOAssetItem @importEasitItem -ID 156 -Status 'Inactive'
 
 In this example we have a configuration file located in our users home directory with the url and apikey.
 
+### EXAMPLE 6
+
+```powershell
+Import-GOAssetItem
+    -ImportHandlerIdentifier 'CreateAssetGeneral'
+    -ID '456'
+    -Attachment 'file;C:\Path\To\Attachment.docx','base64;filename.txt;base64stringofattachment'
+```
+
+In this example we have a configuration file located in our users home directory with the url and apikey.\
+We are updating an asset with ID 456 with 2 attachments.
+
 ## PARAMETERS
 
 ### -ActivityDebit

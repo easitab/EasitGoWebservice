@@ -85,6 +85,18 @@ $importEasitItem = @{
 Import-GORequestItem @importEasitItem -Description 'Updating description for request 156'
 ```
 
+### EXAMPLE 6
+
+```powershell
+Import-GORequestItem
+    -ImportHandlerIdentifier 'CreateRequest'
+    -ID '456'
+    -Attachment 'file;C:\Path\To\Attachment.docx','base64;filename.txt;base64stringofattachment'
+```
+
+In this example we have a configuration file located in our users home directory with the url and apikey.\
+We are updating an request with ID 456 with 2 attachments.
+
 ## PARAMETERS
 
 ### -apikey
