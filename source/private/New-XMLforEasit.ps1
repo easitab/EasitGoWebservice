@@ -44,7 +44,6 @@ function New-XMLforEasit {
         Write-Verbose "Defining xmlns:soapenv and xmlns:sch"
         $xmlnsSoapEnv = "http://schemas.xmlsoap.org/soap/envelope/"
         $xmlnsSch = "http://www.easit.com/bps/schemas"
-
         try {
             Write-Verbose "Creating xml object for payload"
             $payload = New-Object xml
@@ -55,7 +54,6 @@ function New-XMLforEasit {
             Write-Error "$_"
             break
         }
-
         try {
             Write-Verbose "Creating xml element for Envelope"
             $soapEnvEnvelope = $payload.CreateElement("soapenv:Envelope","$xmlnsSoapEnv")
@@ -66,9 +64,6 @@ function New-XMLforEasit {
             Write-Error "$_"
             break
         }
-        
-    
-
         try {
             Write-Verbose "Creating xml element for Header"
             $soapEnvHeader = $payload.CreateElement('soapenv:Header',"$xmlnsSoapEnv")
@@ -78,7 +73,6 @@ function New-XMLforEasit {
             Write-Error "$_"
             break
         }
-
         try {
             Write-Verbose "Creating xml element for Body"
             $soapEnvBody = $payload.CreateElement("soapenv:Body","$xmlnsSoapEnv")
@@ -88,8 +82,6 @@ function New-XMLforEasit {
             Write-Error "$_"
             break
         }
-
-
         if ($Import) {
             try {
                 Write-Verbose "Creating xml element for ImportItemsRequest"
@@ -123,33 +115,47 @@ function New-XMLforEasit {
                 break
             }
             Write-Verbose "Starting loop for creating xml element for each parameter"
-        foreach ($parameter in $Params.GetEnumerator()) {
-            Write-Verbose "Starting loop for $($parameter.Name) with value $($parameter.Value)"
-            if ($parameter.Name -eq "Attachment") {
-                $attachments = $parameter.Value -Split ' '
-                Write-Verbose "Number of attachments = $($attachments.Count)"
-                foreach ($attachment in $attachments) {
-                    try {
-                        Write-Verbose "attachment = $attachment"
-                        $attachmentObject = Set-Attachment -InputObject $attachment
-                    } catch {
-                        Write-Error $_
+            foreach ($parameter in $Params.GetEnumerator()) {
+                Write-Verbose "Starting loop for $($parameter.Name) with value $($parameter.Value)"
+                if ($parameter.Name -eq "Attachment") {
+                    $attachments = $parameter.Value -Split ' '
+                    Write-Verbose "Number of attachments = $($attachments.Count)"
+                    foreach ($attachment in $attachments) {
+                        try {
+                            Write-Verbose "attachment = $attachment"
+                            $attachmentObject = Set-Attachment -InputObject $attachment
+                        } catch {
+                            Write-Error $_
+                        }
+                        try {
+                            $envelopeItemAttachment = $payload.CreateElement("sch:Attachment","$xmlnsSch")
+                            $envelopeItemAttachment.SetAttribute('name',"$($attachmentObject.attachmentName)")
+                            $envelopeItemAttachment.InnerText = "$($attachmentObject.attachment)"
+                            $schItemToImport.AppendChild($envelopeItemAttachment) | Out-Null
+                            Write-Verbose "Added attachment $($attachmentObject.attachmentName) to payload!"
+                        } catch {
+                            Write-Error "Failed to add property $parName in SOAP envelope!"
+                            Write-Error "$_"
+                        }
                     }
-                    try {
-                        $envelopeItemAttachment = $payload.CreateElement("sch:Attachment","$xmlnsSch")
-                        $envelopeItemAttachment.SetAttribute('name',"$($attachmentObject.attachmentName)")
-                        $envelopeItemAttachment.InnerText = "$($attachmentObject.attachment)"
-                        $schItemToImport.AppendChild($envelopeItemAttachment) | Out-Null
-                        Write-Verbose "Added attachment $($attachmentObject.attachmentName) to payload!"
-                    } catch {
-                        Write-Error "Failed to add property $parName in SOAP envelope!"
-                        Write-Error "$_"
+                } elseif ($parameter.Value.Count -gt 1) {
+                    foreach($p in $parameter.Value){
+                        $parName = $parameter.Name
+                        $parValue = $p
+                        try {
+                            $envelopeItemProperty = $payload.CreateElement("sch:Property","$xmlnsSch")
+                            $envelopeItemProperty.SetAttribute('name',"$parName")
+                            $envelopeItemProperty.InnerText = $parValue
+                            $schItemToImport.AppendChild($envelopeItemProperty) | Out-Null
+                            Write-Verbose "Added property $parName to payload!"
+                        } catch {
+                            Write-Error "Failed to add property $parName in SOAP envelope!"
+                            Write-Error "$_"
+                        }
                     }
-                }
-            } elseif ($parameter.Value.Count -gt 1) {
-                foreach($p in $parameter.Value){
+                } else {
                     $parName = $parameter.Name
-                    $parValue = $p
+                    $parValue = $parameter.Value
                     try {
                         $envelopeItemProperty = $payload.CreateElement("sch:Property","$xmlnsSch")
                         $envelopeItemProperty.SetAttribute('name',"$parName")
@@ -161,23 +167,9 @@ function New-XMLforEasit {
                         Write-Error "$_"
                     }
                 }
-            } else {
-                $parName = $parameter.Name
-                $parValue = $parameter.Value
-                try {
-                    $envelopeItemProperty = $payload.CreateElement("sch:Property","$xmlnsSch")
-                    $envelopeItemProperty.SetAttribute('name',"$parName")
-                    $envelopeItemProperty.InnerText = $parValue
-                    $schItemToImport.AppendChild($envelopeItemProperty) | Out-Null
-                    Write-Verbose "Added property $parName to payload!"
-                } catch {
-                    Write-Error "Failed to add property $parName in SOAP envelope!"
-                    Write-Error "$_"
-                }
             }
-        } Write-Verbose "Loop for $($parameter.Name) reached end!"
+            Write-Verbose "Loop for $($parameter.Name) reached end!"
         }
-
         if ($Get) {
             try {
                 Write-Verbose "Creating xml element for GetItemsRequest"
@@ -188,7 +180,6 @@ function New-XMLforEasit {
                 Write-Error "$_"
                 break
             }
-
             try {
                 Write-Verbose "Creating xml element for ItemViewIdentifier"
                 $envelopeItemViewIdentifier = $payload.CreateElement('sch:ItemViewIdentifier',"$xmlnsSch")
@@ -199,7 +190,6 @@ function New-XMLforEasit {
                 Write-Error "$_"
                 break
             }
-
             try {
                 Write-Verbose "Creating xml element for Page"
                 $envelopePage = $payload.CreateElement('sch:Page',"$xmlnsSch")
@@ -249,7 +239,6 @@ function New-XMLforEasit {
                             Write-Verbose "rawValue = $($ColumnFilterValues[1])"
                             $envelopeColumnFilter.SetAttribute("comparator","$($ColumnFilterValues[2])")
                             Write-Verbose "comparator = $($ColumnFilterValues[2])"
-                            
                             if ([string]::IsNullOrWhiteSpace($columnFilterInnerText)) {
                                 $columnFilterInnerText = $false
                             }
@@ -264,7 +253,6 @@ function New-XMLforEasit {
                             $envelopeColumnFilter.InnerText = "$($ColumnFilterValues[-1])"
                             Write-Verbose "InnerText = $($ColumnFilterValues[-1])"
                         }
-                        
                         $schGetItemsRequest.AppendChild($envelopeColumnFilter) | Out-Null
                     } catch {
                         Write-Error "Failed to create xml element for ColumnFilter"
@@ -275,7 +263,6 @@ function New-XMLforEasit {
             } else {
                 Write-Verbose "Skipping ColumnFilter as it is null!"
             }
-            ## End issue 6
             if (!([string]::IsNullOrWhiteSpace($IdFilter))) {
                 try {
                     Write-Verbose "Creating xml element for Page"
@@ -289,7 +276,6 @@ function New-XMLforEasit {
                 }
             }
         }
-
         if ($Ping) {
             try {
                 Write-Verbose "Creating xml element for PingRequest"

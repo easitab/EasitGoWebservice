@@ -4,11 +4,9 @@ function Set-Attachment {
         [Parameter(Mandatory)]
         [string]$InputObject
     )
-    
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
     process {
         $attachmentDetails = $InputObject -split ';'
         $attachmentType = $attachmentDetails[0].Trim()
@@ -38,7 +36,6 @@ function Set-Attachment {
             $attachmentName = $attachmentDetails[1].Trim()
             $base64string = $attachmentDetails[-1].Trim()
         }
-        
         if ([string]::IsNullOrEmpty($attachmentName)) {
             Write-Verbose "attachmentName IsNullOrEmpty, setting value to 'null'"
             $attachmentName = 'null'
@@ -55,7 +52,6 @@ function Set-Attachment {
         $returnObject | Add-Member -MemberType Noteproperty -Name "attachment" -Value "$base64string"
         return $returnObject
     }
-    
     end {
         Write-Verbose "$($MyInvocation.MyCommand) completed"
     }
