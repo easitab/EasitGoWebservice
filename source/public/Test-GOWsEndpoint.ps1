@@ -1,5 +1,6 @@
 function Test-GOWsEndpoint {
     [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Test-GOWsEndpoint.md")]
+    [OutputType([boolean])]
     param (
         [parameter(Mandatory=$false)]
         [string] $url,
