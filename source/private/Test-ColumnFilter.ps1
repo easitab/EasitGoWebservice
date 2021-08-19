@@ -1,5 +1,5 @@
 function Test-ColumnFilter {
-    [CmdletBinding()]
+    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Test-ColumnFilter.md")]
     param (
             [parameter()]
             [String]$Filter,

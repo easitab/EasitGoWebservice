@@ -1,5 +1,5 @@
 function Test-GOWsEndpoint {
-    [CmdletBinding()]
+    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Test-GOWsEndpoint.md")]
     param (
         [parameter(Mandatory=$false)]
         [string] $url,
@@ -25,11 +25,9 @@ function Test-GOWsEndpoint {
         [parameter(Mandatory = $false)]
         [switch] $UseBasicParsing
     )
-    
     begin {
         Write-Verbose "$($MyInvocation.MyCommand) initialized"
     }
-    
     process {
         if (!($url) -or !($apikey)) {
             Write-Verbose "url or apikey NOT provided, checking for local configuration file"
@@ -91,7 +89,6 @@ function Test-GOWsEndpoint {
                 throw $_
             }
         }
-        
         $payload.Save("C:\Users\anth\GitHub\easitanth\EasitGoWebservice\payload.xml")
         $easitWebRequestParams = @{
             Uri = "$url"
@@ -125,7 +122,6 @@ function Test-GOWsEndpoint {
         } else {
             return $true
         }
-        
     }
     end {
         Write-Verbose "$($MyInvocation.MyCommand) completed"
