@@ -74,7 +74,7 @@ function Test-GOWsEndpoint {
         }
         if ($EndpointType -like 'Get') {
             $newXmlParams.Add('Get',$true)
-            $newXmlParams.Add('ItemViewIdentifier',$Endpoint)        
+            $newXmlParams.Add('ItemViewIdentifier',$Endpoint)
         }
         if ($EndpointType -like 'Import') {
             try {
