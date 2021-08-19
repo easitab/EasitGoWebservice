@@ -77,6 +77,18 @@ $getGoItemsParams = @{
 Get-GOItems @getGoItemsParams -ColumnFilter "Status,IN,Registrerad", "Prioritet,IN,5"
 ```
 
+### EXAMPLE 6
+
+Column filter with rawValue instead of text value.
+
+```powershell
+$getGoItemsParams = @{
+      view = 'RequestIncidents'
+      sortOrder = 'Ascending'
+}
+Get-GOItems @getGoItemsParams -ColumnFilter "Status,159:5,IN,", "Prioritet,753:1,IN,"
+```
+
 ## PARAMETERS
 
 ### -apikey
