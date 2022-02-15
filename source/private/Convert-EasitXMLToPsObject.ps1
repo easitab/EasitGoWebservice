@@ -21,9 +21,11 @@ function Convert-EasitXMLToPsObject {
                 if ($Response.Envelope.Body.GetItemsResponse.Items) {
                     foreach ($item in $Response.Envelope.Body.GetItemsResponse.Items.GetEnumerator()) {
                         $returnItem = New-Object PSObject
+                        # --Start: Should be replaced with script methods (requestedPage, totalNumberOfPages, totalNumberOfItems) in version 3
                         $returnItem | Add-Member -MemberType Noteproperty -Name "requestedPage" -Value "$($Response.Envelope.Body.GetItemsResponse.requestedPage)"
                         $returnItem | Add-Member -MemberType Noteproperty -Name "totalNumberOfPages" -Value "$($Response.Envelope.Body.GetItemsResponse.totalNumberOfPages)"
                         $returnItem | Add-Member -MemberType Noteproperty -Name "totalNumberOfItems" -Value "$($Response.Envelope.Body.GetItemsResponse.totalNumberOfItems)"
+                        # --End
                         $returnItem | Add-Member -MemberType Noteproperty -Name "databaseId" -Value "$($item.id)"
                         foreach ($column in $Response.Envelope.Body.GetItemsResponse.Columns.GetEnumerator()) {
                             Write-Verbose "Adding property $($column.InnerText) as Noteproperty to object"
@@ -40,6 +42,14 @@ function Convert-EasitXMLToPsObject {
                             Write-Verbose "itemPropertyValue = $itemPropertyValue"
                             Write-Verbose "Setting $itemPropertyName to $itemPropertyValue"
                             $returnItem."$itemPropertyName" = "$itemPropertyValue"
+                            if (!([string]::IsNullOrEmpty("$($itemProperty.rawValue)"))) {
+                                $itemPropertyrawValue = "$($itemProperty.rawValue)"
+                                $itemPropertyrawValueName = "${itemPropertyName}_rawValue"
+                                Write-Verbose "itemPropertyrawValueName = $itemPropertyrawValueName"
+                                Write-Verbose "itemPropertyrawValue = $itemPropertyrawValue"
+                                $returnItem | Add-Member -MemberType Noteproperty -Name "${itemPropertyName}_rawValue" -Value "$itemPropertyrawValue"
+                            }
+                            <#
                             if ("$($itemProperty.InnerText)" -match ' \/ ') {
                                 Write-Verbose "$($itemProperty.InnerText) -match '/'"
                                 $tempPropertyValues = @()
@@ -64,7 +74,7 @@ function Convert-EasitXMLToPsObject {
                                     Write-Verbose "itemPropertyrawValue = $itemPropertyrawValue"
                                     $returnItem | Add-Member -MemberType Noteproperty -Name "${itemPropertyName}_rawValue" -Value "$itemPropertyrawValue"
                                 }
-                            }
+                            }#>
                         }
                         $returnItem
                     }
