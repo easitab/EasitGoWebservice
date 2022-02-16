@@ -21,16 +21,27 @@ function Convert-EasitXMLToPsObject {
                 if ($Response.Envelope.Body.GetItemsResponse.Items) {
                     foreach ($item in $Response.Envelope.Body.GetItemsResponse.Items.GetEnumerator()) {
                         $returnItem = New-Object PSObject
+                        # --Start: Should be replaced with script methods (requestedPage, totalNumberOfPages, totalNumberOfItems) in version 3
                         $returnItem | Add-Member -MemberType Noteproperty -Name "requestedPage" -Value "$($Response.Envelope.Body.GetItemsResponse.requestedPage)"
                         $returnItem | Add-Member -MemberType Noteproperty -Name "totalNumberOfPages" -Value "$($Response.Envelope.Body.GetItemsResponse.totalNumberOfPages)"
                         $returnItem | Add-Member -MemberType Noteproperty -Name "totalNumberOfItems" -Value "$($Response.Envelope.Body.GetItemsResponse.totalNumberOfItems)"
+                        # --End
                         $returnItem | Add-Member -MemberType Noteproperty -Name "databaseId" -Value "$($item.id)"
                         foreach ($column in $Response.Envelope.Body.GetItemsResponse.Columns.GetEnumerator()) {
                             Write-Verbose "Adding property $($column.InnerText) as Noteproperty to object"
-                            try {
-                                $returnItem | Add-Member -MemberType Noteproperty -Name "$($column.InnerText)" -Value $null -ErrorAction 'Stop'
-                            } catch [System.InvalidOperationException] {
-                                Write-Warning "$($column.InnerText) is used two times in the importViewIdentifier specified, this could be due to duplicates of the same field or that two fields have the same name. The value from the latest occurance will be used!"
+                            if ($column.Collection -eq 'true') {
+                                try {
+                                    $array = @()
+                                    $returnItem | Add-Member -MemberType Noteproperty -Name "$($column.InnerText)" -Value $array -ErrorAction 'Stop'
+                                } catch {
+                                    Write-Warning "$($_.Exception.Message)"
+                                }
+                            } else {
+                                try {
+                                    $returnItem | Add-Member -MemberType Noteproperty -Name "$($column.InnerText)" -Value $null -ErrorAction 'Stop'
+                                } catch [System.InvalidOperationException] {
+                                    Write-Warning "$($column.InnerText) is used two times in the importViewIdentifier specified, this could be due to duplicates of the same field or that two fields have the same name. The value from the latest occurance will be used!"
+                                }
                             }
                         }
                         foreach ($itemProperty in $item.GetEnumerator()) {
@@ -39,7 +50,24 @@ function Convert-EasitXMLToPsObject {
                             $itemPropertyValue = "$($itemProperty.InnerText)"
                             Write-Verbose "itemPropertyValue = $itemPropertyValue"
                             Write-Verbose "Setting $itemPropertyName to $itemPropertyValue"
-                            $returnItem."$itemPropertyName" = "$itemPropertyValue"
+                            if ($returnItem."$itemPropertyName" -is 'System.Array') {
+                                $propHash = @{
+                                    Value = "$itemPropertyValue"
+                                    rawValue = "$($itemProperty.rawValue)"
+                                }
+                                $returnItem."$itemPropertyName" += $propHash
+                            } else {
+                                $returnItem."$itemPropertyName" = "$itemPropertyValue"
+                                if (!([string]::IsNullOrEmpty("$($itemProperty.rawValue)"))) {
+                                    $itemPropertyrawValue = "$($itemProperty.rawValue)"
+                                    $itemPropertyrawValueName = "${itemPropertyName}_rawValue"
+                                    Write-Verbose "itemPropertyrawValueName = $itemPropertyrawValueName"
+                                    Write-Verbose "itemPropertyrawValue = $itemPropertyrawValue"
+                                    $returnItem | Add-Member -MemberType Noteproperty -Name "${itemPropertyName}_rawValue" -Value "$itemPropertyrawValue"
+                                }
+                            }
+                            
+                            <#
                             if ("$($itemProperty.InnerText)" -match ' \/ ') {
                                 Write-Verbose "$($itemProperty.InnerText) -match '/'"
                                 $tempPropertyValues = @()
@@ -64,7 +92,7 @@ function Convert-EasitXMLToPsObject {
                                     Write-Verbose "itemPropertyrawValue = $itemPropertyrawValue"
                                     $returnItem | Add-Member -MemberType Noteproperty -Name "${itemPropertyName}_rawValue" -Value "$itemPropertyrawValue"
                                 }
-                            }
+                            }#>
                         }
                         $returnItem
                     }
