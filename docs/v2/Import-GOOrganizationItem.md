@@ -22,7 +22,7 @@ Import-GOOrganizationItem [-url <String>] [-apikey <String>] [-ImportHandlerIden
  [-Name <String>] [-Notes <String>] [-Ort <String>] [-Phone <String>] [-PostNummer <String>]
  [-ResponsibilityDebit <String>] [-UtdelningsAdress <String>] [-VisitingAddress <String>]
  [-VisitingCity <String>] [-VisitingZipCode <String>] [-Webshop <String>] [-Website <String>]
- [-AccountManager <String>] [-ServiceManager <String>] [-uid <Int32>] [-Attachment <String>] [-SSO]
+ [-AccountManager <String>] [-ServiceManager <String>] [-uid <Int32>] [-Attachment <String[]>] [-SSO]
  [-UseBasicParsing] [-dryRun] [<CommonParameters>]
 ```
 
@@ -159,7 +159,7 @@ Accept wildcard characters: False
 Full path to file to be included in payload.
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: (All)
 Aliases: File
 
@@ -740,6 +740,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.String
 ### System.Int32
+### System.String[]
 ## OUTPUTS
 
 ### System.Object

@@ -15,7 +15,7 @@ Get data from Easit BPS / Easit GO with web services.
 
 ```
 Get-GOItems [[-url] <String>] [[-apikey] <String>] [-importViewIdentifier] <String> [[-sortOrder] <String>]
- [[-sortField] <String>] [[-viewPageNumber] <Int32>] [[-ColumnFilter] <String[]>]
+ [[-sortField] <String>] [[-viewPageNumber] <Int32>] [[-ColumnFilter] <String[]>] [[-IdFilter] <String>]
  [[-ConfigurationDirectory] <String>] [-dryRun] [-UseBasicParsing] [-SSO] [<CommonParameters>]
 ```
 
@@ -135,7 +135,7 @@ Parameter Sets: (All)
 Aliases: configdir
 
 Required: False
-Position: 7
+Position: 8
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -165,10 +165,10 @@ Database id for item to get.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: view
+Aliases:
 
 Required: False
-Position: Named
+Position: 7
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

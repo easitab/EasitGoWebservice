@@ -21,7 +21,7 @@ Import-GOContactItem [-url <String>] [-apikey <String>] [-ImportHandlerIdentifie
  [-Checkbox_Authorized_Purchaser <String>] [-Checkbox_Responsible_Manager <String>] [-Deparment <String>]
  [-ExternalId <String>] [-FQDN <String>] [-Inactive <String>] [-MobilePhone <String>] [-Note <String>]
  [-Phone <String>] [-Room <String>] [-Title <String>] [-Username <String>] [-uid <Int32>]
- [-Attachment <String>] [-SSO] [-UseBasicParsing] [-dryRun] [<CommonParameters>]
+ [-Attachment <String[]>] [-SSO] [-UseBasicParsing] [-dryRun] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -116,7 +116,7 @@ Accept wildcard characters: False
 Full path to file to be included in payload.
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: (All)
 Aliases: File
 
@@ -638,6 +638,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.String
 ### System.Int32
+### System.String[]
 ## OUTPUTS
 
 ### System.Object

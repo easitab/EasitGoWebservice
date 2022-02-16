@@ -20,8 +20,8 @@ New-XMLforEasit [-Ping] [<CommonParameters>]
 
 ### get
 ```
-New-XMLforEasit [-Get] -ItemViewIdentifier <String> [-Page <Int32>] -SortField <String> -SortOrder <String>
- [-ColumnFilter <String[]>] [<CommonParameters>]
+New-XMLforEasit [-Get] -ItemViewIdentifier <String> [-Page <Int32>] [-SortField <String>] [-SortOrder <String>]
+ [-ColumnFilter <String[]>] [-IdFilter <String>] [<CommonParameters>]
 ```
 
 ### import
@@ -77,6 +77,21 @@ Aliases:
 
 Required: False
 Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IdFilter
+{{ Fill IdFilter Description }}
+
+```yaml
+Type: String
+Parameter Sets: get
+Aliases:
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -187,7 +202,7 @@ Type: String
 Parameter Sets: get
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -203,7 +218,7 @@ Type: String
 Parameter Sets: get
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False

@@ -31,7 +31,7 @@ Import-GOAssetItem [-url <String>] [-apikey <String>] [-ImportHandlerIdentifier 
  [-AssetPhoneModel <String>] [-AssetPhoneType <String>] [-Operator <String>] [-IMEINumber <String>]
  [-MobilePhoneNumber <String>] [-PhoneNumber <String>] [-PukCode <String>] [-ModelPrinter <String>]
  [-IPAdress <String>] [-MacAddress <String>] [-NetworkName <String>] [-ModelServer <String>]
- [-DNSName <String>] [-ServiceBlackout <String>] [-uid <Int32>] [-Attachment <String>] [-SSO]
+ [-DNSName <String>] [-ServiceBlackout <String>] [-uid <Int32>] [-Attachment <String[]>] [-SSO]
  [-UseBasicParsing] [-dryRun] [<CommonParameters>]
 ```
 
@@ -255,7 +255,7 @@ Accept wildcard characters: False
 Full path to file to be included in payload.
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: (All)
 Aliases: File
 
@@ -1256,6 +1256,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ### System.String
 ### System.Int32
 ### System.Security.SecureString
+### System.String[]
 ## OUTPUTS
 
 ### System.Object

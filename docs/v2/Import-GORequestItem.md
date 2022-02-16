@@ -25,7 +25,7 @@ Import-GORequestItem [-url <String>] [-apikey <String>] [-ImportHandlerIdentifie
  [-ApprovedByID <Int32>] [-Approval <String>] [-ProductsAndServices <String>] [-Message <String>]
  [-DesiredDelivery <String>] [-PlannedDelivery <String>] [-Workaround <String>] [-ImpactAssessment <String>]
  [-ResourceRequirement <String>] [-Cause <String>] [-LifeCycle <String>] [-TypeOfChange <String>]
- [-CategoryOfChange <String>] [-Attachment <String>] [-SSO] [-UseBasicParsing] [-dryRun] [<CommonParameters>]
+ [-CategoryOfChange <String>] [-Attachment <String[]>] [-SSO] [-UseBasicParsing] [-dryRun] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -170,7 +170,7 @@ Accept wildcard characters: False
 Full path to file to be included in payload.
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: (All)
 Aliases: File
 
@@ -908,6 +908,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.String
 ### System.Int32
+### System.String[]
 ## OUTPUTS
 
 ### System.Object
