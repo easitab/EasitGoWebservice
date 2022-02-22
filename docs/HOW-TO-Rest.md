@@ -3,7 +3,7 @@
 ## Generic variables used in code
 
 ```powershell
-$ApiKey = "6dc3f11fa7054bajf9347856j9f8j74jf6h98746fh4ca88d3d514155089f27"
+$ApiKey = "yourApiKey"
 $baseUri = "baseUrlToEasitGO"
 
 $pair = "$($ApiKey): "
