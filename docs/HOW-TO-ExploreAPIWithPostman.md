@@ -4,7 +4,7 @@
 
 ## Authorization
 
-The first thing you need to do is add a autorization method to the request. Easit GO uses Basic Auth with a api key (a password is not needed).
+The first thing you need to do is add a autorization method to the request. Easit GO uses Basic Auth with an api key (a password is not needed).
 
 ![bild](https://user-images.githubusercontent.com/50325442/157611794-96e302fc-2c81-40a1-bbc9-da4aec2b25d9.png)
 
