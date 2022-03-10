@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "ca69bf77-7620-4bfc-90b3-0488f0c3ca03",
+		"name": "EasitGO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{var_uri}}/ping",
+					"host": [
+						"{{var_uri}}"
+					],
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Import",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"importHandlerIdentifier\": \"identifierForYourImportHandler\",\r\n    \"itemToImport\": [\r\n        {\r\n            \"property\": [\r\n                {\r\n                    \"content\": \"string\",\r\n                    \"name\": \"property1\"\r\n                },\r\n                {\r\n                    \"content\": \"string\",\r\n                    \"name\": \"property2\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{var_uri}}/items",
+					"host": [
+						"{{var_uri}}"
+					],
+					"path": [
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetItems",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"itemViewIdentifier\": \"identifierForYourWebserviceView\",\r\n    \"page\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{var_uri}}/items",
+					"host": [
+						"{{var_uri}}"
+					],
+					"path": [
+						"items"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "{{var_apiKey}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "var_uri",
+			"value": "https://urlToEasitGO/integration-api"
+		},
+		{
+			"key": "var_apiKey",
+			"value": "yourApiKey",
+			"type": "string"
+		}
+	]
+}
