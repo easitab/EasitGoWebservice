@@ -14,7 +14,7 @@ BeforeAll {
         Write-Output "Unable to locate code file to test against!" -ForegroundColor Red
     }
 }
-Describe "$commandName" -Tag 'function' {
+Describe "Convert-ImportItemsResponse" -Tag 'function' {
     It 'should demand and only accept XML' {
         Get-Command "$commandName" | Should -HaveParameter Response -Type xml
         Get-Command "$commandName" | Should -HaveParameter Response -Mandatory
