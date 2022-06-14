@@ -12,7 +12,7 @@ BeforeAll {
         Write-Output "Unable to locate code file to test against!" -ForegroundColor Red
     }
 }
-Describe 'Convert-EasitXMLToPsObject' {
+Describe "Convert-EasitXMLToPsObject" -Tag 'function' {
     It 'should demand and only accept XML object' {
         Get-Command "$commandName" | Should -HaveParameter Response -Type xml
         Get-Command "$commandName" | Should -HaveParameter Response -Mandatory

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ImportItemsResponse xmlns="http://www.easit.com/bps/schemas">
+         <ImportItemResult UID="1" result="OK">
+            <ReturnValues>
+               <ReturnValue name="func">2083:1</ReturnValue>
+               <ReturnValue name="asset">38602:2</ReturnValue>
+            </ReturnValues>
+         </ImportItemResult>
+      </ImportItemsResponse>
+   </soapenv:Body>
+</soapenv:Envelope>
