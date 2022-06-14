@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <PingResponse xmlns="http://www.easit.com/bps/schemas">
+            <Message>Pong!</Message>
+            <Timestamp>2022-06-13T11:19:45.230Z</Timestamp>
+        </PingResponse>
+    </soapenv:Body>
+</soapenv:Envelope>
