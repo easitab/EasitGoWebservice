@@ -1,0 +1,29 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Release notes v3
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "development" branch
+  push:
+    branches: [ "release3" ]
+  pull_request:
+    branches: [ "release3" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  update_release_draft:
+    name: update_release_draft
+    runs-on: ubuntu-20.04
+    steps:
+      - name: generate_release_draft
+
+        uses: release-drafter/release-drafter@v5
+        with:
+
+          config-name: release-drafter-template.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
