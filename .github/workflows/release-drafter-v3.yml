@@ -21,9 +21,9 @@ jobs:
     steps:
       - name: generate_release_draft
 
-        uses: release-drafter/release-drafter@v5
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-
-          config-name: release-drafter-template.yml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          commit_message: Generate and update help
+          commit_user_name: My GitHub Actions Bot
+          file_pattern: docs
+          push_options: --force
