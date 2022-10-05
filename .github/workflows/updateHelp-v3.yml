@@ -1,27 +1,27 @@
-name: Generate and update external help, v3
+name: Generate and update help for v3
 
 on:
   push:
+    branches: [ "release3" ]
     paths:
-    - 'docs/v3/**'
-    - 'source'
-    branches:
-    - 'release3'
+    - 'source/v3/**'
+  workflow_dispatch:
 
 jobs:
   buildHelp:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITAUTOCOMMITPAT }}
 
       - name: Build temp module
-        run: ./build/tempbuild_github.ps1
+        run: ./build/tempbuild_github-v3.ps1
         shell: pwsh
 
       - name: Generate and update docs
-        run: ./build/generateAndUpdateExternalHelpv3.ps1
+        run: ./build/generateAndUpdateDocs-v3.ps1
         shell: pwsh
 
       - uses: stefanzweifel/git-auto-commit-action@v4
