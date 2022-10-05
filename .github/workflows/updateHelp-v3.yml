@@ -1,4 +1,4 @@
-name: Generate and update help
+name: Generate and update help for v3
 
 on:
   push:

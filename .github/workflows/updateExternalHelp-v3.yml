@@ -1,4 +1,4 @@
-name: Generate and update external help, v3
+name: Generate and update external help for v3
 
 on:
   push:
