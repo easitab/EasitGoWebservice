@@ -6,7 +6,6 @@ on:
     - 'release/**'
     - 'hotfix/**'
     - 'development'
-    - 'pwsh7'
     paths-ignore:
     - '.github/**'
     - 'workflows/**'
