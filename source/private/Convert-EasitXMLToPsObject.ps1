@@ -43,8 +43,10 @@ function Convert-EasitXMLToPsObject {
             Write-Warning "$($Response.Envelope.Body.Fault.faultstring.innerText)"
             return
         }
+        $unknownResponseType = $true
         if ($Response.Envelope.Body.GetItemsResponse) {
             Write-Verbose "XML contains GetItemsResponse"
+            $unknownResponseType = $false
             if ($Response.Envelope.Body.GetItemsResponse.Items) {
                 try {
                     Convert-GetItemsResponse -Response $Response -ThrottleLimit $ThrottleLimit
@@ -54,21 +56,26 @@ function Convert-EasitXMLToPsObject {
             } else {
                 Write-Warning "View did not return any items or objects"
             }
-        } elseif ($Response.Envelope.Body.ImportItemsResponse) {
+        } 
+        if ($Response.Envelope.Body.ImportItemsResponse) {
             Write-Verbose "XML contains ImportItemsResponse"
+            $unknownResponseType = $false
             try {
                 Convert-ImportItemsResponse -Response $Response
             } catch {
                 throw $_
             }
-        } elseif ($Response.Envelope.Body.PingResponse) {
+        } 
+        if ($Response.Envelope.Body.PingResponse) {
             Write-Verbose "XML contains PingResponse"
+            $unknownResponseType = $false
             try {
                 Convert-PingResponse -Response $Response
             } catch {
                 throw $_
             }
-        } else {
+        } 
+        if ($unknownResponseType) {
             Write-Warning "Unknown response type as response does not contain GetItemsResponse, ImportItemsResponse or PingResponse element"
             return
         }
