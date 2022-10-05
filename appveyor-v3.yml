@@ -1,9 +1,9 @@
-version: 3.9.{build}
+version: 3.50.{build}
 pull_requests:
   do_not_increment_build_number: true
 branches:
   only:
-  - /release/.*/
+  - /main/
 skip_non_tags: true
 skip_branch_with_pr: true
 environment:
@@ -13,12 +13,12 @@ environment:
   helpInfoUri: https://github.com/easitab/EasitGoWebservice/tree/main/docs/v3/
   moduleAuthor: Anders Thyrsson
   projectUri: https://github.com/easitab/EasitGoWebservice
-  sourceRoot: C:\projects\easitgowebservice\source
-  licenseUri: https://github.com/easitab/EasitGoWebservice/blob/development/LICENSE
+  sourceRoot: C:\projects\easitgowebservice\source\v3
+  licenseUri: https://github.com/easitab/EasitGoWebservice/blob/main/LICENSE
   moduleRoot: C:\projects\easitgowebservice\EasitGoWebservice
 build_script:
 - ps: >-
-    New-Module -Name "$env:moduleName" -ScriptBlock {
+    $null = New-Module -Name "$env:moduleName" -ScriptBlock {
         $modulePath = Join-Path -Path "$env:moduleRoot" -ChildPath "$env:moduleName.psm1"
         $privScripts = Get-ChildItem -Path "$env:sourceRoot\private" -Filter "*.ps1" -Recurse
         $pubScripts = Get-ChildItem -Path "$env:sourceRoot\public" -Filter "*.ps1" -Recurse
@@ -43,7 +43,7 @@ build_script:
                 Write-Output "Unable to find modulePath at $modulePath"
             }
         }
-    } | Out-Null
+    }
 
     $moduleFilePath = Join-Path -Path "$env:moduleRoot" -ChildPath "${env:moduleName}.psm1"
 
@@ -82,7 +82,7 @@ test_script:
 - ps: >-
     Install-Module Pester -Force
 
-    Invoke-Pester
+    Invoke-Pester -Path .\tests\v3
 deploy: off
 on_finish:
 - ps: >-
