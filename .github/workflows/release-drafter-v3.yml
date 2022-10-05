@@ -3,7 +3,7 @@ name: Release Notes
 on:
   push:
     branches:
-    - 'release2'
+    - 'release3'
     paths-ignore:
     - '.github/**'
     - 'workflows/**'

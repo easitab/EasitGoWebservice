@@ -1,0 +1,2533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <GetItemsResponse requestedPage="1" page="1" totalNumberOfPages="497" totalNumberOfItems="49698" xmlns="http://www.easit.com/bps/schemas">
+         <Columns>
+            <Column datatype="CONNECTION" collection="false" connectiontype="USER">Handläggare</Column>
+            <Column datatype="BOOLEAN" collection="false">1:a-linjen</Column>
+            <Column datatype="BOOLEAN" collection="false">Debiteras ej</Column>
+            <Column datatype="CONNECTION" collection="false" connectiontype="PROPERTY">Typ</Column>
+            <Column datatype="DATE" collection="false">Tidskattning giltig tom</Column>
+            <Column datatype="DECIMAL" collection="false">Beräknad tidsåtgång</Column>
+            <Column datatype="CONNECTION" collection="false" connectiontype="PROPERTY">Kategori</Column>
+            <Column datatype="FLOAT" collection="false">Beräknad tidsåtgång</Column>
+            <Column datatype="CONNECTION" collection="false" connectiontype="GROUP">Handläggargrupp</Column>
+            <Column datatype="INTEGER" collection="false">Total förfluten tid</Column>
+            <Column datatype="TEXT" collection="false">Schemalagt svar</Column>
+            <Column datatype="TEXT" collection="false">Kompletterande information</Column>
+            <Column datatype="CONNECTION" collection="false" connectiontype="ITEM">Anmälare</Column>
+            <Column datatype="STRING" collection="false">Rubrik</Column>
+            <Column datatype="TEXT" collection="false">Beskrivning</Column>
+            <Column datatype="DECIMAL" collection="false">Beräknad kostnad</Column>
+            <Column datatype="DATETIME" collection="false">Uppdaterad</Column>
+            <Column datatype="CONNECTION" collection="true" connectiontype="ITEM">System</Column>
+            <Column datatype="CONNECTION" collection="true" connectiontype="USER">Involverade</Column>
+         </Columns>
+         <Items>
+            <Item id="1741:2">
+               <Property name="Handläggare" rawValue="null:3"/>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="null:4"/>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="481:2">Ola Holm</Property>
+               <Property name="Rubrik">Anteckningar fungerar inte, ger felmeddelande</Property>
+               <Property name="Beskrivning">har testat att ta bort den gamla funktionen, och lägga till på nytt, fungerar fortfarande inte, har testat både på en incident och en organisation.
+
+
+Vem testade efter leveransen ???
+
+ !!!!! Vem sitter och kollar fellloggar och buggrättar medans jag testar, nu fungerar det !!!!!</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-04T18:54:32.000Z">2008-02-04 19:54</Property>
+            </Item>
+            <Item id="1742:2">
+               <Property name="Handläggare" rawValue="null:3"/>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång" rawValue="2008-02-05">2008-02-05</Property>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="4:4">Utvecklare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="481:2">Ola Holm</Property>
+               <Property name="Rubrik">Om man byter mailmall ....</Property>
+               <Property name="Beskrivning">... så uppdateras inte mailformulärtet med den avsändare man angett i mailmallen, det står fortfarande mitt namn (inloggad som avs.)</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-05T12:18:36.000Z">2008-02-05 13:18</Property>
+            </Item>
+            <Item id="1753:2">
+               <Property name="Handläggare" rawValue="null:3"/>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="4:4">Utvecklare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="437:2">Jan-Eric Ramberg</Property>
+               <Property name="Rubrik">Sortering i listview hoppar tillbaka</Property>
+               <Property name="Beskrivning">"hoppar" tillbaka och återgår till default när man bläddrar en sida</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-05-02T12:39:21.000Z">2008-05-02 14:39</Property>
+            </Item>
+            <Item id="1754:2">
+               <Property name="Handläggare" rawValue="11:3">Bobo Häggström</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="4:4">Utvecklare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="481:2">Ola Holm</Property>
+               <Property name="Rubrik">Sökning på å, ä och ö (i oden/easit)</Property>
+               <Property name="Beskrivning">Fungerar dåligt (inte alls?) i organisationer, Kontakter och Ärenden
+
+- i vysöken
+- Verkar vara samma problem i Supersöken
+- Och när man söker på anmälare i ett ärendekort
+
+Encoding ??
+
+
+har ej testat i andra system, bara easit, det är bara där det är akut</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2009-11-23T11:10:06.000Z">2009-11-23 12:10</Property>
+            </Item>
+            <Item id="1771:2">
+               <Property name="Handläggare" rawValue="null:3"/>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="null:4"/>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="481:2">Ola Holm</Property>
+               <Property name="Rubrik">Testärenden</Property>
+               <Property name="Beskrivning"/>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-11T20:53:41.000Z">2008-02-11 21:53</Property>
+            </Item>
+            <Item id="1776:2">
+               <Property name="Handläggare" rawValue="null:3"/>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="4:4">Utvecklare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1016:2">Lena Rikner</Property>
+               <Property name="Rubrik">Visa "Odefinierad" i vyer</Property>
+               <Property name="Beskrivning">Om fältet har värdet Odefinierad så ska det visas i vyn. Om det inte visas, blir kolumnen jättesmal och man ser inte vad som står i kolumnrubriken.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-04-16T19:06:02.000Z">2008-04-16 21:06</Property>
+            </Item>
+            <Item id="1795:2">
+               <Property name="Handläggare" rawValue="11:3">Bobo Häggström</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="4:4">Utvecklare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1345:2">Bobo Häggström</Property>
+               <Property name="Rubrik">Problem med stängd session i eventhandlers när ON_ITEM_EVENT körs vid inkommande mail</Property>
+               <Property name="Beskrivning">Vet ej om det är på nya ärenden eller mail som ska in på redan befintligt ärende</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-05-02T13:13:43.000Z">2008-05-02 15:13</Property>
+            </Item>
+            <Item id="1799:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1065:2">Per Wahlgren</Property>
+               <Property name="Rubrik">Totaldumpen till Access fungerar ej</Property>
+               <Property name="Beskrivning">Hej
+
+När jag försöker köra Totaldumpen till Access via Rapporter, Månadsfakturering, blir det ett felmeddelande:
+
+------------------------------------------------------------------------------------------------
+Warning: mssql_query() [function.mssql-query]: message: OLE DB provider 'Microsoft.Jet.OLEDB.4.0' could not delete from table 'tblAssets_Assets'. There was a recoverable, provider-specific error, such as an RPC failure. (severity 16) in D:\Easit\Applications\ManagerSuite\Customers\GotlandsKommun\html\easysecure\mssql-edbw.inc on line 107
+
+Warning: mssql_query() [function.mssql-query]: Query failed in D:\Easit\Applications\ManagerSuite\Customers\GotlandsKommun\html\easysecure\mssql-edbw.inc on line 107
+-- Tömmer inventarier DELETE FROM gotlands_kommun_inventarier_total...tblAssets_Assets -- Tömmer kunder DELETE FROM gotlands_kommun_inventarier_total...tblCustomers_Customers -- Lägger till inventarier INSERT INTO gotlands_kommun_inventarier_total...tblAssets_Assets (Inventarietyp, StöldID, Abonnemangsform, Märke, Modell, Placering, KundID, Typ, Serienummer, MACAdress, Skapat, Raderad) SELECT tblAssetControl_Forms.name as Inventarietyp ,cast(tblAssetControl_DataSystemtext.systext5 as varchar) AS StöldID ,int31_Properties.propertytext AS Abonnemangsform ,cast(tblAssetControl_Datatext.text39 as varchar) AS Märke ,cast(tblAssetControl_Datatext.text40 as varchar) AS Modell ,cast(tblAssetControl_DataSystemtext.systext1 as varchar) AS Placering ,ownerCustomer.id as KundID ,sysint19_Properties.propertytext AS Typ ,cast(tblAssetControl_DataSystemtext.systext4 as varchar) AS Serienummer ,cast(tblAssetControl_DataText.text44 as varchar) AS MACAdress ,tblAssetControl_Data.created as Skapat ,Raderad = CASE WHEN ((tblAssetControl_Data.flags &amp; 32) = 32) THEN 1 ELSE 0 END FROM tblAssetControl_Data INNER JOIN tblAssetControl_DataText ON tblAssetControl_Data.id = tblAssetControl_DataText.dataid INNER JOIN tblAssetControl_DataInt ON tblAssetControl_Data.id = tblAssetControl_DataInt.dataid INNER JOIN tblAssetControl_DataFloat ON tblAssetControl_Data.id = tblAssetControl_DataFloat.dataid INNER JOIN tblAssetControl_DataDate ON tblAssetControl_Data.id = tblAssetControl_DataDate.dataid INNER JOIN tblAssetControl_DataSystemText ON tblAssetControl_Data.id = tblAssetControl_DataSystemText.dataid INNER JOIN tblAssetControl_DataSystemInt ON tblAssetControl_Data.id = tblAssetControl_DataSystemInt.dataid INNER JOIN tblAssetControl_DataSystemFloat ON tblAssetControl_Data.id = tblAssetControl_DataSystemFloat.dataid INNER JOIN tblAssetControl_DataSystemDate ON tblAssetControl_Data.id = tblAssetControl_DataSystemDate.dataid INNER JOIN tblSecurity_Users updatedby ON tblAssetControl_Data.updatedby = updatedby.id INNER JOIN tblSecurity_Users createdby ON tblAssetControl_Data.createdby = createdby.id INNER JOIN tblAssetControl_Forms ON tblAssetControl_Forms.id = tblAssetControl_Data.formid LEFT JOIN tblAssetControl_Properties AS int31_Properties ON int31_Properties.id = int31 LEFT JOIN tblAssetControl_Properties AS sysint19_Properties ON sysint19_Properties.id = sysint19 LEFT JOIN tblCustomers_Customers AS ownerCustomer ON (ownerCustomer.id = tblAssetControl_DataSystemint.sysint5 AND (ownerCustomer.deleted = 0) ) WHERE datahistoryid = 0 -- AND tblAssetControl_Data.flags &amp; 32 &lt;> 32 AND tblAssetControl_Data.type=0 -- Lägger till kunder INSERT INTO gotlands_kommun_inventarier_total...tblCustomers_Customers ([id], customerno, [name], ansvar, verks, moderbolag, raderad) SELECT [id] ,customerno ,[name] ,ansvar ,verks ,ISNULL(moderbolag,'') AS moderbolag ,deleted FROM ( SELECT CAST(c.[id] AS int) AS [id] ,CAST(c.customerno AS varchar(255)) AS customerno ,CAST(c.[name] AS varchar(255)) AS [name] ,CAST(ISNULL((SELECT top 1 convert(varchar(255),eft.data) FROM tblExtraFields_Text eft WHERE eft.type=20 AND eft.no=9 AND eft.typelink=c.id),'') AS varchar(255)) AS ansvar ,CAST(ISNULL((SELECT top 1 convert(varchar(255),eft.data) FROM tblExtraFields_Text eft WHERE eft.type=20 AND eft.no=11 AND eft.typelink=c.id),'') AS varchar(255)) AS verks ,(SELECT [name] FROM tblCustomers_Customers WHERE [id] = c.parentid) as moderbolag ,c.deleted as deleted FROM tblCustomers_Customers c ) customerdata ORDER BY [id] 
+------------------------------------------------------------------------------------------------
+
+Detta fungerade igår och den andra dumpen till Access fungerar, men inte totaldumpen.
+
+Mvh
+/ Per, tfn 0498-269884, 070-4476722</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-03-07T09:51:55.000Z">2008-03-07 10:51</Property>
+            </Item>
+            <Item id="1800:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1585:2">(AVIDENTIFIERAT DATA)</Property>
+               <Property name="Rubrik">Fråga om individuell prissättning</Property>
+               <Property name="Beskrivning">Undrade var man sätter individuell prissättning samt om det gäller för befintliga transaktioner eller bara kommande.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-12T09:17:08.000Z">2008-02-12 10:17</Property>
+            </Item>
+            <Item id="1801:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1646:2">(AVIDENTIFIERAT DATA)</Property>
+               <Property name="Rubrik">Samma och korrekta benämningar för alla knappar menyer</Property>
+               <Property name="Beskrivning">Gilad kan visa vad han tycker är fel. Kan ni kika på detta.
+
+ //Kenneth
+
+________________________________
+
+Från: gilad.nevo@orebroll.se [mailto:gilad.nevo@orebroll.se] 
+Skickat: den 11 februari 2008 14:39
+Till: Kenneth Jogell
+Ämne: Samma och korrekta benämningar för alla knappar menyer
+
+Hej Kenneth 
+Vi har uppmärksammat att samma funktion heter olika på olika ställen (Ex - OK och Spara, blandning av engelska o svenska termer).
+
+För oss är av vikt att detta åtgärdas snarast. 
+
+Ha dé 
+/Gilad</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-03-11T08:48:56.000Z">2008-03-11 09:48</Property>
+            </Item>
+            <Item id="1802:2">
+               <Property name="Handläggare" rawValue="10:3">Torben Teglind</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1503:2">Christel Benke</Property>
+               <Property name="Rubrik">Rödmarkerade ärenden</Property>
+               <Property name="Beskrivning">Hej!
+
+Vi har ett bekymmer med alla ärenden som typas utifrån de ärendemallar som ni hjälpt oss koppla till resp. mailadress. De blir alla rödmarkerade när de kommer in i vår inkorg och har ett stoppdatum satt till 2007-12-01. Detta trots att resp. ärendemall är knuten till olika prioriteter som i sin tur är inställda på olika ärendetider, t.ex. Normal support (start + 8 tim). Vad är det som är fel?
+
+Hälsningar
+Christel Benke</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-03-06T09:20:40.000Z">2008-03-06 10:20</Property>
+            </Item>
+            <Item id="1803:2">
+               <Property name="Handläggare" rawValue="4:3">Lena Rikner</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1338:2">(AVIDENTIFIERAT DATA)</Property>
+               <Property name="Rubrik">Kundrapport</Property>
+               <Property name="Beskrivning">Hej, 
+
+Jag har tagit ut en Kundrapport på Chess IT. Period har jag valt från 2008-01-01 fram till dags datum. Har även bockat i Ärenden, Tid, Ej debiterbart samt Debiterbart. När rapporten kommer fram så kommer Åtgärder/Tid rader som sträcker sig längre bak än 1/1, jag får då tex upp från okt och nov. Ska det verkligen vara så?  Om jag vill se hur mycket tid vi lagt ner under en period så kan den ju inte ta med längre bakåt än mitt Fråndatum, då blir ju rapporten missvisande. 
+
+Sen har jag ytterligare en fråga, i rapporten och i kolumnen Tid så kommer KM efter själva tiden. När jag testade i vårt testsystem så står det TIM efter tiden. Har jag någon felinställning i produktion? 
+
+Med vänlig hälsning
+
+Victoria</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-03-14T07:40:23.000Z">2008-03-14 08:40</Property>
+            </Item>
+            <Item id="1804:2">
+               <Property name="Handläggare" rawValue="8:3">Kenneth Jogell</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1385:2">Ola Berglund</Property>
+               <Property name="Rubrik">Escalatorproblem i Borlänge</Property>
+               <Property name="Beskrivning">Email escalator funger inte i Borlänge.
+
+Det schemalagda jobbet står som running men inga eskaleringar kommer.
+
+Ola Berglund är anmälare
+
+Med Vänliga Hälsningar 
+
+
+Kenneth Jogell
+
+Projektledare</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-12T12:08:22.000Z">2008-02-12 13:08</Property>
+            </Item>
+            <Item id="1805:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1116:2">Christian Nordström</Property>
+               <Property name="Rubrik">Kan inte koppla inventarier på nytt ärende</Property>
+               <Property name="Beskrivning">Om man försöker koppla inventarie till ett ärende från kontakten så kommer den inte med man måste spara ärendet först sen kan man koppla från kon
+Med Vänliga Hälsningar
+
+Christian Nordström
+Projektledare</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-04-08T13:51:37.000Z">2008-04-08 15:51</Property>
+            </Item>
+            <Item id="1806:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1423:2">Marie Bratt</Property>
+               <Property name="Rubrik">Handläggargrupper i ärendemallar</Property>
+               <Property name="Beskrivning">Har problem med handläggargrupper i ärendemallar. Finns bara en handläggagrupp att välja i admin.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-12T13:08:35.000Z">2008-02-12 14:08</Property>
+            </Item>
+            <Item id="1807:2">
+               <Property name="Handläggare" rawValue="10:3">Torben Teglind</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1423:2">Marie Bratt</Property>
+               <Property name="Rubrik">Uppdatering av systemet</Property>
+               <Property name="Beskrivning">Planera in uppdatering av systemet.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-26T11:58:42.000Z">2008-02-26 12:58</Property>
+            </Item>
+            <Item id="1808:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1423:2">Marie Bratt</Property>
+               <Property name="Rubrik">Inläsning av e-post</Property>
+               <Property name="Beskrivning">Undrar hur ofta inläsning av e-post körs.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-12T15:10:03.000Z">2008-02-12 16:10</Property>
+            </Item>
+            <Item id="1809:2">
+               <Property name="Handläggare" rawValue="12:3">Roger Hulling</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="4:4">Utvecklare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1465:2">Lisa Svärdling-Hedberg</Property>
+               <Property name="Rubrik">Stopptid saknas på ärenden från självservice med prio satt på avtal</Property>
+               <Property name="Beskrivning">Om man har en prio satt på ett avtal så slår den igenom på ärenden från självservice. Ärendet får dock ingen stopptid. Testat i trunken.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-15T12:32:44.000Z">2008-02-15 13:32</Property>
+            </Item>
+            <Item id="1815:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1651:2">Sanni Riedberg</Property>
+               <Property name="Rubrik">Inventariefält visar siffror istället för kunder</Property>
+               <Property name="Beskrivning">Fältet 'Användare (Kund)' som finns i formuläret 'Servers' visar endast siffror fast det är valt som kundväljare och heltal. Ska hämta kunder från kundregistret.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-26T15:22:49.000Z">2008-02-26 16:22</Property>
+            </Item>
+            <Item id="1816:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1465:2">Lisa Svärdling-Hedberg</Property>
+               <Property name="Rubrik">Fel på sidan i befintligt ärende i IE</Property>
+               <Property name="Beskrivning">Får Fel på sidan (se skärmdump) i ett befintligt ärende. Har inte sett att någon funktion är drabbad.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-04-01T14:44:19.000Z">2008-04-01 16:44</Property>
+            </Item>
+            <Item id="1817:2">
+               <Property name="Handläggare" rawValue="11:3">Bobo Häggström</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="4:4">Utvecklare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1465:2">Lisa Svärdling-Hedberg</Property>
+               <Property name="Rubrik">BCC-adresser från en e-postmall visas inte i mailet</Property>
+               <Property name="Beskrivning">Adresserna man har angett i BCC i en e-postmall visas inte i e-postfönstret när man ska skicka det. Det kommer dock fram till berörda adresser.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-05-02T13:34:40.000Z">2008-05-02 15:34</Property>
+            </Item>
+            <Item id="1818:2">
+               <Property name="Handläggare" rawValue="12:3">Roger Hulling</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="4:4">Utvecklare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="862:2">Emma Widén</Property>
+               <Property name="Rubrik">Synka befintliga kunder mot AD</Property>
+               <Property name="Beskrivning">Har synk mot AD men som bara verkar synka nya kunder men hon vill att de ska synka befintliga kunder också.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-03-06T14:29:56.000Z">2008-03-06 15:29</Property>
+            </Item>
+            <Item id="1819:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="750:2">Håkan Eriksson</Property>
+               <Property name="Rubrik">Inläsning av samma mail</Property>
+               <Property name="Beskrivning">Hej
+
+ 
+
+Nu verkar det som om det har hängt sig på ett mail igen.
+
+Erat konto är öppet.
+
+ 
+
+Hälsningar
+
+ 
+
+Håkan Eriksson
+
+ 
+
+SSG Standard Solutions Group
+
+Köpmangatan 1, 852 31  Sundsvall
+
+060-14 15 83, direktnr
+
+060-14 15 00 växel
+
+hakan.eriksson@ssg.se
+
+www.ssg.se &lt;http://www.ssg.se/></Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2009-11-24T09:30:04.000Z">2009-11-24 10:30</Property>
+            </Item>
+            <Item id="1820:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1339:2">Jan Viderén</Property>
+               <Property name="Rubrik">Ny access för er</Property>
+               <Property name="Beskrivning">Hej!
+
+Jag behöver ändra er åtkomst utifrån då ni administrerar vår server. Ni använder väl idag adress easit.si.se ?
+Ny adress skulle bli
+remote.si.se:3393
+
+Ändringen börjar gälla imorgon 14 februari. Om ni har möjlighet att verifiera att uppkopplingen fungerar redan imorgon vore det toppen, eftersom ni sedan ska göra en uppdatering på måndag.
+
+Tack på förhand
+
+Jan Viderén
+Svenska institutet</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-14T08:10:04.000Z">2008-02-14 09:10</Property>
+            </Item>
+            <Item id="1821:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="915:2">Agneta Westman</Property>
+               <Property name="Rubrik">Akut: Status misslyckats</Property>
+               <Property name="Beskrivning">Hej!
+
+Har lagt upp en ny status misslyckats. När man väljer knappen stäng och avsluta i ärendena så blir status misslyckats. Jag har nu raderat status misslyckats, men när ärenden stängs så blir status misslyckats i allafall.
+
+Tacksam snabb hjälp!</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-14T07:48:18.000Z">2008-02-14 08:48</Property>
+            </Item>
+            <Item id="1822:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="915:2">Agneta Westman</Property>
+               <Property name="Rubrik">Rapporter - Easit stängs ner vid val av Excel 2003</Property>
+               <Property name="Beskrivning">När man skapar rapporter och väljer Excel 2003.... Easit stängs då ner och måste startas om.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-10-10T12:52:31.000Z">2008-10-10 14:52</Property>
+            </Item>
+            <Item id="1824:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1503:2">Christel Benke</Property>
+               <Property name="Rubrik">Hjälp med ett påminnelsemail</Property>
+               <Property name="Beskrivning">Hej!
+
+Vi har en e-postmall som vi kallat "Påminnelse Easit-ärende", det är dock något som är fel för när vi ska använda den kommer ett felmeddelande upp, se bifogad fil. Kan ni hjälpa oss att kontrollera vad som är fel?
+
+Hälsningar
+Christel Benke</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-19T10:10:03.000Z">2008-02-19 11:10</Property>
+            </Item>
+            <Item id="1825:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1503:2">Christel Benke</Property>
+               <Property name="Rubrik">Kvittens på mail från Easit</Property>
+               <Property name="Beskrivning">Hej!
+
+Som ni kanske kommer ihåg sen tidigare har Mats Karlsson hos oss haft en del bekymmer med att skicka mail från ärenden han tilldelats. Jag vet att vi hade en del konversation om detta i höstas. Problemet kvarstår till viss del och vi behöver hitta någon lösning på detta om Easit ska kunna användas av oss även i säljsyfte! Det är ohållbart att använda ett system man inte kan lita på.
+
+Finns det någon möjlighet att vi kan få en kvittens på mailleveranser till oss på de mail som skickas i Easit? Åtminstone möjlighet att markera någonstans att man vill ha en kvittens (läs- och/eller leveranskvittens). Senaste ärendet som klatrat för Mats är nr 14320, han har haft telefonkontakt med kunden som påstår att han aldrig fått det mail som Mats skickat. Kan ni se om det levererats?
+
+Hoppas på en snar lösning av detta!
+
+Hälsningar
+Christel Benke</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-26T15:43:24.000Z">2008-02-26 16:43</Property>
+            </Item>
+            <Item id="1827:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1874:2">Helen Miller-Viney</Property>
+               <Property name="Rubrik">nya användare i EMS för Diasorin UK</Property>
+               <Property name="Beskrivning">Hej Diasorin UK blir fler och behöver ha två nya användare inlagda
+
+Anna Sadio
+
+Yasmin Malik
+
+Kan ni maila Helen uppgifterna då det är klart
+
+/Fredrik</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-18T09:26:29.000Z">2008-02-18 10:26</Property>
+            </Item>
+            <Item id="1828:2">
+               <Property name="Handläggare" rawValue="null:3"/>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="4:4">Utvecklare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1465:2">Lisa Svärdling-Hedberg</Property>
+               <Property name="Rubrik">Mail saknde casetagg</Property>
+               <Property name="Beskrivning">När jag mailade ifrån ärende 20200 så fick det ingen casetagg, se skärmdump. Den finns inte heller med i historiken.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-22T10:37:26.000Z">2008-02-22 11:37</Property>
+            </Item>
+            <Item id="1829:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1651:2">Sanni Riedberg</Property>
+               <Property name="Rubrik">Export eller utskrift av inventarier</Property>
+               <Property name="Beskrivning">Vill kunna skriva ut eller exportera enstaka inventarier men gärna även per kund. Om man väljer ctrl + p i inventariekortet så skrivs bara den aktuella fliken ut.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-14T13:12:21.000Z">2008-02-14 14:12</Property>
+            </Item>
+            <Item id="1831:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="915:2">Agneta Westman</Property>
+               <Property name="Rubrik">Sortering i formulär inventarier</Property>
+               <Property name="Beskrivning">Admin inventarier, allmän formulär, sortering i lista väljer sorteringsordning, men inställningen behålls inte.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-06-10T13:01:40.000Z">2008-06-10 15:01</Property>
+            </Item>
+            <Item id="1832:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1465:2">Lisa Svärdling-Hedberg</Property>
+               <Property name="Rubrik">Får inget resultat i rapporten Inventarier</Property>
+               <Property name="Beskrivning">När jag väljer easit som Ägare (Kund) i rapporten Inventararier så får jag inga träffar trots att vi har flera inventarier och vårt företagsnamn står som Ägare (kund). Har testat med flera kunder också och det blir samma sak. 
+
+Om man sedan väljer en kontakt i urvalet så försvinner inte sökrutan när man har markerat kontakten och man får även fel på sidan. Nu har vi visserligen inte några kontakter i våra inventarier men det borde bara resultera i 0 träffar. 
+
+Se skärmdumpar.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-04-22T14:55:48.000Z">2008-04-22 16:55</Property>
+            </Item>
+            <Item id="1833:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1284:2">Patrik Sjöberg</Property>
+               <Property name="Rubrik">Alla kontakter på två bolag ska se allas ärenden via kundaccessen</Property>
+               <Property name="Beskrivning">Har en kund som ringer för två bolag och dessa är upplagda som två kunder i systemet. Nu vill de att alla kontakter ska se allas ärenden via kundaccessen. Undrar då vilket som är bästa lösningen. Att antingen slå ihop kunderna eller att sätta de som moderbolag och dotterbolag.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-14T14:54:18.000Z">2008-02-14 15:54</Property>
+            </Item>
+            <Item id="1835:2">
+               <Property name="Handläggare" rawValue="null:3"/>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="4:4">Utvecklare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1465:2">Lisa Svärdling-Hedberg</Property>
+               <Property name="Rubrik">Access denied vid nytt mail</Property>
+               <Property name="Beskrivning">Får 'Access denied' när jag ska öppna ett mail via länken i notifieringsmailet.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-22T10:34:36.000Z">2008-02-22 11:34</Property>
+            </Item>
+            <Item id="1836:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1066:2">(AVIDENTIFIERAT DATA)</Property>
+               <Property name="Rubrik">2st ärenden kommer tillbaka hela tiden</Property>
+               <Property name="Beskrivning">HEJ! Verkar som två ärenden har hamnat i någon "loop" då de återkommer hela tiden.
+Första gången de kom in var in igår eftermiddag och nu fortsätter det på morgonen.
+
+Upplever även att ärendena visas sent. Innan jag gick hem igår vid fyra tiden så fördelade jag ärenden men nya ärenden ska ha kommit in efter 14:00 igår o de såg inte jag förräns idag...
+Det är något skumt fortfarande med andra ord.
+
+//Lotta B</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-26T15:45:35.000Z">2008-02-26 16:45</Property>
+            </Item>
+            <Item id="1839:2">
+               <Property name="Handläggare" rawValue="4:3">Lena Rikner</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1202:2">Birgitta Holmberg</Property>
+               <Property name="Rubrik">Attachments i mail på ärendekort</Property>
+               <Property name="Beskrivning">Hej!
+Vi har upptäckt att när vi får reply's på mail som är skickade från ett ärendekort (se exempel nedan) och denna har gjort en attachment i sitt mail så ser man att det finns ett "Att." men den går inte att öppna på något sätt och den lagras inte på själva ärendet någonstans heller.
+
+Vad är det för fel?
+
+Mvh,
+
+Birgitta Holmberg</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-03-03T13:21:40.000Z">2008-03-03 14:21</Property>
+            </Item>
+            <Item id="1840:2">
+               <Property name="Handläggare" rawValue="4:3">Lena Rikner</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1202:2">Birgitta Holmberg</Property>
+               <Property name="Rubrik">Reply på ett mail i ett ärendekort dyker fel From adress upp</Property>
+               <Property name="Beskrivning"><![CDATA[Hej!
+När vi gör reply på ett mail i ett ärendekort, så är det fel "from" mailadresser som dyker upp.
+
+Tex: Jag har fått Reply från "Sven Kruth"...
+
+ <<PBrush>> 
+
+Och öppnar mailet och trycker på Reply:
+
+ <<PBrush>> 
+
+Då ser jag att i "From fältet" dyker det upp support@abaris.se...den mailadressen existerar inte längre....
+
+ <<PBrush>> 
+
+Väljer jag med pilen ner så finns bara "min egen tietoenator-mailadress":
+
+ <<PBrush>> 
+
+Men jag vill att det blir på samma sätt som när jag gör ett nytt mail på ärendekortet, dvs så här:
+
+ <<PBrush>> 
+
+
+Är det någon template eller e-mail inställning som borde ställas om?
+
+Tacksam för svar då flera av våra mail-mottagare rapporterar att dom inte kan skicka svar på mail då vi skickar från en mail-adress som inte finns...
+
+Mvh,
+Birgitta Holmberg
+
+Business Area Advisor
+TietoEnator Banking & Insurance
+Support +46 8 587 14 820
+Fax +46 10 48 135 09
+E-mail: helpdesk.abaris@tietoenator.com
+Kronborgsgränd 1
+SE-164 87 Kista, Sweden
+www.tietoenator.com <http://www.tietoenator.com/>]]></Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-21T09:26:36.000Z">2008-02-21 10:26</Property>
+            </Item>
+            <Item id="1841:2">
+               <Property name="Handläggare" rawValue="4:3">Lena Rikner</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="750:2">Håkan Eriksson</Property>
+               <Property name="Rubrik">Hakat upp sig på ett mail</Property>
+               <Property name="Beskrivning">Hej
+
+Nu har det hakat upp sig igen på ett mail.
+Erat konto är fortfarande aktivt.
+
+Hälsningar
+Håkan Eriksson
+
+Info: Kör ER 3.0.4.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-18T07:01:01.000Z">2008-02-18 08:01</Property>
+            </Item>
+            <Item id="1842:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1066:2">(AVIDENTIFIERAT DATA)</Property>
+               <Property name="Rubrik">Mailärende som loopar</Property>
+               <Property name="Beskrivning">HEJ IGEN!
+
+Anmälde för ett par timmar sedan angående problem med ärende som loopar, har startat om servern o det hjälper inte och just nu är det 6 ärenden som loopar.... var tionde minut ungefär. Det blir svårt att se vilka ärenden som är nya o registrerade. Måste sitta o rensa kontinuerligt för att få överblick. Det säger sig ju självt att detta är ohållbart. Vi kommer att ha ett helsike på måndag morgon då detta kommer att fylla på hela helgen. Kommer det in nya ärenden så ramlar det med i loopen... osv...
+
+Behöver hjälp snarast! Tack!
+//Lotta B</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-15T13:12:06.000Z">2008-02-15 14:12</Property>
+            </Item>
+            <Item id="1843:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1651:2">Sanni Riedberg</Property>
+               <Property name="Rubrik">Ring mig</Property>
+               <Property name="Beskrivning">Hej,
+
+Skulle ni kunna ringa mig? Det gäller ett prblem med synkingen av outlook
+och easit. 
+Rickard Segelborn är teknikern och U034 detta uppdrag dyker upp i hans Outlook varje  tisdag. (tror jag) fast han inte är deltagare på jobbet
+
+Mvh
+Sanni
+08-54572609</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-28T13:03:38.000Z">2008-02-28 14:03</Property>
+            </Item>
+            <Item id="1844:2">
+               <Property name="Handläggare" rawValue="null:3"/>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="4:4">Utvecklare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1016:2">Lena Rikner</Property>
+               <Property name="Rubrik">Accessen Inventarier - Statushantering fungerar ej</Property>
+               <Property name="Beskrivning">Accessen Inventarier - Statushantering visar inte det den ska göra. Knappen Statushanterare visas med accessen Inventarier - användare.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-04-15T07:33:08.000Z">2008-04-15 09:33</Property>
+            </Item>
+            <Item id="1913:2">
+               <Property name="Handläggare" rawValue="null:3"/>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="null:4"/>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="481:2">Ola Holm</Property>
+               <Property name="Rubrik">Två buggar i en, i groups står det "add role" inte Add group</Property>
+               <Property name="Beskrivning">det går inte heller att översätta till olika språk</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-03-06T22:48:40.000Z">2008-03-06 23:48</Property>
+            </Item>
+            <Item id="1920:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="915:2">Agneta Westman</Property>
+               <Property name="Rubrik">Statistikfundering</Property>
+               <Property name="Beskrivning">Hej!
+
+Har lite funderingar om rapporterna som finns i Easit. Finns det möjlighet att få rapport om:
+
+1.	Antal ärenden eller i % som löses vid registreringstillfället, dvs ärenden som avslutas i anslutning till registreringstiden. Lösningsgrad på ärenden.
+
+Jag är tacksam för svar innan onsdag denna vecka!
+
+Hälsningar
+Agneta</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-19T13:36:41.000Z">2008-02-19 14:36</Property>
+            </Item>
+            <Item id="1922:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1116:2">Christian Nordström</Property>
+               <Property name="Rubrik">Import av mailinställning fungerar ej</Property>
+               <Property name="Beskrivning">Enligt importregeln under admin om man är inloggad som EasitAdmin står det att denna är inaktiverad men mail importeras i alla fall.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-03-04T08:33:54.000Z">2008-03-04 09:33</Property>
+            </Item>
+            <Item id="1923:2">
+               <Property name="Handläggare" rawValue="4:3">Lena Rikner</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1116:2">Christian Nordström</Property>
+               <Property name="Rubrik">Om man avslutar kopplat moderärende från lista</Property>
+               <Property name="Beskrivning">Så får man inte frågan om man vill uppdatera underärenden som man får om man går in på ett ärende och byter status och sparar.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-04-15T06:59:26.000Z">2008-04-15 08:59</Property>
+            </Item>
+            <Item id="1924:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="30639:2">Anette Voigt</Property>
+               <Property name="Rubrik">Kalendersynken mot notes fungerar inte</Property>
+               <Property name="Beskrivning">Kalendersynken mot notes fungerar inte.
+
+Hälsningar
+
+Anette Bernes
+
+
+INVID Västerås AB | Metallverksgatan 10 | 721 30 Västerås
+Växel 021-10 66 00 | Direkt 021-10 66 57 | Mobil 0707-58 68 43</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2010-09-30T11:01:19.000Z">2010-09-30 13:01</Property>
+            </Item>
+            <Item id="1925:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="869:2">Kurt Larsson</Property>
+               <Property name="Rubrik">Kan ej spara i ett ärende 2161</Property>
+               <Property name="Beskrivning">Hej
+
+Får att det är fel på sidan
+
+Felmedelande
+Rad: 1264
+Tecken 1
+Fel: Object expected
+Kod:0
+URL:Http://172.254.252.12/modules/case/cace_registermisc.php CaseID=2161</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-26T15:53:51.000Z">2008-02-26 16:53</Property>
+            </Item>
+            <Item id="1929:2">
+               <Property name="Handläggare" rawValue="7:3">Christian Nordström</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="915:2">Agneta Westman</Property>
+               <Property name="Rubrik">Flyttad till den nya serven</Property>
+               <Property name="Beskrivning">Hej!
+
+Vem kan känna till detta hos Er? Har Ni något namn som Fredrik kan prata direkt med?
+
+Hälsningar
+/Agneta
+
+Agneta Westman
+
+Supporttekniker
+
+Gagna IT Servicedesk
+
+891 89 Örnsköldsvik
+
+ ________________________________
+
+Från: Fredrik Norell 
+Skickat: den 18 februari 2008 16:40
+Till: Agneta Westman
+Ämne: SV: Easit
+
+Hej
+
+Vid uppgraderingen skulle vi få våran vy flyttad till den nya serven. Den har aldrig fungerar  korrekt, så vi kör fortfarande mot den gamla easit servern.  Det är på tiden att vi åtgärdar detta.   Vem ska man prata med på Easit ?
+
+/Fredrik</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-19T15:01:48.000Z">2008-02-19 16:01</Property>
+            </Item>
+            <Item id="1932:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1562:2">(AVIDENTIFIERAT DATA)</Property>
+               <Property name="Rubrik">Mail studsar på ärenden</Property>
+               <Property name="Beskrivning">Har haft felaktig mailadress på en medarbetare, både på kontot och i kundregistret vilket resulterade i att mailen studsade i en veckas tid.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-19T08:09:56.000Z">2008-02-19 09:09</Property>
+            </Item>
+            <Item id="1933:2">
+               <Property name="Handläggare" rawValue="10:3">Torben Teglind</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="862:2">Emma Widén</Property>
+               <Property name="Rubrik">Styra mail till vy</Property>
+               <Property name="Beskrivning">Hej,
+ 
+Vi får mail till vår it-ops brevlåda (kopplad till it-drift vyn) som vi vill sortera till en viss vy, går det att sätta en sådan regel, eller gör man det på annat sätt? Jag kan inte klura ut hur jag kan styra det.
+ 
+Mvh Emma</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-03-04T10:03:05.000Z">2008-03-04 11:03</Property>
+            </Item>
+            <Item id="1935:2">
+               <Property name="Handläggare" rawValue="13:3">Mattias Eklöf</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="4:4">Utvecklare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1934:2">(AVIDENTIFIERAT DATA)</Property>
+               <Property name="Rubrik">Får felmeddelande när man öppnar befintliga ärenden i självservice</Property>
+               <Property name="Beskrivning">Får felmeddelande när man öppnar befintliga ärenden i självservice:
+
+Fatal error: Call to a member function getFields() on a non-object in D:\Easit\Applications\ManagerSuite\Systems\Momentum\html\modules\case\userfrontend\window_case_print.php on line 284</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-19T13:42:29.000Z">2008-02-19 14:42</Property>
+            </Item>
+            <Item id="1936:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1651:2">Sanni Riedberg</Property>
+               <Property name="Rubrik">Ta bort knappar i kundaccess som man inte har behörighet till</Property>
+               <Property name="Beskrivning">Har på en användare begränsat behörigheten till att användaren inte ska kunna redigera uppdrag eller lägga upp nya serviceordrar. Knappar finns fortfarande kvar (går inte att använda), ska det vara så?</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-22T12:44:42.000Z">2008-02-22 13:44</Property>
+            </Item>
+            <Item id="1937:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1651:2">Sanni Riedberg</Property>
+               <Property name="Rubrik">Endast se sina egna ärenden i kundaccess</Property>
+               <Property name="Beskrivning">Undrar om man kan begränsa behörigheten till att anmälaren endast kan se sina egna ärenden i kundaccess.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-26T15:53:18.000Z">2008-02-26 16:53</Property>
+            </Item>
+            <Item id="1938:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1651:2">Sanni Riedberg</Property>
+               <Property name="Rubrik">PC Inventering problem</Property>
+               <Property name="Beskrivning">Hej Lisa!
+
+Här kommer felmeddelandet och en skärmdump på problemet (se bifogad fil).
+
+Felmeddelandet lyder:
+
+"Server object error 'ASP 0178 : 80070005'
+
+Server.CreateObject Access Error
+
+/LM/W3SVC/34517/Root/pcinventory/global.asa, line 8
+
+The call to Server.CreateObject failed while checking permissions. Access is
+denied to this object. "
+
+
+Mvh
+Sanni</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-03-04T15:40:04.000Z">2008-03-04 16:40</Property>
+            </Item>
+            <Item id="1939:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1585:2">(AVIDENTIFIERAT DATA)</Property>
+               <Property name="Rubrik">Frågor om checklistor</Property>
+               <Property name="Beskrivning">Hade frågor om checklistor och hur de fungerar.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-19T11:28:18.000Z">2008-02-19 12:28</Property>
+            </Item>
+            <Item id="1940:2">
+               <Property name="Handläggare" rawValue="13:3">Mattias Eklöf</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="4:4">Utvecklare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="846:2">Veronika Karlsson</Property>
+               <Property name="Rubrik">Växjö universitet - Mail som kommit from kl 10:36 har ej kommit in i systemet</Property>
+               <Property name="Beskrivning">Hej 
+
+det ligger mail kvar i vår e-postlåda easitit@vxu.se som ska tömmas av er in till ärendehanteringssystemet 
+
+kollar ni upp det omgående, tack på förhand
+
+Hälsningar
+
+Veronika Karlsson
+
+IT-support
+Växjö universitet
+Tel 0470-708622
+Mobil 0708-901068
+Tel support 0470-708897 kl 8-12, 12.30-16
+ </Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-19T14:10:03.000Z">2008-02-19 15:10</Property>
+            </Item>
+            <Item id="1941:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1599:2">Martin Tillström</Property>
+               <Property name="Rubrik">Fråga om konfig för utgående email</Property>
+               <Property name="Beskrivning">Hej,
+
+Var / hur konfigurerar man den utgående emailadressen, när man svarar på mail via helpdesksystemet?
+Jag har letat runt lite bland filerna på servern, men inte hittat det.
+
+Tydligen så har våra utgående mail adressen support@esri-sgroup.com&lt;mailto:support@esri-sgroup.com> men supporten vill att det skall stå support@esri-sgroup.SE&lt;mailto:support@esri-sgroup.SE>
+
+mvh
+
+Martin</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-21T07:50:03.000Z">2008-02-21 08:50</Property>
+            </Item>
+            <Item id="1942:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="915:2">Agneta Westman</Property>
+               <Property name="Rubrik">Statistikfrågor igen</Property>
+               <Property name="Beskrivning">Hej!
+
+Det finns inga färdiga rapporter i Easit för att ta fram statistik på kategori.
+
+Finns det möjlighet att beställa rapporter på t.ex kategori och kund
+
+Tacksam för svar, gärna idag!
+
+Hälsningar
+Agneta Westman</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-19T13:21:54.000Z">2008-02-19 14:21</Property>
+            </Item>
+            <Item id="1943:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1624:2">Nina Ozanne</Property>
+               <Property name="Rubrik">Tidrader från ärende ska ej visas i tidredovisningen</Property>
+               <Property name="Beskrivning">Testar att köra ärenden mot en kund men vill inte att tidraderna ska visas i tidredovisningen. Var ställer man in det?</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-20T15:24:17.000Z">2008-02-20 16:24</Property>
+            </Item>
+            <Item id="1944:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1005:2">(AVIDENTIFIERAT DATA)</Property>
+               <Property name="Rubrik">Månadsrapport</Property>
+               <Property name="Beskrivning">Får följande fel när jag försöker titta på en månadsrapport:
+
+Fatal error: Cannot redeclare getholidays2() (previously declared in D:\Applications\ManagerSuite\Customers\Easit\html\modules\project\reports\monthly.php3:265) in D:\Applications\ManagerSuite\Customers\Easit\html\includes\misc.inc on line 1593</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-26T08:19:22.000Z">2008-02-26 09:19</Property>
+            </Item>
+            <Item id="1945:2">
+               <Property name="Handläggare" rawValue="null:3"/>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="null:4"/>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="null:2"/>
+               <Property name="Rubrik">Tagit bort inventarie formulär</Property>
+               <Property name="Beskrivning">Tagit bort inventarie formulär</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-19T14:59:48.000Z">2008-02-19 15:59</Property>
+            </Item>
+            <Item id="1946:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1948:2">(AVIDENTIFIERAT DATA)</Property>
+               <Property name="Rubrik">Felmeddelande när man ska avsluta ärende och skicka till kunden</Property>
+               <Property name="Beskrivning">Hej
+Vi får följande felmeddelande när man ska avsluta ärendet och skicka 
+till kunden.
+Se bilaga
+
+Hälsningar
+Vettan
+
+-- 
+Vettan Granbom
+Systemadministratör/System Manager
+
+Högskoleverket/Swedish National Agency for Higher Education
+Administrativa avdelningen/Department of Administration
+Luntmakargatan 13
+Box 7851, SE-103 99 Stockholm, Sweden
+Tfn/Phone: +46 8 563 085 62
+http://www.hsv.se</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-21T09:20:03.000Z">2008-02-21 10:20</Property>
+            </Item>
+            <Item id="1947:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1099:2">Christer Falk</Property>
+               <Property name="Rubrik">Avslutade timbanks-uppdrag finns i uppdragsrapport-val</Property>
+               <Property name="Beskrivning">Hej.
+
+Vi jobbar nu mer och mer med timbankar vilket medför att det finns en hel del sådana i systemet inom kort.
+
+När man kör uppdragsrapport och väljer  typen "timbank" så kommer det i dropplisten upp även gamla avslutade timbankar. Det är oerhört svårt att hitta rätt timbank om det finns fler på samma kund nämligen.
+
+Kan ni fixa så det avslutade aldrig ses här. Det måste vara ett fel någonstans.
+
+Vi skapar alltid timbankarna genom UPPDRAG.
+
+Tackar på förhand
+
+//Christer</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-22T12:08:30.000Z">2008-02-22 13:08</Property>
+            </Item>
+            <Item id="1951:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1523:2">Lars Stenlund</Property>
+               <Property name="Rubrik">Felmeddelande när man ska skapa månadsrapport. Projekt > Rapporter > Månadsrapport</Property>
+               <Property name="Beskrivning">Hej!
+
+ems.easit.se
+
+Kan inte ta ut månadsrapport : Projekt > Rapporter > Månadsrapport
+
+Får följande felmeddelande:
+
+
+Fatal error: Cannot redeclare getholidays2() (previously declared in D:\Applications\ManagerSuite\Customers\Easit\html\modules\project\reports\monthly.php3:265) in D:\Applications\ManagerSuite\Customers\Easit\html\includes\misc.inc on line 1593
+
+ 
+ 
+ Easit Manager Suite
+Version 3.7.32</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-20T14:27:01.000Z">2008-02-20 15:27</Property>
+            </Item>
+            <Item id="1952:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1182:2">(AVIDENTIFIERAT DATA)</Property>
+               <Property name="Rubrik">20 nya licenser</Property>
+               <Property name="Beskrivning">20 nya licenser.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-20T17:00:03.000Z">2008-02-20 18:00</Property>
+            </Item>
+            <Item id="1953:2">
+               <Property name="Handläggare" rawValue="13:3">Mattias Eklöf</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="4:4">Utvecklare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="null:2"/>
+               <Property name="Rubrik">EmailRequest Error BTH: 2008-02-20</Property>
+               <Property name="Beskrivning">Faild to process:&lt;BAY110-W8CE00C1CD6E835C593DA6F8230@phx.gbl>	 Reason:Line 9: Incorrect syntax near Amario.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-20T12:52:00.000Z">2008-02-20 13:52</Property>
+            </Item>
+            <Item id="1954:2">
+               <Property name="Handläggare" rawValue="7:3">Christian Nordström</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1593:2">(AVIDENTIFIERAT DATA)</Property>
+               <Property name="Rubrik">Flytt av ärenden?</Property>
+               <Property name="Beskrivning">Hej,
+Jag är administratör för Easit på Vårdguiden, Stockholms läns landsting,
+och har tagit över arbetsuppgifter från en annan tidigare licensanvändare.
+Det har uppstått ett problem, eftersom den licensen som han använde
+tidigare (han har gått i pension) nu används av en annan medarbetare.
+
+Vårt önskemål är följande: ett antal ärenden, före ca 5 januari, skulle
+behöva flyttas över till mig som användare. Är det möjligt att göra? Det
+skulle underlätta för oss.
+
+Tacksam för svar, antingen vägledning hur jag kan gå tillväga, eller annat
+besked om vad som krävs, t.ex. för att ni ska göra det.
+
+Mitt användarnamn: josa
+
+Tidigare användare (nu pensionerad): bomo
+
+Ny användare av bomos licens: fali
+
+Mvh
+
+Jonas Sareld
+Projektledare Vårdguiden
+Hälso- och sjukvårdsnämndens förvaltning
+
+Direkt: 08-737 40 89
+Mobil: 070-737 40 89
+E-post: jonas.sareld@sll.se
+
+Stockholms läns landsting
+Box 22550, 104 22 Stockhom
+Fleminggatan 20
+Telefon växel: 08-737 25 00
+Fax: 08-737 43 28
+www.sll.se
+www.vardguiden.se</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-26T13:03:38.000Z">2008-02-26 14:03</Property>
+            </Item>
+            <Item id="1955:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="821:2">Mona Lindgren</Property>
+               <Property name="Rubrik">Fel i rapportresultat</Property>
+               <Property name="Beskrivning">Rapporten heter "Månadskostnad på inventarier". Se nedanstående, som visar
+att vi får dublett i rapportresultatet. Men vi får inte fram att det finns
+dubletter när vi söker i inventarieregistret? Vad beror det på?
+
+Resultat   
+
+Ägare (kund)	Ägare (person)	Kundens identitet	Kundens referens	Inventarie-nummer	Modell	Serie-
+nummer	Ansk.-datum	Ansk.-värde	Hyresavg. per månad	Serviceavg. per månad	Total avg. permånad	Restvärde
+
+SOC 	Marie Wiklund 	225 	FAST109
+	2007000614	XW4300	SCZC619086Q	2006-06-01	23310.00	699.30	0.00	699.30	12432.00
+SOC 	Marie Wiklund 	225 	FAST109
+	2007000614	XW4300	SCZC619086Q	2006-06-01	23310.00	699.30	0.00	699.30	12432.00
+
+
+Med vänliga hälsningar
+Mona Lindgren</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-03-10T08:13:37.000Z">2008-03-10 09:13</Property>
+            </Item>
+            <Item id="1958:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="19800:2">Roger Magnusson</Property>
+               <Property name="Rubrik">Manual för etiketter</Property>
+               <Property name="Beskrivning">Skicka manual för etiketter från kundregistret.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2010-08-09T12:50:53.000Z">2010-08-09 14:50</Property>
+            </Item>
+            <Item id="1961:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="862:2">Emma Widén</Property>
+               <Property name="Rubrik">Segt system</Property>
+               <Property name="Beskrivning">Systemet går väldigt segt oavsett vad de gör. Vill att vi ser över deras server.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2009-01-20T08:47:02.000Z">2009-01-20 09:47</Property>
+            </Item>
+            <Item id="1963:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1041:2">Stefan Lundin</Property>
+               <Property name="Rubrik">Fel i fakturafil!!!</Property>
+               <Property name="Beskrivning">Vi får massor av SQL kod i faktura filen. Tidigare har vi ibland fått en "skräprad" i fakturafilen men nu är det helt annat, ex:
+
+LEFT JOIN tblCustomers_Contacts contact2 ON contact2.id = tblCase_Cases.UserID
+LEFT JOIN tblCustomers_Contacts contact3 ON contact3.id = prj.customercontact
+	WHERE 
+	invoiced='20' AND 
+	flags2='0' AND 
+	[print]='0' AND
+
+osv....
+
+Ring mig omgående då det snart är slut på månaden!
+
+Mvh Stefan Lundin 0730 601209</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-21T14:43:07.000Z">2008-02-21 15:43</Property>
+            </Item>
+            <Item id="1964:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1125:2">Richard Claesson</Property>
+               <Property name="Rubrik">Access i säljstöd fungerar inte</Property>
+               <Property name="Beskrivning">Har ställt in så att han ska se allas säljprojekt i säljstöd men när hans kollegor har satt sig själva som ansvarig så kan han inte se de längre.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-25T09:09:41.000Z">2008-02-25 10:09</Property>
+            </Item>
+            <Item id="1966:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="892:2">Rolf Henningsson</Property>
+               <Property name="Rubrik">Fler licenser</Property>
+               <Property name="Beskrivning">Undrar vad deras licenser kostar. Är intresserad av 3-4 stycken.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-22T14:33:01.000Z">2008-02-22 15:33</Property>
+            </Item>
+            <Item id="1967:2">
+               <Property name="Handläggare" rawValue="4:3">Lena Rikner</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1651:2">Sanni Riedberg</Property>
+               <Property name="Rubrik">Logga inlagd</Property>
+               <Property name="Beskrivning">Vill ha loggan inlagd i ems och kundaccessen. Den har funnits tidigare i ems.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2009-11-26T11:50:32.000Z">2009-11-26 12:50</Property>
+            </Item>
+            <Item id="1968:2">
+               <Property name="Handläggare" rawValue="null:3"/>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="4:4">Utvecklare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1651:2">Sanni Riedberg</Property>
+               <Property name="Rubrik">Statushanteraren, felmeddelande</Property>
+               <Property name="Beskrivning">Statushanteraren fungerar inte, får "Error: Configuration is missing!"</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-29T14:56:15.000Z">2008-02-29 15:56</Property>
+            </Item>
+            <Item id="1969:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1651:2">Sanni Riedberg</Property>
+               <Property name="Rubrik">Frågor kring casetaggen</Property>
+               <Property name="Beskrivning">Hade frågor kring casetaggen.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-21T12:01:51.000Z">2008-02-21 13:01</Property>
+            </Item>
+            <Item id="1970:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1651:2">Sanni Riedberg</Property>
+               <Property name="Rubrik">Lägga tillbaka raderad e-postmall</Property>
+               <Property name="Beskrivning">Vill ha hjälp med att lägga tillbaka raderad e-postmall.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-21T14:20:04.000Z">2008-02-21 15:20</Property>
+            </Item>
+            <Item id="1971:2">
+               <Property name="Handläggare" rawValue="4:3">Lena Rikner</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1651:2">Sanni Riedberg</Property>
+               <Property name="Rubrik">Ärendemall för ärenden från kundaccess</Property>
+               <Property name="Beskrivning">Undrar om man kan sätta en ärendemall för ärenden via kundaccess.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-27T08:15:47.000Z">2008-02-27 09:15</Property>
+            </Item>
+            <Item id="1972:2">
+               <Property name="Handläggare" rawValue="11:3">Bobo Häggström</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="4:4">Utvecklare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1465:2">Lisa Svärdling-Hedberg</Property>
+               <Property name="Rubrik">Kan inte bifoga txt-filer</Property>
+               <Property name="Beskrivning">Kan inte bifoga txt-filer i ärenden. Se skämdump</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-25T09:12:47.000Z">2008-02-25 10:12</Property>
+            </Item>
+            <Item id="1973:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="890:2">Kjersti Rättzén</Property>
+               <Property name="Rubrik">Kan inte välja handläggare i ärendemall</Property>
+               <Property name="Beskrivning">Kan inte välja handläggare i ärendemall i admin.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-03-11T07:21:17.000Z">2008-03-11 08:21</Property>
+            </Item>
+            <Item id="1974:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="890:2">Kjersti Rättzén</Property>
+               <Property name="Rubrik">Nytt namn på vår mejlserver</Property>
+               <Property name="Beskrivning">Hej Lisa,
+
+Här kommer namnet på vår nya server:
+
+relay.skbad.skb.se
+
+(fd namnet är n-sth-exc)
+
+Tack på förhand
+/Kjersti</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-28T13:48:19.000Z">2008-02-28 14:48</Property>
+            </Item>
+            <Item id="1976:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1534:2">(AVIDENTIFIERAT DATA)</Property>
+               <Property name="Rubrik">Personrapporter-månadsrapporter får jag följande fel</Property>
+               <Property name="Beskrivning">i både pan.easit.se/demo och ems.easit.se
+
+ 
+
+ 
+
+Fatal error: Cannot redeclare getholidays2() (previously declared in D:\Applications\ManagerSuite\Customers\Demo\html\modules\project\reports\monthly.php3:265) in D:\Applications\ManagerSuite\Customers\Demo\html\includes\misc.inc on line 1593
+
+ 
+
+Mvh
+
+ 
+
+ 
+
+Markus Waltari
+
+___________________________
+
+ 
+
+Easit AB
+
+Sundbybergsvägen 9
+
+171 73 Solna
+
+Tfn: 08-705 86 04
+
+Mob: 070-335 90 60
+
+E-mail: markus.waltari@easit.se
+
+Webb: www.easit.se &lt;http://www.easit.se/>                       
+
+___________________________</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-21T13:37:34.000Z">2008-02-21 14:37</Property>
+            </Item>
+            <Item id="1977:2">
+               <Property name="Handläggare" rawValue="10:3">Torben Teglind</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1980:2">(AVIDENTIFIERAT DATA)</Property>
+               <Property name="Rubrik">Redirect för support.pengvin.no</Property>
+               <Property name="Beskrivning">Hei
+
+Vi har routet vår support site (support.pengvin.no) til http://europa.easit.se
+
+Telenor kunne ikke route adressen direkte til selfservice innlogg, men kan dine teknikere route på webserveren slik at selfservice svarer på support.pengvin.no?
+
+Sindre
+
+Tlf: +47 91 57 90 00 
+Mobil: +47 99 59 02 26
+Epost: sindre.haraldsen@pengvin.no &lt;mailto:ellen.langseth@pengvin.no> 
+
+From: Kenneth Jogell [mailto:kenneth.jogell@easit.se] 
+Sent: 18. februar 2008 19:46
+To: sindre.haraldsen@pengvin.no; tb@pengvin.no
+Subject: Mailinläsning
+
+ 
+
+Hej
+
+ 
+
+Nu är mailinläsning aktiverat i erat system.
+
+ 
+
+Vi läser in mailen på följande mailbox
+
+ 
+
+pengvin@helpdesk.easit.nu
+
+ 
+
+Vidarebefordra eran mail helpdesk@pengvin.no till denna adress så skapar vi ärenden automatiskt på dessa mail.
+
+ 
+
+ 
+
+Med Vänliga Hälsningar 
+
+ 
+
+Kenneth Jogell
+
+Projektledare
+
+ 
+
+ 
+
+------------------------------------------
+
+Easit AB,   Sundbybergsvägen 9,   17173 Solna
+
+Tel. 08 - 705 86 08
+
+E-mail   kenneth.jogell@easit.se &lt;mailto:kenneth.jogell@easit.se> 
+
+ Web      www.easit.se &lt;blocked::blocked::http://www.easit.se/>  
+
+------------------------------------------</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-03-04T13:33:21.000Z">2008-03-04 14:33</Property>
+            </Item>
+            <Item id="1978:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1646:2">(AVIDENTIFIERAT DATA)</Property>
+               <Property name="Rubrik">Inventarievy visar siffror istället för kunder</Property>
+               <Property name="Beskrivning">Fältet 'Användare (Kund)' som finns i formuläret 'Servers' visar endast siffror fast det är valt som kundväljare och heltal. Ska hämta kunder från kundregistret.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-26T15:19:29.000Z">2008-02-26 16:19</Property>
+            </Item>
+            <Item id="1979:2">
+               <Property name="Handläggare" rawValue="4:3">Lena Rikner</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1083:2">Roger Bergsten</Property>
+               <Property name="Rubrik">Debiteringsgrad och faktureringsgrad</Property>
+               <Property name="Beskrivning">Hej,
+
+Jag undrar varför en debiteringsgrad och en faktureringsgrad skiljer sig i % från varandra men pengarna är de samma?
+
+/Roger Bergsten</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-03-06T14:07:20.000Z">2008-03-06 15:07</Property>
+            </Item>
+            <Item id="1981:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1585:2">(AVIDENTIFIERAT DATA)</Property>
+               <Property name="Rubrik">Lägga till fil på ärende via handläggarsidan</Property>
+               <Property name="Beskrivning">Hej på er!
+
+Har upptäckt en sak när vi ska lägga till bilagor via handläggarsidan på
+ett ärende.
+Håller jag muspekaren över både ikonen och texten "ny fil" så visare den
+att de är klickbara. Men det biter endast när man trycker på texten. Ikonen
+verkar inte vara länkad vidare.
+
+Inget stort problem men har haft ett par handläggare som trodde att det ej
+fungerade alls!
+
+Trevlig helg!
+
+//Hanna
+
+Hanna Bengtsson
+B&amp;B TOOLS Services
+IT Kundsupport
+Vistaforsvägen 3
+SE-523 85 ULRICEHAMN
+
+Phone  +46 (0)321 67 72 64
+Mobile +46 (0)703 57 72 64
+Fax       +46 (0)321 67 73 50
+e-mail hanna.bengtsson@bbservices.se
+
+www.bb.se
+
+-----
+
+(See attached file: spara fil på ärende _ administratör.doc)</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-05-15T06:12:40.000Z">2008-05-15 08:12</Property>
+            </Item>
+            <Item id="1982:2">
+               <Property name="Handläggare" rawValue="11:3">Bobo Häggström</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="4:4">Utvecklare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1465:2">Lisa Svärdling-Hedberg</Property>
+               <Property name="Rubrik">ÅÄÖ</Property>
+               <Property name="Beskrivning">Problem med åäö efter uppdateringen idag.
+
+
+åäö
+ 
+
+Med VÃƒÆ’Ã‚Â¤nliga HÃƒÆ’Ã‚Â¤lsningar 
+
+Lisa SvÃƒÆ’Ã‚Â¤rdling-Hedberg
+
+Support/Marknad
+
+------------------------------------------
+
+Easit AB,   SundbybergsvÃƒÆ’Ã‚Â¤gen 9,   17173 Solna
+
+Tel. 08 - 705 86 09
+
+E-mail   lisa.svardling-hedberg@easit.se &lt;mailto:k@easit.se> 
+
+ Web      www.easit.se &lt;blocked::blocked::http://www.easit.se/></Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-22T16:19:18.000Z">2008-02-22 17:19</Property>
+            </Item>
+            <Item id="1985:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1060:2">Cristel Ullstad</Property>
+               <Property name="Rubrik">Lista på personer som behöver logga in</Property>
+               <Property name="Beskrivning">De hÃ¥ller pÃ¥ att gÃ¶ra om alla konton fÃ¶r externa konsulter och fÃ¶rsÃ¶ker gÃ¥ mot att ha personliga konton istÃ¤llet. BehÃ¶ver en lista pÃ¥ vilka personer (namn och mobil nr) som kan tÃ¤nkas behÃ¶va det hos Easit.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-25T11:55:01.000Z">2008-02-25 12:55</Property>
+            </Item>
+            <Item id="1988:2">
+               <Property name="Handläggare" rawValue="null:3"/>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="null:4"/>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="481:2">Ola Holm</Property>
+               <Property name="Rubrik">Problem med ZK 3</Property>
+               <Property name="Beskrivning">Kunder och kontakter
+
+- alla fält är gråmarkerade när man går in på kunden/kontakten, och går inte att redigera, händer sporadiskt, testat med firefox
+
+- när man väljer lista tar det mycket längre tid än tidigare, framförallt tar det lång tid att få "fliken" på plats.
+
+- det dyker också upp en scrolllist (i sidled), men den ser man bara när man kör firefox
+
+- när man från en kund (easit) tittar på ärenden (ärendefliken) så får man en dubbelscroll, gäller bara IE</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-04-07T19:04:25.000Z">2008-04-07 21:04</Property>
+            </Item>
+            <Item id="1990:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="915:2">Agneta Westman</Property>
+               <Property name="Rubrik">Status i change visas i incident</Property>
+               <Property name="Beskrivning">Hej!
+
+Status som skapas i changekön, visas i incidentkön.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-26T14:20:03.000Z">2008-02-26 15:20</Property>
+            </Item>
+            <Item id="1992:2">
+               <Property name="Handläggare" rawValue="4:3">Lena Rikner</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1300:2">Annica Andersson</Property>
+               <Property name="Rubrik">Får sidan kan inte visas</Property>
+               <Property name="Beskrivning">Får "Sidan kan inte visas" då och då.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-27T08:36:34.000Z">2008-02-27 09:36</Property>
+            </Item>
+            <Item id="1993:2">
+               <Property name="Handläggare" rawValue="11:3">Bobo Häggström</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="4:4">Utvecklare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1465:2">Lisa Svärdling-Hedberg</Property>
+               <Property name="Rubrik">Fel namn på "Till"</Property>
+               <Property name="Beskrivning">När tittar på ett mail i e-mailhistoriken på ett ärende så står det fel namn i Till-fältet. Verkar bli samma som från-fältet, se skärmdump.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-05-02T13:16:06.000Z">2008-05-02 15:16</Property>
+            </Item>
+            <Item id="1994:2">
+               <Property name="Handläggare" rawValue="4:3">Lena Rikner</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1996:2">Thomas Borgersen</Property>
+               <Property name="Rubrik">Avslutning av ärende</Property>
+               <Property name="Beskrivning">Avslutning av ärdende resulterar i att mailrutan hamnar bakom ärendet istället för att vara det aktiva fönstret.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-03-07T09:50:45.000Z">2008-03-07 10:50</Property>
+            </Item>
+            <Item id="1995:2">
+               <Property name="Handläggare" rawValue="5:3">Lisa Svärdling-Hedberg</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1324:2">(AVIDENTIFIERAT DATA)</Property>
+               <Property name="Rubrik">Spara/Verkställ</Property>
+               <Property name="Beskrivning">Hej
+Vi hittar ingen skillnad på Spara knappen och Verkställ. Normalt när man trycker Verkställ kan man ju fortsätta göra ändringar i tex en dialogruta men här låses ärendet igen precis som när man trycker spara och man får trycka redigera för att göra fler ändringar. Jag har nu ändrat till att öppna ärende i redigeringsläge men när man då trycker spara ligger det kvar öppet - precis som med verkställ.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-03-17T11:58:40.000Z">2008-03-17 12:58</Property>
+            </Item>
+            <Item id="1997:2">
+               <Property name="Handläggare" rawValue="10:3">Torben Teglind</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1386:2">Stefan Mångsåker</Property>
+               <Property name="Rubrik">Automail</Property>
+               <Property name="Beskrivning">Hej! 
+
+Vi använder ärendehanteringen version 3.6. 
+
+Om man mailar in till it-support@wspgroup.se &lt;mailto:it-support@wspgroup.se>  som är vår mailadress så läggs ett ärende upp automatiskt på rätt kund. 
+
+Dock går det inte ut något E-mail med ärendenummer. 
+
+Hur gör man för att det skall fungera? 
+
+Stefan Mångsåker
+
+IT-Support Manager</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-03-04T10:04:10.000Z">2008-03-04 11:04</Property>
+            </Item>
+            <Item id="1999:2">
+               <Property name="Handläggare" rawValue="12:3">Roger Hulling</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="32:1">Bugg (används ej)</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="4:4">Utvecklare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1630:2">Patric Stenlund</Property>
+               <Property name="Rubrik">Kan inte koppla inventarier sedan igår</Property>
+               <Property name="Beskrivning">Kan inte koppla inventarier till ärenden sedan igår. De de klickar på förstoringsglaset så får de "Sidan kan inte visas".</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-02-27T07:30:03.000Z">2008-02-27 08:30</Property>
+            </Item>
+            <Item id="2000:2">
+               <Property name="Handläggare" rawValue="10:3">Torben Teglind</Property>
+               <Property name="1:a-linjen"/>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="null:1"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="2:4">Handläggare</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="1264:2">Jonas Grahn</Property>
+               <Property name="Rubrik">Installera testsystem på ny server</Property>
+               <Property name="Beskrivning">Går väldigt långsamt att jobba mot systemet. Vill ha ett testsystem uppsatt på en annan server för att testa om det går bättre där: 10.189.0.175 (domäninloggningen).</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2008-03-04T13:26:47.000Z">2008-03-04 14:26</Property>
+            </Item>
+            <Item id="375379:2">
+               <Property name="Handläggare" rawValue="null:3"/>
+               <Property name="1:a-linjen">true</Property>
+               <Property name="Debiteras ej"/>
+               <Property name="Typ" rawValue="33:1">Allmän fråga</Property>
+               <Property name="Tidskattning giltig tom"/>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Kategori" rawValue="2095:1">Allmänt</Property>
+               <Property name="Beräknad tidsåtgång"/>
+               <Property name="Handläggargrupp" rawValue="10:4">Supporten</Property>
+               <Property name="Total förfluten tid"/>
+               <Property name="Schemalagt svar"/>
+               <Property name="Kompletterande information"/>
+               <Property name="Anmälare" rawValue="4332:2">Magnus Rosengren</Property>
+               <Property name="Rubrik">Skillnad på inloggning</Property>
+               <Property name="Beskrivning">Hej
+Skulle behöva veta om man kan ha 2 entity på Easit. Detta för att särskilja inloggningarna internt och externt.</Property>
+               <Property name="Beräknad kostnad"/>
+               <Property name="Uppdaterad" rawValue="2022-03-29T08:20:05.000Z">2022-03-29 10:20</Property>
+               <Property name="System" rawValue="41105:2">Täby Kommun</Property>
+               <Property name="System" rawValue="41106:2">Täby kommun</Property>
+               <Property name="Involverade" rawValue="39:3">Självservice Självservice</Property>
+               <Property name="Involverade" rawValue="386:3">Danai Humble</Property>
+            </Item>
+         </Items>
+      </GetItemsResponse>
+   </soapenv:Body>
+</soapenv:Envelope>

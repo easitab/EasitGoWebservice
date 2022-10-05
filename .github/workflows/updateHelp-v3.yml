@@ -1,0 +1,32 @@
+name: Generate and update help
+
+on:
+  push:
+    branches: 
+    - 'release/v3**'
+    paths:
+    - 'source/v3/**'
+
+jobs:
+  buildHelp:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITAUTOCOMMITPAT }}
+
+      - name: Build temp module
+        run: ./build/tempbuild_github-v3.ps1
+        shell: pwsh
+
+      - name: Generate and update docs
+        run: ./build/generateAndUpdateDocs-v3.ps1
+        shell: pwsh
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Generate and update help
+          commit_user_name: My GitHub Actions Bot
+          file_pattern: docs
+          push_options: --force

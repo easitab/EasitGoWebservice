@@ -1,0 +1,35 @@
+name: Test source with PSSA and Pester
+
+on:
+  pull_request:
+    paths:
+    - 'source/v2/**'
+
+jobs:
+  lint:
+    name: Run PSSA
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: lint
+      uses: devblackops/github-action-psscriptanalyzer@master
+      with:
+        repoToken: ${{ secrets.GITHUB_TOKEN }}
+        failOnErrors: true
+        failOnWarnings: false
+        failOnInfos: false
+        settingsPath: ./.github/PSScriptAnalyzerSettings.psd1
+
+  test:
+    name: Pester tests
+    needs: lint
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Invoke Pester
+      shell: pwsh
+      run: Invoke-Pester
