@@ -2,7 +2,8 @@ name: Generate and update help
 
 on:
   push:
-    branches: 'release/v2**'
+    branches: 
+    - 'release/v2**'
     paths:
     - 'source/**'
 

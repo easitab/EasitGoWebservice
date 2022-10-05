@@ -1,5 +1,5 @@
 # This file in it self is not used but only a template.
-# Actual code that will be executed lives in appveyor.yml
+# Actual code that will be executed lives in appveyor.yml and appveyor-v3.yml
 
 New-Module -Name "$env:moduleName" -ScriptBlock {
     $modulePath = Join-Path -Path "$env:moduleRoot" -ChildPath "$env:moduleName.psm1"

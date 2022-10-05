@@ -2,8 +2,10 @@ name: Test tests with Pester
 
 on:
   pull_request:
+    branches: [ "release3" ]
     paths:
     - 'tests/v3/function/**'
+  workflow_dispatch:
 
 jobs:
   test:

@@ -2,11 +2,11 @@ name: Release Notes
 
 on:
   push:
-    branches:
-    - 'release3'
+    branches: [ "release3" ]
     paths-ignore:
     - '.github/**'
     - 'workflows/**'
+  workflow_dispatch:
 
 jobs:
   update_release_draft:

@@ -2,8 +2,10 @@ name: Test source with PSSA and Pester
 
 on:
   pull_request:
+    branches: [ "release3" ]
     paths:
     - 'source/v3/**'
+  workflow_dispatch:
 
 jobs:
   lint:

@@ -24,7 +24,7 @@ $newMarkdownHelpParams = @{
     Module = $tempModuleFileName
     OutputFolder = "$docsVersionRoot"
     AlphabeticParamsOrder = $true
-    OnlineVersionUrl = "https://github.com/easitab/EasitGoWebservice/blob/development/docs/v3/"
+    OnlineVersionUrl = "https://github.com/easitab/EasitGoWebservice/blob/main/docs/v3/"
     ErrorAction = Stop
 }
 try {

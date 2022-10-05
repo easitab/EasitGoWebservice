@@ -4,8 +4,8 @@ on:
   push:
     paths:
     - 'docs/v3/**'
-    branches:
-    - 'release/v3**'
+    branches: [ "release3" ]
+  workflow_dispatch:
 
 jobs:
   buildHelp:

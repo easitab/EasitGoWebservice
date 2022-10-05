@@ -2,10 +2,10 @@ name: Generate and update help
 
 on:
   push:
-    branches: 
-    - 'release/v3**'
+    branches: [ "release3" ]
     paths:
     - 'source/v3/**'
+  workflow_dispatch:
 
 jobs:
   buildHelp:
