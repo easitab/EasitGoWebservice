@@ -1,8 +1,5 @@
 function Import-GOAssetItem {
-      [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Import-GOAssetItem.md")]
-      <#
-      .EXTERNALHELP EasitGoWebservice-help.xml
-      #>
+      [CmdletBinding(HelpUri='https://github.com/easitab/EasitGoWebservice/blob/main/docs/v3/Import-GOAssetItem.md')]
       param (
             [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
             [ValidateNotNullOrEmpty()]
@@ -268,16 +265,12 @@ function Import-GOAssetItem {
             [string[]] $Attachment,
 
             [parameter(Mandatory = $false)]
-            [switch] $SSO,
-
-            [parameter(Mandatory = $false)]
-            [switch] $UseBasicParsing,
-
-            [parameter(Mandatory = $false)]
             [switch] $dryRun
       )
       begin {
             Write-Verbose "$($MyInvocation.MyCommand) initialized"
+            Write-Warning "You are using a command from an older version of the module EasitGoWebservice. This command is considered deprecated as of version 3 of the module EasitGoWebservice."
+            Write-Warning "This command will not get any new functionality and is used as a proxy for Import-GOItem. Please use Import-GOItem instead."
       }
       process {
             if (!($url) -or !($apikey)) {
@@ -349,12 +342,12 @@ function Import-GOAssetItem {
                   } Write-Verbose "Loop for $($parameter.Name) reached end!"
             }
             Write-Verbose "Successfully created hashtable of parameter!"
-            try {
-                  $payload = New-XMLforEasit -Import -ImportHandlerIdentifier "$ImportHandlerIdentifier" -Params $Params
-            } catch {
-                  throw $_
-            }
             if ($dryRun) {
+                  try {
+                        $payload = New-XMLforEasit -Import -ImportHandlerIdentifier "$ImportHandlerIdentifier" -Params $Params
+                  } catch {
+                        throw $_
+                  }
                   Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it to BPS"
                   try {
                         Export-PayloadToFile -Payload $payload
@@ -365,30 +358,14 @@ function Import-GOAssetItem {
                   $easitWebRequestParams = @{
                         Uri = "$url"
                         Apikey = "$apikey"
-                        Body = $payload
-                  }
-                  if ($SSO) {
-                        Write-Verbose "Adding UseDefaultCredentials to param hash"
-                        $easitWebRequestParams.Add('UseDefaultCredentials',$true)
-                  }
-                  if ($UseBasicParsing) {
-                        Write-Verbose "Adding UseBasicParsing to param hash"
-                        $easitWebRequestParams.Add('UseBasicParsing',$true)
+                        ImportHandlerIdentifier = "$ImportHandlerIdentifier"
+                        CustomProperties = $Params
                   }
                   try {
-                        Write-Verbose "Calling Invoke-EasitWebRequest"
-                        $r = Invoke-EasitWebRequest @easitWebRequestParams
+                        Import-GOItem @easitWebRequestParams
                   } catch {
                         throw $_
                   }
-                  try {
-                        Write-Verbose "Converting response"
-                        $returnObject = Convert-EasitXMLToPsObject -Response $r
-                  } catch {
-                        throw $_
-                  }
-                  Write-Verbose "Returning converted response"
-                  return $returnObject
             }
       }
 
