@@ -343,12 +343,12 @@ function Import-GOAssetItem {
             }
             Write-Verbose "Successfully created hashtable of parameter!"
             if ($dryRun) {
+                  Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it to BPS"
                   try {
                         $payload = New-XMLforEasit -Import -ImportHandlerIdentifier "$ImportHandlerIdentifier" -Params $Params
                   } catch {
                         throw $_
                   }
-                  Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it to BPS"
                   try {
                         Export-PayloadToFile -Payload $payload
                   } catch {
