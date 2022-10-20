@@ -1090,23 +1090,6 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -SSO
-
-Used if system is using SSO with IWA (Active Directory). Not needed when using SSO with SAML2.<br>
-Cmdlet will use the credentials of the current user to send the web request.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Status
 
 Status for asset.
@@ -1182,24 +1165,8 @@ Aliases: uri
 
 Required: False
 Position: Named
-Default value: Http://localhost/webservice/
+Default value: http://localhost/webservice/
 Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -UseBasicParsing
-
-This parameter is required when Internet Explorer is not installed on the computers, such as on a Server Core installation of a Windows Server operating system.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -1281,4 +1248,4 @@ limitations under the License.
 
 ## RELATED LINKS
 
-[Source](https://github.com/easitab/EasitGoWebservice/blob/main/source/private/Import-GOAssetItem.ps1)
+[Source code](https://github.com/easitab/EasitGoWebservice/blob/main/source/private/Import-GOAssetItem.ps1)
