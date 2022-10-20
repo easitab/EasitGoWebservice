@@ -1,0 +1,35 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Check source compliance with PowerShell Script Analyzer
+
+# Controls when the workflow will run
+on:
+  pull_request:
+    branches: [ "release3" ] # will later be changed to run for all branches
+    paths:
+    - 'source/v3/**'
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  test:
+    name: Run PSSA
+    # The type of runner that the job will run on
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - uses: actions/checkout@v3
+    - name: lint
+      uses: devblackops/github-action-psscriptanalyzer@master
+      with:
+        repoToken: ${{ secrets.GITHUB_TOKEN }}
+        failOnErrors: true
+        failOnWarnings: false
+        failOnInfos: false
+        settingsPath: ./.github/PSScriptAnalyzerSettings.psd1
