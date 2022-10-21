@@ -29,7 +29,7 @@ Import-GOContactItem [-url <String>] [-apikey <String>] [-ImportHandlerIdentifie
 **This command is considered deprecated as of the release of version 3 of the module EasitGoWebservice.<br>
 This command will not get any new functionality and is used as a proxy for Import-GOItem. Please use Import-GOItem instead.**
 
-Update and create contacts in Easit BPS / Easit GO. Specify 'ID' to update an existing contact.<br>
+Update or create a contact in Easit BPS / Easit GO. Specify 'ID' to update an existing contact.<br>
 This command used SOAP/XML and Invoke-WebRequest to communicate with the web service in BPS / GO.
 
 ## EXAMPLES

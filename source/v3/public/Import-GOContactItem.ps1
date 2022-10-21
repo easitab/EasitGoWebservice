@@ -178,13 +178,13 @@ function Import-GOContactItem {
                   } Write-Verbose "Loop for $($parameter.Name) reached end!"
             }
             Write-Verbose "Successfully created hashtable of parameter!"
+            try {
+                  $payload = New-XMLforEasit -Import -ImportHandlerIdentifier "$ImportHandlerIdentifier" -Params $Params
+            } catch {
+                  throw $_
+            }
             if ($dryRun) {
                   Write-Verbose "dryRun specified! Trying to save payload to file instead of sending it to BPS"
-                  try {
-                        $payload = New-XMLforEasit -Import -ImportHandlerIdentifier "$ImportHandlerIdentifier" -Params $Params
-                  } catch {
-                        throw $_
-                  }
                   try {
                         Export-PayloadToFile -Payload $payload
                   } catch {

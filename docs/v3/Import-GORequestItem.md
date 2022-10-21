@@ -1,11 +1,11 @@
 ---
 external help file: EasitGoWebservice-help.xml
 Module Name: EasitGoWebservice
-online version: https://github.com/easitab/EasitGoWebservice/blob/main/docs/v3/Import-GOOrganizationItem.md
+online version: https://github.com/easitab/EasitGoWebservice/blob/main/docs/v3/Import-GORequestItem.md
 schema: 2.0.0
 ---
 
-# Import-GOOrganizationItem
+# Import-GORequestItem
 
 ## SYNOPSIS
 
@@ -14,16 +14,18 @@ Send data to a importhandler configured in Easit BPS / Easit GO.
 ## SYNTAX
 
 ```powershell
-Import-GOOrganizationItem [-url <String>] [-apikey <String>] [-ImportHandlerIdentifier <String>]
- [-ConfigurationDirectory <String>] [-Country <String>] [-Category <String>] [-Status <String>]
- [-ParentItemID <Int32>] [-MainContractID <String>] [-ID <String>] [-AnvNamn <String>]
- [-BusinessDebit <String>] [-Counterpart <String>] [-CustomerNumber <String>] [-DeliveryAddress <String>]
- [-DeliveryCity <String>] [-DeliveryZipCode <String>] [-ExternalId <String>] [-Fax <String>] [-Losen <String>]
- [-Name <String>] [-Notes <String>] [-Ort <String>] [-Phone <String>] [-PostNummer <String>]
- [-ResponsibilityDebit <String>] [-UtdelningsAdress <String>] [-VisitingAddress <String>]
- [-VisitingCity <String>] [-VisitingZipCode <String>] [-Webshop <String>] [-Website <String>]
- [-AccountManager <String>] [-ServiceManager <String>] [-uid <Int32>] [-Attachment <String>]
- [-dryRun] [<CommonParameters>]
+Import-GORequestItem [-url <String>] [-apikey <String>] [-ImportHandlerIdentifier <String>]
+ [-ConfigurationDirectory <String>] [-ID <Int32>] [-ContactID <Int32>] [-OrganizationID <Int32>]
+ [-Category <String>] [-ManagerGroup <String>] [-Manager <String>] [-Type <String>] [-Status <String>]
+ [-ParentItemID <Int32>] [-Priority <String>] [-Description <String>] [-FaqKnowledgeResolutionText <String>]
+ [-Subject <String>] [-AssetsCollectionID <Int32>] [-CausalField <String>] [-ClosingCategory <String>]
+ [-Impact <String>] [-Owner <String>] [-ReferenceContactID <Int32>] [-ReferenceOrganizationID <Int32>]
+ [-ServiceID <Int32>] [-SLAID <String>] [-Urgency <String>] [-ClassificationID <Int32>]
+ [-KnowledgebaseArticleID <Int32>] [-CIID <Int32>] [-uid <Int32>] [-DeliveryInformation <String>]
+ [-ApprovedByID <Int32>] [-Approval <String>] [-ProductsAndServices <String>] [-Message <String>]
+ [-DesiredDelivery <String>] [-PlannedDelivery <String>] [-Workaround <String>] [-ImpactAssessment <String>]
+ [-ResourceRequirement <String>] [-Cause <String>] [-LifeCycle <String>] [-TypeOfChange <String>]
+ [-CategoryOfChange <String>] [-Attachment <String>] [-SSO] [-UseBasicParsing] [-dryRun] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,116 +33,75 @@ Import-GOOrganizationItem [-url <String>] [-apikey <String>] [-ImportHandlerIden
 **This command is considered deprecated as of the release of version 3 of the module EasitGoWebservice.<br>
 This command will not get any new functionality and is used as a proxy for Import-GOItem. Please use Import-GOItem instead.**
 
-Update or create a organization in Easit BPS / Easit GO. Specify 'ID' to update an existing asset.<br>
+Update or create a request in Easit BPS / Easit GO. Specify 'ID' to update an existing request.<br>
 This command used SOAP/XML and Invoke-WebRequest to communicate with the web service in BPS / GO.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 
-Creates a new organization with *Name* as 'IT and things', *CustomerNumber* as '1648752', *BusinessDebit* as '4687', *Country* as 'Sverige' *Status* as 'Active' and as a *child* to the organization with ID 124, all verbose message will be shown and the ID for the new organization will be returned to host.
-
 ```powershell
-Import-GOOrganizationItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateOrganization' -Name 'IT and things' -ParentItemID '124' -CustomerNumber '1648752' -BusinessDebit '4687' -Country 'Sverige' -Status 'Active' -Verbose -ShowDetails
+Import-GORequestItem -url 'http://localhost/webservice/' -apikey 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618' -ImportHandlerIdentifier 'CreateRequest' -Subject 'Testing1' -Description 'Testing1' -Status 'Registrerad'
 ```
 
 ### EXAMPLE 2
 
-Creates a new organization with *Name* as 'Stuff and IT', *CustomerNumber* as '4678524' and *BusinessDebit* as '1684'. It will set a existing contact with the email 'account.manager@company.com' as *AccountManager*, it will set an existing contract with ID '85' as *MainContract* and an existing user with username 'username123' as *ServiceManager*.
-
 ```powershell
 $url = 'http://localhost/webservice/'
 $apikey = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
-Import-GOOrganizationItem -url "$url" -apikey "$apikey" -ihi 'CreateOrganizationExternal' -Name 'Stuff and IT' -CustomerNumber '4678524' -BusinessDebit '1684' -AccountManager 'account.manager@company.com' -MainContractID '85' -ServiceManager 'username123'
+Import-GORequestItem -url "$url" -apikey "$apikey" -ImportHandlerIdentifier 'CreateRequestIncident' -Subject 'Testing1' -Description 'Testing1' -ContactID '5' -Status 'Registrerad'
 ```
 
 ### EXAMPLE 3
 
-Updates the organization with ID 467 the values from parameters *Category* and *Status*.
-
 ```powershell
 $importEasitItem = @{
     url = 'http://localhost/webservice/'
-    api = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
-    ImportHandlerIdentifier = 'CreateOrganizationSupplier'
-    ID = '467'
-    Category = 'Food'
-    Status = 'Active'
+    apikey = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
+    ImportHandlerIdentifier = 'CreateRequestProblem'
+    ID = '156'
+    Description = 'Testing2. Nytt test!'
 }
-Import-GOOrganizationItem @importEasitItem
+Import-GORequestItem @importEasitItem
 ```
 
 ### EXAMPLE 4
 
-Updates the organization with ID 156 to have 'Inactive' as *Status*.
-
 ```powershell
 $importEasitItem = @{
     url = 'http://localhost/webservice/'
-    api = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
-    ImportHandlerIdentifier = 'CreateOrganizationSupplier'
+    apikey = 'a8d5eba7f4daa79ea6f1c17c6b453d17df9c27727610b142c70c51bb4eda3618'
+    ImportHandlerIdentifier = 'CreateRequestProblem'
     ID = '156'
 }
-Import-GOOrganizationItem @importEasitItem -Status 'Inactive'
+Import-GORequestItem @importEasitItem -Description 'Updating description for request 156'
 ```
 
 ### EXAMPLE 5
 
+In this example we have a configuration file located in our users home directory with the url and apikey.
+
 ```powershell
 $importEasitItem = @{
-    ImportHandlerIdentifier = 'CreateOrganizationSupplier'
+    ImportHandlerIdentifier = 'CreateRequestProblem'
     ID = '156'
 }
-Import-GOOrganizationItem @importEasitItem -Status 'Inactive'
+Import-GORequestItem @importEasitItem -Description 'Updating description for request 156'
 ```
-
-In this example we have a configuration file located in our users home directory with the url and apikey.
 
 ### EXAMPLE 6
 
 ```powershell
-Import-GOOrganizationItem
-    -ImportHandlerIdentifier 'CreateOrganizationSupplier'
+Import-GORequestItem
+    -ImportHandlerIdentifier 'CreateRequest'
     -ID '456'
     -Attachment 'file;C:\Path\To\Attachment.docx','base64;filename.txt;base64stringofattachment'
 ```
 
 In this example we have a configuration file located in our users home directory with the url and apikey.\
-We are updating an supplier with ID 456 with 2 attachments.
+We are updating an request with ID 456 with 2 attachments.
 
 ## PARAMETERS
-
-### -AccountManager
-
-Email or username of user that should be used as AccountManager.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: Kundansvarig
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -AnvNamn
-
-Username at organization.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: UserName
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
 
 ### -apikey
 
@@ -154,6 +115,56 @@ Aliases: api
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Approval
+
+Approval for the Service Request.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -ApprovedByID
+
+ID of contact responsible for approving.
+Can be found on the contact in Easit BPS / Easit GO.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases: ApprovedBy
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -AssetsCollectionID
+
+ID of asset to connect to the request.
+Adds item to collection.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases: Asset
+
+Required: False
+Position: Named
+Default value: 0
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
@@ -174,14 +185,14 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -BusinessDebit
+### -Category
 
-BusinessDebit for organization.
+Contacts category.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: Verksamhetdebet
+Aliases:
 
 Required: False
 Position: Named
@@ -190,9 +201,91 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -Category
+### -CategoryOfChange
 
-Category of organization.
+What category of change is it.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -CausalField
+
+Closure cause.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: ClosureCause
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Cause
+
+Description of cause.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -CIID
+
+ID of asset to connect to request.
+Can be found on the asset in Easit BPS / Easit GO.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases: CI
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -ClassificationID
+
+ID of classification to connect with request.
+Can be found on the classification in Easit BPS / Easit GO.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases: Classification
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -ClosingCategory
+
+Closure category.
 
 ```yaml
 Type: String
@@ -222,9 +315,26 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -Counterpart
+### -ContactID
 
-Counterpart for organization.
+ID of contact in Easit BPS / Easit GO.
+Can be found on the contact in BPS/GO.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -DeliveryInformation
+
+Information to be used when delivering service request.
 
 ```yaml
 Type: String
@@ -238,25 +348,9 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -Country
+### -Description
 
-Country that organization is located in or belongs to.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -CustomerNumber
-
-Organization customer number
+Description of request.
 
 ```yaml
 Type: String
@@ -270,41 +364,9 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -DeliveryAddress
+### -DesiredDelivery
 
-Delivery address for organization.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -DeliveryCity
-
-Delivery city for organization (Leveransadress).
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -DeliveryZipCode
-
-Delivery zip code for organization.
+Date when delivery is desired.
 
 ```yaml
 Type: String
@@ -335,31 +397,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ExternalId
+### -FaqKnowledgeResolutionText
 
-External id for organization.
-Can be used as unique identifier for integrations with other systems.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -Fax
-
-Fax number for organization.
+Solution for the request.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: Resolution, FAQ
 
 Required: False
 Position: Named
@@ -370,12 +415,45 @@ Accept wildcard characters: False
 
 ### -ID
 
-ID of organization in Easit BPS / Easit GO.
+ID for request in BPS/GO.
+Existing item will be updated if provided.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases: Item, ItemID
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Impact
+
+Impact of request.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: OrganizationID
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -ImpactAssessment
+
+An assessment of the impact for the problem.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
 
 Required: False
 Position: Named
@@ -395,99 +473,20 @@ Aliases: ihi
 
 Required: False
 Position: Named
-Default value: CreateOrganization_Internal
+Default value: CreateRequest
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -Losen
+### -KnowledgebaseArticleID
 
-Password at organization website.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: Password
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -MainContractID
-
-ID of main contract that organization is connected to.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: Contract
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -Name
-
-Name of organization.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: Namn
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -Notes
-
-Notes for organization.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: Anteckningar
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -Ort
-
-City for organization.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: City
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -ParentItemID
-
-ID of parent organisation to organization.
+ID of knowledgebase article to connect with request.
+Can be found on the knowledgebase article in Easit BPS / Easit GO.
 
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: Parent
+Aliases: KnowledgebaseArticle, KB
 
 Required: False
 Position: Named
@@ -496,25 +495,9 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -Phone
+### -LifeCycle
 
-Phone number for organization.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: Telefon
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -PostNummer
-
-Postal number for organization.
+What life cycle is the item in.
 
 ```yaml
 Type: String
@@ -528,14 +511,14 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -ResponsibilityDebit
+### -Manager
 
-Responsibility debit for organization.
+Username or email of user that should be used as manager.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: Ansvardebet
+Aliases:
 
 Required: False
 Position: Named
@@ -544,14 +527,213 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -ServiceManager
+### -ManagerGroup
 
-Email or username of user that should be used as ServiceManager.
+Name of manager group
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: Serviceansvarig
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Message
+
+Message to the manager.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -OrganizationID
+
+ID for organization to which the contact belongs to.
+Can be found on the organization in Easit BPS / Easit GO.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Owner
+
+Owner of request.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -ParentItemID
+
+ID of parent item.
+Matches agains existing items.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases: Parent
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -PlannedDelivery
+
+Date when delivery is planned to.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Priority
+
+Priority for item.
+Matches agains existing priorities.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -ProductsAndServices
+
+What products and / or services should the request have.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -ReferenceContactID
+
+ID of reference contact.
+Can be found on the contact in Easit BPS / Easit GO.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -ReferenceOrganizationID
+
+ID of reference organization.
+Can be found on the organization in Easit BPS / Easit GO.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -ResourceRequirement
+
+Requirement for resources.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -ServiceID
+
+ID of article to connect with request.
+Can be found on the article in Easit BPS / Easit GO.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases: Article
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -SLAID
+
+ID of contract to connect with request.
+Can be found on the contract in Easit BPS / Easit GO.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases: SLA
 
 Required: False
 Position: Named
@@ -562,7 +744,57 @@ Accept wildcard characters: False
 
 ### -Status
 
-Status of organization.
+Name of status.
+Matches agains existing statuses.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Subject
+
+Subject of request.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Type
+
+Name of type.
+Matches agains existing types.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -TypeOfChange
+
+What type of change is it.
 
 ```yaml
 Type: String
@@ -578,7 +810,7 @@ Accept wildcard characters: False
 
 ### -uid
 
-Parameter to specify what value to set as attribut UID and id for the XML property ItemToImport.
+Unique ID for object during import.
 
 ```yaml
 Type: Int32
@@ -588,6 +820,22 @@ Aliases:
 Required: False
 Position: Named
 Default value: 1
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Urgency
+
+Urgency of request.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
@@ -603,99 +851,19 @@ Aliases: uri
 
 Required: False
 Position: Named
-Default value: http://localhost/webservice/
+Default value: Http://localhost/webservice/
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -UtdelningsAdress
+### -Workaround
 
-Delivery address for organization (Utdelningsadress).
+What workaround is available.
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -VisitingAddress
-
-Visiting address for organization.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: Besoksadress
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -VisitingCity
-
-Visiting city for organization.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: Besoksort
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -VisitingZipCode
-
-Visiting zip code for organization.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: Besokspostnummer
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -Webshop
-
-URL to organizations webshop.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -Website
-
-URL to organizations website.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases: Webb, homepage
 
 Required: False
 Position: Named
@@ -733,4 +901,4 @@ limitations under the License.
 
 ## RELATED LINKS
 
-[Source code](https://github.com/easitab/EasitGoWebservice/blob/main/source/private/Import-GOOrganizationItem.ps1)
+[Source code](https://github.com/easitab/EasitGoWebservice/blob/main/source/private/Import-GORequestItem.ps1)
