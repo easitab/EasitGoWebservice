@@ -2,7 +2,8 @@ name: Check source compliance with PowerShell Script Analyzer
 
 on:
   pull_request:
-    branches: [ "release3" ] # will later be changed to run for all branches
+    branches:
+      - 'release3' # will later be changed to run for all branches
     paths:
     - 'source/v3/**'
   workflow_dispatch:
