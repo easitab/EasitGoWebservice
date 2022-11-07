@@ -1,8 +1,6 @@
-function Import-GOCustomItem {
-    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v2/Import-GOCustomItem.md")]
-    <#
-    .EXTERNALHELP EasitGoWebservice-help.xml
-    #>
+function Import-GOItem {
+    [CmdletBinding(HelpURI="https://github.com/easitab/EasitGoWebservice/blob/main/docs/v3/Import-GOItem.md")]
+    [Alias("Import-GOCustomItem","igi")]
     param (
         [parameter(Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
         [ValidateNotNullOrEmpty()]
